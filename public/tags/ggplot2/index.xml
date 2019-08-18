@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ggplot2 | Tao Yan</title>
-    <link>/tags/ggplot2/</link>
-      <atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/ggplot2/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     <description>ggplot2</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Wed, 31 Jan 2018 19:43:11 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>ggplot2</title>
-      <link>/tags/ggplot2/</link>
+      <link>https://taoyan.netlify.com/tags/ggplot2/</link>
     </image>
     
     <item>
       <title>关于如何修改坐标轴表达式以及分面图例的一个例子</title>
-      <link>/post/2018-01-31.%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E5%9D%90%E6%A0%87%E8%BD%B4%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%88%86%E9%9D%A2%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-31.%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E5%9D%90%E6%A0%87%E8%BD%B4%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%88%86%E9%9D%A2%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90/</link>
       <pubDate>Wed, 31 Jan 2018 19:43:11 +0000</pubDate>
-      <guid>/post/2018-01-31.%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E5%9D%90%E6%A0%87%E8%BD%B4%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%88%86%E9%9D%A2%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-31.%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E5%9D%90%E6%A0%87%E8%BD%B4%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%88%86%E9%9D%A2%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ElKca96m2c.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;ggplot2&lt;/strong&gt;绘制的图形如果需要修改细节的话，没有对&lt;strong&gt;ggplot2&lt;/strong&gt;有一定的了解的话是十分困难的，毕竟连创建这个包的作者&lt;strong&gt;Hadley Wickham&lt;/strong&gt;都自称自己使用&lt;strong&gt;ggplot2&lt;/strong&gt;的时候都需要查文档。在对&lt;strong&gt;ggplot2&lt;/strong&gt;有一定了解的基础上如果需要修改ggplot图的话稍微查查文档基本能解决。&lt;/p&gt;
@@ -140,9 +140,9 @@ ggpar(p,palette = &amp;quot;npg&amp;quot;,font.tickslab = c(18,&amp;quot;bold&am
     
     <item>
       <title>ggplot2高效实用指南</title>
-      <link>/post/2017-09-19.ggplot2%E9%AB%98%E6%95%88%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-19.ggplot2%E9%AB%98%E6%95%88%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Tue, 19 Sep 2017 08:29:46 +0000</pubDate>
-      <guid>/post/2017-09-19.ggplot2%E9%AB%98%E6%95%88%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-19.ggplot2%E9%AB%98%E6%95%88%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/emJBf4A306.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -2576,9 +2576,9 @@ p+geom_bar(position = &amp;quot;dodge&amp;quot;)
     
     <item>
       <title>ggplot2学习笔记系列之主题（theme）设置</title>
-      <link>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-aedad605e759b602.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;上次提了下&lt;code&gt;theme()&lt;/code&gt;,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，&lt;strong&gt;ggplot2&lt;/strong&gt;中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神&lt;strong&gt;Hadley Wickham&lt;/strong&gt;所讲的，&lt;strong&gt;ggplot2&lt;/strong&gt;只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，&lt;strong&gt;ggplot2&lt;/strong&gt;都能实现。&lt;/p&gt;
@@ -2789,9 +2789,9 @@ xlab(&amp;quot;随便定义了个x&amp;quot;)+ylab(&amp;quot;随机数&amp;quot;
     
     <item>
       <title>ggplot2学习笔记系列之利用ggplot2绘制误差棒及显著性标记</title>
-      <link>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-46b1e37462ac6440.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 绘制带有误差棒的条形图&lt;/p&gt;
 
@@ -2951,9 +2951,9 @@ coord_flip()#旋转坐标轴
     
     <item>
       <title>ggplot2学习笔记系列之利用ggplot2绘制条形图</title>
-      <link>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</link>
       <pubDate>Sun, 25 Jun 2017 09:23:05 -0500</pubDate>
-      <guid>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5c9a37089f4883ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

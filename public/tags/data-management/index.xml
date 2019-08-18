@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>data management | Tao Yan</title>
-    <link>/tags/data-management/</link>
-      <atom:link href="/tags/data-management/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/data-management/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/data-management/index.xml" rel="self" type="application/rss+xml" />
     <description>data management</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Thu, 29 Jun 2017 12:34:08 -0500</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>data management</title>
-      <link>/tags/data-management/</link>
+      <link>https://taoyan.netlify.com/tags/data-management/</link>
     </image>
     
     <item>
       <title>R语言data manipulation学习笔记之subset data</title>
-      <link>/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</link>
       <pubDate>Thu, 29 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</guid>
       <description>&lt;p&gt;数据分析过程中我们常常需要从数据集中抽取部分数据，本文将介绍如何提取子数据集，主要利用R自带的函数，以后会专门介绍data manipulation包&lt;strong&gt;dplyr&lt;/strong&gt;。 提取子数据集主要分为select以及exclude，这里主要介绍两种方法，一是利用操作符[]进行选取，二是利用subset()进行抽取。&lt;/p&gt;
 
 &lt;h2 id=&#34;利用-进行提取&#34;&gt;利用[]进行提取&lt;/h2&gt;

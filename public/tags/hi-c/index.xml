@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hi-C | Tao Yan</title>
-    <link>/tags/hi-c/</link>
-      <atom:link href="/tags/hi-c/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/hi-c/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/hi-c/index.xml" rel="self" type="application/rss+xml" />
     <description>Hi-C</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Wed, 06 Dec 2017 21:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>Hi-C</title>
-      <link>/tags/hi-c/</link>
+      <link>https://taoyan.netlify.com/tags/hi-c/</link>
     </image>
     
     <item>
       <title>生物信息学学习笔记（四）</title>
-      <link>/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
       <pubDate>Wed, 06 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/lGak1jll4j.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;最近看了华中农业大学张献龙老师发在&lt;strong&gt;Nature Genetics&lt;/strong&gt;上的文章&lt;a href=&#34;https://www.nature.com/articles/ng.3807&#34; target=&#34;_blank&#34;&gt;Asymmetric subgenome selection and cis-regulatory divergence during cotton domestication&lt;/a&gt;以及第一作者王茂军博士的博士毕业论文，十分精彩，故学习之并做适当笔记。&lt;/p&gt;
@@ -65,9 +65,9 @@
     
     <item>
       <title>生物信息学学习笔记（三）</title>
-      <link>/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
       <pubDate>Mon, 04 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/eeCi4f49Ag.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -110,9 +110,9 @@
     
     <item>
       <title>生物信息学学习笔记（二）</title>
-      <link>/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
       <pubDate>Wed, 29 Nov 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dlGEdblL4H.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;hi-c&#34;&gt;Hi-C&lt;/h2&gt;

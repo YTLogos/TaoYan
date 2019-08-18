@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>circos | Tao Yan</title>
-    <link>/tags/circos/</link>
-      <atom:link href="/tags/circos/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/circos/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/circos/index.xml" rel="self" type="application/rss+xml" />
     <description>circos</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Fri, 20 Jul 2018 18:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>circos</title>
-      <link>/tags/circos/</link>
+      <link>https://taoyan.netlify.com/tags/circos/</link>
     </image>
     
     <item>
       <title>Circos配置文件详解</title>
-      <link>/post/2018-07-20.circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</link>
+      <link>https://taoyan.netlify.com/post/2018-07-20.circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Fri, 20 Jul 2018 18:19:05 +0000</pubDate>
-      <guid>/post/2018-07-20.circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-07-20.circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/CAl9leklEG.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;circos的配置文件准备&#34;&gt;Circos的配置文件准备&lt;/h2&gt;

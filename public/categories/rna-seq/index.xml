@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>RNA-seq | Tao Yan</title>
-    <link>/categories/rna-seq/</link>
-      <atom:link href="/categories/rna-seq/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/categories/rna-seq/</link>
+      <atom:link href="https://taoyan.netlify.com/categories/rna-seq/index.xml" rel="self" type="application/rss+xml" />
     <description>RNA-seq</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Fri, 08 Sep 2017 12:34:08 -0500</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>RNA-seq</title>
-      <link>/categories/rna-seq/</link>
+      <link>https://taoyan.netlify.com/categories/rna-seq/</link>
     </image>
     
     <item>
       <title>利用tximport进行RNA-seq分析</title>
-      <link>/post/2017-09-08.%E5%88%A9%E7%94%A8tximport%E8%BF%9B%E8%A1%8Crna-seq%E5%88%86%E6%9E%90/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-08.%E5%88%A9%E7%94%A8tximport%E8%BF%9B%E8%A1%8Crna-seq%E5%88%86%E6%9E%90/</link>
       <pubDate>Fri, 08 Sep 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-09-08.%E5%88%A9%E7%94%A8tximport%E8%BF%9B%E8%A1%8Crna-seq%E5%88%86%E6%9E%90/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-08.%E5%88%A9%E7%94%A8tximport%E8%BF%9B%E8%A1%8Crna-seq%E5%88%86%E6%9E%90/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 
 &lt;hr /&gt;
@@ -199,9 +199,9 @@ y$offset &amp;lt;- t(t(log(normMat))+o)
     
     <item>
       <title>A brief introduction of salmon</title>
-      <link>/post/2017-09-06.a-brief-introduction-of-salmon/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-06.a-brief-introduction-of-salmon/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-09-06.a-brief-introduction-of-salmon/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-06.a-brief-introduction-of-salmon/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 
 &lt;hr /&gt;

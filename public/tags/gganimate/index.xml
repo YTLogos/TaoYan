@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gganimate | Tao Yan</title>
-    <link>/tags/gganimate/</link>
-      <atom:link href="/tags/gganimate/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/gganimate/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/gganimate/index.xml" rel="self" type="application/rss+xml" />
     <description>gganimate</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Wed, 14 Aug 2019 16:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>gganimate</title>
-      <link>/tags/gganimate/</link>
+      <link>https://taoyan.netlify.com/tags/gganimate/</link>
     </image>
     
     <item>
       <title>gganimate:数据跳动</title>
-      <link>/post/2019-08-14.gganimate%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%B7%B3%E5%8A%A8/</link>
+      <link>https://taoyan.netlify.com/post/2019-08-14.gganimate%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%B7%B3%E5%8A%A8/</link>
       <pubDate>Wed, 14 Aug 2019 16:19:05 +0000</pubDate>
-      <guid>/post/2019-08-14.gganimate%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%B7%B3%E5%8A%A8/</guid>
+      <guid>https://taoyan.netlify.com/post/2019-08-14.gganimate%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%B7%B3%E5%8A%A8/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190815155922.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -317,9 +317,9 @@ animate(p_reveal, nframes = 50, type=&amp;quot;cairo&amp;quot;)
     
     <item>
       <title>gganimate:让数据动起来</title>
-      <link>/post/2019-08-13.gganimate%E4%BD%BF%E6%95%B0%E6%8D%AE%E5%8A%A8%E8%B5%B7%E6%9D%A5/</link>
+      <link>https://taoyan.netlify.com/post/2019-08-13.gganimate%E4%BD%BF%E6%95%B0%E6%8D%AE%E5%8A%A8%E8%B5%B7%E6%9D%A5/</link>
       <pubDate>Tue, 13 Aug 2019 16:19:05 +0000</pubDate>
-      <guid>/post/2019-08-13.gganimate%E4%BD%BF%E6%95%B0%E6%8D%AE%E5%8A%A8%E8%B5%B7%E6%9D%A5/</guid>
+      <guid>https://taoyan.netlify.com/post/2019-08-13.gganimate%E4%BD%BF%E6%95%B0%E6%8D%AE%E5%8A%A8%E8%B5%B7%E6%9D%A5/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/firework.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -476,9 +476,9 @@ p &amp;lt;- ggplot(fireworks) +
     
     <item>
       <title>利用gganimate可视化R-Ladies发展情况</title>
-      <link>/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</link>
       <pubDate>Thu, 08 Feb 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/raw/master/g0hLljaEb9.gif&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -624,9 +624,9 @@ gganimate::gganimate(map, filename = &amp;quot;d4tagirlmap.gif&amp;quot;)
     
     <item>
       <title>R语言可视化学习笔记之gganimate包</title>
-      <link>/post/2018-02-06.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgganimate%E5%8C%85/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-06.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgganimate%E5%8C%85/</link>
       <pubDate>Tue, 06 Feb 2018 14:19:05 +0000</pubDate>
-      <guid>/post/2018-02-06.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgganimate%E5%8C%85/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-06.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgganimate%E5%8C%85/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/kHCkkicfkh.gif?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

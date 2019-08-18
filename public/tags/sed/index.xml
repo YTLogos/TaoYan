@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sed | Tao Yan</title>
-    <link>/tags/sed/</link>
-      <atom:link href="/tags/sed/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/sed/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/sed/index.xml" rel="self" type="application/rss+xml" />
     <description>sed</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Sun, 26 Nov 2017 21:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>sed</title>
-      <link>/tags/sed/</link>
+      <link>https://taoyan.netlify.com/tags/sed/</link>
     </image>
     
     <item>
       <title>Linux学习笔记（九）</title>
-      <link>/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</link>
       <pubDate>Sun, 26 Nov 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/B6jBAEJ3k8.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sed实例讲解&#34;&gt;sed实例讲解&lt;/h2&gt;
@@ -295,9 +295,9 @@ guge 50 3000
     
     <item>
       <title>Linux学习笔记（八）</title>
-      <link>/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
       <pubDate>Mon, 20 Nov 2017 17:19:05 +0000</pubDate>
-      <guid>/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/B6jBAEJ3k8.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sed&#34;&gt;sed&lt;/h2&gt;

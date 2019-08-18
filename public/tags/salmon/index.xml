@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>salmon | Tao Yan</title>
-    <link>/tags/salmon/</link>
-      <atom:link href="/tags/salmon/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/salmon/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/salmon/index.xml" rel="self" type="application/rss+xml" />
     <description>salmon</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Sun, 25 Jun 2017 12:34:08 -0500</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>salmon</title>
-      <link>/tags/salmon/</link>
+      <link>https://taoyan.netlify.com/tags/salmon/</link>
     </image>
     
     <item>
       <title>A brief introduction of salmon</title>
-      <link>/post/2017-09-06.a-brief-introduction-of-salmon/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-06.a-brief-introduction-of-salmon/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-09-06.a-brief-introduction-of-salmon/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-06.a-brief-introduction-of-salmon/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 
 &lt;hr /&gt;

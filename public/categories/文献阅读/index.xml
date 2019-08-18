@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>文献阅读 | Tao Yan</title>
-    <link>/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</link>
-      <atom:link href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</link>
+      <atom:link href="https://taoyan.netlify.com/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/index.xml" rel="self" type="application/rss+xml" />
     <description>文献阅读</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Wed, 26 Jun 2019 18:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>文献阅读</title>
-      <link>/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</link>
+      <link>https://taoyan.netlify.com/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</link>
     </image>
     
     <item>
       <title>文献阅读笔记:Genome-wide nucleotide patterns and potential mechanisms of genome divergence following domestication in maize and soybean</title>
-      <link>/post/2019-06-27.%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0genome-wide-nucleotide-patterns-and-potential-mechanisms-of-genome-divergence-following-domestication-in-maize-and-soybean/</link>
+      <link>https://taoyan.netlify.com/post/2019-06-27.%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0genome-wide-nucleotide-patterns-and-potential-mechanisms-of-genome-divergence-following-domestication-in-maize-and-soybean/</link>
       <pubDate>Wed, 26 Jun 2019 18:19:05 +0000</pubDate>
-      <guid>/post/2019-06-27.%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0genome-wide-nucleotide-patterns-and-potential-mechanisms-of-genome-divergence-following-domestication-in-maize-and-soybean/</guid>
+      <guid>https://taoyan.netlify.com/post/2019-06-27.%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0genome-wide-nucleotide-patterns-and-potential-mechanisms-of-genome-divergence-following-domestication-in-maize-and-soybean/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190613144206.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;一句话总结&#34;&gt;一句话总结&lt;/h2&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>爬虫rvest | Tao Yan</title>
-    <link>/tags/%E7%88%AC%E8%99%ABrvest/</link>
-      <atom:link href="/tags/%E7%88%AC%E8%99%ABrvest/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/%E7%88%AC%E8%99%ABrvest/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/%E7%88%AC%E8%99%ABrvest/index.xml" rel="self" type="application/rss+xml" />
     <description>爬虫rvest</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Tue, 12 Sep 2017 12:34:08 -0500</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>爬虫rvest</title>
-      <link>/tags/%E7%88%AC%E8%99%ABrvest/</link>
+      <link>https://taoyan.netlify.com/tags/%E7%88%AC%E8%99%ABrvest/</link>
     </image>
     
     <item>
       <title>一篇关于国旗与奥运会奖牌的可视化笔记</title>
-      <link>/post/2017-09-12.%E4%B8%80%E7%AF%87%E5%85%B3%E4%BA%8E%E5%9B%BD%E6%97%97%E4%B8%8E%E5%A5%A5%E8%BF%90%E4%BC%9A%E5%A5%96%E7%89%8C%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-12.%E4%B8%80%E7%AF%87%E5%85%B3%E4%BA%8E%E5%9B%BD%E6%97%97%E4%B8%8E%E5%A5%A5%E8%BF%90%E4%BC%9A%E5%A5%96%E7%89%8C%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Tue, 12 Sep 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-09-12.%E4%B8%80%E7%AF%87%E5%85%B3%E4%BA%8E%E5%9B%BD%E6%97%97%E4%B8%8E%E5%A5%A5%E8%BF%90%E4%BC%9A%E5%A5%96%E7%89%8C%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-12.%E4%B8%80%E7%AF%87%E5%85%B3%E4%BA%8E%E5%9B%BD%E6%97%97%E4%B8%8E%E5%A5%A5%E8%BF%90%E4%BC%9A%E5%A5%96%E7%89%8C%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/k58bFmLk2c.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bioinformatics | Tao Yan</title>
-    <link>/categories/bioinformatics/</link>
-      <atom:link href="/categories/bioinformatics/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/categories/bioinformatics/</link>
+      <atom:link href="https://taoyan.netlify.com/categories/bioinformatics/index.xml" rel="self" type="application/rss+xml" />
     <description>bioinformatics</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Tue, 26 Feb 2019 18:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>bioinformatics</title>
-      <link>/categories/bioinformatics/</link>
+      <link>https://taoyan.netlify.com/categories/bioinformatics/</link>
     </image>
     
     <item>
       <title>利用EMMAX进行GWAS分析</title>
-      <link>/post/2019-02-27.%E5%88%A9%E7%94%A8emmax%E8%BF%9B%E8%A1%8Cgwas%E5%88%86%E6%9E%90/</link>
+      <link>https://taoyan.netlify.com/post/2019-02-27.%E5%88%A9%E7%94%A8emmax%E8%BF%9B%E8%A1%8Cgwas%E5%88%86%E6%9E%90/</link>
       <pubDate>Tue, 26 Feb 2019 18:19:05 +0000</pubDate>
-      <guid>/post/2019-02-27.%E5%88%A9%E7%94%A8emmax%E8%BF%9B%E8%A1%8Cgwas%E5%88%86%E6%9E%90/</guid>
+      <guid>https://taoyan.netlify.com/post/2019-02-27.%E5%88%A9%E7%94%A8emmax%E8%BF%9B%E8%A1%8Cgwas%E5%88%86%E6%9E%90/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/Pic_blog/master/manhanttan.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;文件准备&#34;&gt;文件准备&lt;/h2&gt;
@@ -256,9 +256,9 @@ dev.off()
     
     <item>
       <title>全基因组加倍及串联重复基因</title>
-      <link>/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</link>
+      <link>https://taoyan.netlify.com/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</link>
       <pubDate>Thu, 05 Apr 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ADC8bKhGm4.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -286,9 +286,9 @@ dev.off()
     
     <item>
       <title>跨物种单拷贝直系同源基因</title>
-      <link>/post/2018-04-02.%E8%B7%A8%E7%89%A9%E7%A7%8D%E5%8D%95%E6%8B%B7%E8%B4%9D%E7%9B%B4%E7%B3%BB%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0/</link>
+      <link>https://taoyan.netlify.com/post/2018-04-02.%E8%B7%A8%E7%89%A9%E7%A7%8D%E5%8D%95%E6%8B%B7%E8%B4%9D%E7%9B%B4%E7%B3%BB%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0/</link>
       <pubDate>Mon, 02 Apr 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-04-02.%E8%B7%A8%E7%89%A9%E7%A7%8D%E5%8D%95%E6%8B%B7%E8%B4%9D%E7%9B%B4%E7%B3%BB%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-04-02.%E8%B7%A8%E7%89%A9%E7%A7%8D%E5%8D%95%E6%8B%B7%E8%B4%9D%E7%9B%B4%E7%B3%BB%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/KAl4De8m8L.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;同源-homology&#34;&gt;同源(Homology)&lt;/h2&gt;
@@ -356,9 +356,9 @@ dev.off()
     
     <item>
       <title>植物转录因子WRKY</title>
-      <link>/post/2018-03-30.%E6%A4%8D%E7%89%A9%E8%BD%AC%E5%BD%95%E5%9B%A0%E5%AD%90wrky/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-30.%E6%A4%8D%E7%89%A9%E8%BD%AC%E5%BD%95%E5%9B%A0%E5%AD%90wrky/</link>
       <pubDate>Fri, 30 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-30.%E6%A4%8D%E7%89%A9%E8%BD%AC%E5%BD%95%E5%9B%A0%E5%AD%90wrky/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-30.%E6%A4%8D%E7%89%A9%E8%BD%AC%E5%BD%95%E5%9B%A0%E5%AD%90wrky/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ElmaeG5H85.png?raw=true&#34; alt=&#34;WRKYs in plant biotic stress signaling network&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;wrky结构特点&#34;&gt;WRKY结构特点&lt;/h2&gt;
@@ -399,9 +399,9 @@ dev.off()
     
     <item>
       <title>油菜形成、进化及基因家族概况</title>
-      <link>/post/2018-03-20.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-20.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96/</link>
       <pubDate>Tue, 20 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-20.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-20.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JK3HalKdab.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;起源&#34;&gt;起源&lt;/h2&gt;
@@ -442,9 +442,9 @@ dev.off()
     
     <item>
       <title>油菜形成、进化及基因家族概况(三)</title>
-      <link>/post/2018-03-23.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%B8%89/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-23.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%B8%89/</link>
       <pubDate>Tue, 20 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-23.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%B8%89/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-23.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%B8%89/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/78JFehmBF4.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;同源基因&#34;&gt;同源基因&lt;/h2&gt;
@@ -492,9 +492,9 @@ dev.off()
     
     <item>
       <title>油菜形成、进化及基因家族概况(二)</title>
-      <link>/post/2018-03-21.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%BA%8C/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-21.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%BA%8C/</link>
       <pubDate>Tue, 20 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-21.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%BA%8C/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-21.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%BA%8C/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/0L8a4haFDJ.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;基因家族&#34;&gt;基因家族&lt;/h2&gt;
@@ -536,9 +536,9 @@ dev.off()
     
     <item>
       <title>生物信息学学习笔记（八）</title>
-      <link>/post/2018-03-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
       <pubDate>Wed, 07 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/E3bGF58F5a.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -585,9 +585,9 @@ mRNA是由编码区(CDS)、上游的5&amp;rsquo;和下游的3&amp;rsquo;非编�
     
     <item>
       <title>生物信息学学习笔记（七）</title>
-      <link>/post/2018-01-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
       <pubDate>Sun, 07 Jan 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-01-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/2574kmE80m.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -626,9 +626,9 @@ mRNA是由编码区(CDS)、上游的5&amp;rsquo;和下游的3&amp;rsquo;非编�
     
     <item>
       <title>生物信息学学习笔记（六）</title>
-      <link>/post/2017-12-24.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-24.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
       <pubDate>Sun, 24 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-24.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-24.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JBeFfJL8KD.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;tajima-s-d值检验&#34;&gt;Tajima&amp;rsquo;s D值检验&lt;/h2&gt;
@@ -647,9 +647,9 @@ mRNA是由编码区(CDS)、上游的5&amp;rsquo;和下游的3&amp;rsquo;非编�
     
     <item>
       <title>生物信息学学习笔记（五）</title>
-      <link>/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
       <pubDate>Wed, 06 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mLaH1fIKh6.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;全基因组水平的连锁不平衡-ld-和遗传结构分析&#34;&gt;全基因组水平的连锁不平衡(LD)和遗传结构分析&lt;/h2&gt;
@@ -745,9 +745,9 @@ LD的衰减指位点之间由连锁不平衡到连锁平衡的演变过程，能
     
     <item>
       <title>生物信息学学习笔记（四）</title>
-      <link>/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
       <pubDate>Wed, 06 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/lGak1jll4j.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;最近看了华中农业大学张献龙老师发在&lt;strong&gt;Nature Genetics&lt;/strong&gt;上的文章&lt;a href=&#34;https://www.nature.com/articles/ng.3807&#34; target=&#34;_blank&#34;&gt;Asymmetric subgenome selection and cis-regulatory divergence during cotton domestication&lt;/a&gt;以及第一作者王茂军博士的博士毕业论文，十分精彩，故学习之并做适当笔记。&lt;/p&gt;
@@ -796,9 +796,9 @@ LD的衰减指位点之间由连锁不平衡到连锁平衡的演变过程，能
     
     <item>
       <title>生物信息学学习笔记（三）</title>
-      <link>/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
       <pubDate>Mon, 04 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/eeCi4f49Ag.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -841,9 +841,9 @@ LD的衰减指位点之间由连锁不平衡到连锁平衡的演变过程，能
     
     <item>
       <title>生物信息学学习笔记（二）</title>
-      <link>/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
       <pubDate>Wed, 29 Nov 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dlGEdblL4H.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;hi-c&#34;&gt;Hi-C&lt;/h2&gt;
@@ -891,9 +891,9 @@ LD的衰减指位点之间由连锁不平衡到连锁平衡的演变过程，能
     
     <item>
       <title>生物信息学学习笔记（一）</title>
-      <link>/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
       <pubDate>Tue, 28 Nov 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/D6l28BlfFI.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;生物信息学学习笔记主要是我平常看文献以及一些资料时总结的一些东西，相对来说有点杂，所以我专门开辟出一个新的系列，以便后面可以持续更新。&lt;/p&gt;

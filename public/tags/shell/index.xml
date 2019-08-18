@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shell | Tao Yan</title>
-    <link>/tags/shell/</link>
-      <atom:link href="/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/shell/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/shell/index.xml" rel="self" type="application/rss+xml" />
     <description>Shell</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Tue, 22 May 2018 21:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>Shell</title>
-      <link>/tags/shell/</link>
+      <link>https://taoyan.netlify.com/tags/shell/</link>
     </image>
     
     <item>
       <title>”Linux之数据呈现“</title>
-      <link>/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</link>
       <pubDate>Tue, 22 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/8aj460AJAl.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;重定向&#34;&gt;重定向&lt;/h2&gt;
@@ -107,9 +107,9 @@ Sun Oct 19 18:56:21 EDT 2014
     
     <item>
       <title>Linux之获取用户输入</title>
-      <link>/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
       <pubDate>Mon, 21 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/CGbkeLBFc9.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;基本读取&#34;&gt;基本读取&lt;/h2&gt;
@@ -279,9 +279,9 @@ Finished processing the file
     
     <item>
       <title>Linux之处理用户输入（三）</title>
-      <link>/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</link>
       <pubDate>Sun, 20 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/AHC1ACD4IH.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;使用-getopt-命令&#34;&gt;使用&lt;code&gt;getopt&lt;/code&gt;命令&lt;/h2&gt;
@@ -494,9 +494,9 @@ Parameter 3: test4
     
     <item>
       <title>Linux之处理用户输入(二)</title>
-      <link>/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</link>
       <pubDate>Sat, 19 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;特殊参数变量&#34;&gt;特殊参数变量&lt;/h2&gt;
@@ -771,9 +771,9 @@ Found the -b option, with parameter value test1
     
     <item>
       <title>Linux之处理用户输入</title>
-      <link>/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
       <pubDate>Fri, 18 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;命令行参数&#34;&gt;命令行参数&lt;/h2&gt;
@@ -953,9 +953,9 @@ The calculated value is 10
     
     <item>
       <title>Linux结构化命令which</title>
-      <link>/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</link>
       <pubDate>Thu, 17 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;for-命令&#34;&gt;&lt;code&gt;for&lt;/code&gt;命令&lt;/h2&gt;
@@ -1222,9 +1222,9 @@ R语言爱好者，爱开源&lt;/p&gt;</description>
     
     <item>
       <title>Linux之结构化命令</title>
-      <link>/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Wed, 16 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;test-语句&#34;&gt;&lt;code&gt;test&lt;/code&gt;语句&lt;/h2&gt;
@@ -1326,9 +1326,9 @@ Please enjoy your visit
     
     <item>
       <title>Linux命令</title>
-      <link>/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Tue, 15 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;基本命令&#34;&gt;基本命令&lt;/h2&gt;
@@ -1490,9 +1490,9 @@ fi
     
     <item>
       <title>Shell编程：传参</title>
-      <link>/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</link>
       <pubDate>Sat, 03 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gfihd4EIE0.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;shell传递参数&#34;&gt;shell传递参数&lt;/h2&gt;
@@ -1629,9 +1629,9 @@ done
     
     <item>
       <title>Shell编程：变量</title>
-      <link>/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</link>
       <pubDate>Fri, 02 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;shell变量&#34;&gt;Shell变量&lt;/h2&gt;
@@ -1927,9 +1927,9 @@ $ echo ${#array_name[*]}
     
     <item>
       <title>Shell编程：简介</title>
-      <link>/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</link>
       <pubDate>Thu, 01 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/GhihcB409F.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data Manipulation | Tao Yan</title>
-    <link>/categories/data-manipulation/</link>
-      <atom:link href="/categories/data-manipulation/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/categories/data-manipulation/</link>
+      <atom:link href="https://taoyan.netlify.com/categories/data-manipulation/index.xml" rel="self" type="application/rss+xml" />
     <description>Data Manipulation</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Thu, 29 Jun 2017 12:34:08 -0500</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>Data Manipulation</title>
-      <link>/categories/data-manipulation/</link>
+      <link>https://taoyan.netlify.com/categories/data-manipulation/</link>
     </image>
     
     <item>
       <title>R语言data manipulation学习笔记之subset data</title>
-      <link>/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</link>
       <pubDate>Thu, 29 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</guid>
       <description>&lt;p&gt;数据分析过程中我们常常需要从数据集中抽取部分数据，本文将介绍如何提取子数据集，主要利用R自带的函数，以后会专门介绍data manipulation包&lt;strong&gt;dplyr&lt;/strong&gt;。 提取子数据集主要分为select以及exclude，这里主要介绍两种方法，一是利用操作符[]进行选取，二是利用subset()进行抽取。&lt;/p&gt;
 
 &lt;h2 id=&#34;利用-进行提取&#34;&gt;利用[]进行提取&lt;/h2&gt;
@@ -169,9 +169,9 @@ com4
     
     <item>
       <title>R语言data manipulation学习笔记之创建变量、重命名、数据融合</title>
-      <link>/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</link>
       <pubDate>Wed, 28 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4a45f75977c58bb5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 数据分析中数据处理也就是data manipulation是十分繁琐的，为此我将在博客里特意建一个分类：Data Manipulation。本文将讲讲如何在R语言中创建变量、重命名以及merge。&lt;/p&gt;
 

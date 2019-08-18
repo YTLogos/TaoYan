@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>patchwork | Tao Yan</title>
-    <link>/tags/patchwork/</link>
-      <atom:link href="/tags/patchwork/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/patchwork/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/patchwork/index.xml" rel="self" type="application/rss+xml" />
     <description>patchwork</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Mon, 18 Dec 2017 16:47:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>patchwork</title>
-      <link>/tags/patchwork/</link>
+      <link>https://taoyan.netlify.com/tags/patchwork/</link>
     </image>
     
     <item>
       <title>图形组合R包patchwork</title>
-      <link>/post/2017-12-18.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BD%A2%E7%BB%84%E5%90%88r%E5%8C%85patchwork/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-18.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BD%A2%E7%BB%84%E5%90%88r%E5%8C%85patchwork/</link>
       <pubDate>Mon, 18 Dec 2017 16:47:05 +0000</pubDate>
-      <guid>/post/2017-12-18.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BD%A2%E7%BB%84%E5%90%88r%E5%8C%85patchwork/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-18.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BD%A2%E7%BB%84%E5%90%88r%E5%8C%85patchwork/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/9dEjEbJ8kI.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;平常我们绘制图形的时候常常要将几幅图形组合在一起，有很多R包可以用于图形组合，经典的是&lt;strong&gt;gridExtra&lt;/strong&gt;，还有&lt;strong&gt;egg&lt;/strong&gt;。今天介绍一个新包&lt;a href=&#34;https://github.com/thomasp85/patchwork&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;patchwork&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;

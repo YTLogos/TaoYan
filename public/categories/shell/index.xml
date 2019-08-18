@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shell | Tao Yan</title>
-    <link>/categories/shell/</link>
-      <atom:link href="/categories/shell/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/categories/shell/</link>
+      <atom:link href="https://taoyan.netlify.com/categories/shell/index.xml" rel="self" type="application/rss+xml" />
     <description>Shell</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Fri, 09 Feb 2018 21:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>Shell</title>
-      <link>/categories/shell/</link>
+      <link>https://taoyan.netlify.com/categories/shell/</link>
     </image>
     
     <item>
       <title>Shell编程：运算符</title>
-      <link>/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
       <pubDate>Fri, 09 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/yunsuanfu.jpeg?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -473,9 +473,9 @@ abc : 字符串不为空
     
     <item>
       <title>Shell编程：数组</title>
-      <link>/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</link>
       <pubDate>Sun, 04 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/数组.png?raw=true&#34; alt=&#34;数组&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;数组&#34;&gt;数组&lt;/h2&gt;
@@ -711,9 +711,9 @@ G
     
     <item>
       <title>Shell编程：传参</title>
-      <link>/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</link>
       <pubDate>Sat, 03 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gfihd4EIE0.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;shell传递参数&#34;&gt;shell传递参数&lt;/h2&gt;
@@ -850,9 +850,9 @@ done
     
     <item>
       <title>Shell编程：变量</title>
-      <link>/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</link>
       <pubDate>Fri, 02 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;shell变量&#34;&gt;Shell变量&lt;/h2&gt;
@@ -1148,9 +1148,9 @@ $ echo ${#array_name[*]}
     
     <item>
       <title>Shell编程：简介</title>
-      <link>/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</link>
       <pubDate>Thu, 01 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/GhihcB409F.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

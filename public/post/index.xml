@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts | Tao Yan</title>
-    <link>/post/</link>
-      <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/post/</link>
+      <atom:link href="https://taoyan.netlify.com/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Posts</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Wed, 14 Aug 2019 16:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>Posts</title>
-      <link>/post/</link>
+      <link>https://taoyan.netlify.com/post/</link>
     </image>
     
     <item>
       <title>gganimate:数据跳动</title>
-      <link>/post/2019-08-14.gganimate%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%B7%B3%E5%8A%A8/</link>
+      <link>https://taoyan.netlify.com/post/2019-08-14.gganimate%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%B7%B3%E5%8A%A8/</link>
       <pubDate>Wed, 14 Aug 2019 16:19:05 +0000</pubDate>
-      <guid>/post/2019-08-14.gganimate%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%B7%B3%E5%8A%A8/</guid>
+      <guid>https://taoyan.netlify.com/post/2019-08-14.gganimate%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%B7%B3%E5%8A%A8/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190815155922.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -317,9 +317,9 @@ animate(p_reveal, nframes = 50, type=&amp;quot;cairo&amp;quot;)
     
     <item>
       <title>gganimate:让数据动起来</title>
-      <link>/post/2019-08-13.gganimate%E4%BD%BF%E6%95%B0%E6%8D%AE%E5%8A%A8%E8%B5%B7%E6%9D%A5/</link>
+      <link>https://taoyan.netlify.com/post/2019-08-13.gganimate%E4%BD%BF%E6%95%B0%E6%8D%AE%E5%8A%A8%E8%B5%B7%E6%9D%A5/</link>
       <pubDate>Tue, 13 Aug 2019 16:19:05 +0000</pubDate>
-      <guid>/post/2019-08-13.gganimate%E4%BD%BF%E6%95%B0%E6%8D%AE%E5%8A%A8%E8%B5%B7%E6%9D%A5/</guid>
+      <guid>https://taoyan.netlify.com/post/2019-08-13.gganimate%E4%BD%BF%E6%95%B0%E6%8D%AE%E5%8A%A8%E8%B5%B7%E6%9D%A5/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/firework.gif&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -476,9 +476,9 @@ p &amp;lt;- ggplot(fireworks) +
     
     <item>
       <title>rehh:全基因组选择印记扫描</title>
-      <link>/post/2019-08-12.rehh%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E9%80%89%E6%8B%A9%E5%8D%B0%E8%AE%B0%E6%89%AB%E6%8F%8F/</link>
+      <link>https://taoyan.netlify.com/post/2019-08-12.rehh%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E9%80%89%E6%8B%A9%E5%8D%B0%E8%AE%B0%E6%89%AB%E6%8F%8F/</link>
       <pubDate>Mon, 12 Aug 2019 18:19:05 +0000</pubDate>
-      <guid>/post/2019-08-12.rehh%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E9%80%89%E6%8B%A9%E5%8D%B0%E8%AE%B0%E6%89%AB%E6%8F%8F/</guid>
+      <guid>https://taoyan.netlify.com/post/2019-08-12.rehh%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E9%80%89%E6%8B%A9%E5%8D%B0%E8%AE%B0%E6%89%AB%E6%8F%8F/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190814134451.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -784,9 +784,9 @@ print(p)
     
     <item>
       <title>文献阅读笔记:Genome-wide nucleotide patterns and potential mechanisms of genome divergence following domestication in maize and soybean</title>
-      <link>/post/2019-06-27.%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0genome-wide-nucleotide-patterns-and-potential-mechanisms-of-genome-divergence-following-domestication-in-maize-and-soybean/</link>
+      <link>https://taoyan.netlify.com/post/2019-06-27.%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0genome-wide-nucleotide-patterns-and-potential-mechanisms-of-genome-divergence-following-domestication-in-maize-and-soybean/</link>
       <pubDate>Wed, 26 Jun 2019 18:19:05 +0000</pubDate>
-      <guid>/post/2019-06-27.%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0genome-wide-nucleotide-patterns-and-potential-mechanisms-of-genome-divergence-following-domestication-in-maize-and-soybean/</guid>
+      <guid>https://taoyan.netlify.com/post/2019-06-27.%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0genome-wide-nucleotide-patterns-and-potential-mechanisms-of-genome-divergence-following-domestication-in-maize-and-soybean/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190613144206.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;一句话总结&#34;&gt;一句话总结&lt;/h2&gt;
@@ -863,9 +863,9 @@ print(p)
     
     <item>
       <title>利用EMMAX进行GWAS分析</title>
-      <link>/post/2019-02-27.%E5%88%A9%E7%94%A8emmax%E8%BF%9B%E8%A1%8Cgwas%E5%88%86%E6%9E%90/</link>
+      <link>https://taoyan.netlify.com/post/2019-02-27.%E5%88%A9%E7%94%A8emmax%E8%BF%9B%E8%A1%8Cgwas%E5%88%86%E6%9E%90/</link>
       <pubDate>Tue, 26 Feb 2019 18:19:05 +0000</pubDate>
-      <guid>/post/2019-02-27.%E5%88%A9%E7%94%A8emmax%E8%BF%9B%E8%A1%8Cgwas%E5%88%86%E6%9E%90/</guid>
+      <guid>https://taoyan.netlify.com/post/2019-02-27.%E5%88%A9%E7%94%A8emmax%E8%BF%9B%E8%A1%8Cgwas%E5%88%86%E6%9E%90/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/Pic_blog/master/manhanttan.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;文件准备&#34;&gt;文件准备&lt;/h2&gt;
@@ -1105,9 +1105,9 @@ dev.off()
     
     <item>
       <title>Circos配置文件详解</title>
-      <link>/post/2018-07-20.circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</link>
+      <link>https://taoyan.netlify.com/post/2018-07-20.circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Fri, 20 Jul 2018 18:19:05 +0000</pubDate>
-      <guid>/post/2018-07-20.circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-07-20.circos%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/CAl9leklEG.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;circos的配置文件准备&#34;&gt;Circos的配置文件准备&lt;/h2&gt;
@@ -1589,9 +1589,9 @@ $ mv circos-tutorials-0.66/data/ ./
     
     <item>
       <title>改善R语言代码的5个小技巧</title>
-      <link>/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
+      <link>https://taoyan.netlify.com/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Thu, 12 Jul 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/0m7AJLj3he.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -1864,9 +1864,9 @@ system.time(d$a[d$b &amp;gt; .5])
     
     <item>
       <title>读取含有多个表头的数据</title>
-      <link>/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</link>
+      <link>https://taoyan.netlify.com/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</link>
       <pubDate>Tue, 10 Jul 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/DBBl3GJmEm.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;我们有时读取数据的时候，往往不是我们希望的表头只有一行，有时会出现多个表头数据用来描述列明，比如下面这样的数据：&lt;/p&gt;
@@ -2023,9 +2023,9 @@ stickers_dict
     
     <item>
       <title>三种方法在地图上绘制网络图</title>
-      <link>/post/2018-06-10.%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%9C%A8%E5%9C%B0%E5%9B%BE%E4%B8%8A%E7%BB%98%E5%88%B6%E7%BD%91%E7%BB%9C%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2018-06-10.%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%9C%A8%E5%9C%B0%E5%9B%BE%E4%B8%8A%E7%BB%98%E5%88%B6%E7%BD%91%E7%BB%9C%E5%9B%BE/</link>
       <pubDate>Sun, 10 Jun 2018 18:19:05 +0000</pubDate>
-      <guid>/post/2018-06-10.%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%9C%A8%E5%9C%B0%E5%9B%BE%E4%B8%8A%E7%BB%98%E5%88%B6%E7%BD%91%E7%BB%9C%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-06-10.%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%9C%A8%E5%9C%B0%E5%9B%BE%E4%B8%8A%E7%BB%98%E5%88%B6%E7%BD%91%E7%BB%9C%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mA73K7a4gJ.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;最近为了绘制几幅简单地图，查阅了一些资料，看到了&lt;strong&gt;Markus konrad&lt;/strong&gt;的&lt;a href=&#34;https://datascience.blog.wzb.eu/2018/05/31/three-ways-of-visualizing-a-graph-on-a-map/&#34; target=&#34;_blank&#34;&gt;帖子&lt;/a&gt;，非常赞。其中他的部分思路对于我们学习可视化很有帮助。&lt;/p&gt;
@@ -2239,9 +2239,9 @@ print(p)
     
     <item>
       <title>”Linux之数据呈现“</title>
-      <link>/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</link>
       <pubDate>Tue, 22 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/8aj460AJAl.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;重定向&#34;&gt;重定向&lt;/h2&gt;
@@ -2332,9 +2332,9 @@ Sun Oct 19 18:56:21 EDT 2014
     
     <item>
       <title>Linux之获取用户输入</title>
-      <link>/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
       <pubDate>Mon, 21 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/CGbkeLBFc9.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;基本读取&#34;&gt;基本读取&lt;/h2&gt;
@@ -2504,9 +2504,9 @@ Finished processing the file
     
     <item>
       <title>Linux之处理用户输入（三）</title>
-      <link>/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</link>
       <pubDate>Sun, 20 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/AHC1ACD4IH.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;使用-getopt-命令&#34;&gt;使用&lt;code&gt;getopt&lt;/code&gt;命令&lt;/h2&gt;
@@ -2719,9 +2719,9 @@ Parameter 3: test4
     
     <item>
       <title>Linux之处理用户输入(二)</title>
-      <link>/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</link>
       <pubDate>Sat, 19 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;特殊参数变量&#34;&gt;特殊参数变量&lt;/h2&gt;
@@ -2996,9 +2996,9 @@ Found the -b option, with parameter value test1
     
     <item>
       <title>Linux之处理用户输入</title>
-      <link>/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
       <pubDate>Fri, 18 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;命令行参数&#34;&gt;命令行参数&lt;/h2&gt;
@@ -3178,9 +3178,9 @@ The calculated value is 10
     
     <item>
       <title>Linux结构化命令which</title>
-      <link>/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</link>
       <pubDate>Thu, 17 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;for-命令&#34;&gt;&lt;code&gt;for&lt;/code&gt;命令&lt;/h2&gt;
@@ -3447,9 +3447,9 @@ R语言爱好者，爱开源&lt;/p&gt;</description>
     
     <item>
       <title>Linux之结构化命令</title>
-      <link>/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Wed, 16 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;test-语句&#34;&gt;&lt;code&gt;test&lt;/code&gt;语句&lt;/h2&gt;
@@ -3551,9 +3551,9 @@ Please enjoy your visit
     
     <item>
       <title>Linux命令</title>
-      <link>/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</link>
+      <link>https://taoyan.netlify.com/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</link>
       <pubDate>Tue, 15 May 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;基本命令&#34;&gt;基本命令&lt;/h2&gt;
@@ -3715,9 +3715,9 @@ fi
     
     <item>
       <title>R编程题目练习1</title>
-      <link>/post/2018-04-24.r%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E7%BB%83%E4%B9%A01/</link>
+      <link>https://taoyan.netlify.com/post/2018-04-24.r%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E7%BB%83%E4%B9%A01/</link>
       <pubDate>Tue, 24 Apr 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-04-24.r%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E7%BB%83%E4%B9%A01/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-04-24.r%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E7%BB%83%E4%B9%A01/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/8DLlfLA4dc.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;multiples-of-3-and-5&#34;&gt;Multiples of 3 and 5&lt;/h2&gt;
@@ -3778,9 +3778,9 @@ cat(&amp;quot;The answer is:&amp;quot;, f_even_sum,&amp;quot;\n&amp;quot;)
     
     <item>
       <title>群体遗传进化</title>
-      <link>/post/2018-04-24.%E7%BE%A4%E4%BD%93%E9%81%97%E4%BC%A0%E8%BF%9B%E5%8C%96/</link>
+      <link>https://taoyan.netlify.com/post/2018-04-24.%E7%BE%A4%E4%BD%93%E9%81%97%E4%BC%A0%E8%BF%9B%E5%8C%96/</link>
       <pubDate>Tue, 24 Apr 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-04-24.%E7%BE%A4%E4%BD%93%E9%81%97%E4%BC%A0%E8%BF%9B%E5%8C%96/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-04-24.%E7%BE%A4%E4%BD%93%E9%81%97%E4%BC%A0%E8%BF%9B%E5%8C%96/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/3dDKl9a3DD.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -3911,9 +3911,9 @@ gridExtra::grid.arrange(p)
     
     <item>
       <title>利用ComplexHeatmap绘制热图(一)</title>
-      <link>/post/2018-04-08.%E5%88%A9%E7%94%A8complexheatmap%E7%BB%98%E5%88%B6%E7%83%AD%E5%9B%BE%E4%B8%80/</link>
+      <link>https://taoyan.netlify.com/post/2018-04-08.%E5%88%A9%E7%94%A8complexheatmap%E7%BB%98%E5%88%B6%E7%83%AD%E5%9B%BE%E4%B8%80/</link>
       <pubDate>Sun, 08 Apr 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-04-08.%E5%88%A9%E7%94%A8complexheatmap%E7%BB%98%E5%88%B6%E7%83%AD%E5%9B%BE%E4%B8%80/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-04-08.%E5%88%A9%E7%94%A8complexheatmap%E7%BB%98%E5%88%B6%E7%83%AD%E5%9B%BE%E4%B8%80/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6hE9lcGmjf.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -4105,9 +4105,9 @@ H1+H2
     
     <item>
       <title>全基因组加倍及串联重复基因</title>
-      <link>/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</link>
+      <link>https://taoyan.netlify.com/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</link>
       <pubDate>Thu, 05 Apr 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ADC8bKhGm4.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -4135,9 +4135,9 @@ H1+H2
     
     <item>
       <title>跨物种单拷贝直系同源基因</title>
-      <link>/post/2018-04-02.%E8%B7%A8%E7%89%A9%E7%A7%8D%E5%8D%95%E6%8B%B7%E8%B4%9D%E7%9B%B4%E7%B3%BB%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0/</link>
+      <link>https://taoyan.netlify.com/post/2018-04-02.%E8%B7%A8%E7%89%A9%E7%A7%8D%E5%8D%95%E6%8B%B7%E8%B4%9D%E7%9B%B4%E7%B3%BB%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0/</link>
       <pubDate>Mon, 02 Apr 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-04-02.%E8%B7%A8%E7%89%A9%E7%A7%8D%E5%8D%95%E6%8B%B7%E8%B4%9D%E7%9B%B4%E7%B3%BB%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-04-02.%E8%B7%A8%E7%89%A9%E7%A7%8D%E5%8D%95%E6%8B%B7%E8%B4%9D%E7%9B%B4%E7%B3%BB%E5%90%8C%E6%BA%90%E5%9F%BA%E5%9B%A0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/KAl4De8m8L.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;同源-homology&#34;&gt;同源(Homology)&lt;/h2&gt;
@@ -4205,9 +4205,9 @@ H1+H2
     
     <item>
       <title>植物转录因子WRKY</title>
-      <link>/post/2018-03-30.%E6%A4%8D%E7%89%A9%E8%BD%AC%E5%BD%95%E5%9B%A0%E5%AD%90wrky/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-30.%E6%A4%8D%E7%89%A9%E8%BD%AC%E5%BD%95%E5%9B%A0%E5%AD%90wrky/</link>
       <pubDate>Fri, 30 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-30.%E6%A4%8D%E7%89%A9%E8%BD%AC%E5%BD%95%E5%9B%A0%E5%AD%90wrky/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-30.%E6%A4%8D%E7%89%A9%E8%BD%AC%E5%BD%95%E5%9B%A0%E5%AD%90wrky/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ElmaeG5H85.png?raw=true&#34; alt=&#34;WRKYs in plant biotic stress signaling network&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;wrky结构特点&#34;&gt;WRKY结构特点&lt;/h2&gt;
@@ -4248,9 +4248,9 @@ H1+H2
     
     <item>
       <title>油菜形成、进化及基因家族概况</title>
-      <link>/post/2018-03-20.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-20.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96/</link>
       <pubDate>Tue, 20 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-20.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-20.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JK3HalKdab.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;起源&#34;&gt;起源&lt;/h2&gt;
@@ -4291,9 +4291,9 @@ H1+H2
     
     <item>
       <title>油菜形成、进化及基因家族概况(三)</title>
-      <link>/post/2018-03-23.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%B8%89/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-23.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%B8%89/</link>
       <pubDate>Tue, 20 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-23.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%B8%89/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-23.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%B8%89/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/78JFehmBF4.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;同源基因&#34;&gt;同源基因&lt;/h2&gt;
@@ -4341,9 +4341,9 @@ H1+H2
     
     <item>
       <title>油菜形成、进化及基因家族概况(二)</title>
-      <link>/post/2018-03-21.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%BA%8C/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-21.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%BA%8C/</link>
       <pubDate>Tue, 20 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-21.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%BA%8C/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-21.%E6%B2%B9%E8%8F%9C%E5%BD%A2%E6%88%90%E5%8F%8A%E8%BF%9B%E5%8C%96%E4%BA%8C/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/0L8a4haFDJ.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;基因家族&#34;&gt;基因家族&lt;/h2&gt;
@@ -4385,9 +4385,9 @@ H1+H2
     
     <item>
       <title>生物信息学学习笔记（八）</title>
-      <link>/post/2018-03-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
+      <link>https://taoyan.netlify.com/post/2018-03-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
       <pubDate>Wed, 07 Mar 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-03-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-03-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/E3bGF58F5a.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -4434,9 +4434,9 @@ mRNA是由编码区(CDS)、上游的5&amp;rsquo;和下游的3&amp;rsquo;非编�
     
     <item>
       <title>利用ggseqlogo绘制seqlogo图</title>
-      <link>/post/2018-02-19.%E5%88%A9%E7%94%A8ggseqlogo%E7%BB%98%E5%88%B6seqlogo%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-19.%E5%88%A9%E7%94%A8ggseqlogo%E7%BB%98%E5%88%B6seqlogo%E5%9B%BE/</link>
       <pubDate>Mon, 19 Feb 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-02-19.%E5%88%A9%E7%94%A8ggseqlogo%E7%BB%98%E5%88%B6seqlogo%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-19.%E5%88%A9%E7%94%A8ggseqlogo%E7%BB%98%E5%88%B6seqlogo%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ggseq9.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -4715,9 +4715,9 @@ plot_grid(p1,p2,p3,ncol = 1, align = &amp;quot;v&amp;quot;)
     
     <item>
       <title>创建属于自己的调色板</title>
-      <link>/post/2018-02-10.%E5%88%9B%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E8%B0%83%E8%89%B2%E6%9D%BF/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-10.%E5%88%9B%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E8%B0%83%E8%89%B2%E6%9D%BF/</link>
       <pubDate>Sat, 10 Feb 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-02-10.%E5%88%9B%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E8%B0%83%E8%89%B2%E6%9D%BF/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-10.%E5%88%9B%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E8%B0%83%E8%89%B2%E6%9D%BF/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/palette.jpeg?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -5006,9 +5006,9 @@ scale_fill_my &amp;lt;- function(palette=&amp;quot;main&amp;quot;, discrete=TRUE
     
     <item>
       <title>Shell编程：运算符</title>
-      <link>/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
       <pubDate>Fri, 09 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/yunsuanfu.jpeg?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -5465,9 +5465,9 @@ abc : 字符串不为空
     
     <item>
       <title>利用gganimate可视化R-Ladies发展情况</title>
-      <link>/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</link>
       <pubDate>Thu, 08 Feb 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/raw/master/g0hLljaEb9.gif&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -5613,9 +5613,9 @@ gganimate::gganimate(map, filename = &amp;quot;d4tagirlmap.gif&amp;quot;)
     
     <item>
       <title>利用R语言绘制世界航班路线图</title>
-      <link>/post/2018-02-07.%E5%88%A9%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E4%B8%96%E7%95%8C%E8%88%AA%E7%8F%AD%E8%B7%AF%E7%BA%BF%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-07.%E5%88%A9%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E4%B8%96%E7%95%8C%E8%88%AA%E7%8F%AD%E8%B7%AF%E7%BA%BF%E5%9B%BE/</link>
       <pubDate>Wed, 07 Feb 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-02-07.%E5%88%A9%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E4%B8%96%E7%95%8C%E8%88%AA%E7%8F%AD%E8%B7%AF%E7%BA%BF%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-07.%E5%88%A9%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E4%B8%96%E7%95%8C%E8%88%AA%E7%8F%AD%E8%B7%AF%E7%BA%BF%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6HckGG7Jfc.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -5919,9 +5919,9 @@ loaded via a namespace (and not attached):
     
     <item>
       <title>R语言可视化学习笔记之gganimate包</title>
-      <link>/post/2018-02-06.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgganimate%E5%8C%85/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-06.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgganimate%E5%8C%85/</link>
       <pubDate>Tue, 06 Feb 2018 14:19:05 +0000</pubDate>
-      <guid>/post/2018-02-06.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgganimate%E5%8C%85/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-06.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bgganimate%E5%8C%85/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/kHCkkicfkh.gif?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -6073,9 +6073,9 @@ loaded via a namespace (and not attached):
     
     <item>
       <title>R语言可视化学习笔记之ggridges包</title>
-      <link>/post/2018-02-05.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggridges%E5%8C%85/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-05.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggridges%E5%8C%85/</link>
       <pubDate>Mon, 05 Feb 2018 14:19:05 +0000</pubDate>
-      <guid>/post/2018-02-05.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggridges%E5%8C%85/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-05.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggridges%E5%8C%85/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/bhlKJ09j0e.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -6221,9 +6221,9 @@ head(lincoln_weather[ ,1:4])
     
     <item>
       <title>Shell编程：数组</title>
-      <link>/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</link>
       <pubDate>Sun, 04 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/数组.png?raw=true&#34; alt=&#34;数组&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;数组&#34;&gt;数组&lt;/h2&gt;
@@ -6459,9 +6459,9 @@ G
     
     <item>
       <title>Shell编程：传参</title>
-      <link>/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</link>
       <pubDate>Sat, 03 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-03.shell%E7%BC%96%E7%A8%8B%E4%BC%A0%E5%8F%82/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gfihd4EIE0.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;shell传递参数&#34;&gt;shell传递参数&lt;/h2&gt;
@@ -6598,9 +6598,9 @@ done
     
     <item>
       <title>Shell编程：变量</title>
-      <link>/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</link>
       <pubDate>Fri, 02 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-02.shell%E7%BC%96%E7%A8%8B%E5%8F%98%E9%87%8F/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;shell变量&#34;&gt;Shell变量&lt;/h2&gt;
@@ -6896,9 +6896,9 @@ $ echo ${#array_name[*]}
     
     <item>
       <title>Shell编程：简介</title>
-      <link>/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</link>
       <pubDate>Thu, 01 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-01.shell%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/GhihcB409F.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -6953,9 +6953,9 @@ chmod +x ./hello.sh
     
     <item>
       <title>关于如何修改坐标轴表达式以及分面图例的一个例子</title>
-      <link>/post/2018-01-31.%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E5%9D%90%E6%A0%87%E8%BD%B4%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%88%86%E9%9D%A2%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-31.%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E5%9D%90%E6%A0%87%E8%BD%B4%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%88%86%E9%9D%A2%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90/</link>
       <pubDate>Wed, 31 Jan 2018 19:43:11 +0000</pubDate>
-      <guid>/post/2018-01-31.%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E5%9D%90%E6%A0%87%E8%BD%B4%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%88%86%E9%9D%A2%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-31.%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9%E5%9D%90%E6%A0%87%E8%BD%B4%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%88%86%E9%9D%A2%E5%9B%BE%E4%BE%8B%E7%9A%84%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ElKca96m2c.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;ggplot2&lt;/strong&gt;绘制的图形如果需要修改细节的话，没有对&lt;strong&gt;ggplot2&lt;/strong&gt;有一定的了解的话是十分困难的，毕竟连创建这个包的作者&lt;strong&gt;Hadley Wickham&lt;/strong&gt;都自称自己使用&lt;strong&gt;ggplot2&lt;/strong&gt;的时候都需要查文档。在对&lt;strong&gt;ggplot2&lt;/strong&gt;有一定了解的基础上如果需要修改ggplot图的话稍微查查文档基本能解决。&lt;/p&gt;
@@ -7079,9 +7079,9 @@ ggpar(p,palette = &amp;quot;npg&amp;quot;,font.tickslab = c(18,&amp;quot;bold&am
     
     <item>
       <title>Lesson 08 for Plotting in R for Biologists</title>
-      <link>/post/2018-01-31.lesson-08-for-plotting-in-r-for-biologists/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-31.lesson-08-for-plotting-in-r-for-biologists/</link>
       <pubDate>Wed, 31 Jan 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-01-31.lesson-08-for-plotting-in-r-for-biologists/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-31.lesson-08-for-plotting-in-r-for-biologists/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Jfea06AiAF.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这节课是最后一节课，主要将如何绘制热图(heatmap)。实际上关于热图的绘制，我以前写了一篇博客：&lt;a href=&#34;https://ytlogos.github.io/2017/08/21/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/&#34; target=&#34;_blank&#34;&gt;R语言学习笔记之热图绘制&lt;/a&gt;，里面写的十分详细。但是今天热图绘制主要利用一个新的R包&lt;strong&gt;ComplexHeatmap&lt;/strong&gt;进行绘制。&lt;/p&gt;
@@ -7286,9 +7286,9 @@ Heatmap(my_matrix,
     
     <item>
       <title>Lesson 05 for Plotting in R for Biologists</title>
-      <link>/post/2018-01-28.lesson-05-for-plotting-in-r-for-biologists/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-28.lesson-05-for-plotting-in-r-for-biologists/</link>
       <pubDate>Sun, 28 Jan 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-01-28.lesson-05-for-plotting-in-r-for-biologists/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-28.lesson-05-for-plotting-in-r-for-biologists/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/g2ed2h7ckd.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这节课作者命名为&amp;rdquo;Tweaking everything in a plot&amp;rdquo;。主要是对图形细节进行优化，包括：&lt;/p&gt;
@@ -7722,9 +7722,9 @@ basic
     
     <item>
       <title>Lesson 04 for Plotting in R for Biologists</title>
-      <link>/post/2018-01-25.lesson-04-for-plotting-in-r-for-biologists/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-25.lesson-04-for-plotting-in-r-for-biologists/</link>
       <pubDate>Thu, 25 Jan 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-01-25.lesson-04-for-plotting-in-r-for-biologists/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-25.lesson-04-for-plotting-in-r-for-biologists/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gHcHm3FdLC.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;上次将Lesson 02&amp;amp;03一起讲解完了，在Lesson 04中主要解决下面几个问题&lt;/p&gt;
@@ -7864,9 +7864,9 @@ ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()
     
     <item>
       <title>“Lesson 02&amp;03 for Plotting in R for Biologists”</title>
-      <link>/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/</link>
       <pubDate>Sat, 20 Jan 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dBhf13K3Ge.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Lesson02主要讲了如何从Excel导入数据以及如何从UCSC、ENSEMBL和RENCODE上下载数据，因此我就将Lesson02并入Lesson03一起讲了。&lt;/p&gt;
@@ -8001,9 +8001,9 @@ dim(my_data)
     
     <item>
       <title>Lesson 01 for Plotting in R for Biologists</title>
-      <link>/post/2018-01-15.lesson-01-for-plotting-in-r-for-biologists/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-15.lesson-01-for-plotting-in-r-for-biologists/</link>
       <pubDate>Mon, 15 Jan 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-01-15.lesson-01-for-plotting-in-r-for-biologists/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-15.lesson-01-for-plotting-in-r-for-biologists/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/f6L6BHLm15.png?raw=true?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -8120,9 +8120,9 @@ dev.off()
     
     <item>
       <title>Lesson 06 for Plotting in R for Biologists</title>
-      <link>/post/2018-01-29.lesson-06-for-plotting-in-r-for-biologists/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-29.lesson-06-for-plotting-in-r-for-biologists/</link>
       <pubDate>Mon, 15 Jan 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-01-29.lesson-06-for-plotting-in-r-for-biologists/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-29.lesson-06-for-plotting-in-r-for-biologists/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/AFLB2JBHc7.png?raw=true&#34; alt=&#34;veendiagram&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;前面几节课绘制的图形只有条形图，但是我们科研过程中需要绘制各种各样的图形来展现我们的数据，这节课就主要讲一下利用&lt;strong&gt;ggplot2&lt;/strong&gt;绘制各种图形，这也是&lt;strong&gt;ggplot2&lt;/strong&gt;的魔力所在。相同的数据可以通过不同类型的图形来可视化。本节课主要将绘制以下几类图形：&lt;/p&gt;
@@ -8409,9 +8409,9 @@ venn.diagram(list(A=A, B=B, C=C, D=D), fill=c(&amp;quot;yellow&amp;quot;,&amp;qu
     
     <item>
       <title>Lesson 07 for Plotting in R for Biologists</title>
-      <link>/post/2018-01-30.lesson-07-for-plotting-in-r-for-biologists/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-30.lesson-07-for-plotting-in-r-for-biologists/</link>
       <pubDate>Mon, 15 Jan 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-01-30.lesson-07-for-plotting-in-r-for-biologists/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-30.lesson-07-for-plotting-in-r-for-biologists/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BcHLAECm5L.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这节课主要两个知识点，一个是图形分面，一个是图形嵌入。&lt;/p&gt;
@@ -8572,9 +8572,9 @@ dev.off()
     
     <item>
       <title>一步步教你如何绘制GWAS中的曼哈顿图以及QQ图</title>
-      <link>/post/2018-01-11.%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6gwas%E4%B8%AD%E7%9A%84%E6%9B%BC%E5%93%88%E9%A1%BF%E5%9B%BE%E4%BB%A5%E5%8F%8Aqq%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-11.%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6gwas%E4%B8%AD%E7%9A%84%E6%9B%BC%E5%93%88%E9%A1%BF%E5%9B%BE%E4%BB%A5%E5%8F%8Aqq%E5%9B%BE/</link>
       <pubDate>Thu, 11 Jan 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-01-11.%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6gwas%E4%B8%AD%E7%9A%84%E6%9B%BC%E5%93%88%E9%A1%BF%E5%9B%BE%E4%BB%A5%E5%8F%8Aqq%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-11.%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6gwas%E4%B8%AD%E7%9A%84%E6%9B%BC%E5%93%88%E9%A1%BF%E5%9B%BE%E4%BB%A5%E5%8F%8Aqq%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/EE3ce1m2L2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -8791,9 +8791,9 @@ head(gwasResults)
     
     <item>
       <title>生物信息学学习笔记（七）</title>
-      <link>/post/2018-01-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
       <pubDate>Sun, 07 Jan 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-01-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-07.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/2574kmE80m.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -8832,9 +8832,9 @@ head(gwasResults)
     
     <item>
       <title>利用ggmap绘制简单地图</title>
-      <link>/post/2018-01-03.%E5%88%A9%E7%94%A8ggmap%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2018-01-03.%E5%88%A9%E7%94%A8ggmap%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</link>
       <pubDate>Wed, 03 Jan 2018 08:47:05 +0000</pubDate>
-      <guid>/post/2018-01-03.%E5%88%A9%E7%94%A8ggmap%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-01-03.%E5%88%A9%E7%94%A8ggmap%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BDJF5FajDc.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -8955,9 +8955,9 @@ loaded via a namespace (and not attached):
     
     <item>
       <title>机器学习概念及算法类型</title>
-      <link>/post/2017-12-25.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9A%E4%B9%89%E4%BB%A5%E5%8F%8A%E7%AE%97%E6%B3%95%E7%B1%BB%E5%9E%8B%E5%88%9D%E6%8E%A2/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-25.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9A%E4%B9%89%E4%BB%A5%E5%8F%8A%E7%AE%97%E6%B3%95%E7%B1%BB%E5%9E%8B%E5%88%9D%E6%8E%A2/</link>
       <pubDate>Mon, 25 Dec 2017 20:19:05 +0000</pubDate>
-      <guid>/post/2017-12-25.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9A%E4%B9%89%E4%BB%A5%E5%8F%8A%E7%AE%97%E6%B3%95%E7%B1%BB%E5%9E%8B%E5%88%9D%E6%8E%A2/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-25.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9A%E4%B9%89%E4%BB%A5%E5%8F%8A%E7%AE%97%E6%B3%95%E7%B1%BB%E5%9E%8B%E5%88%9D%E6%8E%A2/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/929l1BKmhH.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;机器学习&#34;&gt;机器学习&lt;/h2&gt;
@@ -8996,9 +8996,9 @@ Blog: &lt;a href=&#34;https://ytlogos.github.io/&#34; target=&#34;_blank&#34;&gt
     
     <item>
       <title>生物信息学学习笔记（六）</title>
-      <link>/post/2017-12-24.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-24.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
       <pubDate>Sun, 24 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-24.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-24.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JBeFfJL8KD.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;tajima-s-d值检验&#34;&gt;Tajima&amp;rsquo;s D值检验&lt;/h2&gt;
@@ -9017,9 +9017,9 @@ Blog: &lt;a href=&#34;https://ytlogos.github.io/&#34; target=&#34;_blank&#34;&gt
     
     <item>
       <title>图形组合R包patchwork</title>
-      <link>/post/2017-12-18.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BD%A2%E7%BB%84%E5%90%88r%E5%8C%85patchwork/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-18.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BD%A2%E7%BB%84%E5%90%88r%E5%8C%85patchwork/</link>
       <pubDate>Mon, 18 Dec 2017 16:47:05 +0000</pubDate>
-      <guid>/post/2017-12-18.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BD%A2%E7%BB%84%E5%90%88r%E5%8C%85patchwork/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-18.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8B%E5%9B%BE%E5%BD%A2%E7%BB%84%E5%90%88r%E5%8C%85patchwork/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/9dEjEbJ8kI.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;平常我们绘制图形的时候常常要将几幅图形组合在一起，有很多R包可以用于图形组合，经典的是&lt;strong&gt;gridExtra&lt;/strong&gt;，还有&lt;strong&gt;egg&lt;/strong&gt;。今天介绍一个新包&lt;a href=&#34;https://github.com/thomasp85/patchwork&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;patchwork&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
@@ -9150,9 +9150,9 @@ p4+{
     
     <item>
       <title>生物信息学学习笔记（五）</title>
-      <link>/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
       <pubDate>Wed, 06 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mLaH1fIKh6.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;全基因组水平的连锁不平衡-ld-和遗传结构分析&#34;&gt;全基因组水平的连锁不平衡(LD)和遗传结构分析&lt;/h2&gt;
@@ -9248,9 +9248,9 @@ LD的衰减指位点之间由连锁不平衡到连锁平衡的演变过程，能
     
     <item>
       <title>生物信息学学习笔记（四）</title>
-      <link>/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
       <pubDate>Wed, 06 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/lGak1jll4j.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;最近看了华中农业大学张献龙老师发在&lt;strong&gt;Nature Genetics&lt;/strong&gt;上的文章&lt;a href=&#34;https://www.nature.com/articles/ng.3807&#34; target=&#34;_blank&#34;&gt;Asymmetric subgenome selection and cis-regulatory divergence during cotton domestication&lt;/a&gt;以及第一作者王茂军博士的博士毕业论文，十分精彩，故学习之并做适当笔记。&lt;/p&gt;
@@ -9299,9 +9299,9 @@ LD的衰减指位点之间由连锁不平衡到连锁平衡的演变过程，能
     
     <item>
       <title>生物信息学学习笔记（三）</title>
-      <link>/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
       <pubDate>Mon, 04 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/eeCi4f49Ag.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -9344,9 +9344,9 @@ LD的衰减指位点之间由连锁不平衡到连锁平衡的演变过程，能
     
     <item>
       <title>生物信息学学习笔记（二）</title>
-      <link>/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
       <pubDate>Wed, 29 Nov 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-29.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dlGEdblL4H.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;hi-c&#34;&gt;Hi-C&lt;/h2&gt;
@@ -9394,9 +9394,9 @@ LD的衰减指位点之间由连锁不平衡到连锁平衡的演变过程，能
     
     <item>
       <title>生物信息学学习笔记（一）</title>
-      <link>/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
       <pubDate>Tue, 28 Nov 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/D6l28BlfFI.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;生物信息学学习笔记主要是我平常看文献以及一些资料时总结的一些东西，相对来说有点杂，所以我专门开辟出一个新的系列，以便后面可以持续更新。&lt;/p&gt;
@@ -9461,9 +9461,9 @@ MAPit(methyltransferase accessibility protocol for individual templates)技术�
     
     <item>
       <title>Linux学习笔记（九）</title>
-      <link>/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</link>
       <pubDate>Sun, 26 Nov 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/B6jBAEJ3k8.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sed实例讲解&#34;&gt;sed实例讲解&lt;/h2&gt;
@@ -9742,9 +9742,9 @@ guge 50 3000
     
     <item>
       <title>Linux学习笔记（八）</title>
-      <link>/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
       <pubDate>Mon, 20 Nov 2017 17:19:05 +0000</pubDate>
-      <guid>/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/B6jBAEJ3k8.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sed&#34;&gt;sed&lt;/h2&gt;
@@ -9860,9 +9860,9 @@ sed [options] -f scriptfile file(s)
     
     <item>
       <title>Linux学习笔记（七）</title>
-      <link>/post/2017-11-16.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-16.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
       <pubDate>Thu, 16 Nov 2017 09:19:05 +0000</pubDate>
-      <guid>/post/2017-11-16.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-16.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/97fC0bjE56.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;awk命令&#34;&gt;awk命令&lt;/h2&gt;
@@ -10341,9 +10341,9 @@ chr3    16      27
     
     <item>
       <title>Linux学习笔记（六）</title>
-      <link>/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
       <pubDate>Wed, 15 Nov 2017 13:19:05 +0000</pubDate>
-      <guid>/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Fjbj28bH1F.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;uniq&#34;&gt;uniq&lt;/h2&gt;
@@ -10515,9 +10515,9 @@ chr3  16  27
     
     <item>
       <title>Linux学习笔记（五）</title>
-      <link>/post/2017-11-14.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-14.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
       <pubDate>Tue, 14 Nov 2017 13:19:05 +0000</pubDate>
-      <guid>/post/2017-11-14.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-14.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/9Egg9ALKHB.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sort&#34;&gt;&lt;strong&gt;&lt;code&gt;sort&lt;/code&gt;&lt;/strong&gt;&lt;/h2&gt;
@@ -10750,9 +10750,9 @@ chr22   32      46
     
     <item>
       <title>Linux学习笔记（四）</title>
-      <link>/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
       <pubDate>Mon, 13 Nov 2017 13:19:05 +0000</pubDate>
-      <guid>/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/894bbdhjmL.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;grep&#34;&gt;&lt;code&gt;grep&lt;/code&gt;&lt;/h2&gt;
@@ -10873,9 +10873,9 @@ Olfr1414
     
     <item>
       <title>Linux学习笔记（三）</title>
-      <link>/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
       <pubDate>Sun, 12 Nov 2017 13:19:05 +0000</pubDate>
-      <guid>/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Be16KgagG1.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;“write code for humans, write data for computers”&lt;/p&gt;
@@ -10948,9 +10948,9 @@ $ cut -f 2 Mus_musculus.GRCm38.75_chr1.bed|head -n 3
     
     <item>
       <title>Linux学习笔记（二）</title>
-      <link>/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
       <pubDate>Sat, 11 Nov 2017 13:19:05 +0000</pubDate>
-      <guid>/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/E3kF9hl9jj.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;鉴于以后要大量使用&lt;code&gt;Linux&lt;/code&gt;系统处理生物信息学数据，因此加强自身linux系统的学习，开辟一个新的分类专门记录我学习&lt;code&gt;Linux&lt;/code&gt;的学习笔记，一是为了我自己以后方便查看，二也是希望能帮助到其他学习&lt;code&gt;Linux&lt;/code&gt;系统的人，共勉！！！&lt;/p&gt;
@@ -11120,9 +11120,9 @@ $ tail -n +3 nums.txt
     
     <item>
       <title>R语言可视化之UpSetR包</title>
-      <link>/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</link>
+      <link>https://taoyan.netlify.com/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</link>
       <pubDate>Sun, 15 Oct 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JK4Hhj821g.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -11356,9 +11356,9 @@ upset(movies, queries = list(list(query=myfunc, params=list(c(1950,1960,1990,200
     
     <item>
       <title>ggplot2高效实用指南</title>
-      <link>/post/2017-09-19.ggplot2%E9%AB%98%E6%95%88%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-19.ggplot2%E9%AB%98%E6%95%88%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Tue, 19 Sep 2017 08:29:46 +0000</pubDate>
-      <guid>/post/2017-09-19.ggplot2%E9%AB%98%E6%95%88%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-19.ggplot2%E9%AB%98%E6%95%88%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/emJBf4A306.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -13792,9 +13792,9 @@ p+geom_bar(position = &amp;quot;dodge&amp;quot;)
     
     <item>
       <title>tidyverse实践之绘制简单地图</title>
-      <link>/post/2017-09-16.tidyverse%E5%AE%9E%E8%B7%B5%E4%B9%8B%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-16.tidyverse%E5%AE%9E%E8%B7%B5%E4%B9%8B%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</link>
       <pubDate>Sat, 16 Sep 2017 10:47:05 +0000</pubDate>
-      <guid>/post/2017-09-16.tidyverse%E5%AE%9E%E8%B7%B5%E4%B9%8B%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-16.tidyverse%E5%AE%9E%E8%B7%B5%E4%B9%8B%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Big70i5b36.jpeg?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -13914,9 +13914,9 @@ map_data(&amp;quot;usa&amp;quot;)%&amp;gt;%
     
     <item>
       <title>创建及自定义ggplot分面图形参数</title>
-      <link>/post/2017-09-14.%E5%88%9B%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89ggplot%E5%88%86%E9%9D%A2%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-14.%E5%88%9B%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89ggplot%E5%88%86%E9%9D%A2%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</link>
       <pubDate>Thu, 14 Sep 2017 07:47:05 -0500</pubDate>
-      <guid>/post/2017-09-14.%E5%88%9B%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89ggplot%E5%88%86%E9%9D%A2%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-14.%E5%88%9B%E5%BB%BA%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89ggplot%E5%88%86%E9%9D%A2%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/1.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -14050,9 +14050,9 @@ facet(p, facet.by = c(&amp;quot;supp&amp;quot;, &amp;quot;dose&amp;quot;),
     
     <item>
       <title>ggpubr包学习笔记之轻松修改图形参数</title>
-      <link>/post/2017-09-13-r-ggpubr%E5%8C%85%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BD%BB%E6%9D%BE%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-13-r-ggpubr%E5%8C%85%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BD%BB%E6%9D%BE%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</link>
       <pubDate>Wed, 13 Sep 2017 21:13:14 -0500</pubDate>
-      <guid>/post/2017-09-13-r-ggpubr%E5%8C%85%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BD%BB%E6%9D%BE%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-13-r-ggpubr%E5%8C%85%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BD%BB%E6%9D%BE%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dm80Clb7Eh.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -14355,9 +14355,9 @@ p
     
     <item>
       <title>一篇关于国旗与奥运会奖牌的可视化笔记</title>
-      <link>/post/2017-09-12.%E4%B8%80%E7%AF%87%E5%85%B3%E4%BA%8E%E5%9B%BD%E6%97%97%E4%B8%8E%E5%A5%A5%E8%BF%90%E4%BC%9A%E5%A5%96%E7%89%8C%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-12.%E4%B8%80%E7%AF%87%E5%85%B3%E4%BA%8E%E5%9B%BD%E6%97%97%E4%B8%8E%E5%A5%A5%E8%BF%90%E4%BC%9A%E5%A5%96%E7%89%8C%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Tue, 12 Sep 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-09-12.%E4%B8%80%E7%AF%87%E5%85%B3%E4%BA%8E%E5%9B%BD%E6%97%97%E4%B8%8E%E5%A5%A5%E8%BF%90%E4%BC%9A%E5%A5%96%E7%89%8C%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-12.%E4%B8%80%E7%AF%87%E5%85%B3%E4%BA%8E%E5%9B%BD%E6%97%97%E4%B8%8E%E5%A5%A5%E8%BF%90%E4%BC%9A%E5%A5%96%E7%89%8C%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E7%AC%94%E8%AE%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/k58bFmLk2c.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -14535,9 +14535,9 @@ Germany	       19	 de	   Gold	       8
     
     <item>
       <title>R语言可视化学习笔记之基因组数据可视化</title>
-      <link>/post/2017-09-10.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E5%9B%A0%E7%BB%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-10.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E5%9B%A0%E7%BB%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
       <pubDate>Sun, 10 Sep 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-09-10.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E5%9B%A0%E7%BB%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-10.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E5%9B%A0%E7%BB%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-38d068706ad3b03a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 本文主要利用&lt;strong&gt;ggpubr&lt;/strong&gt;包来探索基因组数据,主要是可视化TCGA基因组数据的基因表达谱。&lt;/p&gt;
 
@@ -14902,9 +14902,9 @@ color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;)
     
     <item>
       <title>利用tximport进行RNA-seq分析</title>
-      <link>/post/2017-09-08.%E5%88%A9%E7%94%A8tximport%E8%BF%9B%E8%A1%8Crna-seq%E5%88%86%E6%9E%90/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-08.%E5%88%A9%E7%94%A8tximport%E8%BF%9B%E8%A1%8Crna-seq%E5%88%86%E6%9E%90/</link>
       <pubDate>Fri, 08 Sep 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-09-08.%E5%88%A9%E7%94%A8tximport%E8%BF%9B%E8%A1%8Crna-seq%E5%88%86%E6%9E%90/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-08.%E5%88%A9%E7%94%A8tximport%E8%BF%9B%E8%A1%8Crna-seq%E5%88%86%E6%9E%90/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 
 &lt;hr /&gt;
@@ -15087,9 +15087,9 @@ y$offset &amp;lt;- t(t(log(normMat))+o)
     
     <item>
       <title>ggplot2学习笔记之图形排列</title>
-      <link>/post/2017-08-24.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%BE%E5%BD%A2%E6%8E%92%E5%88%97/</link>
+      <link>https://taoyan.netlify.com/post/2017-08-24.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%BE%E5%BD%A2%E6%8E%92%E5%88%97/</link>
       <pubDate>Thu, 24 Aug 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-08-24.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%BE%E5%BD%A2%E6%8E%92%E5%88%97/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-08-24.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%BE%E5%BD%A2%E6%8E%92%E5%88%97/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e6bf2901af3d315e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;R语言基本绘图函数中可以利用par()以及layout()来进行图形排列，但是这两个函数对于ggplot图则不太适用，本文主要讲解如何对多ggplot图形多页面进行排列。主要讲解如何利用包gridExtra、cowplot以及ggpubr中的函数进行图形排列。&lt;/p&gt;
@@ -15573,9 +15573,9 @@ ggarrange(p1, p2, ncol = 2, nrow = 1)
     
     <item>
       <title>R语言学习笔记之热图绘制</title>
-      <link>/post/2017-08-12.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/</link>
+      <link>https://taoyan.netlify.com/post/2017-08-12.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/</link>
       <pubDate>Sat, 12 Aug 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-08-12.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-08-12.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-076503522b98e6a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -16043,9 +16043,9 @@ Heatmap(expr$chr, name = &amp;quot;chr&amp;quot;, width = unit(5, &amp;quot;mm&a
     
     <item>
       <title>ggplot2学习笔记系列之利用ggplot2绘制散点图</title>
-      <link>/post/2017-06-11.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-11.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/</link>
       <pubDate>Wed, 12 Jul 2017 07:47:05 +0000</pubDate>
-      <guid>/post/2017-06-11.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-11.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c6a0647f86050fb6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 1 简介
 散点图通常用来刻画两个连续型变量之间的关系。绘制散点图时数据集中的每一个观测值都由散点图中的一个点来表示。利用包&lt;strong&gt;ggplot2&lt;/strong&gt;可以绘制十分漂亮的散点图。 利用&lt;strong&gt;ggplot2&lt;/strong&gt;绘图前先确保我们所使用的数据集是&lt;strong&gt;data.frame&lt;/strong&gt;形式。&lt;strong&gt;ggplot2&lt;/strong&gt;绘图利用映射将数据赋予给坐标轴上进而添加几何对象形成图形。绘图前先加载包&lt;strong&gt;ggplot2&lt;/strong&gt; 即&lt;strong&gt;library(ggplot2)&lt;/strong&gt;。&lt;/p&gt;
@@ -16174,9 +16174,9 @@ geom_point()+stat_smooth(method=&amp;quot;lm&amp;quot;)
     
     <item>
       <title>R语言data manipulation学习笔记之subset data</title>
-      <link>/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</link>
       <pubDate>Thu, 29 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</guid>
       <description>&lt;p&gt;数据分析过程中我们常常需要从数据集中抽取部分数据，本文将介绍如何提取子数据集，主要利用R自带的函数，以后会专门介绍data manipulation包&lt;strong&gt;dplyr&lt;/strong&gt;。 提取子数据集主要分为select以及exclude，这里主要介绍两种方法，一是利用操作符[]进行选取，二是利用subset()进行抽取。&lt;/p&gt;
 
 &lt;h2 id=&#34;利用-进行提取&#34;&gt;利用[]进行提取&lt;/h2&gt;
@@ -16329,9 +16329,9 @@ com4
     
     <item>
       <title>R语言data manipulation学习笔记之创建变量、重命名、数据融合</title>
-      <link>/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</link>
       <pubDate>Wed, 28 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4a45f75977c58bb5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 数据分析中数据处理也就是data manipulation是十分繁琐的，为此我将在博客里特意建一个分类：Data Manipulation。本文将讲讲如何在R语言中创建变量、重命名以及merge。&lt;/p&gt;
 
@@ -16490,9 +16490,9 @@ colnames(companiesData) &amp;lt;- c(&amp;quot;Year&amp;quot;, &amp;quot;Com&amp;
     
     <item>
       <title>A brief introduction of salmon</title>
-      <link>/post/2017-09-06.a-brief-introduction-of-salmon/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-06.a-brief-introduction-of-salmon/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-09-06.a-brief-introduction-of-salmon/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-06.a-brief-introduction-of-salmon/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 
 &lt;hr /&gt;
@@ -16618,9 +16618,9 @@ done
     
     <item>
       <title>ggplot2学习笔记系列之主题（theme）设置</title>
-      <link>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-aedad605e759b602.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;上次提了下&lt;code&gt;theme()&lt;/code&gt;,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，&lt;strong&gt;ggplot2&lt;/strong&gt;中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神&lt;strong&gt;Hadley Wickham&lt;/strong&gt;所讲的，&lt;strong&gt;ggplot2&lt;/strong&gt;只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，&lt;strong&gt;ggplot2&lt;/strong&gt;都能实现。&lt;/p&gt;
@@ -16831,9 +16831,9 @@ xlab(&amp;quot;随便定义了个x&amp;quot;)+ylab(&amp;quot;随机数&amp;quot;
     
     <item>
       <title>ggplot2学习笔记系列之利用ggplot2绘制误差棒及显著性标记</title>
-      <link>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-46b1e37462ac6440.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 绘制带有误差棒的条形图&lt;/p&gt;
 
@@ -16993,9 +16993,9 @@ coord_flip()#旋转坐标轴
     
     <item>
       <title>Linux学习笔记(一)</title>
-      <link>/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Jb7HLAJK63.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;鉴于以后要大量使用&lt;code&gt;Linux&lt;/code&gt;系统处理生物信息学数据，因此加强自身linux系统的学习，开辟一个新的分类专门记录我学习&lt;code&gt;Linux&lt;/code&gt;的学习笔记，一是为了我自己以后方便查看，二也是希望能帮助到其他学习&lt;code&gt;Linux&lt;/code&gt;系统的人，共勉！！！&lt;/p&gt;
@@ -17037,9 +17037,9 @@ results-2017-11-02
     
     <item>
       <title>r4ds学习笔记之ggplot2</title>
-      <link>/post/2017-07-01.r4ds%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggplot2/</link>
+      <link>https://taoyan.netlify.com/post/2017-07-01.r4ds%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggplot2/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-07-01.r4ds%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggplot2/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-07-01.r4ds%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggplot2/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-515da9e1fb644123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;为了进一步加强以及整合自己&lt;strong&gt;data science&lt;/strong&gt;的能力，最近打算在&lt;a href=&#34;https://ytlogos.github.io/&#34; target=&#34;_blank&#34;&gt;我的博客&lt;/a&gt;开辟一个新类&lt;strong&gt;r4ds&lt;/strong&gt;，专门用来记录学习&lt;strong&gt;Hadley Wickham&lt;/strong&gt;大神的新作&lt;a href=&#34;https://r4ds.had.co.nz/&#34; target=&#34;_blank&#34;&gt;R for Data Science&lt;/a&gt;的读书笔记。该书推荐我们入门data science可以从可视化开始，这也是该书目录布局的第一章。因此开始学习R语言可视化。&lt;/p&gt;
@@ -17176,9 +17176,9 @@ geom_point(aes(x=displ, y=hwy, color=class))#将class映射给颜色属性，这
     
     <item>
       <title>R语言可视化学习笔记之ggpubr包</title>
-      <link>/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-fbe5b444e2efcb8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 &lt;a href=&#34;https://docs.ggplot2.org/current/&#34; target=&#34;_blank&#34;&gt;Hadley Wickham&lt;/a&gt;创建的可视化包ggplot2可以流畅地进行优美的可视化，但是如果要通过ggplot2定制一套图形，尤其是适用于杂志期刊等出版物的图形，对于那些没有深入了解&lt;strong&gt;ggplot2&lt;/strong&gt;的人来说就有点困难了，&lt;strong&gt;ggplot2&lt;/strong&gt;的部分语法是很晦涩的。为此&lt;a href=&#34;https://www.sthda.com/english/rpkgs/ggpubr/index.html&#34; target=&#34;_blank&#34;&gt;Alboukadel Kassambara&lt;/a&gt;创建了基于&lt;strong&gt;ggplot2&lt;/strong&gt;的可视化包&lt;strong&gt;ggpubr&lt;/strong&gt;用于绘制符合出版物要求的图形。&lt;/p&gt;
 
@@ -17430,9 +17430,9 @@ theme_cleveland()
     
     <item>
       <title>R语言可视化学习笔记之添加p-value和显著性标记</title>
-      <link>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-15bd512052d55bf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 上篇文章中提了一下如何通过&lt;strong&gt;ggpubr&lt;/strong&gt;包为&lt;code&gt;ggplot&lt;/code&gt;图添加&lt;code&gt;p-value&lt;/code&gt;以及显著性标记,本文将详细介绍。利用数据集&lt;strong&gt;ToothGrowth&lt;/strong&gt;进行演示&lt;/p&gt;
 
@@ -17876,9 +17876,9 @@ stat_compare_means(aes(group=supp), label = &amp;quot;p.signif&amp;quot;, label.
     
     <item>
       <title>R语言可视化学习笔记之相关矩阵可视化包ggcorrplot</title>
-      <link>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6a7b9c76f1b9177c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 基于&lt;strong&gt;ggplot2&lt;/strong&gt;包以及&lt;strong&gt;corrplot&lt;/strong&gt;包的相关矩阵可视化包&lt;strong&gt;ggcorrplot&lt;/strong&gt;，&lt;strong&gt;ggcorrplot&lt;/strong&gt;包提供对相关矩阵重排序以及在相关图中展示显著性水平的方法，同时也能计算相关性p-value&lt;/p&gt;
 
@@ -17959,9 +17959,9 @@ ggcorrplot(corr, p.mat = p.mat, hc.order=TRUE, type = &amp;quot;lower&amp;quot;,
     
     <item>
       <title>R语言学习笔记之相关性矩阵分析及其可视化</title>
-      <link>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-dfdeb96ba28fda4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 计算相关矩阵&lt;/p&gt;
 
@@ -18114,9 +18114,9 @@ heatmap(x = res, col = col, symm = TRUE)#symm表示是否对称
     
     <item>
       <title>R语言学习笔记之聚类分析</title>
-      <link>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f5f4fb4aa3f23466.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;使用&lt;code&gt;k-means&lt;/code&gt;聚类所需的包：&lt;/p&gt;
@@ -18315,9 +18315,9 @@ fviz_silhouette(res.hc) # silhouette plot
     
     <item>
       <title>”R语言可视化学习笔记之ggrepel包“</title>
-      <link>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9824653100d11fec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;当我们在图形中添加标签时，标签之间很容易相互重叠，包&lt;a href=&#34;https://github.com/slowkow/ggrepel&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;ggrepel&lt;/strong&gt;&lt;/a&gt;就专门用来解决这个问题！ 首先我们来看看通过geom_text()添加标签时的情形：&lt;/p&gt;
@@ -18524,9 +18524,9 @@ ggplot(Orange, aes(age, circumference, color=Tree))+
     
     <item>
       <title>图像处理R包magick学习笔记</title>
-      <link>/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <link>https://taoyan.netlify.com/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/a2jGAc87jB.gif?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -18866,9 +18866,9 @@ print(animation)
     
     <item>
       <title>用circlize包绘制circos-plot</title>
-      <link>/post/2017-06-25.%E7%94%A8circlize%E5%8C%85%E7%BB%98%E5%88%B6circos-plot/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.%E7%94%A8circlize%E5%8C%85%E7%BB%98%E5%88%B6circos-plot/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-06-25.%E7%94%A8circlize%E5%8C%85%E7%BB%98%E5%88%B6circos-plot/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.%E7%94%A8circlize%E5%8C%85%E7%BB%98%E5%88%B6circos-plot/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4b332e9275d7088e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
 &lt;code&gt;circlize&lt;/code&gt;包&lt;/p&gt;
 
@@ -19285,9 +19285,9 @@ circos.clear()
     
     <item>
       <title>ggplot2学习笔记系列之利用ggplot2绘制条形图</title>
-      <link>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</link>
       <pubDate>Sun, 25 Jun 2017 09:23:05 -0500</pubDate>
-      <guid>/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5c9a37089f4883ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

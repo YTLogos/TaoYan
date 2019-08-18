@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ggseqlogo | Tao Yan</title>
-    <link>/tags/ggseqlogo/</link>
-      <atom:link href="/tags/ggseqlogo/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/ggseqlogo/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/ggseqlogo/index.xml" rel="self" type="application/rss+xml" />
     <description>ggseqlogo</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Mon, 19 Feb 2018 12:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>ggseqlogo</title>
-      <link>/tags/ggseqlogo/</link>
+      <link>https://taoyan.netlify.com/tags/ggseqlogo/</link>
     </image>
     
     <item>
       <title>利用ggseqlogo绘制seqlogo图</title>
-      <link>/post/2018-02-19.%E5%88%A9%E7%94%A8ggseqlogo%E7%BB%98%E5%88%B6seqlogo%E5%9B%BE/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-19.%E5%88%A9%E7%94%A8ggseqlogo%E7%BB%98%E5%88%B6seqlogo%E5%9B%BE/</link>
       <pubDate>Mon, 19 Feb 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-02-19.%E5%88%A9%E7%94%A8ggseqlogo%E7%BB%98%E5%88%B6seqlogo%E5%9B%BE/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-19.%E5%88%A9%E7%94%A8ggseqlogo%E7%BB%98%E5%88%B6seqlogo%E5%9B%BE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ggseq9.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

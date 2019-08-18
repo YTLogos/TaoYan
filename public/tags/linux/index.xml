@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux | Tao Yan</title>
-    <link>/tags/linux/</link>
-      <atom:link href="/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/linux/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <description>Linux</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Mon, 13 Nov 2017 13:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>Linux</title>
-      <link>/tags/linux/</link>
+      <link>https://taoyan.netlify.com/tags/linux/</link>
     </image>
     
     <item>
       <title>Linux学习笔记（四）</title>
-      <link>/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
       <pubDate>Mon, 13 Nov 2017 13:19:05 +0000</pubDate>
-      <guid>/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/894bbdhjmL.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;grep&#34;&gt;&lt;code&gt;grep&lt;/code&gt;&lt;/h2&gt;
@@ -137,9 +137,9 @@ Olfr1414
     
     <item>
       <title>Linux学习笔记（三）</title>
-      <link>/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
       <pubDate>Sun, 12 Nov 2017 13:19:05 +0000</pubDate>
-      <guid>/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Be16KgagG1.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;“write code for humans, write data for computers”&lt;/p&gt;
@@ -212,9 +212,9 @@ $ cut -f 2 Mus_musculus.GRCm38.75_chr1.bed|head -n 3
     
     <item>
       <title>Linux学习笔记（二）</title>
-      <link>/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
       <pubDate>Sat, 11 Nov 2017 13:19:05 +0000</pubDate>
-      <guid>/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/E3kF9hl9jj.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;鉴于以后要大量使用&lt;code&gt;Linux&lt;/code&gt;系统处理生物信息学数据，因此加强自身linux系统的学习，开辟一个新的分类专门记录我学习&lt;code&gt;Linux&lt;/code&gt;的学习笔记，一是为了我自己以后方便查看，二也是希望能帮助到其他学习&lt;code&gt;Linux&lt;/code&gt;系统的人，共勉！！！&lt;/p&gt;
@@ -384,9 +384,9 @@ $ tail -n +3 nums.txt
     
     <item>
       <title>Linux学习笔记(一)</title>
-      <link>/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Jb7HLAJK63.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;鉴于以后要大量使用&lt;code&gt;Linux&lt;/code&gt;系统处理生物信息学数据，因此加强自身linux系统的学习，开辟一个新的分类专门记录我学习&lt;code&gt;Linux&lt;/code&gt;的学习笔记，一是为了我自己以后方便查看，二也是希望能帮助到其他学习&lt;code&gt;Linux&lt;/code&gt;系统的人，共勉！！！&lt;/p&gt;

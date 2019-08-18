@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bioinformatics | Tao Yan</title>
-    <link>/tags/bioinformatics/</link>
-      <atom:link href="/tags/bioinformatics/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/bioinformatics/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/bioinformatics/index.xml" rel="self" type="application/rss+xml" />
     <description>bioinformatics</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Tue, 28 Nov 2017 21:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>bioinformatics</title>
-      <link>/tags/bioinformatics/</link>
+      <link>https://taoyan.netlify.com/tags/bioinformatics/</link>
     </image>
     
     <item>
       <title>生物信息学学习笔记（一）</title>
-      <link>/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
       <pubDate>Tue, 28 Nov 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/D6l28BlfFI.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;生物信息学学习笔记主要是我平常看文献以及一些资料时总结的一些东西，相对来说有点杂，所以我专门开辟出一个新的系列，以便后面可以持续更新。&lt;/p&gt;

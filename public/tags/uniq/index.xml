@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>uniq | Tao Yan</title>
-    <link>/tags/uniq/</link>
-      <atom:link href="/tags/uniq/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/uniq/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/uniq/index.xml" rel="self" type="application/rss+xml" />
     <description>uniq</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Wed, 15 Nov 2017 13:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>uniq</title>
-      <link>/tags/uniq/</link>
+      <link>https://taoyan.netlify.com/tags/uniq/</link>
     </image>
     
     <item>
       <title>Linux学习笔记（六）</title>
-      <link>/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
+      <link>https://taoyan.netlify.com/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
       <pubDate>Wed, 15 Nov 2017 13:19:05 +0000</pubDate>
-      <guid>/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Fjbj28bH1F.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;uniq&#34;&gt;uniq&lt;/h2&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数据读取 | Tao Yan</title>
-    <link>/tags/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/</link>
-      <atom:link href="/tags/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/index.xml" rel="self" type="application/rss+xml" />
     <description>数据读取</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Tue, 10 Jul 2018 12:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>数据读取</title>
-      <link>/tags/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/</link>
+      <link>https://taoyan.netlify.com/tags/%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%8F%96/</link>
     </image>
     
     <item>
       <title>读取含有多个表头的数据</title>
-      <link>/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</link>
+      <link>https://taoyan.netlify.com/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</link>
       <pubDate>Tue, 10 Jul 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/DBBl3GJmEm.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;我们有时读取数据的时候，往往不是我们希望的表头只有一行，有时会出现多个表头数据用来描述列明，比如下面这样的数据：&lt;/p&gt;

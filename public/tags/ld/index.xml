@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>LD | Tao Yan</title>
-    <link>/tags/ld/</link>
-      <atom:link href="/tags/ld/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/ld/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/ld/index.xml" rel="self" type="application/rss+xml" />
     <description>LD</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Wed, 06 Dec 2017 21:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>LD</title>
-      <link>/tags/ld/</link>
+      <link>https://taoyan.netlify.com/tags/ld/</link>
     </image>
     
     <item>
       <title>生物信息学学习笔记（五）</title>
-      <link>/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
+      <link>https://taoyan.netlify.com/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
       <pubDate>Wed, 06 Dec 2017 21:19:05 +0000</pubDate>
-      <guid>/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-12-09.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mLaH1fIKh6.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;全基因组水平的连锁不平衡-ld-和遗传结构分析&#34;&gt;全基因组水平的连锁不平衡(LD)和遗传结构分析&lt;/h2&gt;

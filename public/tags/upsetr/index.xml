@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>UpSetR | Tao Yan</title>
-    <link>/tags/upsetr/</link>
-      <atom:link href="/tags/upsetr/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/upsetr/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/upsetr/index.xml" rel="self" type="application/rss+xml" />
     <description>UpSetR</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Sun, 15 Oct 2017 12:34:08 -0500</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>UpSetR</title>
-      <link>/tags/upsetr/</link>
+      <link>https://taoyan.netlify.com/tags/upsetr/</link>
     </image>
     
     <item>
       <title>R语言可视化之UpSetR包</title>
-      <link>/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</link>
+      <link>https://taoyan.netlify.com/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</link>
       <pubDate>Sun, 15 Oct 2017 12:34:08 -0500</pubDate>
-      <guid>/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</guid>
+      <guid>https://taoyan.netlify.com/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JK4Hhj821g.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

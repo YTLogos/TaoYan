@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tips | Tao Yan</title>
-    <link>/tags/tips/</link>
-      <atom:link href="/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/tips/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/tips/index.xml" rel="self" type="application/rss+xml" />
     <description>tips</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Thu, 12 Jul 2018 12:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>tips</title>
-      <link>/tags/tips/</link>
+      <link>https://taoyan.netlify.com/tags/tips/</link>
     </image>
     
     <item>
       <title>改善R语言代码的5个小技巧</title>
-      <link>/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
+      <link>https://taoyan.netlify.com/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Thu, 12 Jul 2018 12:19:05 +0000</pubDate>
-      <guid>/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/0m7AJLj3he.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

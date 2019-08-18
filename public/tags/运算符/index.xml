@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>运算符 | Tao Yan</title>
-    <link>/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
-      <atom:link href="/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/index.xml" rel="self" type="application/rss+xml" />
     <description>运算符</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Fri, 09 Feb 2018 21:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>运算符</title>
-      <link>/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <link>https://taoyan.netlify.com/tags/%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
     </image>
     
     <item>
       <title>Shell编程：运算符</title>
-      <link>/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
       <pubDate>Fri, 09 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-09.shell%E7%BC%96%E7%A8%8B%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/yunsuanfu.jpeg?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;

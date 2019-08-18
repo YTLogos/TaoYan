@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>编程能力 | Tao Yan</title>
-    <link>/tags/%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B/</link>
-      <atom:link href="/tags/%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B/index.xml" rel="self" type="application/rss+xml" />
     <description>编程能力</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Tue, 24 Apr 2018 21:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>编程能力</title>
-      <link>/tags/%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B/</link>
+      <link>https://taoyan.netlify.com/tags/%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B/</link>
     </image>
     
     <item>
       <title>R编程题目练习1</title>
-      <link>/post/2018-04-24.r%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E7%BB%83%E4%B9%A01/</link>
+      <link>https://taoyan.netlify.com/post/2018-04-24.r%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E7%BB%83%E4%B9%A01/</link>
       <pubDate>Tue, 24 Apr 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-04-24.r%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E7%BB%83%E4%B9%A01/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-04-24.r%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E7%BB%83%E4%B9%A01/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/8DLlfLA4dc.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;multiples-of-3-and-5&#34;&gt;Multiples of 3 and 5&lt;/h2&gt;

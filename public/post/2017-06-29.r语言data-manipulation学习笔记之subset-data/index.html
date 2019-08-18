@@ -31,7 +31,7 @@
   <meta name="description" content="数据分析过程中我们常常需要从数据集中抽取部分数据，本文将介绍如何提取子数据集，主要利用R自带的函数，以后会专门介绍data manipulation包dplyr。 提取子数据集主要分为select以及exclude，这里主要介绍两种方法，一是利用操作符[]进行选取，二是利用subset()进行抽取。">
 
   
-  <link rel="alternate" hreflang="en-us" href="/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/">
+  <link rel="alternate" hreflang="en-us" href="https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/">
 
   
 
@@ -76,7 +76,7 @@
 
   
   
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arapey:400,400i|Karla:400,700|Roboto+Mono&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arapey:400,400i|Karla:400,700|Roboto+Mono|Mrs+Saint+Delafield|Kaushan+Script|Playball&display=swap">
   
 
   
@@ -93,7 +93,7 @@
     
     
     
-    <link rel="stylesheet" href="/css/academic.d93a68285af0f7ef7f5ea22fb59113cf.css">
+    <link rel="stylesheet" href="/css/academic.948c91384be7a6e3e086b01b867a93a8.css">
   
 
   
@@ -106,7 +106,7 @@
   <link rel="icon" type="image/png" href="/img/icon-32.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/">
+  <link rel="canonical" href="https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/">
 
   
   
@@ -121,10 +121,10 @@
   <meta property="twitter:creator" content="@TaoYANLogos">
   
   <meta property="og:site_name" content="Tao Yan">
-  <meta property="og:url" content="/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/">
+  <meta property="og:url" content="https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/">
   <meta property="og:title" content="R语言data manipulation学习笔记之subset data | Tao Yan">
-  <meta property="og:description" content="数据分析过程中我们常常需要从数据集中抽取部分数据，本文将介绍如何提取子数据集，主要利用R自带的函数，以后会专门介绍data manipulation包dplyr。 提取子数据集主要分为select以及exclude，这里主要介绍两种方法，一是利用操作符[]进行选取，二是利用subset()进行抽取。"><meta property="og:image" content="img/avatar.jpg">
-  <meta property="twitter:image" content="img/avatar.jpg"><meta property="og:locale" content="en-us">
+  <meta property="og:description" content="数据分析过程中我们常常需要从数据集中抽取部分数据，本文将介绍如何提取子数据集，主要利用R自带的函数，以后会专门介绍data manipulation包dplyr。 提取子数据集主要分为select以及exclude，这里主要介绍两种方法，一是利用操作符[]进行选取，二是利用subset()进行抽取。"><meta property="og:image" content="https://taoyan.netlify.com/img/avatar.jpg">
+  <meta property="twitter:image" content="https://taoyan.netlify.com/img/avatar.jpg"><meta property="og:locale" content="en-us">
   
     
       <meta property="article:published_time" content="2017-06-29T12:34:08-05:00">
@@ -492,7 +492,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/&amp;text=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data" target="_blank" rel="noopener" class="share-btn-twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/&amp;text=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data" target="_blank" rel="noopener" class="share-btn-twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -505,7 +505,7 @@
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/&amp;t=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data" target="_blank" rel="noopener" class="share-btn-facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/&amp;t=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data" target="_blank" rel="noopener" class="share-btn-facebook">
           <i class="fab fa-facebook-f"></i>
         </a>
       </li>
@@ -518,7 +518,7 @@
       
       
       <li>
-        <a href="mailto:?subject=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data&amp;body=/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/" target="_blank" rel="noopener" class="share-btn-email">
+        <a href="mailto:?subject=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data&amp;body=https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/" target="_blank" rel="noopener" class="share-btn-email">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -531,7 +531,7 @@
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/&amp;title=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data" target="_blank" rel="noopener" class="share-btn-linkedin">
+        <a href="https://www.linkedin.com/shareArticle?url=https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/&amp;title=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -544,7 +544,7 @@
       
       
       <li>
-        <a href="https://web.whatsapp.com/send?text=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data%20/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+        <a href="https://web.whatsapp.com/send?text=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data%20https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/" target="_blank" rel="noopener" class="share-btn-whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -557,7 +557,7 @@
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/&amp;title=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data" target="_blank" rel="noopener" class="share-btn-weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://taoyan.netlify.com/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/&amp;title=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8bsubset%20data" target="_blank" rel="noopener" class="share-btn-weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>
@@ -790,10 +790,25 @@ com4
     
 
     <div class="media-body">
-      <h5 class="card-title" itemprop="name"><a href="">Tao Yan</a></h5>
+      <h5 class="card-title" itemprop="name"><a href="https://taoyan.netlify.com">Tao Yan</a></h5>
       <h6 class="card-subtitle">PhD Candidate of Crop Science</h6>
       <p class="card-text" itemprop="description">My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.</p>
       <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          <li>
+            <a itemprop="sameAs" href="mailto:tyan@zju.edu.cn" >
+              <i class="fas fa-paper-plane"></i>
+            </a>
+          </li>
         
           
           
@@ -1020,7 +1035,7 @@ com4
   <p class="powered-by">
     &copy; Tao Yan, 2018-2019 &middot; 
 
-    Powered by the
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/mywebsite" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
 
@@ -1035,6 +1050,8 @@ com4
     
   </p>
 </footer>
+
+<div style="text-align: center;"><script type="text/javascript" src="//rf.revolvermaps.com/0/0/8.js?i=5cz8zk3uynm&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=33" async="async"></script></div>
 
   </div>
   

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数组 | Tao Yan</title>
-    <link>/tags/%E6%95%B0%E7%BB%84/</link>
-      <atom:link href="/tags/%E6%95%B0%E7%BB%84/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://taoyan.netlify.com/tags/%E6%95%B0%E7%BB%84/</link>
+      <atom:link href="https://taoyan.netlify.com/tags/%E6%95%B0%E7%BB%84/index.xml" rel="self" type="application/rss+xml" />
     <description>数组</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Sun, 04 Feb 2018 21:19:05 +0000</lastBuildDate>
     <image>
-      <url>img/avatar.jpg</url>
+      <url>https://taoyan.netlify.com/img/avatar.jpg</url>
       <title>数组</title>
-      <link>/tags/%E6%95%B0%E7%BB%84/</link>
+      <link>https://taoyan.netlify.com/tags/%E6%95%B0%E7%BB%84/</link>
     </image>
     
     <item>
       <title>Shell编程：数组</title>
-      <link>/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</link>
+      <link>https://taoyan.netlify.com/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</link>
       <pubDate>Sun, 04 Feb 2018 21:19:05 +0000</pubDate>
-      <guid>/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</guid>
+      <guid>https://taoyan.netlify.com/post/2018-02-04.shell%E7%BC%96%E7%A8%8B%E6%95%B0%E7%BB%84/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/数组.png?raw=true&#34; alt=&#34;数组&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;数组&#34;&gt;数组&lt;/h2&gt;

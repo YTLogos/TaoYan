@@ -315,3 +315,9 @@ iframe {
     height: auto;
     object-fit: cover;
 }
+
+.article-title a {
+    color: #e13d3d;
+	font-size: 2rem;
+    transition: color .6s ease;
+}

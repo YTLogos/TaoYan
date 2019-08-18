@@ -309,3 +309,9 @@ iframe {
     font-size: 2em;
     color: #E13D3D;
 }
+
+.media.stream-item img {
+    max-width: 600px;
+    height: auto;
+    object-fit: cover;
+}

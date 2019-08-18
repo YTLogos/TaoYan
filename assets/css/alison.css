@@ -306,7 +306,7 @@ iframe {
 
 .navbar-light .navbar-brand {
     font-weight: 700;
-	font-family: 'Mrs Saint Delafield', cursive;
+	font-family: Mrs+Saint+Delafield;
     font-size: 2rem;
     color: #E13D3D;
 }

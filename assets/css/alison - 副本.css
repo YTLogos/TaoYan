@@ -114,7 +114,7 @@ h1 {
 pre {
   border: 1px solid #fff;
   box-shadow: 5px 5px 5px #eee;
-  padding: 2.5em;
+  padding: 0.25em;
   background: #fff;
   overflow-x: auto;
   border-radius: 0px; /*undo rounded corners*/

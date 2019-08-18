@@ -305,6 +305,7 @@ iframe {
 
 .navbar-light .navbar-brand {
     font-weight: 700;
+	font-family: Alegreya Sans;
     font-size: 2em;
-    color: #333;
+    color: #E13D3D;
 }

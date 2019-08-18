@@ -1,0 +1,3195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux | Tao Yan</title>
+    <link>/categories/linux/</link>
+      <atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <description>Linux</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Tue, 22 May 2018 21:19:05 +0000</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>Linux</title>
+      <link>/categories/linux/</link>
+    </image>
+    
+    <item>
+      <title>”Linux之数据呈现“</title>
+      <link>/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</link>
+      <pubDate>Tue, 22 May 2018 21:19:05 +0000</pubDate>
+      <guid>/post/2018-05-22.linux%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%91%88%E7%8E%B0/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/8aj460AJAl.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;重定向&#34;&gt;重定向&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;bash shell&lt;/strong&gt;保留了前三个文件描述符(0、1、2),分别表示标准输入、标准输出、标准错误。如果需要将标准输出和标准错误重定向到同一个输出文件中，&lt;strong&gt;bash shell&lt;/strong&gt;提供了特殊的重定向符&lt;code&gt;&amp;amp;&amp;gt;&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h2 id=&#34;脚本中重定向输出&#34;&gt;脚本中重定向输出&lt;/h2&gt;
+
+&lt;h3 id=&#34;临时重定向&#34;&gt;临时重定向&lt;/h3&gt;
+
+&lt;p&gt;在重定向到文件描述符时，必须在文件描述符数字前加一个&lt;code&gt;&amp;amp;&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test8
+#!/bin/bash
+# testing STDERR messages
+echo &amp;quot;This is an error&amp;quot; &amp;gt;&amp;amp;2
+echo &amp;quot;This is normal output&amp;quot;
+$ ./test8 2&amp;gt; test9
+This is normal output
+$ cat test9
+This is an error
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;永久重定向&#34;&gt;永久重定向&lt;/h3&gt;
+
+&lt;p&gt;可以在脚本中用&lt;code&gt;exec&lt;/code&gt;命令告诉&lt;code&gt;shell&lt;/code&gt;在脚本执行期间重定向某个特定文件描述符&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test11
+#!/bin/bash
+# redirecting output to different locations
+exec 2&amp;gt;testerror
+echo &amp;quot;This is the start of the script&amp;quot;
+echo &amp;quot;now redirecting all output to another location&amp;quot;
+exec 1&amp;gt;testout
+echo &amp;quot;This output should go to the testout file&amp;quot;
+echo &amp;quot;but this should go to the testerror file&amp;quot; &amp;gt;&amp;amp;2
+$
+$ ./test11
+This is the start of the script
+now redirecting all output to another location
+$ cat testout
+This output should go to the testout file
+$ cat testerror
+but this should go to the testerror file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;脚本中重定向输入&#34;&gt;脚本中重定向输入&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;exec&lt;/code&gt;命令允许将标准输入重定向到&lt;strong&gt;Linux&lt;/strong&gt;系统上的文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec 0&amp;lt; testfile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;这个命令会告诉&lt;code&gt;shell&lt;/code&gt;应该从文件testfile中获得输入而不是STDIN&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test12
+#!/bin/bash
+# redirecting file input
+exec 0&amp;lt; testfile
+count=1
+while read line
+do
+echo &amp;quot;Line #$count: $line&amp;quot;
+count=$[ $count + 1 ]
+done
+$ ./test12
+Line #1: This is the first line.
+Line #2: This is the second line.
+Line #3: This is the third line.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;消息记录&#34;&gt;消息记录&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;tee&lt;/code&gt;命令相当于管道的一个T型接头，它将从STDIN过来的数据同时发往两处，一处是STDOUT，另一处是&lt;code&gt;tee&lt;/code&gt;命令行指定的文件名&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ date | tee testfile
+Sun Oct 19 18:56:21 EDT 2014
+$ cat testfile
+Sun Oct 19 18:56:21 EDT 2014
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;tee&lt;/code&gt;命令在默认条件下会每次覆盖输出文件内容，如果需要追加数据到文件中，可以用&lt;code&gt;-a&lt;/code&gt;参数&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux之获取用户输入</title>
+      <link>/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
+      <pubDate>Mon, 21 May 2018 21:19:05 +0000</pubDate>
+      <guid>/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/CGbkeLBFc9.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;基本读取&#34;&gt;基本读取&lt;/h2&gt;
+
+&lt;p&gt;read命令从标准输入（键盘）或另一个文件描述符中接受输入，在收到输入后，read命令会将数据放进一个变量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test21.sh
+#!/bin/bash
+# testing the read command
+#
+echo -n &amp;quot;Enter your name: &amp;quot;
+read name
+echo &amp;quot;Hello $name, welcome to my program. &amp;quot;
+#
+$
+$ ./test21.sh
+Enter your name: Rich Blum
+Hello Rich Blum, welcome to my program.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;echo命令使用了-n选项，该选项不会在字符串末尾输出换行符，允许脚本用户紧跟其后输入数据，而不是下一行。
+read命令包含了-p选项，允许用户直接在read命令行指定提示符&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test22.sh
+#!/bin/bash
+# testing the read -p option
+#
+read -p &amp;quot;Please enter your age: &amp;quot; age
+days=$[ $age * 365 ]
+echo &amp;quot;That makes you over $days days old! &amp;quot;
+#
+$
+$ ./test22.sh
+Please enter your age: 10
+That makes you over 3650 days old!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;read命令会将提示符后输入的所有数据分配给单个变量，要么指定多个变量，输入的每个数据值都会分配给变量列表中的下一个变量，如果变量数量不够，剩下的数据就全部分配给最后一个变量。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test23.sh
+#!/bin/bash
+# entering multiple variables
+#
+read -p &amp;quot;Enter your name: &amp;quot; first last
+echo &amp;quot;Checking data for $last, $first…&amp;quot;
+$
+$ ./test23.sh
+Enter your name: Rich Blum
+Checking data for Blum, Rich...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也可以在read命令行中不指定变量，此时read会将它收到的任何数据存入环境变量REPLY中&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test24.sh
+#!/bin/bash
+# Testing the REPLY Environment variable
+#
+read -p &amp;quot;Enter your name: &amp;quot;
+echo
+echo Hello $REPLY, welcome to my program.
+#
+$
+$ ./test24.sh
+Enter your name: Christine
+Hello Christine, welcome to my program.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;超时&#34;&gt;超时&lt;/h3&gt;
+
+&lt;p&gt;使用read命令时脚本很可能会一直等着用户输入，此时可以设置一个计时器来让脚本在超过输入时间后继续执行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test25.sh
+#!/bin/bash
+# timing the data entry
+#
+if read -t 5 -p &amp;quot;Please enter your name: &amp;quot; name
+then
+echo &amp;quot;Hello $name, welcome to my script&amp;quot;
+else
+echo
+echo &amp;quot;Sorry, too slow! &amp;quot;
+fi
+$
+$ ./test25.sh
+Please enter your name: Rich
+Hello Rich, welcome to my script
+$ ./test25.sh
+Please enter your name:
+Sorry, too slow!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也可以不对输入过程计时，而是让read命令来统计输入的字符数，当输入的字符数达到预设的字符数时，就会自动退出，将输入的数据赋值给变量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test26.sh
+#!/bin/bash
+# getting just one character of input
+#
+read -n1 -p &amp;quot;Do you want to continue [Y/N]? &amp;quot; answer
+case $answer in
+Y | y) echo
+echo &amp;quot;fine, continue on…&amp;quot;;;
+N | n) echo
+echo OK, goodbye
+exit;;
+esac
+echo &amp;quot;This is the end of the script&amp;quot;
+$
+$ ./test26.sh
+Do you want to continue [Y/N]? Y
+fine, continue on…
+This is the end of the script
+$
+$ ./test26.sh
+Do you want to continue [Y/N]? n
+OK, goodbye
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;将-n选项与值1一起使用，告诉read命令在接受单个字符后退出。&lt;/p&gt;
+
+&lt;h3 id=&#34;隐藏方式读取&#34;&gt;隐藏方式读取&lt;/h3&gt;
+
+&lt;p&gt;-s选项可以避免在read命令中输入的数据出现在显示器上&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test27.sh
+#!/bin/bash
+# hiding input data from the monitor
+#
+read -s -p &amp;quot;Enter your password: &amp;quot; pass
+echo
+echo &amp;quot;Is your password really $pass? &amp;quot;
+$
+$ ./test27.sh
+Enter your password:
+Is your password really T3st1ng?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;文件中读取&#34;&gt;文件中读取&lt;/h3&gt;
+
+&lt;p&gt;read可以用来直接读取文件里保存的数据，每次调用read命令，它都会从文件中读取一行，当文件中没有内容后，read退出&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test28.sh
+#!/bin/bash
+# reading data from a file
+#
+count=1
+cat test | while read line
+do
+echo &amp;quot;Line $count: $line&amp;quot;
+count=$[ $count + 1]
+done
+echo &amp;quot;Finished processing the file&amp;quot;
+$
+$ cat test
+The quick brown dog jumps over the lazy fox.
+This is a test, this is only a test.
+O Romeo, Romeo! Wherefore art thou Romeo?
+$
+$ ./test28.sh
+Line 1: The quick brown dog jumps over the lazy fox.
+Line 2: This is a test, this is only a test.
+Line 3: O Romeo, Romeo! Wherefore art thou Romeo?
+Finished processing the file
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux之处理用户输入（三）</title>
+      <link>/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</link>
+      <pubDate>Sun, 20 May 2018 21:19:05 +0000</pubDate>
+      <guid>/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/AHC1ACD4IH.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;使用-getopt-命令&#34;&gt;使用&lt;code&gt;getopt&lt;/code&gt;命令&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;getopt&lt;/code&gt;能够识别命令行参数，从而在脚本中解析它们。&lt;code&gt;getopt&lt;/code&gt;可以接受一系列任意形式的命令行选项和参数，并自动将它们转换为适当的格式。其命令行格式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;getopt optstring paramaters
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;optstring&lt;/code&gt;是这个过程的关键所在，它定义了命令行有效的选项字母，还定义了哪些选项字母需要参数值，在&lt;code&gt;optstring&lt;/code&gt;中列出你要在脚本中用到的每个命令行选项字母，然后在每个需要参数值的选项字母后加一个冒号，&lt;code&gt;getopt&lt;/code&gt;命令会基于你定义的optstring解析提供的参数。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;举个例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ getopt ad:cd -a -b test1 -cd test2 test3
+-a -b test1 -c -d -- test2 test3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;optstring定义了四个有效选项字母，冒号在b之后，因为b选项需要一个参数值，当&lt;code&gt;getopt&lt;/code&gt;命令运行时，它会检查提供的参数列表(-a -b test1 -cd test2 test3)，并基于提供的optstring进行解析，它会自动将-cd选项分成两个独立的选项，并插入双破折线来分隔行中的额外参数。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果指定了一个不在&lt;code&gt;optstring&lt;/code&gt;中的选项，会报错，这时可以在命令行中加入&lt;code&gt;-q&lt;/code&gt;选项以忽略错误消息&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ getopt ab:cd -a -b test1 -cde test2 test3
+getopt: invalid option -- e
+-a -b test1 -c -d -- test2 test3
+$ getopt -q ab:cd -a -b test1 -cde test2 test3
+-a -b &#39;test1&#39; -c -d -- &#39;test2&#39; &#39;test3&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;脚本中使用-getopt&#34;&gt;脚本中使用&lt;code&gt;getopt&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;通过&lt;code&gt;set&lt;/code&gt;命令来完成，set命令的选项之一是双破折线，它会将命令行参数替换成set命令的命令行值。该方法首先将原始脚本中的命令行参数传给getopt命令，之后再将getopt命令的输出传给set命令，用getopt格式化后的命令行参数来替换原始的命令行参数，具体如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set --$(gteopt -q ab:cd &amp;quot;$@&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在原始的命令行参数变量的值就会被getopt命令行的输出替换，getopt已经将命令行参数全部格式化好了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test18.sh
+#!/bin/bash
+# Extract command line options &amp;amp; values with getopt
+#
+set -- $(getopt -q ab:cd &amp;quot;$@&amp;quot;)
+#
+echo
+while [ -n &amp;quot;$1&amp;quot; ]
+do
+    case &amp;quot;$1&amp;quot; in
+    -a) echo &amp;quot;Found the -a option&amp;quot; ;;
+    -b) param=&amp;quot;$2&amp;quot;
+        echo &amp;quot;Found the -b option, with parameter value $param&amp;quot;
+        shift ;;
+    -c) echo &amp;quot;Found the -c option&amp;quot; ;;
+    --) shift
+        break ;;
+    *) echo &amp;quot;$1 is not an option&amp;quot;;;
+esac
+    shift
+done
+#
+count=1
+for param in &amp;quot;$@&amp;quot;
+do
+    echo &amp;quot;Parameter #$count: $param&amp;quot;
+    count=$[ $count + 1 ]
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在运行含有复杂选项的脚本&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./test18.sh -ac
+Found the -a option
+Found the -c option
+$ ./test18.sh -a -b test1 -cd test2 test3 test4
+Found the -a option
+Found the -b option, with parameter value &#39;test1&#39;
+Found the -c option
+Parameter #1: &#39;test2&#39;
+Parameter #2: &#39;test3&#39;
+Parameter #3: &#39;test4&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但是还是存在一个问题，就是无法处理带空格和引号的参数值，它会将空格当作参数分隔符，而不是根据双引号将两者当作一个参数。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./test18.sh -a -b test1 -cd &amp;quot;test2 test3&amp;quot; test4
+Found the -a option
+Found the -b option, with parameter value &#39;test1&#39;
+Found the -c option
+Parameter #1: &#39;test2
+Parameter #2: test3&#39;
+Parameter #3: &#39;test4&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;getopts&#34;&gt;getopts&lt;/h3&gt;
+
+&lt;p&gt;getopts相对于getopt来说更高级，它可以提供getopt无法实现的功能。每次调用getopts时，它一次只会处理命令行上检测到的一个参数，处理完所有参数后，它会退出并返回一个大于0的退出状态码，因此可以与while结合运行。getopts命令用到两个环境变量，如果选项需要跟一个参数值，OPTARG环境变量会保存这个值，OPTIND环境变量保存了参数列表中getopts正在处理的&lt;strong&gt;参数位置&lt;/strong&gt;，这样就能在处理完选项之后继续处理其他命令行参数了，其主要格式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;getopts optstring variable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;optstring存有效的选项字母，如果选项字母要求有个参数值，就加一个冒号，要去掉错误信息，在optstring之前加一个冒号，getopts命令会将当前参数保存到命令行中定义的variable中&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test19.sh
+#!/bin/bash
+# simple demonstration of the getopts command
+#
+echo
+while getopts 🆎c opt
+do
+case &amp;quot;$opt&amp;quot; in
+a) echo &amp;quot;Found the -a option&amp;quot; ;;
+b) echo &amp;quot;Found the -b option, with value $OPTARG&amp;quot;;;
+c) echo &amp;quot;Found the -c option&amp;quot; ;;
+*) echo &amp;quot;Unknown option: $opt&amp;quot;;;
+esac
+done
+$
+$ ./test19.sh -ab test1 -c
+Found the -a option
+Found the -b option, with value test1
+Found the -c option
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;getopts在解析命令行选项时会移除开头的破折线所以在case定义中不用单破折线。getopts支持空格参数值输入及其他输入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./test19.sh -b &amp;quot;test1 test2&amp;quot; -a
+Found the -b option, with value test1 test2
+Found the -a option
+$ ./test19.sh -abtest1
+Found the -a option
+Found the -b option, with value test1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;getopts会将在命令行上找到的未定义的选项统一输出为问号&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./test19.sh -d
+Unknown option: ?
+$
+$ ./test19.sh -acde
+Found the -a option
+Found the -c option
+Unknown option: ?
+Unknown option: ?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;getopts知道何时停止处理选项，在getopts处理每个选项时会将OPTIND环境变量值加一，在完成getopts之后，可以使用shift命令和OPTIND值来移动参数。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test20.sh
+#!/bin/bash
+# Processing options &amp;amp; parameters with getopts
+#
+echo
+while getopts 🆎cd opt
+do
+case &amp;quot;$opt&amp;quot; in
+a) echo &amp;quot;Found the -a option&amp;quot; ;;
+b) echo &amp;quot;Found the -b option, with value $OPTARG&amp;quot; ;;
+c) echo &amp;quot;Found the -c option&amp;quot; ;;
+d) echo &amp;quot;Found the -d option&amp;quot; ;;
+*) echo &amp;quot;Unknown option: $opt&amp;quot; ;;
+esac
+done
+#
+shift $[ $OPTIND - 1 ]
+#
+echo
+count=1
+for param in &amp;quot;$@&amp;quot;
+do
+echo &amp;quot;Parameter $count: $param&amp;quot;
+count=$[ $count + 1 ]
+done
+$ ./test20.sh -a -b test1 -d test2 test3 test4
+Found the -a option
+Found the -b option, with value test1
+Found the -d option
+Parameter 1: test2
+Parameter 2: test3
+Parameter 3: test4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;选项标准化&#34;&gt;选项标准化&lt;/h3&gt;
+
+&lt;p&gt;主要是与Linux里已经存在含有某种程度的标准含义的字母相吻合，比如o一般代表输出等。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;选 项 描 述
+-a 显示所有对象
+-c 生成一个计数
+-d 指定一个目录
+-e 扩展一个对象
+-f 指定读入数据的文件
+-h 显示命令的帮助信息
+-i 忽略文本大小写
+-l 产生输出的长格式版本
+-n 使用非交互模式（批处理）
+-o 将所有输出重定向到的指定的输出文件
+-q 以安静模式运行
+-r 递归地处理目录和文件
+-s 以安静模式运行
+-v 生成详细输出
+-x 排除某个对象
+-y 对所有问题回答yes
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux之处理用户输入(二)</title>
+      <link>/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</link>
+      <pubDate>Sat, 19 May 2018 21:19:05 +0000</pubDate>
+      <guid>/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;特殊参数变量&#34;&gt;特殊参数变量&lt;/h2&gt;
+
+&lt;p&gt;在&lt;code&gt;bash shell&lt;/code&gt;中有些特殊变量，它们会记录命令行参数&lt;/p&gt;
+
+&lt;h3 id=&#34;参数统计&#34;&gt;参数统计&lt;/h3&gt;
+
+&lt;p&gt;特殊变量&lt;code&gt;$#&lt;/code&gt;含有脚本运行时携带的命令行参数的个数，可以在脚本中任何地方使用这个特殊变量，就跟普通变量一样&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test9.sh
+#!/bin/bash
+# Testing parameters
+#
+if [ $# -ne 2 ]
+then
+echo
+echo Usage: test9.sh a b
+echo
+else
+total=$[ $1 + $2 ]
+echo
+echo The total is $total
+echo
+fi
+#
+$
+$ bash test9.sh
+Usage: test9.sh a b
+$ bash test9.sh 10
+Usage: test9.sh a b
+$ bash test9.sh 10 15
+The total is 25
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如何获取最后一个命令行参数变量？可以通过以下方法获取：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test10.sh
+#!/bin/bash
+# Grabbing the last parameter
+#
+params=$#
+echo
+echo The last parameter is $params
+echo The last parameter is $\{!#\}
+echo
+#
+$
+$ bash test10.sh 1 2 3 4 5
+The last parameter is 5
+The last parameter is 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;抓取所有数据&#34;&gt;抓取所有数据&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;$*&lt;/code&gt;和&lt;code&gt;$@&lt;/code&gt;变量可以用来轻松访问所有参数，这两个变量能够在单个变量中存储所有的命令行参数。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$*&lt;/code&gt;变量会将命令行上提供的所有参数当作一个单词保存，这个单词包含了命令行中出现的每一个参数，基本上&lt;code&gt;$*&lt;/code&gt;变量会将这些参数视为一个整体，而不是多个个体&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;$@&lt;/code&gt;变量会将命令行上提供的所有参数当作同一字符串中的多个独立的单词，这样可以遍历所有的参数值，得到每个参数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test11.sh
+#!/bin/bash
+# testing $* and $@
+#
+echo
+echo &amp;quot;Using the $* method: $*&amp;quot;
+echo
+echo &amp;quot;Using the $@ method: $@&amp;quot;
+$
+$ ./test11.sh rich barbara katie jessica
+Using the $* method: rich barbara katie jessica
+Using the $@ method: rich barbara katie jessica
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;二者的差异主要如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test12.sh
+#!/bin/bash
+# testing $* and $@
+#
+echo
+count=1
+#
+for param in &amp;quot;$*&amp;quot;
+do
+echo &amp;quot;$* Parameter #$count = $param&amp;quot;
+count=$[ $count + 1 ]
+done
+#
+echo
+count=1
+#
+for param in &amp;quot;$@&amp;quot;
+do
+echo &amp;quot;$@ Parameter #$count = $param&amp;quot;
+count=$[ $count + 1 ]
+done
+$
+$ ./test12.sh rich barbara katie jessica
+$* Parameter #1 = rich barbara katie jessica
+$@ Parameter #1 = rich
+$@ Parameter #2 = barbara
+$@ Parameter #3 = katie
+$@ Parameter #4 = jessica
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;$*&lt;/code&gt;变量将所有参数当成单个参数，&lt;code&gt;$@&lt;/code&gt;变量会单独处理每个参数&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;移动变量&#34;&gt;移动变量&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;bash shell&lt;/code&gt;的&lt;code&gt;shift&lt;/code&gt;命令默认条件下会将每个参数变量向左移动一个位置，即变量&lt;code&gt;$3&lt;/code&gt;的值会移到&lt;code&gt;$2&lt;/code&gt;，以此类推，变量&lt;code&gt;$1&lt;/code&gt;的值会被删除，变量&lt;code&gt;$0&lt;/code&gt;的值即程序名不会改变&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test13.sh
+#!/bin/bash
+# demonstrating the shift command
+echo
+count=1
+while [ -n &amp;quot;$1&amp;quot; ]
+do
+echo &amp;quot;Parameter #$count = $1&amp;quot;
+count=$[ $count + 1 ]
+shift
+done
+$
+$ ./test13.sh rich barbara katie jessica
+Parameter #1 = rich
+Parameter #2 = barbara
+Parameter #3 = katie
+Parameter #4 = jessica
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;处理选项&#34;&gt;处理选项&lt;/h2&gt;
+
+&lt;p&gt;选项是跟在单破折号&lt;code&gt;-&lt;/code&gt;后面的单个字母，比如&lt;code&gt;-n&lt;/code&gt;，它能改变命令的行为。&lt;/p&gt;
+
+&lt;h3 id=&#34;查找选项&#34;&gt;查找选项&lt;/h3&gt;
+
+&lt;p&gt;命令行选项在命令行上紧跟在脚本名之后，就跟命令行参数一样&lt;/p&gt;
+
+&lt;h3 id=&#34;处理简单选项&#34;&gt;处理简单选项&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test15.sh
+#!/bin/bash
+# extracting command line options as parameters
+#
+echo
+while [ -n &amp;quot;$1&amp;quot; ]
+do
+case &amp;quot;$1&amp;quot; in
+-a) echo &amp;quot;Found the -a option&amp;quot; ;;
+-b) echo &amp;quot;Found the -b option&amp;quot; ;;
+-c) echo &amp;quot;Found the -c option&amp;quot; ;;
+*) echo &amp;quot;$1 is not an option&amp;quot; ;;
+esac
+shift
+done
+$
+$ ./test15.sh -a -b -c -d
+Found the -a option
+Found the -b option
+Found the -c option
+-d is not an option
+#
+#
+$ ./test15.sh -d -c -a
+-d is not an option
+Found the -c option
+Found the -a option
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;分离参数和选项&#34;&gt;分离参数和选项&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Linux&lt;/strong&gt;处理同时含有选项和参数的情况时，利用特殊字符将两者分开，该字符会告诉脚本何时选项结束以及普通参数何时开始。这个特殊字符就是双破折线&lt;code&gt;--&lt;/code&gt;，&lt;code&gt;shell&lt;/code&gt;会用双破折线来表明选项列表结束，在双破折线之后，脚本就可以放心将剩下的命令行参数当作参数而不是选项来处理。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test16.sh
+#!/bin/bash
+# extracting options and parameters
+echo
+while [ -n &amp;quot;$1&amp;quot; ]
+do
+case &amp;quot;$1&amp;quot; in
+-a) echo &amp;quot;Found the -a option&amp;quot; ;;
+-b) echo &amp;quot;Found the -b option&amp;quot;;;
+-c) echo &amp;quot;Found the -c option&amp;quot; ;;
+--) shift
+break ;;
+*) echo &amp;quot;$1 is not an option&amp;quot;;;
+esac
+shift
+done
+#
+count=1
+for param in $@
+do
+echo &amp;quot;Parameter #$count: $param&amp;quot;
+count=$[ $count + 1 ]
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在遇到双破折线时脚本用&lt;code&gt;break&lt;/code&gt;命令跳出&lt;code&gt;while&lt;/code&gt;循环，由于过早跳出循环，需要再加一条&lt;code&gt;shift&lt;/code&gt;命令来将双破折线移出参数变量。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./test16.sh -c -a -b test1 test2 test3
+Found the -c option
+Found the -a option
+Found the -b option
+test1 is not an option
+test2 is not an option
+test3 is not an option
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果说明在处理时脚本认为所有的命令行参数都是选项，下面用双破折线将命令行上的参数和选项分隔开&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./test16.sh -c -a -b -- test1 test2 test3
+Found the -c option
+Found the -a option
+Found the -b option
+Parameter #1: test1
+Parameter #2: test2
+Parameter #3: test3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当脚本遇到双破折线时它会停止处理选项，并将剩下的参数都当作命令行参数。&lt;/p&gt;
+
+&lt;h3 id=&#34;处理带值的选项&#34;&gt;处理带值的选项&lt;/h3&gt;
+
+&lt;p&gt;有些选项会带有一个额外的参数值，比如：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./testing.sh -a test1 -b -c -d test2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当命令行选项要求有额外的参数时，处理如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test17.sh
+#!/bin/bash
+# extracting command line options and values
+echo
+while [ -n &amp;quot;$1&amp;quot; ]
+do
+case &amp;quot;$1&amp;quot; in
+-a) echo &amp;quot;Found the -a option&amp;quot;;;
+-b) param=&amp;quot;$2&amp;quot;
+echo &amp;quot;Found the -b option, with parameter value $param&amp;quot;
+shift ;;
+-c) echo &amp;quot;Found the -c option&amp;quot;;;
+--) shift
+break ;;
+*) echo &amp;quot;$1 is not an option&amp;quot;;;
+esac
+shift
+done
+#
+count=1
+for param in &amp;quot;$@&amp;quot;
+do
+echo &amp;quot;Parameter #$count: $param&amp;quot;
+count=$[ $count + 1 ]
+done
+$
+$ ./test17.sh -a -b test1 -d
+Found the -a option
+Found the -b option, with parameter value test1
+-d is not an option
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在这个例子中，&lt;code&gt;case&lt;/code&gt;语句定义了三个处理选项，&lt;code&gt;-b&lt;/code&gt;选项还有一个额外的参数值，由于要处理的参数是&lt;code&gt;$1&lt;/code&gt;，额外的参数值就应该位于&lt;code&gt;$2&lt;/code&gt;(因为所有的参数在处理完之后都会被移出)。只要将参数值从&lt;code&gt;$2&lt;/code&gt;变量中提取出来就行了，因为这个选项占用了两个参数位，所以需要使用&lt;code&gt;shift&lt;/code&gt;命令多移动一个位置。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux之处理用户输入</title>
+      <link>/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</link>
+      <pubDate>Fri, 18 May 2018 21:19:05 +0000</pubDate>
+      <guid>/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;命令行参数&#34;&gt;命令行参数&lt;/h2&gt;
+
+&lt;p&gt;向&lt;code&gt;shell&lt;/code&gt;脚本传递参数的最基本方法是使用命令行参数。命令行参数允许在运行脚本时向命令行添加数据。&lt;/p&gt;
+
+&lt;h3 id=&#34;读取参数&#34;&gt;读取参数&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;bash shell&lt;/code&gt;将一些称为位置参数的特殊变量分配给输入到命令行中的所有参数，包括&lt;code&gt;shell&lt;/code&gt;所执行的脚本名称。位置参数变量是标准的数字:\$0是程序名，\$1是第一个变量,依此类推到第九个参数\$9。&lt;/p&gt;
+
+&lt;p&gt;下面是在&lt;code&gt;shell&lt;/code&gt;脚本中使用单个命令行参数的简单例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test1.sh
+#!/bin/bash
+# using one command line parameter
+#
+factorial=1
+for (( number = 1; number &amp;lt;= $1 ; number++ ))
+do
+factorial=$[ $factorial * $number ]
+done
+echo The factorial of $1 is $factorial
+$
+$ ./test1.sh 5
+The factorial of 5 is 120
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;可以在&lt;code&gt;shell&lt;/code&gt;脚本中像使用其他变量一样使用\$1变量，&lt;code&gt;shell&lt;/code&gt;脚本会自动蒋命令行参数的值分配给变量，不需要用户做任何处理&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果需要输入更多的命令行参数，则每个参数必须用空格分开&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test2.sh
+#!/bin/bash
+# testing two command line parameters
+#
+total=$[ $1 * $2 ]
+echo The first parameter is $1.
+echo The second parameter is $2.
+echo The total value is $total.
+$
+$ ./test2.sh 2 5
+The first parameter is 2.
+The second parameter is 5.
+The total value is 10.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;shell&lt;/code&gt;会将每个参数分配给对应的变量&lt;/p&gt;
+
+&lt;p&gt;也可以在命令行中使用文本字符串&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test3.sh
+#!/bin/bash
+# testing string parameters
+#
+echo Hello $1, glad to meet you.
+$
+$ ./test3.sh Rich
+Hello Rich, glad to meet you.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;shell&lt;/code&gt;将输入到命令行的字符串值传给脚本，但碰到含有空格的文本字符串时就会出现问题：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./test3.sh Rich Blum
+Hello Rich, glad to meet you.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;记住每个参数都是用空格分隔的，所以&lt;code&gt;shell&lt;/code&gt;会将空格当成两个值的分隔符。要在参数值中包含空格，必须使用引号(单双引号均可)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./test3.sh &#39;Rich Blum&#39;
+Hello Rich Blum, glad to meet you.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;将文本字符串作为参数传递时，引号并非数据的一部分，它们只是表明数据的起止位置&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果脚本需要的命令行参数不止9个，需要在第九个变量之后的变量数字周围加上花括号,比如\${10}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test4.sh
+#!/bin/bash
+# handling lots of parameters
+#
+total=$[ ${10} * ${11} ]
+echo The tenth parameter is ${10}
+echo The eleventh parameter is ${11}
+echo The total is $total
+$
+$ ./test4.sh 1 2 3 4 5 6 7 8 9 10 11 12
+The tenth parameter is 10
+The eleventh parameter is 11
+The total is 110
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;读取脚本名&#34;&gt;读取脚本名&lt;/h3&gt;
+
+&lt;p&gt;可以用\$0参数获取&lt;code&gt;shell&lt;/code&gt;在命令行启动的脚本名&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test5.sh
+#!/bin/bash
+# Testing the $0 parameter
+#
+echo The zero parameter is set to: $0
+#
+$
+$ bash test5.sh
+The zero parameter is set to: test5.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里存在一个潜在的问题，如果使用另一个命令来运行脚本，命令会和脚本名混在一起，出现在\$0参数中&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./test5.sh
+The zero parameter is set to: ./test5.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另外如果传给\$0变量的实际字符串不仅仅是脚本名，而是完整的脚本路径时，变量\$0就会使用整个路径&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ bash /home/Christine/test5.sh
+The zero parameter is set to: /home/Christine/test5.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;有个小命令可以解决这些问题，&lt;code&gt;basename&lt;/code&gt;命令会返回不包含路径的脚本名&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test5b.sh
+#!/bin/bash
+# Using basename with the $0 parameter
+#
+name=$(basename $0)
+echo
+echo The script name is: $name
+#
+$ bash /home/Christine/test5b.sh
+The script name is: test5b.sh
+$
+$ ./test5b.sh
+The script name is: test5b.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test6.sh
+#!/bin/bash
+# Testing a Multi-function script
+#
+name=$(basename $0)
+#
+if [ $name = &amp;quot;addem&amp;quot; ]
+then
+total=$[ $1 + $2 ]
+#
+elif [ $name = &amp;quot;multem&amp;quot; ]
+then
+total=$[ $1 * $2 ]
+fi
+#
+echo
+echo The calculated value is $total
+#
+$
+$ cp test6.sh addem
+$ chmod u+x addem
+$
+$ ln -s test6.sh multem
+$
+$ ls -l *em
+-rwxrw-r--. 1 Christine Christine 224 Jun 30 23:50 addem
+lrwxrwxrwx. 1 Christine Christine 8 Jun 30 23:50 multem -&amp;gt; test6.sh
+$
+$ ./addem 2 5
+The calculated value is 7
+$
+$ ./multem 2 5
+The calculated value is 10
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux结构化命令which</title>
+      <link>/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</link>
+      <pubDate>Thu, 17 May 2018 21:19:05 +0000</pubDate>
+      <guid>/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;for-命令&#34;&gt;&lt;code&gt;for&lt;/code&gt;命令&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;for&lt;/code&gt;命令允许你创建一个遍历一系列值的循环，每次迭代都是用其中一个值来执行已定义好的命令。具体格式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for var in list
+do
+    commands
+done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;for&lt;/code&gt;循环假定每个值都是用空格分隔的，如果有包含空格的数据值，用双引号圈起来&lt;/p&gt;
+
+&lt;h3 id=&#34;读取列表中的值&#34;&gt;读取列表中的值&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test1
+#!/bin/bash
+# basic for command
+for test in Alabama Alaska Arizona Arkansas California Colorado
+do
+echo The next state is $test
+done
+$ ./test1
+The next state is Alabama
+The next state is Alaska
+The next state is Arizona
+The next state is Arkansas
+The next state is California
+The next state is Colorado
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;读取列表中的复杂值&#34;&gt;读取列表中的复杂值&lt;/h3&gt;
+
+&lt;p&gt;看下面的例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat badtest1
+#!/bin/bash
+# another example of how not to use the for command
+for test in I don&#39;t know if this&#39;ll work
+do
+echo &amp;quot;word:$test&amp;quot;
+done
+$ ./badtest1
+word:I
+word:dont know if thisll
+word:work
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果并不是我们想要的&lt;/p&gt;
+
+&lt;p&gt;有两种办法解决该问题：
+* 使用转义字符(反斜线)来将单引号转义
+* 使用双引号来定义用到单引号的值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test2
+#!/bin/bash
+# another example of how not to use the for command
+for test in I don\&#39;t know if &amp;quot;this&#39;ll&amp;quot; work
+do
+echo &amp;quot;word:$test&amp;quot;
+done
+$ ./test2
+word:I
+word:don&#39;t
+word:know
+word:if
+word:this&#39;ll
+word:work
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;从变量读取列表&#34;&gt;从变量读取列表&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test4
+#!/bin/bash
+# using a variable to hold the list
+list=&amp;quot;Alabama Alaska Arizona Arkansas Colorado&amp;quot;
+list=$list&amp;quot; Connecticut&amp;quot;
+for state in $list
+do
+echo &amp;quot;Have you ever visited $state?&amp;quot;
+done
+$ ./test4
+Have you ever visited Alabama?
+Have you ever visited Alaska?
+Have you ever visited Arizona?
+Have you ever visited Arkansas?
+Have you ever visited Colorado?
+Have you ever visited Connecticut?
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;从命令读取值&#34;&gt;从命令读取值&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test5
+#!/bin/bash
+# reading values from a file
+file=&amp;quot;states&amp;quot;
+for state in $(cat $file)
+do
+echo &amp;quot;Visit beautiful $state&amp;quot;
+done
+$ cat states
+Alabama
+Alaska
+Arizona
+Arkansas
+Colorado
+Connecticut
+Delaware
+Florida
+Georgia
+$ ./test5
+Visit beautiful Alabama
+Visit beautiful Alaska
+Visit beautiful Arizona
+Visit beautiful Arkansas
+Visit beautiful Colorado
+Visit beautiful Connecticut
+Visit beautiful Delaware
+Visit beautiful Florida
+Visit beautiful Georgia
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;更改字段分隔符&#34;&gt;更改字段分隔符&lt;/h3&gt;
+
+&lt;p&gt;造成这个问题的原因是特殊的环境变量IFS，叫做内部字段分隔符，IFS环境变量定义了&lt;strong&gt;bash shell&lt;/strong&gt;用作分隔符的一系列字符。默认情况下，&lt;strong&gt;bash shell&lt;/strong&gt;将下列字符当作字段分隔符：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;空格&lt;/li&gt;
+&lt;li&gt;制表符&lt;/li&gt;
+&lt;li&gt;换行符&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;要解决上面遇到的处理文件中含有字段分隔符的问题，可以在&lt;strong&gt;shell&lt;/strong&gt;脚本中临时更改IFS环境变量的值来限制被&lt;strong&gt;bahs shell&lt;/strong&gt;当作字段分隔符的字符&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test5b
+#!/bin/bash
+# reading values from a file
+file=&amp;quot;states&amp;quot;
+IFS=$&#39;\n&#39;
+for state in $(cat $file)
+do
+echo &amp;quot;Visit beautiful $state&amp;quot;
+done
+$ ./test5b
+Visit beautiful Alabama
+Visit beautiful Alaska
+Visit beautiful Arizona
+Visit beautiful Arkansas
+Visit beautiful Colorado
+Visit beautiful Connecticut
+Visit beautiful Delaware
+Visit beautiful Florida
+Visit beautiful Georgia
+Visit beautiful New York
+Visit beautiful New Hampshire
+Visit beautiful North Carolina
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果要指定多个IFS字符，只要将它们在赋值行串起来就行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IFS=$&#39;\n&#39;:;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个赋值会将换行符、冒号、分号和双引号作为字段分隔符&lt;/p&gt;
+
+&lt;h3 id=&#34;用通配符读取目录&#34;&gt;用通配符读取目录&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test6
+#!/bin/bash
+# iterate through all the files in a directory
+for file in /home/rich/test/*
+do
+if [ -d &amp;quot;$file&amp;quot; ]
+then
+echo &amp;quot;$file is a directory&amp;quot;
+elif [ -f &amp;quot;$file&amp;quot; ]
+then
+echo &amp;quot;$file is a file&amp;quot;
+fi
+done
+$ ./test6
+/home/rich/test/dir1 is a directory
+/home/rich/test/myprog.c is a file
+/home/rich/test/myprog is a file
+/home/rich/test/myscript is a file
+/home/rich/test/newdir is a directory
+/home/rich/test/newfile is a file
+/home/rich/test/newfile2 is a file
+/home/rich/test/testdir is a directory
+/home/rich/test/testing is a file
+/home/rich/test/testprog is a file
+/home/rich/test/testprog.c is a file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;c-语言风格的-for-命令&#34;&gt;&lt;code&gt;C&lt;/code&gt;语言风格的&lt;code&gt;for&lt;/code&gt;命令&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;bash&lt;/strong&gt;中&lt;code&gt;C&lt;/code&gt;语言风格的&lt;code&gt;for&lt;/code&gt;循环的基本格式:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for (( variable assignment ; condition ; iteration process ))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test8
+#!/bin/bash
+# testing the C-style for loop
+for (( i=1; i &amp;lt;= 10; i++ ))
+do
+echo &amp;quot;The next number is $i&amp;quot;
+done
+$ ./test8
+The next number is 1
+The next number is 2
+The next number is 3
+The next number is 4
+The next number is 5
+The next number is 6
+The next number is 7
+The next number is 8
+The next number is 9
+The next number is 10
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;使用多个变量&#34;&gt;使用多个变量&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;C&lt;/code&gt;语言风格的&lt;code&gt;for&lt;/code&gt;命令也允许为迭代使用多个变量。循环会单独处理每个变量，你可以为每个变量定义不同的迭代过程。尽管可以使用多个变量，但你只能在&lt;code&gt;for&lt;/code&gt;循环中定义一种条件:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test9
+#!/bin/bash
+# multiple variables
+for (( a=1, b=10; a &amp;lt;= 10; a++, b-- ))
+do
+echo &amp;quot;$a - $b&amp;quot;
+done
+$ ./test9
+1 - 10
+2 - 9
+3 - 8
+4 - 7
+5 - 6
+6 - 5
+7 - 4
+8 - 3
+9 - 2
+10 - 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;联系方式&#34;&gt;联系方式：&lt;/h2&gt;
+
+&lt;p&gt;wechat: yt056410
+Email: tyan@zju.edu.cn
+QQ: 1051927088
+GitHub: &lt;a href=&#34;https://github.com/YTLogos&#34; target=&#34;_blank&#34;&gt;https://github.com/YTLogos&lt;/a&gt;
+JianShu: &lt;a href=&#34;http://www.jianshu.com/u/bd001545cf0b&#34; target=&#34;_blank&#34;&gt;http://www.jianshu.com/u/bd001545cf0b&lt;/a&gt;
+Blog: &lt;a href=&#34;https://ytlogos.github.io/&#34; target=&#34;_blank&#34;&gt;https://ytlogos.github.io/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;个人简介&#34;&gt;个人简介：&lt;/h2&gt;
+
+&lt;p&gt;严涛
+浙江大学作物遗传育种在读研究生
+R语言爱好者，爱开源&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux之结构化命令</title>
+      <link>/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Wed, 16 May 2018 21:19:05 +0000</pubDate>
+      <guid>/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;test-语句&#34;&gt;&lt;code&gt;test&lt;/code&gt;语句&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;test&lt;/code&gt;命令提供了在&lt;code&gt;if-then&lt;/code&gt;语句中测试不同条件的途径。如果&lt;code&gt;test&lt;/code&gt;命令中列出的条件成立，&lt;code&gt;test&lt;/code&gt;命令就会推出并返回退出状态码0。如果条件不成立，&lt;code&gt;test&lt;/code&gt;命令就会推出并返回非零的退出状态码，这使得&lt;code&gt;if-then&lt;/code&gt;语句不会被执行。&lt;code&gt;test&lt;/code&gt;命令格式非常简单:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;test condition
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在&lt;code&gt;if-then&lt;/code&gt;语句中&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if test condition
+then
+    commands
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;bash shell&lt;/strong&gt;提供了另一种条件测试方法，无需在&lt;code&gt;if-then&lt;/code&gt;语句中声明&lt;code&gt;test&lt;/code&gt;命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if [ condition ]
+then
+    commands
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;方括号定义了测试条件，需要注意的是，第一个方括号之后和第二个方括号之前必须加上一个空格，否则会报错。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;test&lt;/code&gt;命令可以判断三类条件&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;数值比较(bash shell只能处理整数)&lt;/li&gt;
+&lt;li&gt;字符串比较&lt;/li&gt;
+&lt;li&gt;文件比较&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;在比较测试中，大写字母被认为是小于小写字母的，但是&lt;code&gt;sort&lt;/code&gt;命令恰好相反。比较测试中使用的是标准的&lt;strong&gt;ASCⅡ&lt;/strong&gt;，根据每个字符的&lt;strong&gt;ASCⅡ&lt;/strong&gt;数值来决定排序结果。&lt;code&gt;sort&lt;/code&gt;命令使用的是系统的本地化语言设置中定义的排序顺序，对于英语，本地化设置指定了在排序顺序中小写字母出现在大写字母之前。&lt;code&gt;test&lt;/code&gt;命令和测试表达式使用标准的数字比较符号来表示字符串比较，而用文本代码来表示数值比较。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;if-then-高级特性&#34;&gt;&lt;code&gt;if-then&lt;/code&gt;高级特性&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;bash shell&lt;/strong&gt;提供了两项可在&lt;code&gt;if-then&lt;/code&gt;语句中使用的高级特性：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用于数学表达式的双括号(无需转义)&lt;/li&gt;
+&lt;li&gt;用于高级字符串处理功能的双方括号(支持模式匹配)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;使用双括号&#34;&gt;使用双括号&lt;/h3&gt;
+
+&lt;p&gt;双括号提供了使用高级数学表达式的功能，双括号命令格式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(( expression ))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;使用双方括号&#34;&gt;使用双方括号&lt;/h3&gt;
+
+&lt;p&gt;双方括号命令提供了针对字符串比较的高级特性，其命令格式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[[ expression ]]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;case-命令&#34;&gt;&lt;code&gt;case&lt;/code&gt;命令&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;case&lt;/code&gt;命令会将指定的变量与不同模式进行比较，如果变量和模式模式匹配，那么&lt;code&gt;shell&lt;/code&gt;会执行为该模式指定的命令。可以通过竖线操作符来分隔出多个模式，星号会捕获所有与已知模式不匹配的值。格式具体如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;case variable in 
+pattern1 | pattern2) command1;;
+pattern3) command2;;
+*) default commands;;
+esac
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;举个例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test26.sh
+#!/bin/bash
+# using the case command
+#
+case $USER in
+rich | barbara)
+echo &amp;quot;Welcome, $USER&amp;quot;
+echo &amp;quot;Please enjoy your visit&amp;quot;;;
+testing)
+echo &amp;quot;Special testing account&amp;quot;;;
+jessica)
+echo &amp;quot;Do not forget to log off when you&#39;re done&amp;quot;;;
+*)
+echo &amp;quot;Sorry, you are not allowed here&amp;quot;;;
+esac
+$
+$ ./test26.sh
+Welcome, rich
+Please enjoy your visit
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux命令</title>
+      <link>/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Tue, 15 May 2018 21:19:05 +0000</pubDate>
+      <guid>/post/2018-05-15.linux%E5%91%BD%E4%BB%A4/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7bEcJiH4l2.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;基本命令&#34;&gt;基本命令&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;tail&lt;/strong&gt;命令添加-f参数允许在其他进程使用该文件时查看文件的内容。&lt;strong&gt;tail&lt;/strong&gt;命令会保持活动状态。&lt;/li&gt;
+&lt;li&gt;变量名、等号和值之间没有空格，如果要赋值一个含有空格的字符串组，必须用单引号来界定字符串的首尾。&lt;/li&gt;
+&lt;li&gt;删除已经存在的环境变量，可以用&lt;code&gt;unset&lt;/code&gt;命令完成。在涉及环境变量名时，需要记住的一点是：如果要用到环境变量，使用\$，如果要操作变量，不使用\$。一个例外就是使用&lt;code&gt;printenv&lt;/code&gt;显示某个变量的值。&lt;/li&gt;
+&lt;li&gt;/etc/profile文件是&lt;code&gt;bash shell&lt;/code&gt;默认的主启动文件，只要登录了&lt;strong&gt;Linux&lt;/strong&gt;系统，&lt;code&gt;bash&lt;/code&gt;就会执行/etc/profile启动文件中的内容。&lt;/li&gt;
+&lt;li&gt;用来向&lt;strong&gt;Linux&lt;/strong&gt;系统添加新用户的主要工具是&lt;code&gt;useradd&lt;/code&gt;,删除用户使用&lt;code&gt;userdel&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vim&lt;/strong&gt;编辑器中&lt;code&gt;G&lt;/code&gt;表示移到最后一行，&lt;code&gt;num G&lt;/code&gt;表示移到第&lt;code&gt;num&lt;/code&gt;行，&lt;code&gt;gg&lt;/code&gt;表示移到第一行。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;echo&lt;/code&gt;命令如果想将文本字符串和命令输出显示在同一行中，可以用&lt;code&gt;echo&lt;/code&gt;语句的&lt;code&gt;-n&lt;/code&gt;参数。需要在字符串的两侧使用引号，保证要显示的字符串尾部有一个空格。&lt;/li&gt;
+&lt;li&gt;使用等号将值赋给用户变量，在变量、等号和值之间不能出现空格。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;有两种方法可以将命令输出赋给变量&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;反引号字符(`)&lt;/li&gt;
+&lt;li&gt;$()格式&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;重定向输出时，&lt;code&gt;&amp;gt;&lt;/code&gt;会覆盖已有文件，&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;追加数据&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;输入重定向和输出重定向正好相反，输入重定向将文件的内容重定到命令，而非将命令的输出重定向到文件。输入重定向的符号是&lt;code&gt;&amp;lt;&lt;/code&gt;：&lt;code&gt;command &amp;lt; inputfile&lt;/code&gt;。一个记忆方法是：在命令行上，命令总在左侧，而重定向符号指向数据流动的方向。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;使用方括号进行数学运算，在&lt;strong&gt;bash&lt;/strong&gt;中将一个数学运算结果赋值给某个变量时，可以用美元符和方括号&lt;code&gt;($[ operation ])&lt;/code&gt;将数学表达式围起来&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;结构化命令&#34;&gt;结构化命令&lt;/h2&gt;
+
+&lt;h3 id=&#34;使用-if-then-语句&#34;&gt;使用&lt;code&gt;if-then&lt;/code&gt;语句&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;if-then&lt;/code&gt;语句是最基本的结构化语句，其格式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if command
+then 
+    command
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;bash shell&lt;/strong&gt;的语句会运行&lt;code&gt;if&lt;/code&gt;后面的命令，如果该命令的退出码是0(表示该命令运行成功),位于&lt;code&gt;then&lt;/code&gt;部分的命令就会被执行，否则&lt;code&gt;then&lt;/code&gt;部分的命令不会被执行，&lt;strong&gt;bash shell&lt;/strong&gt;会继续执行脚本中的下一个命令。&lt;code&gt;fi&lt;/code&gt;语句用来表示&lt;code&gt;if-then&lt;/code&gt;语句到此结束。&lt;/p&gt;
+
+&lt;h3 id=&#34;使用-if-then-else-语句&#34;&gt;使用&lt;code&gt;if-then-else&lt;/code&gt;语句&lt;/h3&gt;
+
+&lt;p&gt;在&lt;code&gt;if-then&lt;/code&gt;语句中，不管命令是否成功执行，都只有一种选择。如果命令返回一个非零退出状态码，&lt;code&gt;bash shell&lt;/code&gt;会继续执行脚本中的下一条命令。在这种情况下，如果能够执行另一组命令就好了，这正是&lt;code&gt;if-then-else&lt;/code&gt;语句的作用。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if command
+then  
+     command
+else
+     command
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;与&lt;code&gt;if-then&lt;/code&gt;相似，区别就是当&lt;code&gt;if&lt;/code&gt;语句中的命令返回非零退出状态码时,&lt;code&gt;bash shell&lt;/code&gt;会执行&lt;code&gt;else&lt;/code&gt;部分中的命令。&lt;/p&gt;
+
+&lt;h3 id=&#34;嵌套-if&#34;&gt;嵌套&lt;code&gt;if&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;有时需要检查脚本代码中的多种条件，可以使用嵌套的&lt;code&gt;if-then&lt;/code&gt;语句。嵌套的&lt;code&gt;if-then&lt;/code&gt;语句位于主&lt;code&gt;if-then-else&lt;/code&gt;语句的&lt;code&gt;else&lt;/code&gt;代码块中。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ls -d /home/NoSuchUser/
+/home/NoSuchUser/
+$
+$ cat test5.sh
+#!/bin/bash
+# Testing nested ifs
+#
+testuser=NoSuchUser
+#
+if grep $testuser /etc/passwd
+then
+   echo &amp;quot;The user $testuser exists on this system.&amp;quot;
+else
+   echo &amp;quot;The user $testuser does not exist on this system.&amp;quot;
+   if ls -d /home/$testuser/
+   then
+      echo &amp;quot;However, $testuser has a directory.&amp;quot;
+   fi
+fi
+$
+$ ./test5.sh
+The user NoSuchUser does not exist on this system.
+/home/NoSuchUser/
+However, NoSuchUser has a directory.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以使用&lt;code&gt;else&lt;/code&gt;部分的另一种形式:&lt;code&gt;elif&lt;/code&gt;。这样就不用书写多个&lt;code&gt;if-then&lt;/code&gt;语句了，&lt;code&gt;elif&lt;/code&gt;使用另一个&lt;code&gt;if-then&lt;/code&gt;语句延续&lt;code&gt;else&lt;/code&gt;部分。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if command
+then
+    command
+elif command
+then
+    more command
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;elif&lt;/code&gt;语句提供了另一个要测试的命令，这类似于原始的&lt;code&gt;if&lt;/code&gt;语句行。如果&lt;code&gt;elif&lt;/code&gt;后命令的退出状态码是0，则&lt;code&gt;bash&lt;/code&gt;会执行第二个&lt;code&gt;then&lt;/code&gt;语句部分的命令。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat test5.sh
+#!/bin/bash
+# Testing nested ifs - use elif &amp;amp; else
+#
+testuser=NoSuchUser
+#
+if grep $testuser /etc/passwd
+then
+echo &amp;quot;The user $testuser exists on this system.&amp;quot;
+#
+elif ls -d /home/$testuser
+then
+echo &amp;quot;The user $testuser does not exist on this system.&amp;quot;
+echo &amp;quot;However, $testuser has a directory.&amp;quot;
+#
+else
+echo &amp;quot;The user $testuser does not exist on this system.&amp;quot;
+echo &amp;quot;And, $testuser does not have a directory.&amp;quot;
+fi
+$
+$ ./test5.sh
+/home/NoSuchUser
+The user NoSuchUser does not exist on this system.
+However, NoSuchUser has a directory.
+$
+$ sudo rmdir /home/NoSuchUser
+[sudo] password for Christine:
+$
+$ ./test5.sh
+ls: cannot access /home/NoSuchUser: No such file or directory
+The user NoSuchUser does not exist on this system.
+And, NoSuchUser does not have a directory.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;需要注意的是，在&lt;code&gt;elif&lt;/code&gt;语句中，紧跟其后的&lt;code&gt;else&lt;/code&gt;语句属于&lt;code&gt;elif&lt;/code&gt;代码块。它们并不属于之前的&lt;code&gt;if-then&lt;/code&gt;代码块&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;可以继续将多个&lt;code&gt;elif&lt;/code&gt;语句串起来，形成一个大的&lt;code&gt;if-then-elif&lt;/code&gt;嵌套组合。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if command1
+then
+    command set 1
+elif command2
+then
+    command set 2
+elif command3
+then
+    command set 3
+elif command4
+then
+    command set 4
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;每块命令都会根据命令是否会返回退出状态码0来执行。记住，&lt;code&gt;bash shell&lt;/code&gt;会依次执行&lt;code&gt;if&lt;/code&gt;语句，只有第一个返回退出状态码0的语句中的&lt;code&gt;then&lt;/code&gt;部分会被执行。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux学习笔记（九）</title>
+      <link>/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</link>
+      <pubDate>Sun, 26 Nov 2017 21:19:05 +0000</pubDate>
+      <guid>/post/2017-11-26.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%9D/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/B6jBAEJ3k8.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sed实例讲解&#34;&gt;sed实例讲解&lt;/h2&gt;
+
+&lt;p&gt;上篇&lt;a href=&#34;https://ytlogos.github.io/2017/11/20/Linux学习笔记（八）/&#34; target=&#34;_blank&#34;&gt;博客&lt;/a&gt;已经讲解了sed的基本命令及其使用方法，sed有两种方式进行调用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sed [-n] [-e] &#39;command(s)&#39; files
+sed [-n] -f scriptfile files
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;sed各个选项&#34;&gt;sed各个选项&lt;/h2&gt;
+
+&lt;h3 id=&#34;替换命令-s命令&#34;&gt;替换命令：s命令&lt;/h3&gt;
+
+&lt;p&gt;sed的替换命令语法如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;s/pattern/replacement/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在有一个包含3列10行的数据集chroms.txt：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head -n 3 chroms.txt
+chrom1  3214482 3216968
+chrom1  3216025 3216968
+chrom1  3216022 3216024
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们要将chrom替换成chr：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;s/chrom/chr/&#39; chroms.txt |head -n 3
+chr1    3214482 3216968
+chr1    3216025 3216968
+chr1    3216022 3216024
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;不管是pattern还是replacement都是被两个斜杠/包围，叫做定界符，定界符不仅仅只有/，还有：|等
+sed有部分命令会直接修改原文件，所以使用过程中最后将结果redirect到一个新的文件&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;n选项和p命令一起使用表示只打印那些发生替换的行&#34;&gt;-n选项和p命令一起使用表示只打印那些发生替换的行&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat company.txt
+baidu 100 5000
+sohu 100 4500
+google 110 5000
+guge 50 3000
+$ sed -n &#39;s/u/U/p&#39; company.txt
+baidU 100 5000
+sohU 100 4500
+gUge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;选项-i会匹配文件中每一行的第一个匹配&#34;&gt;选项-i会匹配文件中每一行的第一个匹配&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat company.txt
+baidu 100 5000
+sohu 100 4500
+google 110 5000
+guge 50 3000
+$ sed -i &#39;s/g/G/&#39; company.txt
+$ cat company.txt
+baidu 100 5000
+sohu 100 4500
+Google 110 5000
+Guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;全面替换标记g&#34;&gt;全面替换标记g&lt;/h4&gt;
+
+&lt;p&gt;使用后缀/g标记会替换每一行中的所有匹配&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;s/g/G/g&#39; company.txt
+baidu 100 5000
+sohu 100 4500
+GooGle 110 5000
+GuGe 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;从第n个匹配处开始匹配标记ng&#34;&gt;从第n个匹配处开始匹配标记ng&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;s/g/G/2g&#39; company.txt
+baidu 100 5000
+sohu 100 4500
+gooGle 110 5000
+guGe 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面是从第二个匹配处开始替换，所以第一个g没有发生替换&lt;/p&gt;
+
+&lt;h4 id=&#34;e选项调用扩展正则表达式&#34;&gt;-E选项调用扩展正则表达式&lt;/h4&gt;
+
+&lt;p&gt;sed默认使用的时POSIX的基本正则表达式（BRE），通过选项-E我们可以使用扩展版的正则表达式（ERE），举个例子，假设我们有一个字符串：chr1:28427874-28425431,分别代表染色体（chr）、start position以及end position，我们要将这三者分离开来形成3列：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo &#39;chr1:28427874-28425431&#39;|sed -E &#39;s/^(chr[^:]+):([0-9]+)-([0-9]+)/\1\t\2\t\3/&#39;
+chr1    28427874        28425431
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看起来有点复杂，主要是涉及到正则表达式，拆开来看的话也不复杂，第一部分^(chr[^:]+):,首先匹配一行的开始，接着匹配（）里面的一切。总结起来就是该部分匹配以chr开头以及至少一个非:的字符，一次匹配到:就结束了。第二部分和第三部分都是匹配至少一个数字。最后将匹配到的三部分形成三列。
+要实现这一功能还有sed很多方法，比如我们只需要将:和-替换成一个制表符就行了：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo &#39;chr1:28427874-28425431&#39;|sed &#39;s/[:-]/\t/g&#39;
+chr1    28427874        28425431
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;还可以拆成多个命令完成：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo &#39;chr1:28427874-28425431&#39;|sed &#39;s/:/\t/g&#39; | sed &#39;s/-/\t/g&#39;
+chr1    28427874        28425431
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;还可以通过-e选项来添加多个命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo &#39;chr1:28427874-28425431&#39;|sed -e &#39;s/:/\t/g&#39; -e &#39;s/-/\t/g&#39;
+chr1    28427874        28425431
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;打印特定的几行&#34;&gt;打印特定的几行&lt;/h4&gt;
+
+&lt;p&gt;这个类似于head，如果我们需要打印第m到n行，使用&amp;rsquo;m,np&amp;rsquo;进行匹配&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed -n &#39;2,5p&#39; chroms.txt
+chrom1  3216025 3216968
+chrom1  3216022 3216024
+chrom1  3671349 3671498
+chrom1  3214482 3216021
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;删除命令-d命令&#34;&gt;删除命令：d命令&lt;/h3&gt;
+
+&lt;h4 id=&#34;删除空白行&#34;&gt;删除空白行&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;/^$/d&#39; file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;指定删除第几行&#34;&gt;指定删除第几行&lt;/h4&gt;
+
+&lt;p&gt;比如删除第二行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat company.txt
+baidu 100 5000
+sohu 100 4500
+google 110 5000
+guge 50 3000
+$ sed &#39;2d&#39; company.txt
+baidu 100 5000
+google 110 5000
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;删除指定的第几行以及后面所有行&#34;&gt;删除指定的第几行以及后面所有行&lt;/h4&gt;
+
+&lt;p&gt;比如删除第二行及其后面所有行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;2,$d&#39; company.txt
+baidu 100 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;从上面很容易知道$d表示最后一行，同时删除第m行到第n行也很容易实现了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#删除最后一行
+$ sed &#39;$d&#39; company.txt
+baidu 100 5000
+sohu 100 4500
+google 110 5000
+#删除第2到3行
+$ sed &#39;2,3d&#39; company.txt
+baidu 100 5000
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;匹配删除&#34;&gt;匹配删除&lt;/h4&gt;
+
+&lt;p&gt;比如我们需要删除所有开头是g的行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;/^g/&#39;d company.txt
+baidu 100 5000
+sohu 100 4500
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意这里之间匹配用&amp;rdquo;围住，d则不用&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;已匹配字符串标记&#34;&gt;已匹配字符串标记&amp;amp;&lt;/h3&gt;
+
+&lt;p&gt;啥意思呢，就是&amp;amp;代表已匹配的项&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;s/\w\+/[&amp;amp;]/g&#39; company.txt
+[baidu] [100] [5000]
+[sohu] [100] [4500]
+[google] [110] [5000]
+[guge] [50] [3000]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;正则表达式\w\+匹配每一个单词，使用[&amp;amp;]替换它，&amp;amp;对应于之前匹配到的每个单词&lt;/p&gt;
+
+&lt;h3 id=&#34;子串匹配标记-1&#34;&gt;子串匹配标记\1&lt;/h3&gt;
+
+&lt;p&gt;即匹配给定样式的其中一部分,对于匹配到的第一个子串就标记为\1，以此类推匹配到的第二个子串就是\2&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo this is digit 7 in a number|sed &#39;s/digit \([0-9]\)/\1/&#39;
+this is 7 in a number
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;\(..\)用于匹配子串数字，上述命令中digit 7被匹配到的是子串是7
+再举个例子&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo aaa BBB |sed &#39;s/\([a-z]\+\) \([A-Z]\+\)/\2 \1/&#39;
+BBB aaa
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上述命令中匹配到的子串分别是aaa、BBB，\2表示BBB，\1表示aaa。&lt;/p&gt;
+
+&lt;h3 id=&#34;引用&#34;&gt;引用&lt;/h3&gt;
+
+&lt;p&gt;sed表达式可以使用单引号来引用，但是如果表达式内部包含变量字符串，就需要使用双引号。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;test=hello 
+echo hello WORLD | sed &amp;quot;s/$test/HELLO&amp;quot; 
+HELLO WORLD
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;下一个-n命令&#34;&gt;下一个：n命令&lt;/h3&gt;
+
+&lt;p&gt;如果test被匹配，则移动到匹配行的下一行，替换这一行的aa，变为bb，并打印该行然后继续&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;/test/{ n; s/aa/bb/; }&#39; file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;变形-y命令&#34;&gt;变形：y命令&lt;/h3&gt;
+
+&lt;p&gt;把1~10行内所有的abcde转为大写，注意正则表达式元字符不能使用该命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;1,10y/abcde/ABCDE/&#39; file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;退出-q命令&#34;&gt;退出：q命令&lt;/h3&gt;
+
+&lt;p&gt;打印完第10行后退出sed&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sed &#39;10q&#39; file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;打印奇数行或者偶数行&#34;&gt;打印奇数行或者偶数行&lt;/h3&gt;
+
+&lt;p&gt;有两种方法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#奇数行
+$ $ sed -n &#39;p;n&#39; company.txt
+baidu 100 5000
+google 110 5000
+#偶数行
+$ sed -n &#39;n;p&#39; company.txt
+sohu 100 4500
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另一种方法&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#奇数行
+$ sed -n &#39;1~2p&#39; company.txt
+baidu 100 5000
+google 110 5000
+#偶数行
+$ sed -n &#39;2~2p&#39; company.txt
+sohu 100 4500
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;sed内容十分丰富，这里只是稍微介绍一些主要功能，想要深入学习的话可参考&lt;a href=&#34;http://www.gnu.org/software/sed/manual/sed.html&#34; target=&#34;_blank&#34;&gt;官方文档&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;注：
+本文参考了sed的&lt;a href=&#34;http://www.gnu.org/software/sed/manual/sed.html&#34; target=&#34;_blank&#34;&gt;官方文档&lt;/a&gt;以及Linux命令大全中的&lt;a href=&#34;http://man.linuxde.net/sed&#34; target=&#34;_blank&#34;&gt;sed&lt;/a&gt;命令用法&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux学习笔记（八）</title>
+      <link>/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</link>
+      <pubDate>Mon, 20 Nov 2017 17:19:05 +0000</pubDate>
+      <guid>/post/2017-11-20.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AB/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/B6jBAEJ3k8.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sed&#34;&gt;sed&lt;/h2&gt;
+
+&lt;p&gt;sed是一种功能强大的流式文本编辑器，能够完美结合正则表达式使用。处理时sed将当前处理的行储存在临时缓冲区中，称为模式空间（pattern space），接着sed命令处理缓冲区的内容，处理完成后打印到屏幕，接着继续处理下一行，不断重复直到文件结束。&lt;/p&gt;
+
+&lt;h2 id=&#34;sed的用途&#34;&gt;sed的用途&lt;/h2&gt;
+
+&lt;p&gt;sed用途十分广泛：
+* 文本替换
+* 选择性的文件输出
+* 从文本特定位置进行编辑
+* 无交互式的文本编辑&lt;/p&gt;
+
+&lt;h2 id=&#34;工作流&#34;&gt;工作流&lt;/h2&gt;
+
+&lt;p&gt;sed遵循简单的工作流：读取、执行以及显示，下图显示sed的工作流程：
+&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/4556AfHI7k.png?raw=true&#34; alt=&#34;mark&#34; /&gt;
+* 读取：sed从输入流（文件、管道、标准输入STDIN等）中读取一行并且存储到模式空间的内部缓冲区
+* 执行：默认情况下所有的sed命令都在模式空间中按顺序执行，除非指定了行的地址，否则sed命令将会在所有的行上依次执行
+* 显示：发送修改后的内容到输出流，之后模式空间将被清空，继续重复上述过程直到文件结束&lt;/p&gt;
+
+&lt;h2 id=&#34;注意事项&#34;&gt;注意事项&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;模式空间（pattern space）是一块活跃的缓冲区，在sed编辑器执行命令时它会保存待检查的文本&lt;/li&gt;
+&lt;li&gt;默认情况下所有的sed命令都是在模式空间中执行，因此输入文件不会发生改变&lt;/li&gt;
+&lt;li&gt;另外一个缓冲区是保持空间（hold buffer），在处理模式空间中的某些行时，可以利用保持空间来临时保存一些行，在每一个循环结束的时候，sed将会移除模式空间的内容，但是保持空间的内容在所有循环过程中是持久存储的，sed命令无法直接在保持空间中执行，因此sed允许数据在模式空间与保持空间之间切换&lt;/li&gt;
+&lt;li&gt;初始情况下模式空间和保持空间都是空的&lt;/li&gt;
+&lt;li&gt;如果没有提供输入文件的话sed将会从标准输入接收请求&lt;/li&gt;
+&lt;li&gt;如果没有提供地址范围的话，默认情况下sed将对所有的行进行操作&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;sed的选型-命令-替换标记&#34;&gt;sed的选型、命令、替换标记&lt;/h2&gt;
+
+&lt;p&gt;sed作为一个强大的流式编辑器，具有其特有的格式&lt;/p&gt;
+
+&lt;h3 id=&#34;sed命令格式&#34;&gt;sed命令格式&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sed [options] &#39;commands&#39; file(s)
+sed [options] -f scriptfile file(s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;选项&#34;&gt;选项&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-e：以选项中指定的script来处理输入的文本文件&lt;/li&gt;
+&lt;li&gt;-f：以选项中指定的script文本来处理输入的文本文件&lt;/li&gt;
+&lt;li&gt;-n或者&amp;ndash;quiet或者&amp;ndash;silent：仅显示script处理后的结果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;sed命令&#34;&gt;sed命令&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a\：在当前行下面插入文本&lt;/li&gt;
+&lt;li&gt;i\：在当前行上面插入文本&lt;/li&gt;
+&lt;li&gt;c\：将选定的行改为新的版本&lt;/li&gt;
+&lt;li&gt;d：删除选择的行&lt;/li&gt;
+&lt;li&gt;D：删除模板块的第一行&lt;/li&gt;
+&lt;li&gt;s：替换指定字符&lt;/li&gt;
+&lt;li&gt;h：拷贝模板块中的内容到内存中的缓冲区&lt;/li&gt;
+&lt;li&gt;H：追加模板块中的内容到内存中的缓冲区&lt;/li&gt;
+&lt;li&gt;g：获取缓冲区的内容并替代当前模板块的内容&lt;/li&gt;
+&lt;li&gt;G：获取缓存区的内容，并追加到当前模板块文本后面&lt;/li&gt;
+&lt;li&gt;l：列出不能打印字符的清单&lt;/li&gt;
+&lt;li&gt;n：读取下一个输入行，并用下一个命令处理新的行而不是用第一个命令&lt;/li&gt;
+&lt;li&gt;N：追加下一个输入行到模板块后面并在两者间嵌入一个新行，改变当前行号码&lt;/li&gt;
+&lt;li&gt;p：打印模板块的行&lt;/li&gt;
+&lt;li&gt;P：打印模板块的第一行&lt;/li&gt;
+&lt;li&gt;q：退出sed&lt;/li&gt;
+&lt;li&gt;b label：分支到脚本中带有标记的地方，如果分支不存在则分支到脚本的末尾&lt;/li&gt;
+&lt;li&gt;r file：从file中读取行&lt;/li&gt;
+&lt;li&gt;t table：if分支，从最后一行开始，条件一旦满足或者T、t命令，将导致分支到带有标号的命令处或者到脚本的末尾&lt;/li&gt;
+&lt;li&gt;T table：错误分支，从最后一行开始，一旦发生错误或者T、t命令，将导致分支到带有标号的命令处或者到脚本的末尾&lt;/li&gt;
+&lt;li&gt;w file：写并追加到file末尾&lt;/li&gt;
+&lt;li&gt;W file：写并追加模板块的第一行到file末尾&lt;/li&gt;
+&lt;li&gt;！：表示后面的命令对所有没有被选定的行发生作用&lt;/li&gt;
+&lt;li&gt;=：打印当前行号码&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;sed替换标记&#34;&gt;sed替换标记&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;g：表示行内全面替换&lt;/li&gt;
+&lt;li&gt;p：表示打印行&lt;/li&gt;
+&lt;li&gt;w：表示将行写入一个文件&lt;/li&gt;
+&lt;li&gt;x：表示互换模板块中的文本和缓冲区的文本&lt;/li&gt;
+&lt;li&gt;y：表示将一个字符翻译为另外的字符（不用于正则表达式）&lt;/li&gt;
+&lt;li&gt;\l：子串匹配标记&lt;/li&gt;
+&lt;li&gt;&amp;amp;：已匹配字符串标记&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;sed元字符集-就是一些正则表达式&#34;&gt;sed元字符集（就是一些正则表达式）&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;^：匹配行的开始，如/^sed/匹配所有以sed开头的行&lt;/li&gt;
+&lt;li&gt;$：匹配行结束，如/sed$/匹配所有以sed结尾的行&lt;/li&gt;
+&lt;li&gt;.：匹配一个非换行符的任意字符，如/s.d/匹配在sd之间接一个任意字符&lt;/li&gt;
+&lt;li&gt;*：匹配0个或多个字符，如/*sed/匹配所有模板是一个或多个字符后接sed的行&lt;/li&gt;
+&lt;li&gt;[]：匹配一个指定范围内的字符，如/[sH]ed/匹配sed和Hed&lt;/li&gt;
+&lt;li&gt;[^]：匹配一个不在指定范围内的字符，如/[^A-RT-Z]ed/匹配不包含A-R和T-Z的一个字符开头紧跟sed的行&lt;/li&gt;
+&lt;li&gt;\(..\)：匹配子串，保存匹配的字符，如s/(love)able/\1rs，loveabel被替换成了lovers&lt;/li&gt;
+&lt;li&gt;&amp;amp;：保存搜索字符用来替换其它字符，如s/love/**&amp;amp;**/，love替换成了**love**&lt;/li&gt;
+&lt;li&gt;\&amp;lt;：匹配单词的开始，如/\&amp;lt;love/匹配包含以love开头的单词的行&lt;/li&gt;
+&lt;li&gt;\&amp;gt;：匹配单词的结束，如/love\&amp;gt;/匹配包含以love结尾的单词的行&lt;/li&gt;
+&lt;li&gt;x\{m\}：重复字符x，m次，如/0\{5\}匹配包含5个0的行】&lt;/li&gt;
+&lt;li&gt;x\{m,\}：重复字符x至少m次，如/0\{5,\}/匹配至少5个0的行&lt;/li&gt;
+&lt;li&gt;x\{m,n\}：重复字符x至少m次，之多n次，如/0\{5,10\}/匹配5-10个0的行&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;后面将讲解sed实例进行解释各个选项及其使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux学习笔记（七）</title>
+      <link>/post/2017-11-16.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
+      <pubDate>Thu, 16 Nov 2017 09:19:05 +0000</pubDate>
+      <guid>/post/2017-11-16.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/97fC0bjE56.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;awk命令&#34;&gt;awk命令&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;awk&lt;/strong&gt;是一种编程语言，用于在unix下处理数据以及文本。数据可以来自stdin、一个或者多个文件或者其它命令的输出，同时支持自定义函数和正则表达式，更多是作为脚本来使用。&lt;/p&gt;
+
+&lt;h2 id=&#34;awk命令格式以及选项&#34;&gt;awk命令格式以及选项&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;awk&lt;/strong&gt;使用一个或多个如下结构：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pattren { action }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;每一个pattern是一个表达式或者正则表达式，pattern类似于其它编程语言中的if语句：如果表达式为TRUE或者正则表达式匹配到的话，后面的action命令会被执行。&lt;/p&gt;
+
+&lt;h2 id=&#34;awk语法形式&#34;&gt;awk语法形式&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;awk [options] &#39;script&#39; var=value file(s)
+awk [options] -f scriptfile var=value file(s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;常用命令选项：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-F fs：fs指定输入分隔符，fs可以是字符串或者正则表达式&lt;/li&gt;
+&lt;li&gt;-v var=value：赋值一个用户定义变量，将外部变量传递给awk&lt;/li&gt;
+&lt;li&gt;-f scriptfile：从脚本文件中读取awk命令&lt;/li&gt;
+&lt;li&gt;-m[fr] val：对val值设置内在限制，-mf选项限制分配给val的最大块数目；-mr选项限制记录的最大块数目，这两个功能是扩展功能，在标准awk中不适用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;awk模式以及操作&#34;&gt;awk模式以及操作&lt;/h2&gt;
+
+&lt;p&gt;上面已经讲了pattern以及action，awk就是有一个或多个模式与操作组成的。&lt;/p&gt;
+
+&lt;h3 id=&#34;模式pattern&#34;&gt;模式pattern&lt;/h3&gt;
+
+&lt;p&gt;pattern可以是以下任意一种：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;正则表达式&lt;/li&gt;
+&lt;li&gt;关系表达式：使用运算符操作，可以是字符串或者数字的比较测试&lt;/li&gt;
+&lt;li&gt;模式匹配表达式：用运算符&lt;code&gt;~&lt;/code&gt;(匹配)和&lt;code&gt;!&lt;/code&gt;(不匹配)&lt;/li&gt;
+&lt;li&gt;BEGIN语句块、pattern语句块以及END语句块，涉及十分复杂，后续再讲解&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;操作&#34;&gt;操作&lt;/h3&gt;
+
+&lt;p&gt;操作由一个或多个命令、函数表达式组成，相互之间使用换行符或者分号分开，并位于大括号内。主要部分是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;变量或者数组赋值&lt;/li&gt;
+&lt;li&gt;输出命令&lt;/li&gt;
+&lt;li&gt;内置函数&lt;/li&gt;
+&lt;li&gt;控制流语句&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;awk脚本基本结构&#34;&gt;awk脚本基本结构&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;awk &#39;BEGIN{ print &amp;quot;start&amp;quot;} pattern{ command } END{ print &amp;quot;end&amp;quot;}&#39; file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一个awk脚本通常是由：BEIGIN语句块、能够使用模式匹配的通用语句块、END语句块三部分组成，这三部分是可选的，任意一部分都可以不出现在脚本中。脚本通常是在&amp;rdquo;或&amp;rdquo;&amp;ldquo;中：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;awk &#39;BEGIN{ i=0 } { i++ } END{ print i }&#39; filename
+awk &amp;quot;BEGIN{ i=0 } { i++ } END{ print i }&amp;quot; filename
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;awk的工作原理&#34;&gt;awk的工作原理&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;awk &#39;BEGIN{ commands } pattern{ commands } END{ commands }&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;工作原理：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;第一步是执行&lt;code&gt;BEGIN{ commands }&lt;/code&gt;语句块中的语句&lt;/li&gt;
+&lt;li&gt;第二步是从文件或者标准输入中读取一行，然后执行&lt;code&gt;pattern{ commands }&lt;/code&gt;语句块，它是逐行扫描文件，从第一行到最后一行重复此命令直到文件被完全读取完毕&lt;/li&gt;
+&lt;li&gt;最后当读至输入流末尾时，执行&lt;code&gt;END{ commands }&lt;/code&gt;语句块&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注意事项：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BEGIN{ commands }&lt;/code&gt;语句块在awk开始从输入流中读取之前被执行，是一个可选语句块，比如变量初始化、打印输出表格的表头等语句通常可以写在此语句块中&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;END{ commands }&lt;/code&gt;语句块在awk从输入流中读取所有行之后被执行，比如打印所有行的分析结果这类信息汇总都是在此语句块中完成，也是一个可选语句块&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pattern{ commands }&lt;/code&gt;语句块是最重要的组成部分，也是可选的，如果没有提供此语句块，则默认执行{ print },即打印每一个读取到的行，awk读取到的每一行都会执行该语句块&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我们举个例子来说明一下：打印出*example.bed*文件的每一行，并且在开始读取之前打印出start，读取完毕之后打印出end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{print &amp;quot;start&amp;quot;}{print}END{print &amp;quot;end&amp;quot;}&#39; example.bed
+start
+chr1    26      39
+chr1    32      47
+chr3    11      28
+chr1    40      49
+chr3    16      27
+chr1    9       28
+chr2    35      54
+chr1    10      19
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;敲黑板了！！！当print不带任何参数时，它就打印当前行，当print的参数以逗号进行分隔时，打印时则以空格作为定界符，在awk的print语句块中双引号是被当作拼接符来使用的。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo|awk &#39;{var1=&amp;quot;v1&amp;quot;;var2=&amp;quot;v2&amp;quot;;var3=&amp;quot;v3&amp;quot;;print var1,var2,var3;}&#39;
+
+v1 v2 v3
+$ echo|awk &#39;{var1=&amp;quot;v1&amp;quot;;var2=&amp;quot;v2&amp;quot;;var3=&amp;quot;v3&amp;quot;;print var1&amp;quot;=&amp;quot;var2&amp;quot;=&amp;quot;var3;}&#39;
+
+v1=v2=v3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{}类似于循环体，会对文件每一行进行迭代，通常变量初始化语句(比如i=0)以及打印文件头部的语句放在BEGIN语句块中，而将打印的结果等语句放在END语句块中。&lt;/p&gt;
+
+&lt;h2 id=&#34;awk内置变量&#34;&gt;awk内置变量&lt;/h2&gt;
+
+&lt;p&gt;awk内置大量的变量方便我们直接调用&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$n：当前记录的第n个字段，比如n为1表示第一个字段，n为2表示第二字段，以此类推&lt;/li&gt;
+&lt;li&gt;$0：表示执行过程中当前行的文本内容&lt;/li&gt;
+&lt;li&gt;FS：字段分隔符，默认是空格&lt;/li&gt;
+&lt;li&gt;IGNORECASE：如果为真表示忽略大小写进行匹配&lt;/li&gt;
+&lt;li&gt;NF：表示字段数，在执行过程中对应于当前的字段数&lt;/li&gt;
+&lt;li&gt;NR：表示记录数，在执行过程中对应于当前的行号&lt;/li&gt;
+&lt;li&gt;OFMT：数字的输出格式，默认为%.6g&lt;/li&gt;
+&lt;li&gt;OFS：输出字段分隔符，默认值为空格&lt;/li&gt;
+&lt;li&gt;ORS：输出记录分隔符，默认值为一个换行符&lt;/li&gt;
+&lt;li&gt;RS：记录分隔符：默认是空格&lt;/li&gt;
+&lt;li&gt;RSTART：由match函数所匹配的字符串的第一个位置&lt;/li&gt;
+&lt;li&gt;RLENGTH：由match函数所匹配到的字符串的长度&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;举例说明部分变量：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head -n 3 example.bed|awk &#39;{print &amp;quot;Line No:&amp;quot;NR&amp;quot;, No of fields:&amp;quot;NF, &amp;quot;$0=&amp;quot;$0,&amp;quot;$1=&amp;quot;$1,&amp;quot;$2=&amp;quot;$2,&amp;quot;$3=&amp;quot;$3}&#39;
+Line No:1, No of fields:3 $0=chr1       26      39 $1=chr1 $2=26 $3=39
+Line No:2, No of fields:3 $0=chr1       32      47 $1=chr1 $2=32 $3=47
+Line No:3, No of fields:3 $0=chr3       11      28 $1=chr3 $2=11 $3=28
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面我们先选取前三行，然后分别打印出每一行的行号，每一行的字段数以及每一行的每一个字段。
+由于NF表示字段数，因此&lt;code&gt;print $NF&lt;/code&gt;就会打印出每一行的最后一个字段,&lt;code&gt;print $(NF-1)&lt;/code&gt;就会打印出倒数第二个字段，依此类推。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head -n 3 example.bed|awk &#39;{print $NF}&#39;
+39
+47
+28
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;统计一个文件有多少行可以使用以下命令语句：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;END{print NR}&#39; Mus_musculus.GRCm38.75_chr1.gtf
+81231
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面我们只是用了END语句块，在读入每一行时awk会将NR更新为对应的行号，所以当读取到最后一行时就会打印出最后一行的行号NR也就是文件的总行数了。&lt;/p&gt;
+
+&lt;h2 id=&#34;传递外部变量给awk&#34;&gt;传递外部变量给awk&lt;/h2&gt;
+
+&lt;p&gt;借助-v选项可以将外部值（非来自stdin）传递给awk：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ var=1000
+$ echo |awk &#39;{print var}&#39; var=&amp;quot;$var&amp;quot;
+1000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;awk运算与判断&#34;&gt;awk运算与判断&lt;/h2&gt;
+
+&lt;p&gt;awk不仅支持算术运算还支持逻辑运算&lt;/p&gt;
+
+&lt;h3 id=&#34;算术运算符&#34;&gt;算术运算符&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;+-&lt;/td&gt;
+&lt;td&gt;加减&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;* / &amp;amp;&lt;/td&gt;
+&lt;td&gt;乘 除 求余&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;+-！&lt;/td&gt;
+&lt;td&gt;一元加减 逻辑非&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;^***&lt;/td&gt;
+&lt;td&gt;求幂&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;—++ &amp;ndash;&lt;/td&gt;
+&lt;td&gt;增加或减少，作为前缀&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;所有算术运算符进行操作，操作数自动转为数值，所有非数值转为0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;赋值运算符&#34;&gt;赋值运算符&lt;/h3&gt;
+
+&lt;p&gt;主要赋值运算符有：= += -= *= /= ……= **=&lt;/p&gt;
+
+&lt;p&gt;举例说明：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;a+=5,等价于a=a+5.其它类似
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;逻辑运算符&#34;&gt;逻辑运算符&lt;/h3&gt;
+
+&lt;p&gt;就是我们常见的&amp;rdquo;或&amp;rdquo;、&amp;rdquo;与&amp;rdquo;、&amp;rdquo;非&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{a=1;b=2;print (a&amp;gt;5&amp;amp;&amp;amp;b&amp;gt;2),(a&amp;gt;5||b&amp;lt;=2);}&#39;
+0 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;正则运算符&#34;&gt;正则运算符&lt;/h3&gt;
+
+&lt;p&gt;主要有~和~！即匹配正则表达式和不匹配&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{a=&amp;quot;100test&amp;quot;;if(a~/^100*/){print &amp;quot;OK&amp;quot;;}}&#39;
+OK
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;关系运算符&#34;&gt;关系运算符&lt;/h3&gt;
+
+&lt;p&gt;主要是&amp;gt;、&amp;gt;=、=、==、!=、&amp;lt;、&amp;lt;=等&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{a=11;if(a&amp;gt;=9){print &amp;quot;OK&amp;quot;;}}&#39;
+OK
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;其他运算符&#34;&gt;其他运算符&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$&lt;/td&gt;
+&lt;td&gt;字段引用&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;空格&lt;/td&gt;
+&lt;td&gt;字符串连接符&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;?:&lt;/td&gt;
+&lt;td&gt;C条件表达式&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;in&lt;/td&gt;
+&lt;td&gt;数组中是否存在某值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&#34;运算符优先级&#34;&gt;运算符优先级&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/1JeD56aLBg.png?raw=true&#34; alt=&#34;级别越高越优先&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;awk高级输入输出&#34;&gt;awk高级输入输出&lt;/h2&gt;
+
+&lt;h3 id=&#34;next语句读取下一条记录&#34;&gt;next语句读取下一条记录&lt;/h3&gt;
+
+&lt;p&gt;awk中的next语句使用：在循环逐行匹配，如果遇到next，就会跳过当前行，直接忽略下面的语句而进入下一匹配，一般用于多行匹配&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;NR%2==1{next}{print NR,$0;}&#39; example.bed
+2 chr1  32      47
+4 chr1  40      49
+6 chr1  9       28
+8 chr1  10      19
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;后面还有很多复杂用法我暂时不讲了，再者如果遇到更复杂的情况最好使用其他更强大的工具比如python。下面我会讲讲awk如何处理生物信息学数据。&lt;/p&gt;
+
+&lt;h3 id=&#34;条件筛选&#34;&gt;条件筛选&lt;/h3&gt;
+
+&lt;p&gt;我们想要将长度大于18的行找出来（即end position-start position&amp;gt;18）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;$3-$2&amp;gt;18&#39; example.bed
+chr1    9       28
+chr2    35      54
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面是一些常用的逻辑操作符&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Comparison&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;a==b&lt;/td&gt;
+&lt;td&gt;a is equal to b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a!=b&lt;/td&gt;
+&lt;td&gt;a is not equal to b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;lt; b&lt;/td&gt;
+&lt;td&gt;a is less than b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;gt; b&lt;/td&gt;
+&lt;td&gt;a is greater than b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;lt;= b&lt;/td&gt;
+&lt;td&gt;a is less than or equal to b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;gt;= b&lt;/td&gt;
+&lt;td&gt;a is greater than or equal to b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a ~ b&lt;/td&gt;
+&lt;td&gt;a matches regular expression pattern b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a !~ b&lt;/td&gt;
+&lt;td&gt;a does not match regular expression pattern b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;amp;&amp;amp; b&lt;/td&gt;
+&lt;td&gt;logical and a and b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;!a&lt;/td&gt;
+&lt;td&gt;not a (logical negation)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;筛选出位于染1号染色体上长度大于10的行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;$1~/chr1/ &amp;amp;&amp;amp; $3-$2&amp;gt;10&#39; example.bed
+chr1    26      39
+chr1    32      47
+chr1    9       28
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;$1~/chr1/&lt;/code&gt;是一正则表达式匹配（正则表达式在符号斜杠里），表示第一列中能匹配到chr1的行，&lt;code&gt;~&lt;/code&gt;表示匹配，不匹配的话使用&lt;code&gt;!~&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;$1!~/chr1/ &amp;amp;&amp;amp; $3-$2&amp;gt;10&#39; example.bed
+chr3    11      28
+chr3    16      27
+chr2    35      54
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;正则表达式结合其他复杂命令（action）可以解决很多复杂问题，比如我们想要将2和3号染色体每行长度都打印出来自成一列：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;$1!~/chr1/ {print $0 &amp;quot;\t&amp;quot; $3-$2}&#39; example.bed
+chr3    11      28      17
+chr3    16      27      11
+chr2    35      54      19
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;目前我们已经讲了awk可以使用的两个功能：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;结合正则表达式以及算术对数据集进行过滤&lt;/li&gt;
+&lt;li&gt;利用算术重铸数据集的列&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;begin和end&#34;&gt;BEGIN和END&lt;/h2&gt;
+
+&lt;p&gt;前面我们已经讲了BEGIN和END，BEGIN在初始化变量方面十分有用，比如如果我们想要求平均长度的话，首先我们可以求和再除以总行数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{sum=0};{sum+=($3-$2)};END{print &amp;quot;mean: &amp;quot;sum/NR};&#39; example.bed
+mean: 14
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;由于NR表示当前行数，因此我们就可以利用它来提取数据集中的数据，比如提取example.bed中的3-5行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;NR&amp;gt;=3&amp;amp;&amp;amp;NR&amp;lt;=5&#39; example.bed
+chr3    11      28
+chr1    40      49
+chr3    16      27
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用awk我们可以很方便的实现BED与GTF文件之间的转换，比如我们可以十分快速的实现从GTF文件中提取出BED文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;!/^#/ {print $1 &amp;quot;\t&amp;quot; $4-1 &amp;quot;\t&amp;quot; $5}&#39; Mus_musculus.GRCm38.75_chr1.gtf|head -n 3
+1       3054232 3054733
+1       3054232 3054733
+1       3054232 3054733
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;这里需要注意的是BED文件索引是从0开始的，GTF索引是从1开始的，因此start position我们需要减去1.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;awk内置了很多函数可以调用：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;function&lt;/th&gt;
+&lt;th&gt;description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;length(s)&lt;/td&gt;
+&lt;td&gt;length 0f a string s&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;tolower(s)&lt;/td&gt;
+&lt;td&gt;convert string s to lowercase&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;touppper(s)&lt;/td&gt;
+&lt;td&gt;convert string s to uppercase&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;substr(s,i,j)&lt;/td&gt;
+&lt;td&gt;return the substring of s that starts at i and ends at j&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;split(s,x,d)&lt;/td&gt;
+&lt;td&gt;split string s into chunks by delimiter d,place chunks in array x&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;sub(f,r,s)&lt;/td&gt;
+&lt;td&gt;find regular expression f in s and replace it with r(modifing s in place);use gsub for global substitution;returns a positive value if string is found&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux学习笔记（六）</title>
+      <link>/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</link>
+      <pubDate>Wed, 15 Nov 2017 13:19:05 +0000</pubDate>
+      <guid>/post/2017-11-15.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%85%AD/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Fjbj28bH1F.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;uniq&#34;&gt;uniq&lt;/h2&gt;
+
+&lt;p&gt;linux命令&lt;code&gt;uniq&lt;/code&gt;可以将&lt;strong&gt;连续重复&lt;/strong&gt;去除掉，举个例子说明：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat letters.txt
+A
+A
+B
+C
+B
+C
+C
+C
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;里面存有重复数据，利用&lt;code&gt;uniq&lt;/code&gt;可以有效的去除连续重复：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ uniq letters.txt
+A
+B
+C
+B
+C
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;可以看到只有连续重复才被执行只剩下一个，如果我们要去除所有的重复只保留一个，不管是不是连不连续，可以先进行排序再去重&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort letters.txt|uniq
+A
+B
+C
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果存在大小写字母，可以添加参数-i来忽略大小写。还有一个选项-c可以用来统计连续重复次数，同理要统计所有重复次数先进行排序：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ uniq -c letters.txt
+      2 A
+      1 B
+      1 C
+      1 B
+      3 C
+# sort then uniq
+$ sort letters.txt|uniq -c
+      2 A
+      2 B
+      4 C
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再来一个，统计gtf文件中CDS、UTR等数目：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -v &amp;quot;^#&amp;quot; Mus_musculus.GRCm38.75_chr1.gtf|cut -f3|sort|uniq -c|column -t
+25901  CDS
+36128  exon
+2027   gene
+2290   start_codon
+2299   stop_codon
+4993   transcript
+7588   UTR
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;根据数目从大到小进行排序：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -v &amp;quot;^#&amp;quot; Mus_musculus.GRCm38.75_chr1.gtf|cut -f3|sort|uniq -c|sort -rn |column -t
+36128  exon
+25901  CDS
+7588   UTR
+4993   transcript
+2299   stop_codon
+2290   start_codon
+2027   gene
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再深入一点展示不停链上的数目&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -v &amp;quot;^#&amp;quot; Mus_musculus.GRCm38.75_chr1.gtf|cut -f3,7|sort|uniq -c|sort -rn|column -t
+18134  exon         +
+17994  exon         -
+13010  CDS          -
+12891  CDS          +
+3834   UTR          -
+3754   UTR          +
+2511   transcript   -
+2482   transcript   +
+1155   stop_codon   -
+1155   start_codon  -
+1144   stop_codon   +
+1135   start_codon  +
+1034   gene         +
+993    gene         -
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;还可以查看特定基因上的CDS等数目&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep &amp;quot;ENSMUSG00000033793&amp;quot; Mus_musculus.GRCm38.75_chr1.gtf|cut -f3|sort|uniq -c|sort -rn |column -t
+14  exon
+13  CDS
+3   UTR
+1   transcript
+1   stop_codon
+1   start_codon
+1   gene
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;参数选项-d提供了一个数据集中的重复项&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ uniq -d mm_gene_names.txt|wc -l
+0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个数据集中没有重复项！！！&lt;/p&gt;
+
+&lt;h2 id=&#34;join&#34;&gt;Join&lt;/h2&gt;
+
+&lt;p&gt;join顾名思义就是将不同数据集根据相同的列合并在一起，需要注意的是两个文件需要经过排序才能合并在一起，因此第一步需要检查数据集有没有排序，没有的话需要进行排序。
+join基本语法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;join -1 &amp;lt;file_1_field&amp;gt; -2 &amp;lt;file_2_field&amp;gt; &amp;lt;file_1&amp;gt; &amp;lt;file_2&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中file_1和file_2是两个需要合并的文件，file_1_field表示file_1中合并的列，file_2_field同理。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1,1 example.bed &amp;gt; example_sorted.bed
+$ sort -c -k1,1 example_lengths.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;经验证两个数据集都已经排过序了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ join -1 1 -2 1 example_sorted.bed example_lengths.txt &amp;gt; example_with_lengths.txt
+$ cat example_with_lengths.txt|column -t
+chr1  10  19  58352
+chr1  26  39  58352
+chr1  32  47  58352
+chr1  40  49  58352
+chr1  9   28  58352
+chr2  35  54  39521
+chr3  11  28  24859
+chr3  16  27  24859
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果我们将*example_lengths.txt*中的chr3去除掉再进行合并，结果会怎么样呢？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head -n2 example_lengths.txt &amp;gt; example_lengths_alt.txt
+$ join -1 1 -2 1 example_sorted.bed example_lengths_alt.txt
+chr1 10 19 58352
+chr1 26 39 58352
+chr1 32 47 58352
+chr1 40 49 58352
+chr1 9 28 58352
+chr2 35 54 39521
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果发现chr3被join剔除掉了，因此join只会合并文件共有的项，如果想要保留chr3可以添加参数选项-a实现：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ join -1 1 -2 1 -a 1 example_sorted.bed example_lengths_alt.txt|column -t
+chr1  10  19  58352
+chr1  26  39  58352
+chr1  32  47  58352
+chr1  40  49  58352
+chr1  9   28  58352
+chr2  35  54  39521
+chr3  11  28
+chr3  16  27
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux学习笔记（五）</title>
+      <link>/post/2017-11-14.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
+      <pubDate>Tue, 14 Nov 2017 13:19:05 +0000</pubDate>
+      <guid>/post/2017-11-14.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/9Egg9ALKHB.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sort&#34;&gt;&lt;strong&gt;&lt;code&gt;sort&lt;/code&gt;&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;sort&lt;/code&gt;命令在&lt;strong&gt;linux&lt;/strong&gt;中非常有用，它可以对文件进行排序并将排序结果标准输出。&lt;code&gt;sort&lt;/code&gt;即可以从特定的文件中也可以从STDIN中获取输入。
+&lt;code&gt;sort&lt;/code&gt;语法规则如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sort (选项) (参数) 文件
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;参数详解：
+* -b：忽略每行前面开始出的空格字符；
+* -c：检查文件是否已经按照顺序排序；
+* -d：排序时，处理英文字母、数字及空格字符外，忽略其他的字符；
+* -f：排序时，将小写字母视为大写字母；
+* -i：排序时，除了040至176之间的ASCII字符外，忽略其他的字符；
+* -m：将几个排序号的文件进行合并；
+* -M：将前面3个字母依照月份的缩写进行排序；
+* -n：依照数值的大小排序；
+* -o&amp;lt;输出文件&amp;gt;：将排序后的结果存入制定的文件；
+* -r：以相反的顺序来排序；
+* -t&amp;lt;分隔字符&amp;gt;：指定排序时所用的栏位分隔字符；
+* +&amp;lt;起始栏位&amp;gt;-&amp;lt;结束栏位&amp;gt;：以指定的栏位来排序，范围由起始栏位到结束栏位的前一栏位。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sort&lt;/code&gt;将文件/文本的每一行作为一个单位相互比较，比较原则是从首字符向后，一次按&lt;strong&gt;ASCII&lt;/strong&gt;码值进行比较，最后将他们按升序格式输出。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat example.bed
+chr1    26      39
+chr1    32      47
+chr3    11      28
+chr1    40      49
+chr3    16      27
+chr1    9       28
+chr2    35      54
+chr1    10      19
+#没有任何参数排序
+$ sort example.bed
+chr1    10      19
+chr1    26      39
+chr1    32      47
+chr1    40      49
+chr1    9       28
+chr2    35      54
+chr3    11      28
+chr3    16      27
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;sort&lt;/code&gt;默认空格（tab or spaces）作为分隔符，因此如果你的文件使用其他的分隔符，比如CSV文件（分隔符为“,”），这时就需要通过参数&lt;code&gt;-t&lt;/code&gt;指定分隔符。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;实际排序过程中我们希望能够指定依次按哪一列进行排序，这里面就涉及到了参数选项-k了。-k参数的语法格式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;FStart.CStart Modifie,FEnd.CEnd Modifier 
+-------Start--------,-------End-------- 
+FStart.CStart 选项 , FEnd.CEnd 选项
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;格式被&amp;rdquo;,&amp;ldquo;分为两部分&lt;code&gt;Start&lt;/code&gt;以及&lt;code&gt;End&lt;/code&gt;两部分。其中&lt;code&gt;Start&lt;/code&gt;部分又分为三部分,重点解释一下其中的&lt;code&gt;FStart&lt;/code&gt;以及&lt;code&gt;CStart&lt;/code&gt;部分，&lt;code&gt;CStart&lt;/code&gt;不是必须的可以省略，省略的话表示从本域的开头部分开始，&lt;code&gt;FStart.CStart&lt;/code&gt;中的&lt;code&gt;FStart&lt;/code&gt;表示作用的域，&lt;code&gt;CStart&lt;/code&gt;则表示在&lt;code&gt;FStart&lt;/code&gt;域中从第几个字符开始排序，同理，在&lt;code&gt;End&lt;/code&gt;部分类似。下面我们举个例子说明一下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head -n 3 example.bed
+chr1    26      39
+chr1    32      47
+chr3    11      28
+# sort 进行排序
+$ sort -k1,1 -k2,2n example.bed
+chr1    9       28
+chr1    10      19
+chr1    26      39
+chr1    32      47
+chr1    40      49
+chr2    35      54
+chr3    11      28
+chr3    16      27
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在上面的命令中，我们通过参数-k来指定按哪一列来进行排序，首先第一个-k参数表示我们想要第一按第一列排序，接下来的第二个-k参数表示按第二列排序，n表示这一列是数值型数据。-k的语法十分复杂，再举个简单例子，假设我们有这样一个文件&lt;em&gt;company.txt&lt;/em&gt;:有三个域，第一个域是公司名称，第二个域是公司人数，第三个域是员工平均工资。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat company.txt|column -t
+baidu   100  5000
+sohu    100  4500
+google  110  5000
+guge    50   3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;按第一个域业也就是按公司名称的字母进行排序&#34;&gt;按第一个域业也就是按公司名称的字母进行排序&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1 company.txt
+baidu 100 5000
+google 110 5000
+guge 50 3000
+sohu 100 4500
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这很好理解&lt;/p&gt;
+
+&lt;h3 id=&#34;按每个公司的人数也就是第二个域进行排序-n表示这一个域是数值型数据&#34;&gt;按每个公司的人数也就是第二个域进行排序(n表示这一个域是数值型数据)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k2n company.txt
+guge 50 3000
+baidu 100 5000
+sohu 100 4500
+google 110 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;从上面可以看出，baidu和sohu的员工人数相同，这时会按照默认的规则从第一个域进行升序排列，所以可以看到baidu排在sohu前面。&lt;/p&gt;
+
+&lt;h3 id=&#34;按公司员工人数排序-员工人数相同的按第三个域升序排列&#34;&gt;按公司员工人数排序，员工人数相同的按第三个域升序排列&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k2n -k3n company.txt
+guge 50 3000
+sohu 100 4500
+baidu 100 5000
+google 110 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看出与前面的差别，这里按员工平均工资进行第二次排序，所以sohu排在baidu前面。&lt;/p&gt;
+
+&lt;h3 id=&#34;先按员工工资降序排序-如果员工人数相同-则再按公司人数升序排序&#34;&gt;先按员工工资降序排序，如果员工人数相同，则再按公司人数升序排序&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k3nr -k2n company.txt
+baidu 100 5000
+google 110 5000
+sohu 100 4500
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;命令中的r表示降序排序，可以看到我们将n、r这样的选项加入到了每一个-k选项中，其实就是-k语法中的Modifier选项。&lt;/p&gt;
+
+&lt;h3 id=&#34;从公司名称字母的第二个字母开始排序&#34;&gt;从公司名称字母的第二个字母开始排序&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1.2 company.txt
+baidu 100 5000
+sohu 100 4500
+google 110 5000
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;-k1.2表示对第一个域的第二个字符开始到本域的最后一个字符为止的字符串进行排序，可以看到sohu与google的第二个字母都是o，但是接下来的字母sohu的h排在google的o之前，因此sohu排在google前面。&lt;/p&gt;
+
+&lt;h3 id=&#34;只针对公司名称的第二字母进行排序-相同的话则按员工平均工资降序排序&#34;&gt;只针对公司名称的第二字母进行排序，相同的话则按员工平均工资降序排序&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意了，敲黑板！！！上面我们是从第一个域的第二个字符开始进行排序，而这里只针对第二个字符进行排序，如果第二字符相同的话则按员工平均工资降序排序，上面的例子是按第三个字符进行排序。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1.2,1.2 -k3rn company.txt
+baidu 100 5000
+google 110 5000
+sohu 100 4500
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到这次google排在sohu前面了。
+-k选项部分讲到这里基本脉络清楚了,此时再结合其他选项&lt;code&gt;sort&lt;/code&gt;就会变得十分强大。&lt;/p&gt;
+
+&lt;h3 id=&#34;sort的-u选项&#34;&gt;sort的-u选项&lt;/h3&gt;
+
+&lt;p&gt;u代表unique，因此此选项会将重复的选项删除，举个例子，这里我们根据第二域进行排序，添加-u选项，这样具有相同员工数且处于后续位置的行将被删除。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k2n -u company.txt
+guge 50 3000
+baidu 100 5000
+google 110 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;这里就将sohu这一行删除了。注意了，当-k与u结合使用时，-u只识别-k设定的域，发现相同就将后续相同的行删除。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;再举个例子看看特殊情况&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k2n -k3n -u company.txt
+guge 50 3000
+sohu 100 4500
+baidu 100 5000
+google 110 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到这次没有删除任何行，这主要是由于-u会权衡所有-k选项，只会将都相同的删除，只要其中有一级不同就不会轻易删除。&lt;/p&gt;
+
+&lt;h3 id=&#34;其他注意点&#34;&gt;其他注意点&lt;/h3&gt;
+
+&lt;p&gt;最后我还想再讲讲&lt;code&gt;sort&lt;/code&gt;一些其他比较有用的选项。第一个是-V选项。我们通过一个例子看看。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat example2.bed
+chr2    15      19
+chr22   32      46
+chr10   31      47
+chr1    34      49
+chr11   6       16
+chr2    17      22
+chr2    27      46
+chr10   30      42
+# 进行排序
+$ sort -k1,1 -k2,2n example2.bed
+chr1    34      49
+chr10   30      42
+chr10   31      47
+chr11   6       16
+chr2    15      19
+chr2    17      22
+chr2    27      46
+chr22   32      46
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们可以看到chr2排在chr11之后，主要是因为1排在2之前，&lt;code&gt;sort&lt;/code&gt;对文本进行排序时无法按数字进行排序，通过选项-V可以解决这个问题：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1,1V -k2,2n example2.bed
+chr1    34      49
+chr2    15      19
+chr2    17      22
+chr2    27      46
+chr10   30      42
+chr10   31      47
+chr11   6       16
+chr22   32      46
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另外一个需要考虑的是当我们处理大数据集文本时，提高运行速度是很重要的，&lt;code&gt;sort&lt;/code&gt;提供了几种方法，第一是提供了-S选项：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1,1 -k4,4n -S2G Mus_musculus.GRCm38.75_chr1_random.gtf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中G表示gigabyte，另外一种方法是提供了并行多线程计算&amp;ndash;parallel选项&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1,1 -k4,4n --parallel=4 Mus_musculus.GRCm38.75_chr1_random.gtf
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux学习笔记（四）</title>
+      <link>/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
+      <pubDate>Mon, 13 Nov 2017 13:19:05 +0000</pubDate>
+      <guid>/post/2017-11-13.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/894bbdhjmL.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;grep&#34;&gt;&lt;code&gt;grep&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;grep&lt;/code&gt;全称是&lt;strong&gt;global search regular expression(RE) and print out the line&lt;/strong&gt;，中文名即全面搜索正则表达式并把行打印出来。是一种强大的文本搜索工具，可以使用正则表达式搜索文本，并将匹配的行列打印出来。&lt;strong&gt;Unix&lt;/strong&gt;的&lt;code&gt;grep&lt;/code&gt;家族包括&lt;code&gt;grep&lt;/code&gt;,&lt;code&gt;egrep&lt;/code&gt;,&lt;code&gt;fgrep&lt;/code&gt;以及&lt;code&gt;zgrep&lt;/code&gt;等，&lt;code&gt;egrep&lt;/code&gt;,&lt;code&gt;fgrep&lt;/code&gt;与&lt;code&gt;grep&lt;/code&gt;的差别很小，&lt;code&gt;egrep&lt;/code&gt;支持更多的re元字符， &lt;code&gt;fgrep&lt;/code&gt;就是*fixed grep*或*fast grep*，它们把所有的字母都看作单词，也就是说，正则表达式中的元字符表示其自身的字面意义，不再特殊&lt;code&gt;grep&lt;/code&gt;可以通过-&lt;em&gt;G、&lt;/em&gt;-&lt;em&gt;E、&lt;/em&gt;-_F_命令行选项来使用&lt;code&gt;egrep&lt;/code&gt;,&lt;code&gt;fgrep&lt;/code&gt;的功能，&lt;code&gt;zgrep&lt;/code&gt;可以用来处理&lt;strong&gt;ZIP&lt;/strong&gt;格式文件。&lt;/p&gt;
+
+&lt;h3 id=&#34;grep-常用用法&#34;&gt;&lt;code&gt;grep&lt;/code&gt;常用用法&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;grep&lt;/code&gt;常用用法如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep [-acinv] [--color=auto] &#39;字符串或者正则表达式&#39; filename
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;选项参数：
+* -a：将binary文件以text文件的方式搜索，即不要忽略二进制数据
+* -A&amp;lt;显示列数&amp;gt;：除了显示匹配到的那一行之外，还显示该行之后的内容
+* -b：除了显示匹配到的那一行之外，还显示该行之前的内容
+* -c：计算匹配到&lt;strong&gt;字符串&lt;/strong&gt;的次数
+* -C&amp;lt;显示列数&amp;gt;：除了显示匹配到的那一列之外，还显示该列之前后的内容
+* -d&amp;lt;进行动作&amp;gt; 当指定要查找的是目录而非文件时，必须使用这项参数，否则grep命令将回报信息并停止动作
+* -e&amp;lt;范本样式&amp;gt; 指定字符串作为查找文件内容的范本样式
+* -E 将范本样式为延伸的普通表示法来使用，意味着使用能使用扩展正则表达式
+* -f&amp;lt;范本文件&amp;gt; 指定范本文件，其内容有一个或多个范本样式，让grep查找符合范本条件的文件内容，格式为每一列的范本样式
+* -F 将范本样式视为固定字符串的列表
+* -G 将范本样式视为普通的表示法来使用
+* -h 在显示符合范本样式的那一列之前，不标示该列所属的文件名称
+* -H 在显示符合范本样式的那一列之前，标示该列的文件名称
+* -l 列出文件内容符合指定的范本样式的文件名称。
+* -L 列出文件内容不符合指定的范本样式的文件名称。
+* -q 不显示任何信息。
+* -R/-r 此参数的效果和指定“-d recurse”参数相同。
+* -s 不显示错误信息。
+* -w 只显示全字符合的列。
+* -x 只显示全列符合的列。
+* -y 此参数效果跟“-i”相同。
+* -o 只输出文件中匹配到的部分。
+* -i：忽略大小写
+* -n：输出行号
+* -v：方向选择即显示出未匹配到&lt;strong&gt;字符串&lt;/strong&gt;的那一行
+* &amp;ndash;color=auto：匹配到的字符串颜色高亮&lt;/p&gt;
+
+&lt;p&gt;下面我们实战演练一下，我们要从&lt;strong&gt;GTF&lt;/strong&gt;文件中搜索到匹配&lt;code&gt;Olfr418-ps1&lt;/code&gt;的行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep &#39;Olfr418-ps1&#39; Mus_musculus.GRCm38.75_chr1_genes.txt
+ENSMUSG00000049605      Olfr418-ps1
+#打印出行号
+$ grep -n &#39;Olfr&#39; Mus_musculus.GRCm38.75_chr1_genes.txt|head -n 5
+548:ENSMUSG00000067064  Olfr1416
+549:ENSMUSG00000057464  Olfr1415
+550:ENSMUSG00000042849  Olfr1414
+551:ENSMUSG00000058904  Olfr1413
+552:ENSMUSG00000046300  Olfr1412
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过参数&lt;code&gt;-v&lt;/code&gt;设置可以不匹配不需要的字符串或者正则表达式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep Olfr Mus_musculus.GRCm38.75_chr1_genes.txt|grep -v Olfr1413|head -n 5
+ENSMUSG00000067064      Olfr1416
+ENSMUSG00000057464      Olfr1415
+ENSMUSG00000042849      Olfr1414
+ENSMUSG00000046300      Olfr1412
+ENSMUSG00000062497      Olfr1411
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;需要注意的是，这里我们排除掉&lt;code&gt;Olfr1413&lt;/code&gt;，但是如果数据集里存在类似于&lt;code&gt;Olfr1413a&lt;/code&gt;这样的字符，&lt;code&gt;grep&lt;/code&gt;也会将之剔除，因此我们需要设置参数&lt;code&gt;-w&lt;/code&gt;进行精准匹配。下面举个例子说明：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat example.txt
+bio
+bioinfo
+bioinformatics
+computational biology
+# grep without -w
+$ grep -v bioinfo example.txt
+bio
+computational biology
+#可以看出这里将含有bioinfo字符串的bioinformatics也剔除掉了,使用参数-w可以避免
+$ grep -v -w bioinfo example.txt
+bio
+bioinformatics
+computational biology
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们平常接触的组学数据格式都是很复杂的，当我们匹配的时候我们希望能过浏览匹配到的字符串的前后文，&lt;code&gt;Linux&lt;/code&gt;提供了参数设置：-B（前）、-A（后）以及-C（前后），每个参数后面都跟着一个数字，表示要显示几行,如果匹配到多行，则个匹配之间会用&amp;ndash;分割开：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -B2 &#39;AGATCGG&#39; contam.fastq|head -n 6
+@DJB775P1:248:D0MDGACXX:7:1202:12362:49613
+TGCTTACTCTGCGTTGATACCACTGCTTAGATCGGAAGAGCACACGTCTGAA
+--
+JJJJJIIJJJJJJHIHHHGHFFFFFFCEEEEEDBD?DDDDDDBDDDABDDCA
+@DJB775P1:248:D0MDGACXX:7:1202:12782:49716
+CTCTGCGTTGATACCACTGCTTACTCTGCGTTGATACCACTGCTTAGATCGG
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;grep&lt;/code&gt;如果结合正则表达式则会显得十分强大，比如如果我们要匹配&lt;code&gt;Olfr1413&lt;/code&gt;以及&lt;code&gt;Olfr1411&lt;/code&gt;,可以使用简单的正则表达式完成：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep &#39;Olfr141[13]&#39; Mus_musculus.GRCm38.75_chr1_genes.txt
+ENSMUSG00000058904      Olfr1413
+ENSMUSG00000062497      Olfr1411
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当然如果我们要匹配的不具有相同的前缀，那就很尴尬了，这时我们可以利用&lt;strong&gt;POSIX Extended Regular Expressions(ERE)&lt;/strong&gt;进行匹配，可以添加参数-E或者直接使用&lt;code&gt;egrep&lt;/code&gt;都行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -E &amp;quot;(Olfr1413|Olfr12)&amp;quot; Mus_musculus.GRCm38.75_chr1_genes.txt
+ENSMUSG00000058904      Olfr1413
+ENSMUSG00000061616      Olfr12
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;很多时候我们只需要将匹配到的行打印出来，此时我们可以使用参数-o：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -o &amp;quot;Olfr.*&amp;quot; Mus_musculus.GRCm38.75_chr1_genes.txt|head -n 3
+Olfr1416
+Olfr1415
+Olfr1414
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux学习笔记（三）</title>
+      <link>/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
+      <pubDate>Sun, 12 Nov 2017 13:19:05 +0000</pubDate>
+      <guid>/post/2017-11-12.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Be16KgagG1.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;“write code for humans, write data for computers”&lt;/p&gt;
+
+&lt;h2 id=&#34;cut&#34;&gt;&lt;strong&gt;cut&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;cut&lt;/code&gt;允许我们从数据集中提取某几列进行查看，通过参数&lt;code&gt;f&lt;/code&gt;来设置查看几列，比如我们想要查看第一和第三列或者只查看第二列：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cut -f 1,3 Mus_musculus.GRCm38.75_chr1.bed|head -n 3
+1       3054733
+1       3054733
+1       3054733
+$ cut -f 2 Mus_musculus.GRCm38.75_chr1.bed|head -n 3
+3054233
+3054233
+3054233
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结合&lt;code&gt;grep&lt;/code&gt;我们可以十分方便的将&lt;strong&gt;GTF&lt;/strong&gt;文件中的部分信息提取出来进行查看，使用&lt;code&gt;grep&lt;/code&gt;主要用来将以&lt;code&gt;#&lt;/code&gt;开头的部份内容剔除掉，这其中涉及到正则表达式，我将在后面集中学习。下面的命令可以将染色体、起始位置以及终止位置提取出来，类似于&lt;code&gt;bed&lt;/code&gt;文件格式：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -v &#39;^#&#39; Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1,4,5 | head -n 3
+1       3054233 3054733
+1       3054233 3054733
+1       3054233 3054733
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们也可以使用&lt;code&gt;&amp;gt;&lt;/code&gt;将提取的文件另存为一个文件，方便以后使用。这里我们存为&lt;strong&gt;test.txt&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -v &amp;quot;^#&amp;quot; Mus_musculus.GRCm38.75_chr1.gtf | cut -f 1,4,5 &amp;gt; test.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;cut&lt;/code&gt;默认分隔符为空格，因此如果使用&lt;code&gt;cut&lt;/code&gt;来处理&lt;strong&gt;CSV&lt;/strong&gt;文件的话，我们就需要通过参数&lt;code&gt;d&lt;/code&gt;指定分隔符 &lt;strong&gt;&lt;code&gt;,&lt;/code&gt;&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cut -d , -f 2,3 Mus_musculus.GRCm38.75_chr1_bed.csv | head -n 3
+3054233,3054733
+3054233,3054733
+3054233,3054733
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;column&#34;&gt;&lt;strong&gt;column&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;当我们处理制表符文件时，常常行列之间无法对其，浏览效果很差,如下所示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -v &amp;quot;^#&amp;quot; Mus_musculus.GRCm38.75_chr1.gtf|cut -f1-8|head -n 3
+1       pseudogene      gene    3054233 3054733 .       +       .
+1       unprocessed_pseudogene  transcript      3054233 3054733 .       +      .
+1       unprocessed_pseudogene  exon    3054233 3054733 .       +       .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;column&lt;/code&gt;可以产生阅读效果很好的文件格式，参数&lt;code&gt;t&lt;/code&gt;表示&lt;code&gt;column&lt;/code&gt;将对数据集当作一个table来处理,下面的阅读效果明显好于前面的。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ grep -v &amp;quot;^#&amp;quot; Mus_musculus.GRCm38.75_chr1.gtf|cut -f1-8|head -n 3|column -t
+1  pseudogene              gene        3054233  3054733  .  +  .
+1  unprocessed_pseudogene  transcript  3054233  3054733  .  +  .
+1  unprocessed_pseudogene  exon        3054233  3054733  .  +  .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;需要注意的是，&lt;code&gt;column -t&lt;/code&gt;只能支持在终端进行浏览数据，无法对数据集进行格式重写成一个文件。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code&gt;column&lt;/code&gt;默认\t为分隔符，因此当我们处理其他分隔符数据时，需要使用参数&lt;code&gt;s&lt;/code&gt;进行指定，比如当我们处理&lt;strong&gt;CSV&lt;/strong&gt;数据时：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ column -s, -t Mus_musculus.GRCm38.75_chr1_bed.csv|head -n 3
+1  3054233    3054733
+1  3054233    3054733
+1  3054233    3054733
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux学习笔记（二）</title>
+      <link>/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</link>
+      <pubDate>Sat, 11 Nov 2017 13:19:05 +0000</pubDate>
+      <guid>/post/2017-11-11.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%8C/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/E3kF9hl9jj.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;鉴于以后要大量使用&lt;code&gt;Linux&lt;/code&gt;系统处理生物信息学数据，因此加强自身linux系统的学习，开辟一个新的分类专门记录我学习&lt;code&gt;Linux&lt;/code&gt;的学习笔记，一是为了我自己以后方便查看，二也是希望能帮助到其他学习&lt;code&gt;Linux&lt;/code&gt;系统的人，共勉！！！&lt;/p&gt;
+
+&lt;h2 id=&#34;head&#34;&gt;&lt;code&gt;head&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;快速查看数据，以&lt;strong&gt;bed&lt;/strong&gt;(只有三列)格式数据为例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head Mus_musculus.GRCm38.75_chr1.bed
+1       3054233 3054733
+1       3054233 3054733
+1       3054233 3054733
+1       3102016 3102125
+1       3102016 3102125
+1       3102016 3102125
+1       3205901 3671498
+1       3205901 3216344
+1       3213609 3216344
+1       3205901 3207317
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;head&lt;/code&gt;默认显示前十行，可以通过参数n来指定显示几行，比如只显示三行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head -n 3 Mus_musculus.GRCm38.75_chr1.bed
+1       3054233 3054733
+1       3054233 3054733
+1       3054233 3054733
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;tail&#34;&gt;&lt;code&gt;tail&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;与&lt;code&gt;head&lt;/code&gt;相对的有一个命令&lt;code&gt;tail&lt;/code&gt;,&lt;code&gt;tail&lt;/code&gt;显示后几行，默认显示后十行，也可以通过参数n来指定显示几行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ tail Mus_musculus.GRCm38.75_chr1.bed
+1       195166217       195166390
+1       195165745       195165851
+1       195165748       195165851
+1       195165745       195165747
+1       195228278       195228398
+1       195228278       195228398
+1       195228278       195228398
+1       195240910       195241007
+1       195240910       195241007
+1       195240910       195241007
+$ tail -n 3 Mus_musculus.GRCm38.75_chr1.bed
+1       195240910       195241007
+1       195240910       195241007
+1       195240910       195241007
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;基于这个特性，&lt;code&gt;tail&lt;/code&gt;可以用来去除数据集的前几列，通过在参数n后面添加数字(即&lt;code&gt;-n +x&lt;/code&gt;,区别于&lt;code&gt;-n 2&lt;/code&gt;)指定从第几行开始，比如从第三行开始，也就是剔除了前两行。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ seq 5 &amp;gt; nums.txt
+$ cat nums.txt
+1
+2
+3
+4
+5
+# 从第三行开始
+$ tail -n +3 nums.txt
+3
+4
+5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结合这两个命令，我们可以十分方便的查看一个数据集的前几行以及后几行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ (head -n 2; tail -n 2)&amp;lt; Mus_musculus.GRCm38.75_chr1.bed
+1       3054233 3054733
+1       3054233 3054733
+1       195240910       195241007
+1       195240910       195241007
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;less&#34;&gt;&lt;code&gt;less&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;一般小的文件我们直接用&lt;code&gt;cat&lt;/code&gt;进行查看，但是如果大数据集的话用&lt;code&gt;cat&lt;/code&gt;就十分不方便查看，&lt;code&gt;less&lt;/code&gt;就是用来查看大数据集的命令。&lt;code&gt;less&lt;/code&gt;一次性只显示前几行，但是可以通过滚动查看后面的信息，最后按&lt;code&gt;q&lt;/code&gt;结束。下面列出&lt;code&gt;less&lt;/code&gt;常用的命令：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Shortcut&lt;/th&gt;
+&lt;th&gt;Action&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;space bar&lt;/td&gt;
+&lt;td&gt;Next page&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;b&lt;/td&gt;
+&lt;td&gt;Previous page&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;g&lt;/td&gt;
+&lt;td&gt;First line&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;G&lt;/td&gt;
+&lt;td&gt;Last line&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;j&lt;/td&gt;
+&lt;td&gt;Down (one line at at time)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;k&lt;/td&gt;
+&lt;td&gt;Up (one line at at time)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;/&amp;lt;pattern&amp;gt;&lt;/td&gt;
+&lt;td&gt;Search down (forward) for string &amp;lt;pattern&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;?&amp;lt;pattern&amp;gt;&lt;/td&gt;
+&lt;td&gt;Search up (backward) for string &amp;lt;pattern&amp;gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;n&lt;/td&gt;
+&lt;td&gt;Repeat last search downward (forward)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;N&lt;/td&gt;
+&lt;td&gt;Repeat last search upward (backward)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;wc-word-count&#34;&gt;&lt;code&gt;wc(word count)&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;查看数据有多少行可以用&lt;code&gt;wc&lt;/code&gt;命令,&lt;code&gt;wc&lt;/code&gt;会显示出数据有多少行、多少word以及多少字符(characters)。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ wc Mus_musculus.GRCm38.75_chr1.bed
+  81226  243678 1698545 Mus_musculus.GRCm38.75_chr1.bed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;wc&lt;/code&gt;支持同时处理多个文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ wc Mus_musculus.GRCm38.75_chr1.bed Mus_musculus.GRCm38.75_chr1.gtf
+   81226   243678  1698545 Mus_musculus.GRCm38.75_chr1.bed
+   81231  2385570 26607149 Mus_musculus.GRCm38.75_chr1.gtf
+  162457  2629248 28305694 总用量
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果只想显示多少行，添加参数&lt;code&gt;l&lt;/code&gt;就行了：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ wc -l Mus_musculus.GRCm38.75_chr1.bed
+81226 Mus_musculus.GRCm38.75_chr1.bed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更多用法可以用&lt;code&gt;man wc&lt;/code&gt;查看。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux学习笔记(一)</title>
+      <link>/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
+      <guid>/post/2017-11-09.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Jb7HLAJK63.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;鉴于以后要大量使用&lt;code&gt;Linux&lt;/code&gt;系统处理生物信息学数据，因此加强自身linux系统的学习，开辟一个新的分类专门记录我学习&lt;code&gt;Linux&lt;/code&gt;的学习笔记，一是为了我自己以后方便查看，二也是希望能帮助到其他学习&lt;code&gt;Linux&lt;/code&gt;系统的人，共勉！！！&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;创建含有当前时间的文件，如创建一个含有今天时间日期的文件夹&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir results-$(date +%F)
+$ ls
+results-2017-11-02
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;设置自己的快捷命令，比如我们要创建项目时，需要创建&lt;code&gt;data/seqs&lt;/code&gt;,&lt;code&gt;scripts&lt;/code&gt;以及&lt;code&gt;analysis&lt;/code&gt;文件夹，我们可以写一个快捷命令符，以后就可以直接调用即可：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ alias mkpr=&amp;quot;mkdir -p {data/seqs,scripts,analysis}&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;这样后面我们每次运行*mkpr*就会创建&lt;code&gt;data/seqs&lt;/code&gt;,&lt;code&gt;scripts&lt;/code&gt;以及&lt;code&gt;analysis&lt;/code&gt;文件夹。将上述两点综合我们就可以很容易创建含有当前时期的文件，这里我们将&lt;code&gt;date +%F&lt;/code&gt;设置成快捷命令*today*。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ alias today=&amp;quot;date +%F&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;这样我们以后只需要运行以下命令就可以创建含有当前时间日期的文件了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir results-$(today)
+$ls
+results-2017-11-02
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意上述命令在我们重启终端时是无法再次作用的，要使得&lt;strong&gt;alias&lt;/strong&gt;命令永久有效，我们可以将命令添加到&lt;code&gt;.bashrc&lt;/code&gt;中，之后&lt;code&gt;source ~/.bashrc&lt;/code&gt;即可生效。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

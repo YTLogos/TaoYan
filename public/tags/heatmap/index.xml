@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Heatmap | Tao Yan</title>
+    <link>/tags/heatmap/</link>
+      <atom:link href="/tags/heatmap/index.xml" rel="self" type="application/rss+xml" />
+    <description>Heatmap</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Sat, 12 Aug 2017 12:34:08 -0500</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>Heatmap</title>
+      <link>/tags/heatmap/</link>
+    </image>
+    
+    <item>
+      <title>R语言学习笔记之热图绘制</title>
+      <link>/post/2017-08-12.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/</link>
+      <pubDate>Sat, 12 Aug 2017 12:34:08 -0500</pubDate>
+      <guid>/post/2017-08-12.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-076503522b98e6a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;本文将绘制静态与交互式热图，需要使用到以下R包和函数：
+&lt;code&gt;heatmap()&lt;/code&gt;:用于绘制简单热图的函数
+&lt;code&gt;heatmap.2()&lt;/code&gt;:绘制增强热图的函数
+&lt;code&gt;d3heatmap&lt;/code&gt;:用于绘制交互式热图的R包
+&lt;code&gt;ComplexHeatmap&lt;/code&gt;:用于绘制、注释和排列复杂热图的R&amp;amp;bioconductor包（非常适用于基因组数据分析）&lt;/p&gt;
+
+&lt;h2 id=&#34;数据准备&#34;&gt;数据准备&lt;/h2&gt;
+
+&lt;p&gt;使用R内置数据集&lt;code&gt;mtcars&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;df &amp;lt;- as.matrix((scale(mtcars)))#归一化、矩阵化
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;使用基本函数绘制简单简单热图&#34;&gt;使用基本函数绘制简单简单热图&lt;/h2&gt;
+
+&lt;p&gt;主要是函数&lt;code&gt;heatmap(x, scale=&amp;quot;row&amp;quot;)&lt;/code&gt;
+* x:数据矩阵
+* scale：表示不同方向，可选值有：row, columa, none
+* Default plotheatmap(df, scale = &amp;ldquo;none&amp;rdquo;)
+&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c7bea2866745dab0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Use custom colors
+col &amp;lt;- colorRampPalette(c(&amp;quot;red&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;blue&amp;quot;))(256)
+heatmap(df, scale = &amp;quot;none&amp;quot;, col=col)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-ebc5d8bff1232cd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Use RColorBrewer color palette names
+library(RColorBrewer)col &amp;lt;- colorRampPalette(brewer.pal(10, &amp;quot;RdYlBu&amp;quot;))(256)#自设置调色板dim(df)#查看行列数
+## [1] 32 11
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;heatmap(df, scale = &amp;quot;none&amp;quot;, col=col, RowSideColors = rep(c(&amp;quot;blue&amp;quot;, &amp;quot;pink&amp;quot;), each=16), 
+ColSideColors = c(rep(&amp;quot;purple&amp;quot;, 5), rep(&amp;quot;orange&amp;quot;, 6)))
+#参数RowSideColors和ColSideColors用于分别注释行和列颜色等,可help(heatmap)详情
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4d1b42636045984b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;增强热图&#34;&gt;增强热图&lt;/h2&gt;
+
+&lt;p&gt;函数&lt;code&gt;heatmap.2()&lt;/code&gt;
+在热图绘制方面提供许多扩展，此函数包装在&lt;code&gt;gplots&lt;/code&gt;包里。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(gplots)heatmap.2(df, scale = &amp;quot;none&amp;quot;, col=bluered(100), 
+trace = &amp;quot;none&amp;quot;, density.info = &amp;quot;none&amp;quot;)#还有其他参数可参考help(heatmap.2())
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-68ac84c2447943b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;交互式热图绘制&#34;&gt;交互式热图绘制&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;d3heatmap&lt;/code&gt;包可用于生成交互式热图绘制,可通过以下代码生成：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if (!require(&amp;quot;devtools&amp;quot;)) 
+install.packages(&amp;quot;devtools&amp;quot;) 
+devtools::install_github(&amp;quot;rstudio/d3heatmap&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt; 函数&lt;code&gt;d3heatmap()&lt;/code&gt;用于创建交互式热图，有以下功能：
+* 将鼠标放在感兴趣热图单元格上以查看行列名称及相应值
+* 可选择区域进行缩放&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(d3heatmap)d3heatmap(df, colors = &amp;quot;RdBu&amp;quot;, k_row = 4, k_col = 2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;k_row&lt;/code&gt;、&lt;code&gt;k_col&lt;/code&gt;分别指定用于对行列中树形图分支进行着色所需组数。进一步信息可&lt;code&gt;help(d3heatmap())&lt;/code&gt;获取。&lt;/p&gt;
+
+&lt;h2 id=&#34;使用-dendextend-包增强热图&#34;&gt;使用&lt;code&gt;dendextend&lt;/code&gt;包增强热图&lt;/h2&gt;
+
+&lt;p&gt;软件包&lt;code&gt;dendextend&lt;/code&gt;可以用于增强其他软件包的功能&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(dendextend)# order for rows
+Rowv &amp;lt;- mtcars %&amp;gt;% scale %&amp;gt;% dist %&amp;gt;% 
+hclust %&amp;gt;% as.dendrogram %&amp;gt;%
+ set(&amp;quot;branches_k_color&amp;quot;, k = 3) %&amp;gt;% 
+set(&amp;quot;branches_lwd&amp;quot;, 1.2) %&amp;gt;% ladderize# Order for columns# 
+We must transpose the data
+Colv &amp;lt;- mtcars %&amp;gt;% scale %&amp;gt;% t %&amp;gt;% dist %&amp;gt;% 
+hclust %&amp;gt;% as.dendrogram %&amp;gt;%
+ set(&amp;quot;branches_k_color&amp;quot;, k = 2, value = c(&amp;quot;orange&amp;quot;, &amp;quot;blue&amp;quot;)) %&amp;gt;% set(&amp;quot;branches_lwd&amp;quot;, 1.2) %&amp;gt;% ladderize
+增强heatmap()函数
+---
+heatmap(df, Rowv = Rowv, Colv = Colv, scale = &amp;quot;none&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-efdf6c2b659c0af0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#增强heatmap.2()函数
+heatmap.2(df, scale = &amp;quot;none&amp;quot;, col = bluered(100), Rowv = Rowv, Colv = Colv, trace = &amp;quot;none&amp;quot;, density.info = &amp;quot;none&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e26e47cd2f8df3c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#增强交互式绘图函数
+d2heatmap()d3heatmap(scale(mtcars), colors = &amp;quot;RdBu&amp;quot;, Rowv = Rowv, Colv = Colv)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;绘制复杂热图&#34;&gt;绘制复杂热图&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;ComplexHeatmap&lt;/code&gt;包是&lt;code&gt;bioconductor&lt;/code&gt;包，用于绘制复杂热图，它提供了一个灵活的解决方案来安排和注释多个热图。它还允许可视化来自不同来源的不同数据之间的关联热图。可通过以下代码安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if (!require(&amp;quot;devtools&amp;quot;)) install.packages(&amp;quot;devtools&amp;quot;) 
+devtools::install_github(&amp;quot;jokergoo/ComplexHeatmap&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;ComplexHeatmap&lt;/code&gt;包的主要功能函数是&lt;code&gt;Heatmap()&lt;/code&gt;,格式为：&lt;code&gt;Heatmap(matrix, col, name)&lt;/code&gt;
+* &lt;code&gt;matrix&lt;/code&gt;：矩阵
+* &lt;code&gt;col&lt;/code&gt;：颜色向量（离散色彩映射）或颜色映射函数（如果矩阵是连续数）
+* &lt;code&gt;name&lt;/code&gt;：热图名称&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(ComplexHeatmap)
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-30f041fb4859171f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#自设置颜色
+library(circlize)
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = colorRamp2(c(-2, 0, 2), c(&amp;quot;green&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;red&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b118f36783b5d212.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;使用调色板&#34;&gt;使用调色板&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;,col = colorRamp2(c(-2, 0, 2), brewer.pal(n=3, name=&amp;quot;RdBu&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-de34356535c8a3e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#自定义颜色
+mycol &amp;lt;- colorRamp2(c(-2, 0, 2), c(&amp;quot;blue&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;red&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;#热图及行列标题设置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, column_title = &amp;quot;Column title&amp;quot;, row_title = 
+&amp;quot;Row title&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-2f553afb61a6370a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;注意，行标题的默认位置是“left”，列标题的默认是“top”。可以使用以下选项更改：
+* &lt;code&gt;row_title_side&lt;/code&gt;：允许的值为“左”或“右”（例如：row_title_side =“right”）
+* &lt;code&gt;column_title_side&lt;/code&gt;：允许的值为“top”或“bottom”（例如：column_title_side =“bottom”） 也可以使用以下选项修改字体和大小：
+* &lt;code&gt;row_title_gp&lt;/code&gt;：用于绘制行文本的图形参数
+* &lt;code&gt;column_title_gp&lt;/code&gt;：用于绘制列文本的图形参数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, column_title = &amp;quot;Column title&amp;quot;, 
+column_title_gp = gpar(fontsize = 14, fontface = &amp;quot;bold&amp;quot;), 
+row_title = &amp;quot;Row title&amp;quot;, row_title_gp = gpar(fontsize = 14, fontface = &amp;quot;bold&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f35f017c7d0118d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&amp;gt; 在上面的R代码中，&lt;code&gt;fontface&lt;/code&gt;的可能值可以是整数或字符串：1 = plain，2 = bold，3 =斜体，4 =粗体斜体。如果是字符串，则有效值为：“plain”，“bold”，“italic”，“oblique”和“bold.italic”。
+显示行/列名称：
+&amp;gt;* &lt;code&gt;show_row_names&lt;/code&gt;：是否显示行名称。默认值为&lt;code&gt;TRUE&lt;/code&gt;
+&amp;gt;* &lt;code&gt;show_column_names&lt;/code&gt;：是否显示列名称。默认值为&lt;code&gt;TRUE&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, show_row_names = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-d0c74b9038eb0021.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;更改聚类外观&#34;&gt;更改聚类外观&lt;/h2&gt;
+
+&lt;p&gt;默认情况下，行和列是包含在聚类里的。可以使用参数修改：
+* &lt;code&gt;cluster_rows = FALSE&lt;/code&gt;。如果为&lt;code&gt;TRUE&lt;/code&gt;，则在行上创建集群
+* &lt;code&gt;cluster_columns = FALSE&lt;/code&gt;。如果&lt;code&gt;为TRUE&lt;/code&gt;，则将列置于簇上&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Inactivate cluster on rows
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, cluster_rows = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1935cb8a6b1bc7ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+如果要更改列集群的高度或宽度，可以使用选项&lt;code&gt;column_dend_height&lt;/code&gt;
+和&lt;code&gt;row_dend_width&lt;/code&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, column_dend_height = unit(2, &amp;quot;cm&amp;quot;), 
+row_dend_width = unit(2, &amp;quot;cm&amp;quot;) )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c7fb9371e59ca553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+我们还可以利用&lt;code&gt;color_branches()&lt;/code&gt;自定义树状图外观&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(dendextend)
+row_dend = hclust(dist(df)) # row clustering
+col_dend = hclust(dist(t(df))) # column clustering
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, cluster_rows = 
+color_branches(row_dend, k = 4), cluster_columns = color_branches(col_dend, k = 2))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1d01beb556d77bdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;不同的聚类距离计算方式&#34;&gt;不同的聚类距离计算方式&lt;/h2&gt;
+
+&lt;p&gt;参数&lt;code&gt;clustering_distance_rows&lt;/code&gt;和&lt;code&gt;clustering_distance_columns&lt;/code&gt;
+用于分别指定行和列聚类的度量标准，允许的值有“&lt;code&gt;euclidean&lt;/code&gt;”, “&lt;code&gt;maximum&lt;/code&gt;”, “&lt;code&gt;manhattan&lt;/code&gt;”, “&lt;code&gt;canberra&lt;/code&gt;”, “&lt;code&gt;binary&lt;/code&gt;”, “&lt;code&gt;minkowski&lt;/code&gt;”, “&lt;code&gt;pearson&lt;/code&gt;”, “&lt;code&gt;spearman&lt;/code&gt;”, “&lt;code&gt;kendall&lt;/code&gt;”。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, clustering_distance_rows = &amp;quot;pearson&amp;quot;, 
+clustering_distance_columns = &amp;quot;pearson&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3f47cf3bfa173e5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#也可以自定义距离计算方式
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, clustering_distance_rows = function(m) dist(m))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-30f041fb4859171f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, clustering_distance_rows = function(x, y) 1 - cor(x, y))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f5c6d3f00a17d107.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&amp;gt;请注意，在上面的R代码中，通常为指定行聚类的度量的参数  &lt;code&gt;clustering_distance_rows&lt;/code&gt;显示示例。建议对参数&lt;code&gt;clustering_distance_columns&lt;/code&gt;（列聚类的度量标准）使用相同的度量标准。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Clustering metric function
+robust_dist = function(x, y) { 
+qx = quantile(x, c(0.1, 0.9)) qy = quantile(y, c(0.1, 0.9)) l = x &amp;gt; qx[1] &amp;amp; x &amp;lt; qx[2] &amp;amp; y 
+&amp;gt; qy[1] &amp;amp; y &amp;lt; qy[2] x = x[l] y = y[l] sqrt(sum((x - y)^2))}
+# Heatmap
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, clustering_distance_rows = robust_dist, 
+clustering_distance_columns = robust_dist, 
+col = colorRamp2(c(-2, 0, 2), c(&amp;quot;purple&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;orange&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a3580fa85ed00103.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;聚类方法&#34;&gt;聚类方法&lt;/h2&gt;
+
+&lt;p&gt;参数&lt;code&gt;clustering_method_rows&lt;/code&gt;和&lt;code&gt;clustering_method_columns&lt;/code&gt;可用于指定进行层次聚类的方法。允许的值是&lt;code&gt;hclust()&lt;/code&gt;函数支持的值，包括“ward.D”，“ward.D2”，“single”，“complete”，“average”，…（见?hclust）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, clustering_method_rows = &amp;quot;ward.D&amp;quot;, 
+clustering_method_columns = &amp;quot;ward.D&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c542bd89bd2b8ef2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;热图拆分&#34;&gt;热图拆分&lt;/h2&gt;
+
+&lt;p&gt;有很多方法来拆分热图。一个解决方案是应用&lt;code&gt;k-means&lt;/code&gt;使用参数&lt;code&gt;km&lt;/code&gt;。
+在执行&lt;code&gt;k-means&lt;/code&gt;时使用&lt;code&gt;set.seed()&lt;/code&gt;函数很重要，这样可以在稍后精确地再现结果&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(1122)
+# split into 2 groupsHeatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, k = 2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a12bdb36af791864.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# split by a vector specifying row classes， 有点类似于ggplot2里的分面
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, split = mtcars$cyl )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-03aaca5b56b58b89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#split也可以是一个数据框，其中不同级别的组合拆分热图的行。
+# Split by combining multiple variables
+Heatmap(df, name =&amp;quot;mtcars&amp;quot;, col = mycol, split = data.frame(cyl = mtcars$cyl, am = mtcars$am))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-ddb8f5cd7783f7ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Combine km and split
+Heatmap(df, name =&amp;quot;mtcars&amp;quot;, col = mycol, km = 2, split = mtcars$cyl)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5f8ed156f47b714d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#也可以自定义分割
+library(&amp;quot;cluster&amp;quot;)
+set.seed(1122)
+pa = pam(df, k = 3)Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, split = paste0(&amp;quot;pam&amp;quot;, 
+pa$clustering))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8b2b49dda4e4d01b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;还可以将用户定义的树形图和分割相结合。在这种情况下，&lt;code&gt;split&lt;/code&gt;可以指定为单个数字：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;row_dend = hclust(dist(df)) # row clusterin
+grow_dend = color_branches(row_dend, k = 4)
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, cluster_rows = row_dend, split = 2)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-7d0430ea9a918019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;热图注释&#34;&gt;热图注释&lt;/h2&gt;
+
+&lt;p&gt;利用&lt;code&gt;HeatmapAnnotation()&lt;/code&gt;对行或列注释。格式为： &lt;code&gt;HeatmapAnnotation(df, name, col, show_legend)&lt;/code&gt;
+* df：带有列名的data.frame
+* name：热图标注的名称
+* col：映射到df中列的颜色列表&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Transposedf &amp;lt;- t(df)
+# Heatmap of the transposed data
+Heatmap(df, name =&amp;quot;mtcars&amp;quot;, col = mycol)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b05bd797cc012742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Annotation data frame
+annot_df &amp;lt;- data.frame(cyl = mtcars$cyl, am = mtcars$am, mpg = mtcars$mpg)
+# Define colors for each levels of qualitative variables
+# Define gradient color for continuous variable (mpg)
+col = list(cyl = c(&amp;quot;4&amp;quot; = &amp;quot;green&amp;quot;, &amp;quot;6&amp;quot; = &amp;quot;gray&amp;quot;, &amp;quot;8&amp;quot; = &amp;quot;darkred&amp;quot;), am = c(&amp;quot;0&amp;quot; = &amp;quot;yellow&amp;quot;, 
+&amp;quot;1&amp;quot; = &amp;quot;orange&amp;quot;), mpg = colorRamp2(c(17, 25), c(&amp;quot;lightblue&amp;quot;, &amp;quot;purple&amp;quot;)) )
+# Create the heatmap annotation
+ha &amp;lt;- HeatmapAnnotation(annot_df, col = col)
+# Combine the heatmap and the annotation
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, top_annotation = ha)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-542529c17f0077c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#可以使用参数show_legend = FALSE来隐藏注释图例
+ha &amp;lt;- HeatmapAnnotation(annot_df, col = col, show_legend = FALSE)
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, top_annotation = ha)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e82c0d3998fdf782.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#注释名称可以使用下面的R代码添加
+library(&amp;quot;GetoptLong&amp;quot;)
+# Combine Heatmap and annotation
+ha &amp;lt;- HeatmapAnnotation(annot_df, col = col, show_legend = FALSE)
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, top_annotation = ha)
+# Add annotation names on the right
+for(an in colnames(annot_df)) { 
+seekViewport(qq(&amp;quot;annotation_@{an}&amp;quot;)) 
+grid.text(an, unit(1, &amp;quot;npc&amp;quot;) + unit(2, &amp;quot;mm&amp;quot;), 0.5, default.units = &amp;quot;npc&amp;quot;, just = &amp;quot;left&amp;quot;)}
+#要在左侧添加注释名称，请使用以下代码
+# Annotation names on the left
+for(an in colnames(annot_df)) { seekViewport(qq(&amp;quot;annotation_@{an}&amp;quot;)) grid.text(an, 
+unit(1, &amp;quot;npc&amp;quot;) - unit(2, &amp;quot;mm&amp;quot;), 0.5, default.units = &amp;quot;npc&amp;quot;, just = &amp;quot;left&amp;quot;)}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f421ede2e684f6fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;复杂注释&#34;&gt;复杂注释&lt;/h2&gt;
+
+&lt;p&gt;将热图与一些基本图形结合起来进行注释，利用&lt;code&gt;anno_point()&lt;/code&gt;,&lt;code&gt;anno_barplot()&lt;/code&gt;
+,&lt;code&gt;anno_boxplot()&lt;/code&gt;,&lt;code&gt;anno_density()&lt;/code&gt;和&lt;code&gt;anno_histogram()&lt;/code&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Define some graphics to display the distribution of columns
+.hist = anno_histogram(df, gp = gpar(fill = &amp;quot;lightblue&amp;quot;))
+.density = anno_density(df, type = &amp;quot;line&amp;quot;, gp = gpar(col = &amp;quot;blue&amp;quot;))
+ha_mix_top = HeatmapAnnotation(hist = .hist, density = .density)
+# Define some graphics to display the distribution of rows
+.violin = anno_density(df, type = &amp;quot;violin&amp;quot;, gp = gpar(fill = &amp;quot;lightblue&amp;quot;), which = &amp;quot;row&amp;quot;)
+.boxplot = anno_boxplot(df, which = &amp;quot;row&amp;quot;)
+ha_mix_right = HeatmapAnnotation(violin = .violin, bxplt = .boxplot, which = &amp;quot;row&amp;quot;, 
+width = unit(4, &amp;quot;cm&amp;quot;))
+# Combine annotation with heatmap
+Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, column_names_gp = gpar(fontsize = 8), 
+top_annotation = ha_mix_top, top_annotation_height = unit(4, &amp;quot;cm&amp;quot;)) + ha_mix_right
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-492515c5a7fcc4d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;热图组合&#34;&gt;热图组合&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;# Heatmap 1
+ht1 = Heatmap(df, name = &amp;quot;ht1&amp;quot;, col = mycol, km = 2, column_names_gp = gpar(fontsize = 9))
+# Heatmap 2
+ht2 = Heatmap(df, name = &amp;quot;ht2&amp;quot;, col = colorRamp2(c(-2, 0, 2), c(&amp;quot;green&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;red&amp;quot;)), column_names_gp = gpar(fontsize = 9))
+# Combine the two heatmaps
+ht1 + ht2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3ce17a03ce5f71af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&amp;gt;可以使用选项width = unit（3，“cm”））来控制热图大小。注意，当组合多个热图时，第一个热图被视为主热图。剩余热图的一些设置根据主热图的设置自动调整。这些设置包括：删除行集群和标题，以及添加拆分等。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;draw(ht1 + ht2, 
+      # Titles 
+     row_title = &amp;quot;Two heatmaps, row title&amp;quot;,
+     row_title_gp = gpar(col = &amp;quot;red&amp;quot;), 
+     column_title = &amp;quot;Two heatmaps, column title&amp;quot;, 
+     column_title_side = &amp;quot;bottom&amp;quot;, 
+      # Gap between heatmaps 
+     gap = unit(0.5, &amp;quot;cm&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e348e9abf5f7cf82.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以使用参数&lt;code&gt;show_heatmap_legend = FALSE&lt;/code&gt;，&lt;code&gt;show_annotation_legend = FALSE&lt;/code&gt;删除图例。&lt;/p&gt;
+
+&lt;h2 id=&#34;基因表达矩阵&#34;&gt;基因表达矩阵&lt;/h2&gt;
+
+&lt;p&gt;在基因表达数据中，行代表基因，列是样品值。关于基因的更多信息可以在表达热图之后附加，例如基因长度和基因类型。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;expr = readRDS(paste0(system.file(package = &amp;quot;ComplexHeatmap&amp;quot;), &amp;quot;/extdata/gene_expression.rds&amp;quot;))
+mat = as.matrix(expr[, grep(&amp;quot;cell&amp;quot;, colnames(expr))])
+type = gsub(&amp;quot;s\\d+_&amp;quot;, &amp;quot;&amp;quot;, colnames(mat))
+ha = HeatmapAnnotation(df = data.frame(type = type))
+Heatmap(mat, name = &amp;quot;expression&amp;quot;, km = 5, top_annotation = ha, top_annotation_height = unit(4, &amp;quot;mm&amp;quot;), 
+show_row_names = FALSE, show_column_names = FALSE) +
+Heatmap(expr$length, name = &amp;quot;length&amp;quot;, width = unit(5, &amp;quot;mm&amp;quot;), col = colorRamp2(c(0, 100000), c(&amp;quot;white&amp;quot;, &amp;quot;orange&amp;quot;))) +
+Heatmap(expr$type, name = &amp;quot;type&amp;quot;, width = unit(5, &amp;quot;mm&amp;quot;)) +
+Heatmap(expr$chr, name = &amp;quot;chr&amp;quot;, width = unit(5, &amp;quot;mm&amp;quot;), col = rand_color(length(unique(expr$chr))))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-076503522b98e6a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+也可以可视化基因组变化和整合不同的分子水平（基因表达，DNA甲基化，…）&lt;/p&gt;
+
+&lt;h2 id=&#34;可视化矩阵中列的分布&#34;&gt;可视化矩阵中列的分布&lt;/h2&gt;
+
+&lt;p&gt;使用函数&lt;code&gt;densityHeatmap()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;densityHeatmap(df)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-de948c8b938cfa9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;infos&#34;&gt;Infos&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+## R version 3.3.3 (2017-03-06)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 8.1 x64 (build 9600)## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936 
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C 
+## [5] LC_TIME=Chinese (Simplified)_China.936 ##
+ ## attached base packages:
+## [1] grid stats graphics grDevices utils datasets methods 
+## [8] base 
+## 
+## other attached packages:
+## [1] GetoptLong_0.1.6 cluster_2.0.5 circlize_0.3.10 
+## [4] ComplexHeatmap_1.12.0 dendextend_1.4.0 d3heatmap_0.6.1.1
+##[7] gplots_3.0.1 RColorBrewer_1.1-2 
+## 
+## loaded via a namespace (and not attached):
+## [1] Rcpp_0.12.9 DEoptimR_1.0-8 plyr_1.8.4 
+## [4] viridis_0.3.4 class_7.3-14 prabclus_2.2-6 
+## [7] bitops_1.0-6 base64enc_0.1-3 tools_3.3.3 
+## [10] digest_0.6.12 mclust_5.2.2 jsonlite_1.3 
+## [13] evaluate_0.10 tibble_1.2 gtable_0.2.0 
+## [16] lattice_0.20-34 png_0.1-7 yaml_2.1.14 
+## [19] mvtnorm_1.0-6 gridExtra_2.2.1 trimcluster_0.1-2 
+## [22] stringr_1.2.0 knitr_1.15.1 GlobalOptions_0.0.11
+## [25] htmlwidgets_0.8 gtools_3.5.0 caTools_1.17.1 
+## [28] fpc_2.1-10 diptest_0.75-7 nnet_7.3-12 
+## [31] stats4_3.3.3 rprojroot_1.2 robustbase_0.92-7 
+## [34] flexmix_2.3-13 rmarkdown_1.3.9002 gdata_2.17.0 
+## [37] kernlab_0.9-25 ggplot2_2.2.1 magrittr_1.5 
+## [40] whisker_0.3-2 backports_1.0.5 scales_0.4.1 
+## [43] htmltools_0.3.5 modeltools_0.2-21 MASS_7.3-45
+## [46] assertthat_0.1 shape_1.4.2 colorspace_1.3-2 
+## [49] KernSmooth_2.23-15 stringi_1.1.2 lazyeval_0.2.0 
+## [52] munsell_0.4.3 rjson_0.2.15
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

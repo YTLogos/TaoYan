@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>r4ds | Tao Yan</title>
+    <link>/categories/r4ds/</link>
+      <atom:link href="/categories/r4ds/index.xml" rel="self" type="application/rss+xml" />
+    <description>r4ds</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Sun, 25 Jun 2017 12:34:08 -0500</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>r4ds</title>
+      <link>/categories/r4ds/</link>
+    </image>
+    
+    <item>
+      <title>r4ds学习笔记之ggplot2</title>
+      <link>/post/2017-07-01.r4ds%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggplot2/</link>
+      <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
+      <guid>/post/2017-07-01.r4ds%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggplot2/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-515da9e1fb644123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;为了进一步加强以及整合自己&lt;strong&gt;data science&lt;/strong&gt;的能力，最近打算在&lt;a href=&#34;https://ytlogos.github.io/&#34; target=&#34;_blank&#34;&gt;我的博客&lt;/a&gt;开辟一个新类&lt;strong&gt;r4ds&lt;/strong&gt;，专门用来记录学习&lt;strong&gt;Hadley Wickham&lt;/strong&gt;大神的新作&lt;a href=&#34;https://r4ds.had.co.nz/&#34; target=&#34;_blank&#34;&gt;R for Data Science&lt;/a&gt;的读书笔记。该书推荐我们入门data science可以从可视化开始，这也是该书目录布局的第一章。因此开始学习R语言可视化。&lt;/p&gt;
+
+&lt;h2 id=&#34;前提&#34;&gt;前提&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;本章主要聚焦于可视化包&lt;strong&gt;ggplot2&lt;/strong&gt;,为了写这本书，大神专门整合了一系列神包成为一个包&lt;strong&gt;tidyverse&lt;/strong&gt;，因此第一步就是要先安装该包并加载。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#install tidyverse
+install.packages(&amp;quot;tidyverse&amp;quot;)
+#load tidyverse
+library(tidyverse)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;ggplot2简介&#34;&gt;ggplot2简介&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;利用数据集&lt;strong&gt;mpg&lt;/strong&gt;来探究发动机大小跟好友耗油是否存在某种关系，先check一下该数据集。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;head(mpg)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-08f00cbdb4b66222.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在各个变量中：
+* disp:车发动机大小
+* hwy:衡量耗油率的一个指标，更多信息可？mpg查看&lt;/p&gt;
+
+&lt;p&gt;要探究displ与hwy的关系，最快就是画个图了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(data=mpg)+ geom_point(mapping = aes(x=displ, y=hwy))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8feb017d39aaa075.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+图中显示两者呈现负相关，disp越大，hwy越低。
+&lt;strong&gt;ggplot2&lt;/strong&gt;绘图规则主要如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(data=&amp;lt;DATA&amp;gt;)+
+     &amp;lt;GEOM_FUNCTION&amp;gt;(mapping=aes(&amp;gt;MAPPINGS&amp;gt;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;ggplot()&lt;/strong&gt;会创建一个底板，然后可以通过&lt;strong&gt;geom_function()&lt;/strong&gt;不断地添加图形元素，进行丰富。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p &amp;lt;- ggplot(mpg)#create an empty graph
+p+geom_point(aes(x=displ, y=hwy))#add a layer to the empty graph
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8feb017d39aaa075.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;美学映射aesthetic-mappings&#34;&gt;美学映射Aesthetic Mappings&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;美学映射在&lt;strong&gt;ggplot2&lt;/strong&gt;中是一个十分重要的概念，比如前文我们将displ、hwy分别映射给x、y轴，同时还可以用来控制图形元素大小、形状、颜色等属性。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(mpg)+ 
+geom_point(aes(x=displ, y=hwy, color=class))#将class映射给颜色属性，这样不同class就表现不同颜色
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-515da9e1fb644123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+可以看到，通过颜色映射&lt;strong&gt;ggplot2&lt;/strong&gt;会自动创建一个&lt;strong&gt;legend&lt;/strong&gt;，需要注意的是这里颜色颜色我们是利用class，这是一个离散性变量，如果我们将之映射给点的size，则会出现warning,至于原因，看warning。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(mpg)+ geom_point(aes(x=displ, y=hwy, size=class))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-75b7814d86b5f5b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+或者将class映射给alpha参数，这是一个控制点透明度的参数;shape是一个控制形状的参数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(mpg)+ geom_point(aes(x=displ, y=hwy, alpha=class))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1d6dd6c8cbe3b016.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(mpg)+ geom_point(aes(x=displ, y=hwy, shape=class))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-53c76d1b9cf0fea6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+发现当映射shape其中SUV是没有形状的，这是因为&lt;strong&gt;ggplot2&lt;/strong&gt;只默认6种形状，这个问题后续解决。 需要注意的是映射参数必须在aes(),不然就无法映射。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(mpg)+ geom_point(aes(x=displ, y=hwy), color=&amp;quot;blue&amp;quot;)#all the points are blue
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-742710de940018e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+今天就讲到这，下次继续&lt;/p&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+## R version 3.4.1 (2017-06-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 8.1 x64 (build 9600)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936 
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C ## [5] LC_TIME=Chinese (Simplified)_China.936 
+## 
+## attached base packages:
+## [1] stats graphics grDevices utils datasets methods base 
+## 
+## other attached packages:
+## [1] forcats_0.2.0 stringr_1.2.0 dplyr_0.7.1 
+## [4] purrr_0.2.2.2 readr_1.1.1 tidyr_0.6.3 
+## [7] tibble_1.3.3 ggplot2_2.2.1 tidyverse_1.1.1.9000
+## 
+## loaded via a namespace (and not attached):
+## [1] Rcpp_0.12.11 cellranger_1.1.0 compiler_3.4.1 
+## [4] plyr_1.8.4 bindr_0.1 tools_3.4.1 
+## [7] digest_0.6.12 lubridate_1.6.0 jsonlite_1.5 
+## [10] evaluate_0.10.1 nlme_3.1-131 gtable_0.2.0 
+## [13] lattice_0.20-35 pkgconfig_2.0.1 rlang_0.1.1 
+## [16] psych_1.7.5 rstudioapi_0.6 yaml_2.1.14 
+## [19] parallel_3.4.1 haven_1.0.0 bindrcpp_0.2 
+## [22] xml2_1.1.1 httr_1.2.1 knitr_1.16 
+## [25] hms_0.3 rprojroot_1.2 grid_3.4.1 
+## [28] glue_1.1.1 R6_2.2.2 readxl_1.0.0 
+## [31] foreign_0.8-69 rmarkdown_1.6 modelr_0.1.0 
+## [34] reshape2_1.4.2 magrittr_1.5 clisymbols_1.2.0 
+## [37] boxes_0.0.0.9000 backports_1.1.0 scales_0.4.1 
+## [40] htmltools_0.3.6 rvest_0.3.2 assertthat_0.2.0 
+## [43] mnormt_1.5-5 colorspace_1.3-2 labeling_0.3 
+## [46] stringi_1.1.5 lazyeval_0.2.0 munsell_0.4.3 
+## [49] broom_0.4.2 crayon_1.3.2.9000
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R | Tao Yan</title>
+    <link>/categories/r/</link>
+      <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <description>R</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Thu, 12 Jul 2018 12:19:05 +0000</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>R</title>
+      <link>/categories/r/</link>
+    </image>
+    
+    <item>
+      <title>改善R语言代码的5个小技巧</title>
+      <link>/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Thu, 12 Jul 2018 12:19:05 +0000</pubDate>
+      <guid>/post/2018-07-12.%E6%94%B9%E5%96%84r%E8%AF%AD%E8%A8%80%E4%BB%A3%E7%A0%81%E7%9A%845%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/0m7AJLj3he.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;这篇文章来源于&lt;a href=&#34;https://twitter.com/drsimonj&#34; target=&#34;_blank&#34;&gt;@drsimonj&lt;/a&gt;的&lt;a href=&#34;https://drsimonj.svbtle.com/five-simple-tricks-to-improve-your-r-cod&#34; target=&#34;_blank&#34;&gt;博客&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;从1开始排序&#34;&gt;从1开始排序&lt;/h2&gt;
+
+&lt;p&gt;当使用冒号(:)创建序列时，尝试用&lt;code&gt;seq()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# sequence a vector
+x &amp;lt;- runif(10)
+seq(x)
+##  [1]  1  2  3  4  5  6  7  8  9 10
+
+#sequence an integer
+
+seq(nrow(mtcars))
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
+## [24] 24 25 26 27 28 29 30 31 32
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;冒号有时会产生意想不到的结果，它会在我们不注意的情况下产生各种问题，比如当我们对空向量的长度进行排序的时候：&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;# empty vector
+x = c()
+1:length(x)
+## [1] 1 0
+
+seq(x)
+## integer(0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;利用&lt;code&gt;seq()&lt;/code&gt;可以自动创建从1到对象长度的序列，这样就可以避免使用&lt;code&gt;length()&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;vcetor-而非-c&#34;&gt;&lt;code&gt;vcetor()&lt;/code&gt;而非&lt;code&gt;c()&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;创建空向量的时候，尝试使用&lt;code&gt;vector(&amp;quot;type&amp;quot;, length)&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# a numeric vector with 5 elements
+vector(&amp;quot;numeric&amp;quot;, 10)
+##  [1] 0 0 0 0 0 0 0 0 0 0
+
+#a character vector with 5 elements
+vector(&amp;quot;character&amp;quot;, 5)
+## [1] &amp;quot;&amp;quot; &amp;quot;&amp;quot; &amp;quot;&amp;quot; &amp;quot;&amp;quot; &amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用&lt;code&gt;vector()&lt;/code&gt;可以提高内存使用率并提高运行速度&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;n &amp;lt;- 1e05
+x_empty &amp;lt;- c()
+system.time(
+  for (i in seq(n)){
+    x_empty &amp;lt;- c(x_empty,i)
+  }
+)
+##    user  system elapsed 
+##    9.69    0.03    9.97
+n &amp;lt;- 1e05
+x_zeros &amp;lt;- vector(&amp;quot;integer&amp;quot;, n)
+system.time(
+  for (i in seq(n)){
+    x_zeros[i] &amp;lt;- i
+  }
+)
+##    user  system elapsed 
+##       0       0       0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;放弃-which&#34;&gt;放弃&lt;code&gt;which()&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;使用R语言的时候，我们常常使用&lt;code&gt;which()&lt;/code&gt;从某个布尔条件中获取索引，然后根据索引提取数据,其实没有必要使用&lt;code&gt;which()&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#obtain elements greater than 5
+x &amp;lt;- 3:7
+#use which (not necessary)
+x[which(x&amp;gt;5)]
+## [1] 6 7
+#no which
+x[x&amp;gt;5]
+## [1] 6 7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者计算大于5的元素个数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#use which
+length(which(x&amp;gt;5))
+## [1] 2
+# no which
+sum(x&amp;gt;5)
+## [1] 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;实际上我们需要的是布尔值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;condition &amp;lt;- x&amp;gt;5
+condition
+## [1] FALSE FALSE FALSE  TRUE  TRUE
+x[condition]
+## [1] 6 7
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当与&lt;code&gt;sum()&lt;/code&gt;或者&lt;code&gt;mean()&lt;/code&gt;结合使用时，可以用布尔值来获取满足条件的值的计数或比例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sum(condition)
+## [1] 2
+mean(condition)
+## [1] 0.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;但是&lt;code&gt;which()&lt;/code&gt;可以告诉我们TRUE值的索引号&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;which(condition)
+## [1] 4 5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;测试任何或者所有的值是否为真，可以利用&lt;code&gt;any()&lt;/code&gt;和&lt;code&gt;all()&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(23)
+x &amp;lt;- runif(10)
+if (length(which(x&amp;gt;0.5))&amp;gt;0)
+  print(&amp;quot;At least one value is greater than 0.5&amp;quot;)
+## [1] &amp;quot;At least one value is greater than 0.5&amp;quot;
+
+if (any(x&amp;gt;0.5))
+  print(&amp;quot;At least one value is greater than 0.5&amp;quot;)
+## [1] &amp;quot;At least one value is greater than 0.5&amp;quot;
+
+#use which and length to test if all values are less than 1
+if (length(which(x&amp;lt;1))==length(x))
+  print(&amp;quot;All values are less than 1&amp;quot;)
+## [1] &amp;quot;All values are less than 1&amp;quot;
+
+if (all(x&amp;lt;1))
+  print(&amp;quot;All values are less than 1&amp;quot;)
+## [1] &amp;quot;All values are less than 1&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另外一点是可以节省时间&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;x &amp;lt;- runif(1e8)
+
+system.time(x[which(x &amp;gt; .5)])
+##    user  system elapsed 
+##    1.24    0.09    1.33
+system.time(x[x &amp;gt; .5])
+##    user  system elapsed 
+##    0.97    0.14    1.13
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;factor-你的变量&#34;&gt;&lt;code&gt;factor&lt;/code&gt;你的变量&lt;/h2&gt;
+
+&lt;p&gt;当移除一个元素之后，被移除的元素仍然占据着一个位置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(23)
+x &amp;lt;-factor(sample(letters,5,replace = FALSE))
+x
+## [1] o f h q s
+## Levels: f h o q s
+plot(x)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dK2i1bjhG4.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;移除&lt;strong&gt;s&lt;/strong&gt;之后&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;x &amp;lt;- x[x!=&amp;quot;s&amp;quot;]
+x
+## [1] o f h q
+## Levels: f h o q s
+plot(x)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/eAb8d887iA.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;一种解决办法是再次&lt;code&gt;factor()&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;x &amp;lt;- factor(x)
+x
+## [1] o f h q
+## Levels: f h o q
+plot(x)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/HId1H0ICc0.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;另外一种方法是利用&lt;code&gt;droplevels()&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(23)
+x &amp;lt;-factor(sample(letters,5,replace = FALSE))
+x &amp;lt;- x[x!=&amp;quot;s&amp;quot;]
+x &amp;lt;- droplevels(x)
+x
+## [1] o f h q
+## Levels: f h o q
+plot(x)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/HId1H0ICc0.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;优先使用&#34;&gt;优先使用$&lt;/h2&gt;
+
+&lt;p&gt;从data.frame中提取数据时，在行$之前指定列[&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#row first,column second - not ideal
+mtcars[mtcars$cyl==4, ]$hp
+##  [1]  93  62  95  66  52  65  97  66  91 113 109
+#column first, row second - much better
+mtcars$hp[mtcars$cyl==4]
+##  [1]  93  62  95  66  52  65  97  66  91 113 109
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;原因如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;尽量避免使用烦人的逗号&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;提高运行速度&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Simulate a data frame...
+n &amp;lt;- 1e7
+d &amp;lt;- data.frame(
+a = seq(n),
+b = runif(n)
+)
+
+# rows first, column second - not ideal
+system.time(d[d$b &amp;gt; .5, ]$a)
+##    user  system elapsed 
+##    0.47    0.00    0.47
+
+# column first, rows second - much better
+system.time(d$a[d$b &amp;gt; .5])
+##    user  system elapsed 
+##    0.11    0.00    0.11
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+
+## R version 3.5.1 (2018-07-02)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_3.5.1  backports_1.1.2 magrittr_1.5    rprojroot_1.3-2
+##  [5] tools_3.5.1     htmltools_0.3.6 yaml_2.1.19     Rcpp_0.12.17   
+##  [9] stringi_1.1.7   rmarkdown_1.10  knitr_1.20      stringr_1.3.1  
+## [13] digest_0.6.15   evaluate_0.10.1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>读取含有多个表头的数据</title>
+      <link>/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</link>
+      <pubDate>Tue, 10 Jul 2018 12:19:05 +0000</pubDate>
+      <guid>/post/2018-07-10.%E8%AF%BB%E5%8F%96%E5%90%AB%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%A1%A8%E5%A4%B4%E7%9A%84%E6%95%B0%E6%8D%AE/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/DBBl3GJmEm.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们有时读取数据的时候，往往不是我们希望的表头只有一行，有时会出现多个表头数据用来描述列明，比如下面这样的数据：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/HE0aJI6HbG.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;用EXCEL打开如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/bJmgi9dlB6.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;此时我们读取该数据的话，显示如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(readr)
+link &amp;lt;- &amp;quot;https://dataverse.harvard.edu/api/access/datafile/2712105&amp;quot;
+stickers &amp;lt;- read_tsv(link)
+stickers
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## # A tibble: 402 x 18
+##    SubjectNumber Condition NumberStickers NumberEnvelopes Gender Agemonths
+##    &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;      &amp;lt;dbl&amp;gt;
+##  1 [Included Sa~ 1=12:1; ~ 1=12; 2=30     1=1 recipient;~ 1=fem~        NA
+##  2 1             1         1              1               1             36
+##  3 2             1         1              1               2             36
+##  4 3             1         1              1               2             36
+##  5 4             1         1              1               1             36
+##  6 5             1         1              1               2             36
+##  7 6             1         1              1               2             36
+##  8 7             2         1              2               1             36
+##  9 8             2         1              2               2             36
+## 10 9             3         2              1               2             36
+## # ... with 392 more rows, and 12 more variables: Ageyears &amp;lt;dbl&amp;gt;,
+## #   Agegroups &amp;lt;chr&amp;gt;, `Subject&#39;sEnvelope` &amp;lt;chr&amp;gt;, LeftEnvelope &amp;lt;chr&amp;gt;,
+## #   RightEnvelope &amp;lt;chr&amp;gt;,
+## #   `absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)` &amp;lt;chr&amp;gt;,
+## #   `PercentGiven(Outof100percent)` &amp;lt;chr&amp;gt;, Giveornot &amp;lt;chr&amp;gt;,
+## #   LargerEnvelopeabs &amp;lt;chr&amp;gt;, LargeEnvelopepercent &amp;lt;chr&amp;gt;,
+## #   SmallerEnvelopeabs &amp;lt;chr&amp;gt;, SmallEnvelopepercent &amp;lt;chr&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看出读取进来的数据有如下问题：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;第一行不是数据信息，而是作为列名的补充数据&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;针对这种问题，&lt;a href=&#34;https://github.com/tidyverse/readr/issues/179&#34; target=&#34;_blank&#34;&gt;Hadley&lt;/a&gt;给出了答案，很简单，分成两步来读取数据，首先读取列名，然后跳过列名读取数据进行组合&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(dplyr)
+library(janitor)
+#读取数据列名
+stickers_name &amp;lt;- link%&amp;gt;%
+  read_tsv(n_max = 0)%&amp;gt;%
+  rename(stickersgiven = &amp;quot;absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)&amp;quot;)%&amp;gt;% 
+  names()
+
+#读取数据并设置列名
+stickers &amp;lt;- link%&amp;gt;%
+  read_tsv(skip = 2, col_names = stickers_name)%&amp;gt;%
+  clean_names()
+stickers
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## # A tibble: 401 x 18
+##    subject_number condition number_stickers number_envelopes gender
+##             &amp;lt;int&amp;gt;     &amp;lt;int&amp;gt;           &amp;lt;int&amp;gt;            &amp;lt;int&amp;gt;  &amp;lt;int&amp;gt;
+##  1              1         1               1                1      1
+##  2              2         1               1                1      2
+##  3              3         1               1                1      2
+##  4              4         1               1                1      1
+##  5              5         1               1                1      2
+##  6              6         1               1                1      2
+##  7              7         2               1                2      1
+##  8              8         2               1                2      2
+##  9              9         3               2                1      2
+## 10             10         3               2                1      2
+## # ... with 391 more rows, and 13 more variables: agemonths &amp;lt;dbl&amp;gt;,
+## #   ageyears &amp;lt;dbl&amp;gt;, agegroups &amp;lt;int&amp;gt;, subjects_envelope &amp;lt;int&amp;gt;,
+## #   left_envelope &amp;lt;int&amp;gt;, right_envelope &amp;lt;int&amp;gt;, stickersgiven &amp;lt;int&amp;gt;,
+## #   percent_given_outof100percent &amp;lt;dbl&amp;gt;, giveornot &amp;lt;int&amp;gt;,
+## #   larger_envelopeabs &amp;lt;int&amp;gt;, large_envelopepercent &amp;lt;dbl&amp;gt;,
+## #   smaller_envelopeabs &amp;lt;int&amp;gt;, small_envelopepercent &amp;lt;dbl&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;完美解决！！！&lt;/p&gt;
+
+&lt;p&gt;鉴于有两行作为列名，我们可以制作一个字典来存储列名信息：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(tidyr)
+stickers_dict &amp;lt;- link%&amp;gt;%
+  read_tsv(n_max = 1)%&amp;gt;%
+  rename(stickersgiven = &#39;absolutenumberofstickersgiven(Conditions1or3:Outof12;Conditions2or4:Outof30)&#39;) %&amp;gt;% 
+  clean_names()%&amp;gt;%
+  gather(variable_name, variable_description)
+stickers_dict
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## # A tibble: 18 x 2
+##    variable_name                 variable_description                     
+##    &amp;lt;chr&amp;gt;                         &amp;lt;chr&amp;gt;                                    
+##  1 subject_number                [Included Sample Only]                   
+##  2 condition                     1=12:1; 2=12:2, 3=30:1, 4=30:2           
+##  3 number_stickers               1=12; 2=30                               
+##  4 number_envelopes              1=1 recipient; 2=2 recipients            
+##  5 gender                        1=female; 2=male                         
+##  6 agemonths                     &amp;lt;NA&amp;gt;                                     
+##  7 ageyears                      &amp;lt;NA&amp;gt;                                     
+##  8 agegroups                     1=3-4yrs; 2=5-6yrs; 3=7-8yrs; 4=9-11yrs  
+##  9 subjects_envelope             How many stickers did the child keep for~
+## 10 left_envelope                 1 recipient conditions: How many sticker~
+## 11 right_envelope                1 recipient conditions: N/A; 2 recipient~
+## 12 stickersgiven                 Regardless of condition, the number of s~
+## 13 percent_given_outof100percent Regardless of condition, the proportion ~
+## 14 giveornot                     1=Donated 1 or more stickers to the reci~
+## 15 larger_envelopeabs            Raw number of stickers (out of 30: Condi~
+## 16 large_envelopepercent         Proportion of stickers (out of 100%; Con~
+## 17 smaller_envelopeabs           Raw number of stickers (out of 30: Condi~
+## 18 small_envelopepercent         Proportion of stickers (out of 100%; Con~
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## R version 3.5.1 (2018-07-02)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] tidyr_0.8.1   janitor_1.0.0 dplyr_0.7.5   readr_1.1.1  
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.17     bindr_0.1.1      knitr_1.20       magrittr_1.5    
+##  [5] hms_0.4.2        tidyselect_0.2.4 R6_2.2.2         rlang_0.2.1     
+##  [9] stringr_1.3.1    tools_3.5.1      utf8_1.1.4       cli_1.0.0       
+## [13] htmltools_0.3.6  yaml_2.1.19      rprojroot_1.3-2  digest_0.6.15   
+## [17] assertthat_0.2.0 tibble_1.4.2     crayon_1.3.4     bindrcpp_0.2.2  
+## [21] purrr_0.2.5      curl_3.2         snakecase_0.9.1  glue_1.2.0      
+## [25] evaluate_0.10.1  rmarkdown_1.10   stringi_1.1.7    compiler_3.5.1  
+## [29] pillar_1.2.3     backports_1.1.2  pkgconfig_2.0.1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>ggpubr包学习笔记之轻松修改图形参数</title>
+      <link>/post/2017-09-13-r-ggpubr%E5%8C%85%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BD%BB%E6%9D%BE%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</link>
+      <pubDate>Wed, 13 Sep 2017 21:13:14 -0500</pubDate>
+      <guid>/post/2017-09-13-r-ggpubr%E5%8C%85%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BD%BB%E6%9D%BE%E4%BF%AE%E6%94%B9%E5%9B%BE%E5%BD%A2%E5%8F%82%E6%95%B0/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dm80Clb7Eh.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;越学习包&lt;strong&gt;ggpubr&lt;/strong&gt;越感觉其功能强大，本文主要讲解一下如何修改图形参数，我们知道&lt;strong&gt;ggplot2&lt;/strong&gt;有着十分强大的绘图功能，但是其参数之复杂足以让人望而却步。&lt;strong&gt;ggpubr&lt;/strong&gt;提供的函数ggpar()可以十分轻松地让我们修改图形参数，并且可以无缝对接到ggplot图形中。ggpar()可以修改以下图形参数：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;图形标题，包括坐标轴标题以及图例标题&lt;/li&gt;
+&lt;li&gt;图例的位置以及外观&lt;/li&gt;
+&lt;li&gt;颜色必需的能修改&lt;/li&gt;
+&lt;li&gt;坐标轴limits&lt;/li&gt;
+&lt;li&gt;坐标转换&lt;/li&gt;
+&lt;li&gt;坐标刻度&lt;/li&gt;
+&lt;li&gt;主题&lt;/li&gt;
+&lt;li&gt;翻转等&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;安装包&#34;&gt;安装包&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#two ways to isntall the ggpubr package
+install.packages(&amp;quot;ggpubr&amp;quot;)
+#install the packages from the Github
+devtools::install_github(&amp;quot;kassambara/ggpubr&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;绘图&#34;&gt;绘图&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;library(ggpubr)#load ggpubr
+#basic plots
+p &amp;lt;- ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color=&amp;quot;dose&amp;quot;)
+p
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7hKdEb1ehB.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#add grids by the function grids()
+p+grids(linetype=&amp;quot;dashed&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/f77I1FIlbB.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#add panel borders lines by the function border()
+p+border(&amp;quot;black&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/cGa2dj6AB8.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#change background color
+p+bgcolor(&amp;quot;#BFD5E3&amp;quot;)+border(&amp;quot;#BFD5E3&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/jAIc0AjBi8.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;修改标题以及坐标轴标签&#34;&gt;修改标题以及坐标轴标签&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;p2 &amp;lt;- ggpar(p,
+            title = &amp;quot;Box plot created with ggpubr&amp;quot;,
+            subtitle = &amp;quot;Length by dose&amp;quot;,
+            caption = &amp;quot;Source: ggpubr&amp;quot;,
+            xlab = &amp;quot;Dose (mg)&amp;quot;,
+            ylab = &amp;quot;Teeth length&amp;quot;,
+            legend.title = &amp;quot;Dose (mg)&amp;quot;)
+p2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/5K7D23dIcC.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;修改标题以及标签的字体&#34;&gt;修改标题以及标签的字体&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;ggpar(p2, 
+      font.title = c(14, &amp;quot;bold.italic&amp;quot;, &amp;quot;red&amp;quot;),
+      font.subtitle = c(10, &amp;quot;orange&amp;quot;),
+      font.caption = c(10, &amp;quot;orange&amp;quot;),
+      font.x = c(14, &amp;quot;blue&amp;quot;),
+      font.y = c(14, &amp;quot;#993333&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dm80Clb7Eh.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当然也可以直接用函数font()&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p2+
+  font(&amp;quot;title&amp;quot;, size = 14, color = &amp;quot;red&amp;quot;, face = &amp;quot;bold.italic&amp;quot;)+
+  font(&amp;quot;subtitle&amp;quot;, size = 10, color = &amp;quot;orange&amp;quot;)+
+  font(&amp;quot;caption&amp;quot;, size = 10, color = &amp;quot;orange&amp;quot;)+
+  font(&amp;quot;xlab&amp;quot;, size = 12, color = &amp;quot;blue&amp;quot;)+
+  font(&amp;quot;ylab&amp;quot;, size = 12, color = &amp;quot;#993333&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6EHIKCbjdB.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从上面可以看出我们可以一次性完成添加标题以及修改字体&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggpar(p,
+      title = &amp;quot;Plot of length \n by dose&amp;quot;,
+      xlab = &amp;quot;Dose (mg)&amp;quot;,
+      legend.title = &amp;quot;Dose (mg)&amp;quot;,
+      font.title = c(14, &amp;quot;bold.italic&amp;quot;, &amp;quot;red&amp;quot;),
+      font.x = c(14, &amp;quot;bold&amp;quot;, &amp;quot;#2E9FDF&amp;quot;),
+      font.y = c(14, &amp;quot;bold&amp;quot;, &amp;quot;#E7B800&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/K5Hh142DDJ.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;修改图例位置与外观&#34;&gt;修改图例位置与外观&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;ggpar(p,
+      legend = &amp;quot;right&amp;quot;, legend.title = &amp;quot;Dose (mg)&amp;quot;)+
+  font(&amp;quot;legend.title&amp;quot;, color=&amp;quot;blue&amp;quot;, face = &amp;quot;bold&amp;quot;)+
+  font(&amp;quot;legend.text&amp;quot;, color = &amp;quot;red&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/66Fl04A1Eg.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;颜色修改&#34;&gt;颜色修改&lt;/h2&gt;
+
+&lt;p&gt;ggpar()中有一个参数palette，即调色板，除了可以我们自定义颜色外，还可以调用RColorBrewer中的调色板以及包&lt;strong&gt;ggsci&lt;/strong&gt;中的专门用于学术杂志的配色。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#use custom color palette
+ggpar(p, palette = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#E7B800&amp;quot;, &amp;quot;#FC4E07&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/j04LBcgCFf.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#use the RColorBrewer palette
+ggpar(p, palette = &amp;quot;Dark2&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gg16gmeE3D.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggpar(p, palette = &amp;quot;grey&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/3h1K0f5aaK.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#use the ggsci palette
+ggpar(p, palette = &amp;quot;npg&amp;quot;)#nature
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/13fcD9GfDC.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当然也可以直接用&lt;strong&gt;ggpubr&lt;/strong&gt;中的函数color_palette()以及fill_palette()&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#jco color palette
+p+color_palette(&amp;quot;jco&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/aD2IK0b75D.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#custom color
+p+color_palette(c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#E7B800&amp;quot;, &amp;quot;#FC4E07&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Jj9BG7J24h.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;颜色梯度&#34;&gt;颜色梯度&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;ggpubr&lt;/strong&gt;提供了两个函数用来处理颜色梯度：gradient_color()和gradient_fill()
+通过一个例子来看如何运作&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#first create a scatter plot
+p3 &amp;lt;- ggscatter(mtcars, x=&amp;quot;wt&amp;quot;, y=&amp;quot;mpg&amp;quot;, color=&amp;quot;mpg&amp;quot;, size = 2)
+#change the gradient color
+#use one custom color
+p3+gradient_color(&amp;quot;red&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ah3ed5b1Ai.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#use two colors
+p3+gradient_color(c(&amp;quot;blue&amp;quot;, &amp;quot;red&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/1H7KBAdKLd.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#three colors
+p3+gradient_color(c(&amp;quot;blue&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;red&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/kCaHdmcG6i.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#use the RColorBrewer palette
+p3+gradient_color(&amp;quot;RdYlBu&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/FHKlGj4H8F.png?raw=true&#34; alt=&#34;&#34; /&gt;
+gradient_fill()用法也一样，不过是填充，这里就不演示了。&lt;/p&gt;
+
+&lt;h2 id=&#34;修改坐标轴limits-scales&#34;&gt;修改坐标轴limits、scales&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#change y axis limits
+ggpar(p, ylim = c(0, 50))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/CFamb4cglg.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#change y axis cale to log2
+ggpar(p, yscale = &amp;quot;log2&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Deh1KddGKj.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#format  axis scale
+ggpar(p, yscale = &amp;quot;log2&amp;quot;, format.scale = TRUE)#format.scale=TRUE说明y轴刻度也会scale
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/IgF4D3LFiL.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#也可以直接用yscale()
+p+yscale(&amp;quot;log2&amp;quot;, .format = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/lfk8D0i00d.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;自定义坐标轴标签及刻度&#34;&gt;自定义坐标轴标签及刻度&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#change the font of x and y axis texts
+#rotate x and y texts
+p+
+  font(&amp;quot;xy.text&amp;quot;, size = 12, color = &amp;quot;blue&amp;quot;, face = &amp;quot;bold&amp;quot;)+
+  rotate_x_text(45)+
+  rotate_y_text(45)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/DhAlF966Cb.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#remove ticks and axis texts
+p+rremove(&amp;quot;ticks&amp;quot;)+
+  rremove(&amp;quot;axis.text&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/c6cHkJj7Hk.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;修改主题&#34;&gt;修改主题&lt;/h2&gt;
+
+&lt;p&gt;默认主题为theme_pubr(),可以调用包&lt;strong&gt;ggthemes&lt;/strong&gt;里面的主题&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(ggthemes)
+p+ggthemes::theme_economist()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/k49JlfLfDg.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;移除ggplot组件&#34;&gt;移除ggplot组件&lt;/h2&gt;
+
+&lt;p&gt;通过ggpubr::rremove()可以移除组件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p &amp;lt;- ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, ggtheme = theme_igray())
+p
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/G53edij9j4.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p+rremove(&amp;quot;grid&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/CciAa0JEhH.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## R version 3.4.1 (2017-06-30)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.3 LTS
+## 
+## Matrix products: default
+## BLAS: /usr/lib/atlas-base/atlas/libblas.so.3.0
+## LAPACK: /usr/lib/atlas-base/atlas/liblapack.so.3.0
+## 
+## locale:
+##  [1] LC_CTYPE=zh_CN.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=zh_CN.UTF-8        LC_COLLATE=zh_CN.UTF-8    
+##  [5] LC_MONETARY=zh_CN.UTF-8    LC_MESSAGES=zh_CN.UTF-8   
+##  [7] LC_PAPER=zh_CN.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=zh_CN.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] ggthemes_3.4.0 ggpubr_0.1.5   magrittr_1.5   ggplot2_2.2.1 
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.12       bindr_0.1          knitr_1.17        
+##  [4] munsell_0.4.3      colorspace_1.3-2   R6_2.2.2          
+##  [7] rlang_0.1.2        stringr_1.2.0      plyr_1.8.4        
+## [10] dplyr_0.7.3        tools_3.4.1        grid_3.4.1        
+## [13] gtable_0.2.0       htmltools_0.3.6    yaml_2.1.14       
+## [16] lazyeval_0.2.0     rprojroot_1.2      digest_0.6.12     
+## [19] assertthat_0.2.0   tibble_1.3.4       bindrcpp_0.2      
+## [22] ggsci_2.7          RColorBrewer_1.1-2 purrr_0.2.3       
+## [25] glue_1.1.1         evaluate_0.10.1    rmarkdown_1.6     
+## [28] labeling_0.3       stringi_1.1.5      compiler_3.4.1    
+## [31] scales_0.5.0       backports_1.1.0    pkgconfig_2.0.1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

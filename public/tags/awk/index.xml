@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>awk | Tao Yan</title>
+    <link>/tags/awk/</link>
+      <atom:link href="/tags/awk/index.xml" rel="self" type="application/rss+xml" />
+    <description>awk</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Thu, 16 Nov 2017 09:19:05 +0000</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>awk</title>
+      <link>/tags/awk/</link>
+    </image>
+    
+    <item>
+      <title>Linux学习笔记（七）</title>
+      <link>/post/2017-11-16.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</link>
+      <pubDate>Thu, 16 Nov 2017 09:19:05 +0000</pubDate>
+      <guid>/post/2017-11-16.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%83/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/97fC0bjE56.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;awk命令&#34;&gt;awk命令&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;awk&lt;/strong&gt;是一种编程语言，用于在unix下处理数据以及文本。数据可以来自stdin、一个或者多个文件或者其它命令的输出，同时支持自定义函数和正则表达式，更多是作为脚本来使用。&lt;/p&gt;
+
+&lt;h2 id=&#34;awk命令格式以及选项&#34;&gt;awk命令格式以及选项&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;awk&lt;/strong&gt;使用一个或多个如下结构：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pattren { action }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;每一个pattern是一个表达式或者正则表达式，pattern类似于其它编程语言中的if语句：如果表达式为TRUE或者正则表达式匹配到的话，后面的action命令会被执行。&lt;/p&gt;
+
+&lt;h2 id=&#34;awk语法形式&#34;&gt;awk语法形式&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;awk [options] &#39;script&#39; var=value file(s)
+awk [options] -f scriptfile var=value file(s)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;常用命令选项：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-F fs：fs指定输入分隔符，fs可以是字符串或者正则表达式&lt;/li&gt;
+&lt;li&gt;-v var=value：赋值一个用户定义变量，将外部变量传递给awk&lt;/li&gt;
+&lt;li&gt;-f scriptfile：从脚本文件中读取awk命令&lt;/li&gt;
+&lt;li&gt;-m[fr] val：对val值设置内在限制，-mf选项限制分配给val的最大块数目；-mr选项限制记录的最大块数目，这两个功能是扩展功能，在标准awk中不适用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;awk模式以及操作&#34;&gt;awk模式以及操作&lt;/h2&gt;
+
+&lt;p&gt;上面已经讲了pattern以及action，awk就是有一个或多个模式与操作组成的。&lt;/p&gt;
+
+&lt;h3 id=&#34;模式pattern&#34;&gt;模式pattern&lt;/h3&gt;
+
+&lt;p&gt;pattern可以是以下任意一种：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;正则表达式&lt;/li&gt;
+&lt;li&gt;关系表达式：使用运算符操作，可以是字符串或者数字的比较测试&lt;/li&gt;
+&lt;li&gt;模式匹配表达式：用运算符&lt;code&gt;~&lt;/code&gt;(匹配)和&lt;code&gt;!&lt;/code&gt;(不匹配)&lt;/li&gt;
+&lt;li&gt;BEGIN语句块、pattern语句块以及END语句块，涉及十分复杂，后续再讲解&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;操作&#34;&gt;操作&lt;/h3&gt;
+
+&lt;p&gt;操作由一个或多个命令、函数表达式组成，相互之间使用换行符或者分号分开，并位于大括号内。主要部分是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;变量或者数组赋值&lt;/li&gt;
+&lt;li&gt;输出命令&lt;/li&gt;
+&lt;li&gt;内置函数&lt;/li&gt;
+&lt;li&gt;控制流语句&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;awk脚本基本结构&#34;&gt;awk脚本基本结构&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;awk &#39;BEGIN{ print &amp;quot;start&amp;quot;} pattern{ command } END{ print &amp;quot;end&amp;quot;}&#39; file
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一个awk脚本通常是由：BEIGIN语句块、能够使用模式匹配的通用语句块、END语句块三部分组成，这三部分是可选的，任意一部分都可以不出现在脚本中。脚本通常是在&amp;rdquo;或&amp;rdquo;&amp;ldquo;中：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;awk &#39;BEGIN{ i=0 } { i++ } END{ print i }&#39; filename
+awk &amp;quot;BEGIN{ i=0 } { i++ } END{ print i }&amp;quot; filename
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;awk的工作原理&#34;&gt;awk的工作原理&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;awk &#39;BEGIN{ commands } pattern{ commands } END{ commands }&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;工作原理：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;第一步是执行&lt;code&gt;BEGIN{ commands }&lt;/code&gt;语句块中的语句&lt;/li&gt;
+&lt;li&gt;第二步是从文件或者标准输入中读取一行，然后执行&lt;code&gt;pattern{ commands }&lt;/code&gt;语句块，它是逐行扫描文件，从第一行到最后一行重复此命令直到文件被完全读取完毕&lt;/li&gt;
+&lt;li&gt;最后当读至输入流末尾时，执行&lt;code&gt;END{ commands }&lt;/code&gt;语句块&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;注意事项：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;BEGIN{ commands }&lt;/code&gt;语句块在awk开始从输入流中读取之前被执行，是一个可选语句块，比如变量初始化、打印输出表格的表头等语句通常可以写在此语句块中&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;END{ commands }&lt;/code&gt;语句块在awk从输入流中读取所有行之后被执行，比如打印所有行的分析结果这类信息汇总都是在此语句块中完成，也是一个可选语句块&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pattern{ commands }&lt;/code&gt;语句块是最重要的组成部分，也是可选的，如果没有提供此语句块，则默认执行{ print },即打印每一个读取到的行，awk读取到的每一行都会执行该语句块&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我们举个例子来说明一下：打印出*example.bed*文件的每一行，并且在开始读取之前打印出start，读取完毕之后打印出end&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{print &amp;quot;start&amp;quot;}{print}END{print &amp;quot;end&amp;quot;}&#39; example.bed
+start
+chr1    26      39
+chr1    32      47
+chr3    11      28
+chr1    40      49
+chr3    16      27
+chr1    9       28
+chr2    35      54
+chr1    10      19
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;敲黑板了！！！当print不带任何参数时，它就打印当前行，当print的参数以逗号进行分隔时，打印时则以空格作为定界符，在awk的print语句块中双引号是被当作拼接符来使用的。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ echo|awk &#39;{var1=&amp;quot;v1&amp;quot;;var2=&amp;quot;v2&amp;quot;;var3=&amp;quot;v3&amp;quot;;print var1,var2,var3;}&#39;
+
+v1 v2 v3
+$ echo|awk &#39;{var1=&amp;quot;v1&amp;quot;;var2=&amp;quot;v2&amp;quot;;var3=&amp;quot;v3&amp;quot;;print var1&amp;quot;=&amp;quot;var2&amp;quot;=&amp;quot;var3;}&#39;
+
+v1=v2=v3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{}类似于循环体，会对文件每一行进行迭代，通常变量初始化语句(比如i=0)以及打印文件头部的语句放在BEGIN语句块中，而将打印的结果等语句放在END语句块中。&lt;/p&gt;
+
+&lt;h2 id=&#34;awk内置变量&#34;&gt;awk内置变量&lt;/h2&gt;
+
+&lt;p&gt;awk内置大量的变量方便我们直接调用&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$n：当前记录的第n个字段，比如n为1表示第一个字段，n为2表示第二字段，以此类推&lt;/li&gt;
+&lt;li&gt;$0：表示执行过程中当前行的文本内容&lt;/li&gt;
+&lt;li&gt;FS：字段分隔符，默认是空格&lt;/li&gt;
+&lt;li&gt;IGNORECASE：如果为真表示忽略大小写进行匹配&lt;/li&gt;
+&lt;li&gt;NF：表示字段数，在执行过程中对应于当前的字段数&lt;/li&gt;
+&lt;li&gt;NR：表示记录数，在执行过程中对应于当前的行号&lt;/li&gt;
+&lt;li&gt;OFMT：数字的输出格式，默认为%.6g&lt;/li&gt;
+&lt;li&gt;OFS：输出字段分隔符，默认值为空格&lt;/li&gt;
+&lt;li&gt;ORS：输出记录分隔符，默认值为一个换行符&lt;/li&gt;
+&lt;li&gt;RS：记录分隔符：默认是空格&lt;/li&gt;
+&lt;li&gt;RSTART：由match函数所匹配的字符串的第一个位置&lt;/li&gt;
+&lt;li&gt;RLENGTH：由match函数所匹配到的字符串的长度&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;举例说明部分变量：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head -n 3 example.bed|awk &#39;{print &amp;quot;Line No:&amp;quot;NR&amp;quot;, No of fields:&amp;quot;NF, &amp;quot;$0=&amp;quot;$0,&amp;quot;$1=&amp;quot;$1,&amp;quot;$2=&amp;quot;$2,&amp;quot;$3=&amp;quot;$3}&#39;
+Line No:1, No of fields:3 $0=chr1       26      39 $1=chr1 $2=26 $3=39
+Line No:2, No of fields:3 $0=chr1       32      47 $1=chr1 $2=32 $3=47
+Line No:3, No of fields:3 $0=chr3       11      28 $1=chr3 $2=11 $3=28
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面我们先选取前三行，然后分别打印出每一行的行号，每一行的字段数以及每一行的每一个字段。
+由于NF表示字段数，因此&lt;code&gt;print $NF&lt;/code&gt;就会打印出每一行的最后一个字段,&lt;code&gt;print $(NF-1)&lt;/code&gt;就会打印出倒数第二个字段，依此类推。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head -n 3 example.bed|awk &#39;{print $NF}&#39;
+39
+47
+28
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;统计一个文件有多少行可以使用以下命令语句：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;END{print NR}&#39; Mus_musculus.GRCm38.75_chr1.gtf
+81231
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面我们只是用了END语句块，在读入每一行时awk会将NR更新为对应的行号，所以当读取到最后一行时就会打印出最后一行的行号NR也就是文件的总行数了。&lt;/p&gt;
+
+&lt;h2 id=&#34;传递外部变量给awk&#34;&gt;传递外部变量给awk&lt;/h2&gt;
+
+&lt;p&gt;借助-v选项可以将外部值（非来自stdin）传递给awk：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ var=1000
+$ echo |awk &#39;{print var}&#39; var=&amp;quot;$var&amp;quot;
+1000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;awk运算与判断&#34;&gt;awk运算与判断&lt;/h2&gt;
+
+&lt;p&gt;awk不仅支持算术运算还支持逻辑运算&lt;/p&gt;
+
+&lt;h3 id=&#34;算术运算符&#34;&gt;算术运算符&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;+-&lt;/td&gt;
+&lt;td&gt;加减&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;* / &amp;amp;&lt;/td&gt;
+&lt;td&gt;乘 除 求余&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;+-！&lt;/td&gt;
+&lt;td&gt;一元加减 逻辑非&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;^***&lt;/td&gt;
+&lt;td&gt;求幂&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;—++ &amp;ndash;&lt;/td&gt;
+&lt;td&gt;增加或减少，作为前缀&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;所有算术运算符进行操作，操作数自动转为数值，所有非数值转为0&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;赋值运算符&#34;&gt;赋值运算符&lt;/h3&gt;
+
+&lt;p&gt;主要赋值运算符有：= += -= *= /= ……= **=&lt;/p&gt;
+
+&lt;p&gt;举例说明：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;a+=5,等价于a=a+5.其它类似
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;逻辑运算符&#34;&gt;逻辑运算符&lt;/h3&gt;
+
+&lt;p&gt;就是我们常见的&amp;rdquo;或&amp;rdquo;、&amp;rdquo;与&amp;rdquo;、&amp;rdquo;非&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{a=1;b=2;print (a&amp;gt;5&amp;amp;&amp;amp;b&amp;gt;2),(a&amp;gt;5||b&amp;lt;=2);}&#39;
+0 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;正则运算符&#34;&gt;正则运算符&lt;/h3&gt;
+
+&lt;p&gt;主要有~和~！即匹配正则表达式和不匹配&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{a=&amp;quot;100test&amp;quot;;if(a~/^100*/){print &amp;quot;OK&amp;quot;;}}&#39;
+OK
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;关系运算符&#34;&gt;关系运算符&lt;/h3&gt;
+
+&lt;p&gt;主要是&amp;gt;、&amp;gt;=、=、==、!=、&amp;lt;、&amp;lt;=等&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{a=11;if(a&amp;gt;=9){print &amp;quot;OK&amp;quot;;}}&#39;
+OK
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;其他运算符&#34;&gt;其他运算符&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;运算符&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$&lt;/td&gt;
+&lt;td&gt;字段引用&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;空格&lt;/td&gt;
+&lt;td&gt;字符串连接符&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;?:&lt;/td&gt;
+&lt;td&gt;C条件表达式&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;in&lt;/td&gt;
+&lt;td&gt;数组中是否存在某值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&#34;运算符优先级&#34;&gt;运算符优先级&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/1JeD56aLBg.png?raw=true&#34; alt=&#34;级别越高越优先&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;awk高级输入输出&#34;&gt;awk高级输入输出&lt;/h2&gt;
+
+&lt;h3 id=&#34;next语句读取下一条记录&#34;&gt;next语句读取下一条记录&lt;/h3&gt;
+
+&lt;p&gt;awk中的next语句使用：在循环逐行匹配，如果遇到next，就会跳过当前行，直接忽略下面的语句而进入下一匹配，一般用于多行匹配&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;NR%2==1{next}{print NR,$0;}&#39; example.bed
+2 chr1  32      47
+4 chr1  40      49
+6 chr1  9       28
+8 chr1  10      19
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;后面还有很多复杂用法我暂时不讲了，再者如果遇到更复杂的情况最好使用其他更强大的工具比如python。下面我会讲讲awk如何处理生物信息学数据。&lt;/p&gt;
+
+&lt;h3 id=&#34;条件筛选&#34;&gt;条件筛选&lt;/h3&gt;
+
+&lt;p&gt;我们想要将长度大于18的行找出来（即end position-start position&amp;gt;18）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;$3-$2&amp;gt;18&#39; example.bed
+chr1    9       28
+chr2    35      54
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面是一些常用的逻辑操作符&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Comparison&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;a==b&lt;/td&gt;
+&lt;td&gt;a is equal to b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a!=b&lt;/td&gt;
+&lt;td&gt;a is not equal to b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;lt; b&lt;/td&gt;
+&lt;td&gt;a is less than b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;gt; b&lt;/td&gt;
+&lt;td&gt;a is greater than b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;lt;= b&lt;/td&gt;
+&lt;td&gt;a is less than or equal to b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;gt;= b&lt;/td&gt;
+&lt;td&gt;a is greater than or equal to b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a ~ b&lt;/td&gt;
+&lt;td&gt;a matches regular expression pattern b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a !~ b&lt;/td&gt;
+&lt;td&gt;a does not match regular expression pattern b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;a &amp;amp;&amp;amp; b&lt;/td&gt;
+&lt;td&gt;logical and a and b&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;!a&lt;/td&gt;
+&lt;td&gt;not a (logical negation)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;筛选出位于染1号染色体上长度大于10的行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;$1~/chr1/ &amp;amp;&amp;amp; $3-$2&amp;gt;10&#39; example.bed
+chr1    26      39
+chr1    32      47
+chr1    9       28
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;$1~/chr1/&lt;/code&gt;是一正则表达式匹配（正则表达式在符号斜杠里），表示第一列中能匹配到chr1的行，&lt;code&gt;~&lt;/code&gt;表示匹配，不匹配的话使用&lt;code&gt;!~&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;$1!~/chr1/ &amp;amp;&amp;amp; $3-$2&amp;gt;10&#39; example.bed
+chr3    11      28
+chr3    16      27
+chr2    35      54
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;正则表达式结合其他复杂命令（action）可以解决很多复杂问题，比如我们想要将2和3号染色体每行长度都打印出来自成一列：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;$1!~/chr1/ {print $0 &amp;quot;\t&amp;quot; $3-$2}&#39; example.bed
+chr3    11      28      17
+chr3    16      27      11
+chr2    35      54      19
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;目前我们已经讲了awk可以使用的两个功能：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;结合正则表达式以及算术对数据集进行过滤&lt;/li&gt;
+&lt;li&gt;利用算术重铸数据集的列&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;begin和end&#34;&gt;BEGIN和END&lt;/h2&gt;
+
+&lt;p&gt;前面我们已经讲了BEGIN和END，BEGIN在初始化变量方面十分有用，比如如果我们想要求平均长度的话，首先我们可以求和再除以总行数&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;BEGIN{sum=0};{sum+=($3-$2)};END{print &amp;quot;mean: &amp;quot;sum/NR};&#39; example.bed
+mean: 14
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;由于NR表示当前行数，因此我们就可以利用它来提取数据集中的数据，比如提取example.bed中的3-5行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;NR&amp;gt;=3&amp;amp;&amp;amp;NR&amp;lt;=5&#39; example.bed
+chr3    11      28
+chr1    40      49
+chr3    16      27
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用awk我们可以很方便的实现BED与GTF文件之间的转换，比如我们可以十分快速的实现从GTF文件中提取出BED文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ awk &#39;!/^#/ {print $1 &amp;quot;\t&amp;quot; $4-1 &amp;quot;\t&amp;quot; $5}&#39; Mus_musculus.GRCm38.75_chr1.gtf|head -n 3
+1       3054232 3054733
+1       3054232 3054733
+1       3054232 3054733
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;这里需要注意的是BED文件索引是从0开始的，GTF索引是从1开始的，因此start position我们需要减去1.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;awk内置了很多函数可以调用：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;function&lt;/th&gt;
+&lt;th&gt;description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;length(s)&lt;/td&gt;
+&lt;td&gt;length 0f a string s&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;tolower(s)&lt;/td&gt;
+&lt;td&gt;convert string s to lowercase&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;touppper(s)&lt;/td&gt;
+&lt;td&gt;convert string s to uppercase&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;substr(s,i,j)&lt;/td&gt;
+&lt;td&gt;return the substring of s that starts at i and ends at j&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;split(s,x,d)&lt;/td&gt;
+&lt;td&gt;split string s into chunks by delimiter d,place chunks in array x&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;sub(f,r,s)&lt;/td&gt;
+&lt;td&gt;find regular expression f in s and replace it with r(modifing s in place);use gsub for global substitution;returns a positive value if string is found&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

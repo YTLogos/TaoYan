@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Manipulation | Tao Yan</title>
+    <link>/categories/data-manipulation/</link>
+      <atom:link href="/categories/data-manipulation/index.xml" rel="self" type="application/rss+xml" />
+    <description>Data Manipulation</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Thu, 29 Jun 2017 12:34:08 -0500</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>Data Manipulation</title>
+      <link>/categories/data-manipulation/</link>
+    </image>
+    
+    <item>
+      <title>R语言data manipulation学习笔记之subset data</title>
+      <link>/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</link>
+      <pubDate>Thu, 29 Jun 2017 12:34:08 -0500</pubDate>
+      <guid>/post/2017-06-29.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bsubset-data/</guid>
+      <description>&lt;p&gt;数据分析过程中我们常常需要从数据集中抽取部分数据，本文将介绍如何提取子数据集，主要利用R自带的函数，以后会专门介绍data manipulation包&lt;strong&gt;dplyr&lt;/strong&gt;。 提取子数据集主要分为select以及exclude，这里主要介绍两种方法，一是利用操作符[]进行选取，二是利用subset()进行抽取。&lt;/p&gt;
+
+&lt;h2 id=&#34;利用-进行提取&#34;&gt;利用[]进行提取&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#use the iris dataset
+head(iris)
+## Sepal.Length Sepal.Width Petal.Length Petal.Width Species 
+## 1   5.1          3.5          1.4        0.2       setosa
+## 2   4.9          3.0          1.4        0.2       setosa
+## 3   4.7          3.2          1.3        0.2       setosa
+## 4   4.6          3.1          1.5        0.2       setosa
+## 5   5.0          3.6          1.4        0.2       setosa
+## 6   5.4          3.9          1.7        0.4       setosa
+# check the column namenames(iris)
+
+## [1] &amp;quot;Sepal.Length&amp;quot; &amp;quot;Sepal.Width&amp;quot; &amp;quot;Petal.Length&amp;quot; &amp;quot;Petal.Width&amp;quot;  &amp;quot;Species&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;加入我们想要提取Sepal.Length、Sepal.Width两列数据，可以使用如下代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dt1 &amp;lt;- iris[, c(&amp;quot;Sepal.Length&amp;quot;,&amp;quot;Sepal.Width&amp;quot;)]head(dt1)
+
+##   Sepal.Length Sepal.Width
+## 1      5.1         3.5
+## 2      4.9         3.0
+## 3      4.7         3.2
+## 4      4.6         3.1
+## 5      5.0         3.6
+## 6      5.4         3.9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;#也可以直接用列序号代替，比如这里我们想要提要前两列
+dt2 &amp;lt;- iris[, c(1, 2)]head(dt2)
+##   Sepal.Length Sepal.Width
+## 1      5.1         3.5
+## 2      4.9         3.0
+## 3      4.7         3.2
+## 4      4.6         3.1
+## 5      5.0         3.6
+## 6      5.4         3.9
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果我们需要删除前两列，只需在序号之前添加符号 - 就行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dt3 &amp;lt;- iris[, c(-1, -2)]head(dt3)
+
+##   Petal.Length Petal.Width Species  
+## 1     1.4          0.2      setosa
+## 2     1.4          0.2      setosa
+## 3     1.3          0.2      setosa
+## 4     1.5          0.2      setosa
+## 5     1.4          0.2      setosa
+## 6     1.7          0.4      setosa
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看出十分简单就可以提取子数据集，下面介绍subset()
+，subset()相比于[]主要是可以方便的根据条件提取子数据集。&lt;/p&gt;
+
+&lt;h2 id=&#34;利用subset-进行提取&#34;&gt;利用subset()进行提取&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#create a dataset
+fy &amp;lt;- c(2010,2011,2012,2010,2011,2012,2010,2011,2012)
+company &amp;lt;- c(&amp;quot;Apple&amp;quot;,&amp;quot;Apple&amp;quot;,&amp;quot;Apple&amp;quot;,&amp;quot;Google&amp;quot;,&amp;quot;Google&amp;quot;,&amp;quot;Google&amp;quot;,&amp;quot;Microsoft&amp;quot;,&amp;quot;Microsoft&amp;quot;,&amp;quot;Microsoft&amp;quot;)
+revenue &amp;lt;- c(65225,108249,156508,29321,37905,50175,62484,69943,73723)
+profit &amp;lt;- c(14013,25922,41733,8505,9737,10737,18760,23150,16978) 
+companiesData &amp;lt;- data.frame(fy, company, revenue, profit)
+head(companiesData)
+##    fy company revenue profit
+## 1 2010 Apple   65225 14013
+## 2 2011 Apple   108249 25922
+## 3 2012 Apple   156508 41733
+## 4 2010 Google   29321 8505
+## 5 2011 Google   37905 9737
+## 6 2012 Google   50175 10737
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;假如我们想要提取revenue超过十万的公司&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;com1 &amp;lt;- subset(companiesData, revenue&amp;gt;100000)
+head(com1)
+
+##    fy company revenue profit
+## 2 2011 Apple   108249 25922
+## 3 2012 Apple   156508 41733
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者我们想要提取在2012年revenue超过6万的公司&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;com2 &amp;lt;- subset(companiesData, fy==&amp;quot;2012&amp;quot;&amp;amp;revenue&amp;gt;60000)
+head(com2)
+
+##    fy  company  revenue profit
+## 3 2012 Apple     156508 41733
+## 9 2012 Microsoft  73723 16978
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者提取在2012年revenue超过6万、profit超过4万的公司&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;com3 &amp;lt;- subset(companiesData, fy==&amp;quot;2012&amp;quot;&amp;amp;revenue&amp;gt;60000&amp;amp;profit&amp;gt;40000)
+com3
+
+##    fy company revenue profit
+## 3 2012 Apple 156508 41733
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;条件选择也可以使用或，比如我们想要提取profit超过2万或者revenue低于5万的公司&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;com4 &amp;lt;- subset(companiesData, revenue&amp;lt;50000|profit&amp;gt;20000)
+com4
+##    fy company   revenue profit 
+## 2 2011 Apple     108249 25922
+## 3 2012 Apple     156508 41733
+## 4 2010 Google    29321 8505
+## 5 2011 Google    37905 9737
+## 8 2011 Microsoft 69943 23150
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;本文只是粗略的讲解，其实subset()的用法很广，有兴趣的朋友可以自行探索。&lt;/p&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+
+## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.2 LTS
+## 
+## Matrix products: default
+## BLAS: /usr/lib/atlas-base/atlas/libblas.so.3.0
+## LAPACK: /usr/lib/atlas-base/atlas/liblapack.so.3.0
+## 
+## locale:
+## [1] LC_CTYPE=en_US.UTF-8 LC_NUMERIC=C
+## [3] LC_TIME=en_US.UTF-8 LC_COLLATE=en_US.UTF-8 
+## [5] LC_MONETARY=en_US.UTF-8 LC_MESSAGES=en_US.UTF-8 
+## [7] LC_PAPER=en_US.UTF-8 LC_NAME=C 
+## [9] LC_ADDRESS=C LC_TELEPHONE=C 
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C 
+## 
+## attached base packages:
+## [1] stats graphics grDevices utils datasets methods base 
+## 
+## loaded via a namespace (and not attached):
+## [1] compiler_3.4.0 backports_1.1.0 magrittr_1.5 rprojroot_1.2 
+## [5] tools_3.4.0 htmltools_0.3.6 yaml_2.1.14 Rcpp_0.12.11 
+## [9] stringi_1.1.5 rmarkdown_1.6 knitr_1.16 stringr_1.2.0 
+## [13] digest_0.6.12 evaluate_0.10.1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言data manipulation学习笔记之创建变量、重命名、数据融合</title>
+      <link>/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</link>
+      <pubDate>Wed, 28 Jun 2017 12:34:08 -0500</pubDate>
+      <guid>/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4a45f75977c58bb5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+数据分析中数据处理也就是data manipulation是十分繁琐的，为此我将在博客里特意建一个分类：Data Manipulation。本文将讲讲如何在R语言中创建变量、重命名以及merge。&lt;/p&gt;
+
+&lt;h2 id=&#34;create-a-dataset&#34;&gt;create a dataset&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;fy &amp;lt;- c(2010,2011,2012,2010,2011,2012,2010,2011,2012)
+company &amp;lt;- c(&amp;quot;Apple&amp;quot;,&amp;quot;Apple&amp;quot;,&amp;quot;Apple&amp;quot;,&amp;quot;Google&amp;quot;,&amp;quot;Google&amp;quot;,&amp;quot;Google&amp;quot;,&amp;quot;Microsoft&amp;quot;,&amp;quot;Microsoft&amp;quot;,&amp;quot;Microsoft&amp;quot;)
+revenue &amp;lt;- c(65225,108249,156508,29321,37905,50175,62484,69943,73723)
+profit &amp;lt;- c(14013,25922,41733,8505,9737,10737,18760,23150,16978) 
+companiesData &amp;lt;- data.frame(fy, company, revenue, profit)
+head(companiesData)
+##     fy   company revenue profit
+## 1  2010   Apple   65225  14013
+## 2  2011   Apple  108249  25922
+## 3  2012   Apple  156508  41733
+## 4  2010  Google   29321   8505
+## 5  2011  Google   37905   9737
+## 6  2012  Google   50175  10737
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接下来我们需要查看数据集的结构，用str()函数查看&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;str(companiesData)
+## &#39;data.frame&#39;:    9 obs. of  4 variables:
+##  $ fy     : num  2010 2011 2012 2010 2011 ...
+##  $ company: Factor w/ 3 levels &amp;quot;Apple&amp;quot;,&amp;quot;Google&amp;quot;,..: 1 1 1 2 2 2 3 3 3
+##  $ revenue: num  65225 108249 156508 29321 37905 ...
+##  $ profit : num  14013 25922 41733 8505 9737 ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到年份fy这里是是数值型，我们需要更改为因子型，方便后期处理&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;companiesData$fy &amp;lt;- factor(companiesData$fy, ordered = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在数据已经整理过好了，下面我们来添加变量，比如我们可以看看各个公司的利润率&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;companiesData$margin &amp;lt;- (companiesData$profit/companiesData$revenue)*100
+#查看数据
+head(companiesData)
+##     fy company revenue profit   margin
+## 1 2010   Apple   65225  14013 21.48409
+## 2 2011   Apple  108249  25922 23.94664
+## 3 2012   Apple  156508  41733 26.66509
+## 4 2010  Google   29321   8505 29.00651
+## 5 2011  Google   37905   9737 25.68790
+## 6 2012  Google   50175  10737 21.39910
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;小数点位数太多了，这里我们保留一位&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;companiesData$margin &amp;lt;- round(companiesData$margin, 1)
+head(companiesData)
+##     fy company revenue profit margin
+## 1 2010   Apple   65225  14013   21.5
+## 2 2011   Apple  108249  25922   23.9
+## 3 2012   Apple  156508  41733   26.7
+## 4 2010  Google   29321   8505   29.0
+## 5 2011  Google   37905   9737   25.7
+## 6 2012  Google   50175  10737   21.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样我们就创建了一个新的变量margin，当然也可以删除变量，只要复制需要删除的变量NULL就行了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#delete variable margin
+companiesData$margin &amp;lt;- NULL
+head(companiesData)
+##     fy company revenue profit
+## 1 2010   Apple   65225  14013
+## 2 2011   Apple  108249  25922
+## 3 2012   Apple  156508  41733
+## 4 2010  Google   29321   8505
+## 5 2011  Google   37905   9737
+## 6 2012  Google   50175  10737
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再顺便介绍一下transform函数，用于创建变量，transform的格式如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;dataFrame &amp;lt;- transform(dataFrame, newColumn = oldColumn1 + oldColumn2)
+companiesData &amp;lt;- transform(companiesData, margin=round((profit/revenue)*100), 1)
+head(companiesData)
+##     fy company revenue profit margin X1
+## 1 2010   Apple   65225  14013     21  1
+## 2 2011   Apple  108249  25922     24  1
+## 3 2012   Apple  156508  41733     27  1
+## 4 2010  Google   29321   8505     29  1
+## 5 2011  Google   37905   9737     26  1
+## 6 2012  Google   50175  10737     21  1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接下来讲一下merge，主要是merge函数，它要求进行融合的两个数据集需要有共同的变量即id，使用格式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;finaldt &amp;lt;- merge(dataset1, dataset2, by=&amp;quot;id&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里我们再创建一个数据集用于merge&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#creat another dataset
+company &amp;lt;- c(&amp;quot;Apple&amp;quot;,&amp;quot;Google&amp;quot;,&amp;quot;Microsoft&amp;quot;)
+ava1 &amp;lt;- c(1,2,3)
+data2 &amp;lt;- data.frame(company, ava1)
+head(data2)
+##     company ava1
+## 1     Apple    1
+## 2    Google    2
+## 3 Microsoft    3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;数据集data2与数据集companiesData具有共同的变量company(id)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#merge the two dataset
+newdata &amp;lt;- merge(companiesData, data2, by=&amp;quot;company&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这样就得到一个完整的数据集了，当然添加行、列还有两个很有用的函数：rbind()以及cbind(),这里就不介绍了 最后讲一下重命名，其实很简单&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;companiesData$company &amp;lt;- c(&amp;quot;A&amp;quot;, &amp;quot;A&amp;quot;, &amp;quot;A&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;G&amp;quot;, &amp;quot;M&amp;quot;, &amp;quot;M&amp;quot;, &amp;quot;M&amp;quot;)
+head(companiesData)
+##     fy company revenue profit margin X1
+## 1 2010       A   65225  14013     21  1
+## 2 2011       A  108249  25922     24  1
+## 3 2012       A  156508  41733     27  1
+## 4 2010       G   29321   8505     29  1
+## 5 2011       G   37905   9737     26  1
+## 6 2012       G   50175  10737     21  1
+#rename the colname
+colnames(companiesData) &amp;lt;- c(&amp;quot;Year&amp;quot;, &amp;quot;Com&amp;quot;, &amp;quot;Rev&amp;quot;, &amp;quot;Pro&amp;quot;, &amp;quot;Mar&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;seessioninfo&#34;&gt;seessioninfo&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 8.1 x64 (build 9600)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_3.4.0  backports_1.1.0 magrittr_1.5    rprojroot_1.2  
+##  [5] tools_3.4.0     htmltools_0.3.6 yaml_2.1.14     Rcpp_0.12.11   
+##  [9] stringi_1.1.5   rmarkdown_1.5   knitr_1.16      stringr_1.2.0  
+## [13] digest_0.6.12   evaluate_0.10
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>map | Tao Yan</title>
+    <link>/tags/map/</link>
+      <atom:link href="/tags/map/index.xml" rel="self" type="application/rss+xml" />
+    <description>map</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Sun, 10 Jun 2018 18:19:05 +0000</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>map</title>
+      <link>/tags/map/</link>
+    </image>
+    
+    <item>
+      <title>三种方法在地图上绘制网络图</title>
+      <link>/post/2018-06-10.%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%9C%A8%E5%9C%B0%E5%9B%BE%E4%B8%8A%E7%BB%98%E5%88%B6%E7%BD%91%E7%BB%9C%E5%9B%BE/</link>
+      <pubDate>Sun, 10 Jun 2018 18:19:05 +0000</pubDate>
+      <guid>/post/2018-06-10.%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%E5%9C%A8%E5%9C%B0%E5%9B%BE%E4%B8%8A%E7%BB%98%E5%88%B6%E7%BD%91%E7%BB%9C%E5%9B%BE/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mA73K7a4gJ.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最近为了绘制几幅简单地图，查阅了一些资料，看到了&lt;strong&gt;Markus konrad&lt;/strong&gt;的&lt;a href=&#34;https://datascience.blog.wzb.eu/2018/05/31/three-ways-of-visualizing-a-graph-on-a-map/&#34; target=&#34;_blank&#34;&gt;帖子&lt;/a&gt;，非常赞。其中他的部分思路对于我们学习可视化很有帮助。&lt;/p&gt;
+
+&lt;h2 id=&#34;准备&#34;&gt;准备&lt;/h2&gt;
+
+&lt;p&gt;我们需要用到以下包&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(pacman)
+p_load(assertthat,tidyverse,ggraph,igraph,ggmap)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;加载数据&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nodes &amp;lt;- read.table(&amp;quot;country_coords.txt&amp;quot;, header = FALSE, quote = &amp;quot;&#39;&amp;quot;,sep = &amp;quot;&amp;quot;,col.names = c(&amp;quot;id&amp;quot;,&amp;quot;lon&amp;quot;,&amp;quot;lat&amp;quot;,&amp;quot;name&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;创建连接关系&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(42)
+min &amp;lt;- 1
+max &amp;lt;- 4
+n_categories &amp;lt;- 4
+edges &amp;lt;- map_dfr(nodes$id, function(id){
+  n &amp;lt;- floor(runif(1,min,max+1))
+  to &amp;lt;- sample(1:max(nodes$id),n ,replace = FALSE)
+  to &amp;lt;- to[to!=id]
+  categories &amp;lt;- sample(1:n_categories,length(to), replace = TRUE)
+  weight &amp;lt;- runif(length(to))
+  data_frame(from=id, to=to, weight=weight, category=categories)
+})
+edges &amp;lt;- edges%&amp;gt;%mutate(category=as.factor(category))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上面我们已经创建好了节点(node)以及连接(edge)，下面进行可视化&lt;/p&gt;
+
+&lt;h2 id=&#34;可视化&#34;&gt;可视化&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#生成图形结构
+g &amp;lt;- graph_from_data_frame(edges, directed = FALSE, vertices = nodes)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再额外定义四列用来绘制节点的起始位置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;edges_for_plot &amp;lt;- edges%&amp;gt;%
+  inner_join(nodes%&amp;gt;%select(id, lon, lat),by=c(&amp;quot;from&amp;quot;=&amp;quot;id&amp;quot;))%&amp;gt;%
+  rename(x=lon, y=lat)%&amp;gt;%
+  inner_join(nodes%&amp;gt;%select(id,lon,lat),by=c(&amp;quot;to&amp;quot;=&amp;quot;id&amp;quot;))%&amp;gt;%
+  rename(xend=lon,yend=lat)
+assert_that(nrow(edges_for_plot)==nrow(edges))
+nodes$weight &amp;lt;- degree(g)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面再定义以下&lt;strong&gt;ggplot2&lt;/strong&gt;主题用来绘制地图&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;maptheme &amp;lt;- theme(
+  panel.grid = element_blank(),
+  axis.text = element_blank(),
+  axis.ticks = element_blank(),
+  axis.title = element_blank(),
+  legend.position = &amp;quot;bottom&amp;quot;,
+  panel.background = element_rect(fill=&amp;quot;#596673&amp;quot;),
+  plot.margin = unit(c(0,0,0.5,0),&amp;quot;cm&amp;quot;)
+)
+country_shape &amp;lt;- geom_polygon(aes(x=long, y=lat, group=group),
+                              data=map_data(&amp;quot;world&amp;quot;),
+                              fill=&amp;quot;#CECECE&amp;quot;, color=&amp;quot;#515151&amp;quot;,size=0.1)
+mapcoords &amp;lt;- coord_fixed(xlim=c(-150,180), ylim=c(-55,80))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;方法一-ggplot2&#34;&gt;方法一：ggplot2&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;ggplot(nodes)+country_shape+
+  geom_curve(aes(x=x,y=y,xend=xend,yend=yend,color=category,size=weight),
+             data=edges_for_plot,curvature = 0.33,alpha=0.5)+
+  scale_size_continuous(guide = FALSE,range = c(0.25,2))+
+  geom_point(aes(x=lon,y=lat,size=weight),shape=21,fill=&amp;quot;white&amp;quot;,color=&amp;quot;black&amp;quot;,stroke=0.5)+
+  scale_size_continuous(guide = FALSE, range = c(1,6))+
+  geom_text(aes(x=lon,y=lat,label=name),hjust=0,nudge_x = 1,nudge_y = 4,size=3,color=&amp;quot;black&amp;quot;,fontface=&amp;quot;bold&amp;quot;)+
+  mapcoords+maptheme
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mA73K7a4gJ.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;方法二-ggplot2-ggraph&#34;&gt;方法二：ggplot2+ggraph&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;nodes_pos &amp;lt;- nodes%&amp;gt;%
+  select(lon,lat)%&amp;gt;%
+  rename(x=lon,y=lat)
+lay &amp;lt;- create_layout(g,&amp;quot;manual&amp;quot;,node.position=nodes_pos)
+assert_that(nrow(lay)==nrow(nodes))
+lay$weight &amp;lt;- degree(g)
+ggraph(lay)+
+  country_shape+
+  geom_edge_arc(aes(color=category,edge_width=weight,circular=FALSE),
+                data = edges_for_plot,curvature = 0.33,alpha=0.5)+
+  scale_edge_width_continuous(range = c(0.5,2),guide=FALSE)+
+  geom_node_point(aes(size=weight),shape=21,fill=&amp;quot;white&amp;quot;,color=&amp;quot;black&amp;quot;,stroke=0.5)+
+  scale_size_continuous(range = c(1,6),guide = FALSE)+
+  geom_node_text(aes(label=name),repel = TRUE, size=3,color=&amp;quot;black&amp;quot;,fontface=&amp;quot;bold&amp;quot;)+
+  mapcoords+maptheme
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ifLkLd15Jh.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;方法三-图形叠加&#34;&gt;方法三：图形叠加&lt;/h3&gt;
+
+&lt;p&gt;图形叠加，所以需要一个透明背景&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;theme_transp_overlay &amp;lt;- theme(
+  panel.background = element_rect(fill=&amp;quot;transparent&amp;quot;,color=NA),
+  plot.background = element_rect(fill=&amp;quot;transparent&amp;quot;,color=NA)
+)
+(p_base &amp;lt;- ggplot()+
+  country_shape+
+  mapcoords+
+  maptheme)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Cfe1Bkf0Ga.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(p_edges &amp;lt;- ggplot(edges_for_plot)+
+  geom_curve(aes(x=x,y=y,xend=xend,yend=yend,color=category,size=weight),
+             curvature = 0.33,alpha=0.33)+
+  scale_size_continuous(guide = FALSE, range = c(0.5, 2)) + 
+  mapcoords + maptheme + theme_transp_overlay +
+  theme(legend.position = c(0.5, -0.1),
+        legend.direction = &amp;quot;horizontal&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BCI696DJ3I.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(p_nodes &amp;lt;- ggplot(nodes) +
+  geom_point(aes(x = lon, y = lat, size = weight),
+             shape = 21, fill = &amp;quot;white&amp;quot;, color = &amp;quot;black&amp;quot;,   
+             stroke = 0.5) +
+  scale_size_continuous(guide = FALSE, range = c(1, 6)) +    
+  geom_text(aes(x = lon, y = lat, label = name),             
+            hjust = 0, nudge_x = 1, nudge_y = 4,
+            size = 3, color = &amp;quot;white&amp;quot;, fontface = &amp;quot;bold&amp;quot;) +
+  mapcoords + maptheme + theme_transp_overlay)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/hab81AIbfa.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最后就是三图形叠加了（需要多次调整）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p &amp;lt;- p_base+
+  annotation_custom(ggplotGrob(p_edges),ymin = -74)+
+  annotation_custom(ggplotGrob(p_nodes),ymin = -74)
+print(p)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/8HG1jbLaAf.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;info&#34;&gt;Info&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## R version 3.5.0 (2018-04-23)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] maps_3.3.0         bindrcpp_0.2.2     ggmap_2.6.1       
+##  [4] igraph_1.2.1       ggraph_1.0.1       forcats_0.3.0     
+##  [7] stringr_1.3.1      dplyr_0.7.5        purrr_0.2.5       
+## [10] readr_1.1.1        tidyr_0.8.1        tibble_1.4.2      
+## [13] ggplot2_2.2.1.9000 tidyverse_1.2.1    assertthat_0.2.0  
+## [16] pacman_0.4.6      
+## 
+## loaded via a namespace (and not attached):
+##  [1] ggrepel_0.8.0     Rcpp_0.12.17      lubridate_1.7.4  
+##  [4] lattice_0.20-35   png_0.1-7         rprojroot_1.3-2  
+##  [7] digest_0.6.15     psych_1.8.4       ggforce_0.1.2    
+## [10] R6_2.2.2          cellranger_1.1.0  plyr_1.8.4       
+## [13] backports_1.1.2   evaluate_0.10.1   httr_1.3.1       
+## [16] pillar_1.2.3      RgoogleMaps_1.4.1 rlang_0.2.1      
+## [19] lazyeval_0.2.1    readxl_1.1.0      geosphere_1.5-7  
+## [22] rstudioapi_0.7    rmarkdown_1.9     labeling_0.3     
+## [25] proto_1.0.0       udunits2_0.13     foreign_0.8-70   
+## [28] munsell_0.4.3     broom_0.4.4       compiler_3.5.0   
+## [31] modelr_0.1.2      pkgconfig_2.0.1   mnormt_1.5-5     
+## [34] htmltools_0.3.6   tidyselect_0.2.4  gridExtra_2.3    
+## [37] viridisLite_0.3.0 crayon_1.3.4      withr_2.1.2      
+## [40] MASS_7.3-49       grid_3.5.0        nlme_3.1-137     
+## [43] jsonlite_1.5      gtable_0.2.0      magrittr_1.5     
+## [46] units_0.5-1       scales_0.5.0      cli_1.0.0        
+## [49] stringi_1.1.7     mapproj_1.2.6     reshape2_1.4.3   
+## [52] viridis_0.5.1     sp_1.2-7          xml2_1.2.0       
+## [55] rjson_0.2.19      tools_3.5.0       glue_1.2.0       
+## [58] tweenr_0.1.5      jpeg_0.1-8        hms_0.4.2        
+## [61] parallel_3.5.0    yaml_2.1.19       colorspace_1.3-2 
+## [64] rvest_0.3.2       knitr_1.20        bindr_0.1.1      
+## [67] haven_1.1.1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>tidyverse实践之绘制简单地图</title>
+      <link>/post/2017-09-16.tidyverse%E5%AE%9E%E8%B7%B5%E4%B9%8B%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</link>
+      <pubDate>Sat, 16 Sep 2017 10:47:05 +0000</pubDate>
+      <guid>/post/2017-09-16.tidyverse%E5%AE%9E%E8%B7%B5%E4%B9%8B%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Big70i5b36.jpeg?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;tidyverse&lt;/strong&gt;是一个数据科学的综合包，里面包含了数据分析一系列流程涉及的包，今天主要利用它绘制地图。这并不是它的强项，绘制地图&lt;strong&gt;leaflet&lt;/strong&gt;才是利器，本文只是&lt;strong&gt;tidyverse&lt;/strong&gt;的一个小练习。
+目前该包支持有限的几个国家，比如美国，新西兰、意大利等，当然世界地图是支持的。&lt;/p&gt;
+
+&lt;h2 id=&#34;绘图&#34;&gt;绘图&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+map_data(&amp;quot;usa&amp;quot;)%&amp;gt;%
+  ggplot(aes(x=long, y=lat, group=group))+
+  geom_polygon()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/i32kBBc1DA.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以绘制美国的不同州，就行我国的省份一样&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;map_data(&amp;quot;state&amp;quot;)%&amp;gt;%
+  ggplot(aes(x=long, y=lat, group=group))+
+  geom_polygon(color=&amp;quot;white&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/5haC8L95Fd.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;另外我们可以只单独绘制几个state&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;map_data(&amp;quot;state&amp;quot;)%&amp;gt;%
+  filter(region%in%c(&amp;quot;california&amp;quot;,&amp;quot;nevada&amp;quot;,&amp;quot;oregon&amp;quot;,&amp;quot;washington&amp;quot;))%&amp;gt;%
+  ggplot(aes(x=long, y=lat, group=group))+
+  geom_polygon(color=&amp;quot;red&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/md9HG40mi8.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;再绘制细一点的地图，相当于市、县等&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r,&#34;&gt;map_data(&amp;quot;county&amp;quot;)%&amp;gt;%
+  filter(region %in% c(&amp;quot;california&amp;quot;,&amp;quot;nevada&amp;quot;,&amp;quot;oregon&amp;quot;,&amp;quot;washington&amp;quot;))%&amp;gt;%
+  ggplot(aes(x=long, y=lat, group=group))+
+  geom_polygon(color=&amp;quot;white&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/iEIjLcgIaK.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;世界地图&#34;&gt;世界地图&lt;/h2&gt;
+
+&lt;p&gt;很简单，只需将map_data()里的usa换成world就行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;map_data(&amp;quot;world&amp;quot;)%&amp;gt;%ggplot(aes(x=long, y=lat, group=group))+
+  geom_polygon(color=&amp;quot;white&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/cK0LAl2cmd.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在世界地图中标出中国&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;map_data(&amp;quot;world&amp;quot;)%&amp;gt;%
+  filter(region==&amp;quot;China&amp;quot;)%&amp;gt;%
+  ggplot(aes(x=long, y=lat, group=group))+
+  geom_polygon(fill=&amp;quot;red&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/f0f3fBgG7F.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;美帝用心险恶，不承认台湾属于中国,自己添上去就是了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;map_data(&amp;quot;world&amp;quot;)%&amp;gt;%
+  filter(region==c(&amp;quot;China&amp;quot;,&amp;quot;Taiwan&amp;quot;))%&amp;gt;%
+  ggplot(aes(x=long, y=lat, group=group))+
+  geom_polygon(fill=&amp;quot;red&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BDd5BLBmaa.png?raw=true&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;sessionInfo()
+## R version 3.4.1 (2017-06-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 15063)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] bindrcpp_0.2         maps_3.2.0           dplyr_0.7.2         
+##  [4] purrr_0.2.3          readr_1.1.1          tidyr_0.7.1         
+##  [7] tibble_1.3.4         ggplot2_2.2.1        tidyverse_1.1.1     
+## [10] RevoUtilsMath_10.0.0
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.12     cellranger_1.1.0 compiler_3.4.1   plyr_1.8.4      
+##  [5] bindr_0.1        forcats_0.2.0    tools_3.4.1      digest_0.6.12   
+##  [9] lubridate_1.6.0  jsonlite_1.5     evaluate_0.10.1  nlme_3.1-131    
+## [13] gtable_0.2.0     lattice_0.20-35  pkgconfig_2.0.1  rlang_0.1.2     
+## [17] psych_1.7.8      yaml_2.1.14      parallel_3.4.1   haven_1.1.0     
+## [21] xml2_1.1.1       httr_1.3.1       stringr_1.2.0    knitr_1.17      
+## [25] hms_0.3          RevoUtils_10.0.5 rprojroot_1.2    grid_3.4.1      
+## [29] glue_1.1.1       R6_2.2.2         readxl_1.0.0     foreign_0.8-69  
+## [33] rmarkdown_1.6    modelr_0.1.1     reshape2_1.4.2   magrittr_1.5    
+## [37] backports_1.1.0  scales_0.5.0     htmltools_0.3.6  rvest_0.3.2     
+## [41] assertthat_0.2.0 mnormt_1.5-5     colorspace_1.3-2 labeling_0.3    
+## [45] stringi_1.1.5    lazyeval_0.2.0   munsell_0.4.3    broom_0.4.2
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

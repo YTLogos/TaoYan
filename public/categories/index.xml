@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories | Tao Yan</title>
+    <link>/categories/</link>
+      <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <description>Categories</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Wed, 14 Aug 2019 16:19:05 +0000</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>Categories</title>
+      <link>/categories/</link>
+    </image>
+    
+    <item>
+      <title>可视化</title>
+      <link>/categories/%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <pubDate>Wed, 14 Aug 2019 16:19:05 +0000</pubDate>
+      <guid>/categories/%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>基因组</title>
+      <link>/categories/%E5%9F%BA%E5%9B%A0%E7%BB%84/</link>
+      <pubDate>Mon, 12 Aug 2019 18:19:05 +0000</pubDate>
+      <guid>/categories/%E5%9F%BA%E5%9B%A0%E7%BB%84/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>文献阅读</title>
+      <link>/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</link>
+      <pubDate>Wed, 26 Jun 2019 18:19:05 +0000</pubDate>
+      <guid>/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bioinformatics</title>
+      <link>/categories/bioinformatics/</link>
+      <pubDate>Tue, 26 Feb 2019 18:19:05 +0000</pubDate>
+      <guid>/categories/bioinformatics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>/categories/r/</link>
+      <pubDate>Thu, 12 Jul 2018 12:19:05 +0000</pubDate>
+      <guid>/categories/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>/categories/linux/</link>
+      <pubDate>Tue, 22 May 2018 21:19:05 +0000</pubDate>
+      <guid>/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R编程</title>
+      <link>/categories/r%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Tue, 24 Apr 2018 21:19:05 +0000</pubDate>
+      <guid>/categories/r%E7%BC%96%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>群体遗传进化</title>
+      <link>/categories/%E7%BE%A4%E4%BD%93%E9%81%97%E4%BC%A0%E8%BF%9B%E5%8C%96/</link>
+      <pubDate>Tue, 24 Apr 2018 21:19:05 +0000</pubDate>
+      <guid>/categories/%E7%BE%A4%E4%BD%93%E9%81%97%E4%BC%A0%E8%BF%9B%E5%8C%96/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>/categories/shell/</link>
+      <pubDate>Fri, 09 Feb 2018 21:19:05 +0000</pubDate>
+      <guid>/categories/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GWAS</title>
+      <link>/categories/gwas/</link>
+      <pubDate>Thu, 11 Jan 2018 12:19:05 +0000</pubDate>
+      <guid>/categories/gwas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine learning</title>
+      <link>/categories/machine-learning/</link>
+      <pubDate>Mon, 25 Dec 2017 20:19:05 +0000</pubDate>
+      <guid>/categories/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RNA-seq</title>
+      <link>/categories/rna-seq/</link>
+      <pubDate>Fri, 08 Sep 2017 12:34:08 -0500</pubDate>
+      <guid>/categories/rna-seq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Manipulation</title>
+      <link>/categories/data-manipulation/</link>
+      <pubDate>Thu, 29 Jun 2017 12:34:08 -0500</pubDate>
+      <guid>/categories/data-manipulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r4ds</title>
+      <link>/categories/r4ds/</link>
+      <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
+      <guid>/categories/r4ds/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

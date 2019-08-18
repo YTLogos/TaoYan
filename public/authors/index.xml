@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors | Tao Yan</title>
+    <link>/authors/</link>
+      <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
+    <description>Authors</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>Authors</title>
+      <link>/authors/</link>
+    </image>
+    
+    <item>
+      <title></title>
+      <link>/authors/admin/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>/authors/admin/</guid>
+      <description>&lt;p&gt;I am a PhD student of Crop Genetics and Breeding at the &lt;em&gt;Zhejiang University&lt;/em&gt; Crop Science Lab. My Ph.D research work covers a range of issues : &lt;strong&gt;Population Genetics Evolution and Ecotype Divergence Analysis of oilseed Rape&lt;/strong&gt;, &lt;strong&gt;Genome-wide Association Study (GWAS) of Agronomic Traits&lt;/strong&gt;. Currently, I am interested in Transposable Elements Insertion Polymorphisms (TIPs) in Crop Population and genetic basis such as SV, CNV and TIPs etc shapes the diversity of different morphotypes of &lt;em&gt;B.napus&lt;/em&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Robert Ford</title>
+      <link>/authors/robert-ford/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>/authors/robert-ford/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

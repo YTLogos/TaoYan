@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ggrepel | Tao Yan</title>
+    <link>/tags/ggrepel/</link>
+      <atom:link href="/tags/ggrepel/index.xml" rel="self" type="application/rss+xml" />
+    <description>ggrepel</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Sun, 25 Jun 2017 12:34:08 -0500</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>ggrepel</title>
+      <link>/tags/ggrepel/</link>
+    </image>
+    
+    <item>
+      <title>R语言可视化学习笔记之添加p-value和显著性标记</title>
+      <link>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</link>
+      <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
+      <guid>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-15bd512052d55bf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+上篇文章中提了一下如何通过&lt;strong&gt;ggpubr&lt;/strong&gt;包为&lt;code&gt;ggplot&lt;/code&gt;图添加&lt;code&gt;p-value&lt;/code&gt;以及显著性标记,本文将详细介绍。利用数据集&lt;strong&gt;ToothGrowth&lt;/strong&gt;进行演示&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#先加载包
+library(ggpubr)
+#加载数据集ToothGrowth
+data(&amp;quot;ToothGrowth&amp;quot;)
+head(ToothGrowth)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;##    len  supp  dose
+## 1  4.2   VC   0.5
+## 2  11.5  VC   0.5
+## 3  7.3   VC   0.5
+## 4  5.8   VC   0.5
+## 5  6.4   VC   0.5
+## 6  10.0  VC   0.5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;比较方法&#34;&gt;比较方法&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;中常用的比较方法主要有下面几种：&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;方法&lt;/th&gt;
+&lt;th&gt;R函数&lt;/th&gt;
+&lt;th&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;T-test&lt;/td&gt;
+&lt;td&gt;t.test()&lt;/td&gt;
+&lt;td&gt;比较两组(参数)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Wilcoxon test&lt;/td&gt;
+&lt;td&gt;wilcox.test()&lt;/td&gt;
+&lt;td&gt;比较两组(非参数)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ANOVA&lt;/td&gt;
+&lt;td&gt;aov()或anova()&lt;/td&gt;
+&lt;td&gt;比较多组(参数)&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Kruskal-Wallis&lt;/td&gt;
+&lt;td&gt;kruskal.test()&lt;/td&gt;
+&lt;td&gt;比较多组(非参数)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;各种比较方法后续有时间一一讲解。&lt;/p&gt;
+
+&lt;h2 id=&#34;添加-p-value&#34;&gt;添加&lt;code&gt;p-value&lt;/code&gt;&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;主要利用&lt;strong&gt;ggpubr&lt;/strong&gt;包中的两个函数：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;compare_means()&lt;/code&gt;:可以进行一组或多组间的比较&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stat_compare_mean()&lt;/code&gt;:自动添加&lt;code&gt;p-value&lt;/code&gt;、显著性标记到&lt;strong&gt;ggplot&lt;/strong&gt;图中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;compare-means-函数&#34;&gt;&lt;strong&gt;compare_means()&lt;/strong&gt;函数&lt;/h2&gt;
+
+&lt;p&gt;该函数主要用用法如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;compare_means(formula, data, method = &amp;quot;wilcox.test&amp;quot;, paired = FALSE,
+  group.by = NULL, ref.group = NULL, ...)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注释：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;formula&lt;/code&gt;:形如&lt;code&gt;x~group&lt;/code&gt;，其中x是数值型变量，&lt;code&gt;group&lt;/code&gt;是因子，可以是一个或者多个&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;data&lt;/code&gt;：数据集&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;method&lt;/code&gt;:比较的方法，默认为&lt;code&gt;&amp;quot;wilcox.test&amp;quot;&lt;/code&gt;, 其他可选方法为：&lt;code&gt;&amp;quot;t.test&amp;quot;&lt;/code&gt;、&lt;code&gt;&amp;quot;anova&amp;quot;&lt;/code&gt;、&lt;code&gt;&amp;quot;kruskal.test&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;paired&lt;/code&gt;:是否要进行&lt;code&gt;paired test&lt;/code&gt;(&lt;code&gt;TRUE&lt;/code&gt; or &lt;code&gt;FALSE&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;group_by&lt;/code&gt;: 比较时是否要进行分组&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ref.group&lt;/code&gt;: 是否需要指定参考组&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;stat-compare-means-函数&#34;&gt;&lt;strong&gt;stat_compare_means()&lt;/strong&gt;函数&lt;/h2&gt;
+
+&lt;p&gt;主要用法：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stat_compare_means(mapping = NULL, comparisons = NULL hide.ns = FALSE,
+                   label = NULL,  label.x = NULL, label.y = NULL,  ...)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注释：
+* &lt;code&gt;mapping&lt;/code&gt;:由&lt;code&gt;aes()&lt;/code&gt;创建的一套美学映射
+* &lt;code&gt;comparisons&lt;/code&gt;:指定需要进行比较以及添加&lt;code&gt;p-value&lt;/code&gt;、显著性标记的组
+* &lt;code&gt;hide.ns&lt;/code&gt;:是否要显示显著性标记ns
+* &lt;code&gt;label&lt;/code&gt;:显著性标记的类型，可选项为：&lt;code&gt;p.signif&lt;/code&gt;(显著性标记)、&lt;code&gt;p.format&lt;/code&gt;(显示&lt;code&gt;p-value&lt;/code&gt;)
+* &lt;code&gt;label.x&lt;/code&gt;、&lt;code&gt;label.y&lt;/code&gt;:显著性标签调整
+* &amp;hellip;:其他参数&lt;/p&gt;
+
+&lt;h2 id=&#34;比较独立的两组&#34;&gt;比较独立的两组&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;compare_means(len~supp, data=ToothGrowth)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b045b6dd37c6efb6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;结果解释：
+* &lt;code&gt;.y&lt;/code&gt;:测试中使用的y变量
+* &lt;code&gt;p&lt;/code&gt;:&lt;code&gt;p-value&lt;/code&gt;
+* &lt;code&gt;p.adj&lt;/code&gt;:调整后的&lt;code&gt;p-value&lt;/code&gt;。默认为&lt;code&gt;p.adjust.method=&amp;quot;holm&amp;quot;&lt;/code&gt;
+* &lt;code&gt;p.format&lt;/code&gt;:四舍五入后的&lt;code&gt;p-value&lt;/code&gt;
+* &lt;code&gt;p.signif&lt;/code&gt;:显著性水平
+* &lt;code&gt;method&lt;/code&gt;:用于统计检验的方法
+##绘制箱线图&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p &amp;lt;- ggboxplot(ToothGrowth, x=&amp;quot;supp&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;supp&amp;quot;, 
+palette = &amp;quot;jco&amp;quot;, add = &amp;quot;jitter&amp;quot;)#添加p-valuep+stat_compare_means()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e218a1edab30a234.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#使用其他统计检验方法
+p+stat_compare_means(method = &amp;quot;t.test&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-fc20d4bbb39c1377.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+上述显著性标记可以通过&lt;code&gt;label.x&lt;/code&gt;、&lt;code&gt;label.y&lt;/code&gt;、&lt;code&gt;hjust&lt;/code&gt;及&lt;code&gt;vjust&lt;/code&gt;来调整
+显著性标记可以通过&lt;code&gt;aes()&lt;/code&gt;映射来更改：
+  * &lt;code&gt;aes(label=..p.format..)&lt;/code&gt;或&lt;code&gt;aes(lebel=paste0(&amp;quot;p=&amp;quot;,..p.format..))&lt;/code&gt;:只显示&lt;code&gt;p-value&lt;/code&gt;，不显示统计检验方法
+ * &lt;code&gt;aes(label=..p.signif..)&lt;/code&gt;:仅显示显著性水平
+ * &lt;code&gt;aes(label=paste0(..method..,&amp;quot;\n&amp;quot;, &amp;quot;p=&amp;quot;,..p.format..))&lt;/code&gt;:&lt;code&gt;p-value&lt;/code&gt;与显著性水平分行显示&lt;/p&gt;
+
+&lt;p&gt;举个栗子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p+stat_compare_means(aes(label=..p.signif..), label.x = 1.5, label.y = 40)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c0f71b843b6472b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+也可以将标签指定为字符向量，不要映射，只需将p.signif两端的..去掉即可&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;p+stat_compare_means(label = &amp;quot;p.signif&amp;quot;, label.x = 1.5, label.y = 40)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-15c7ae8bbaaf7b95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;比较两个paired-sample&#34;&gt;比较两个paired sample&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code&gt;compare_means(len~supp, data=ToothGrowth, paired = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-770f433a6a5e4ef3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;利用ggpaired-进行可视化&#34;&gt;利用ggpaired()进行可视化&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code&gt;ggpaired(ToothGrowth, x=&amp;quot;supp&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;supp&amp;quot;, line.color = &amp;quot;gray&amp;quot;, 
+line.size = 0.4, palette = &amp;quot;jco&amp;quot;)+ stat_compare_means(paired = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-2b3b18fa8e3ec2c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;多组比较&#34;&gt;多组比较&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Global test&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;compare_means(len~dose, data=ToothGrowth, method = &amp;quot;anova&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-dd4f81af301e529b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;可视化&#34;&gt;可视化&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code&gt;ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;, palette = &amp;quot;jco&amp;quot;)+
+stat_compare_means()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a0fcb4c4683d0f07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#使用其他的方法
+ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;, palette = &amp;quot;jco&amp;quot;)+ 
+stat_compare_means(method = &amp;quot;anova&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6572797c98bbb9a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&amp;gt; Pairwise comparisons:如果分组变量中包含两个以上的水平，那么会自动进行pairwise test,默认方法为&amp;rdquo;wilcox.test&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;compare_means(len~dose, data=ToothGrowth)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c25c03cedcf149bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#可以指定比较哪些组
+my_comparisons &amp;lt;- list(c(&amp;quot;0.5&amp;quot;, &amp;quot;1&amp;quot;), c(&amp;quot;1&amp;quot;, &amp;quot;2&amp;quot;), c(&amp;quot;0.5&amp;quot;, &amp;quot;2&amp;quot;))
+ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;,palette = &amp;quot;jco&amp;quot;)+
+stat_compare_means(comparisons=my_comparisons)+ # Add pairwise 
+comparisons p-value stat_compare_means(label.y = 50) # Add global p-value
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-87c29855f34018b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+可以通过修改参数label.y来更改标签的位置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;,palette = &amp;quot;jco&amp;quot;)+
+stat_compare_means(comparisons=my_comparisons, label.y = c(29, 35, 40))+ # Add pairwise comparisons p-value 
+stat_compare_means(label.y = 45) # Add global p-value
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-554a2136abe2eee4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+至于通过添加线条来连接比较的两组，这一功能已由包&lt;a href=&#34;https://github.com/Artjom-Metro/ggsignif&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;ggsignif&lt;/strong&gt;&lt;/a&gt;实现&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;##设定参考组
+compare_means(len~dose, data=ToothGrowth, ref.group = &amp;quot;0.5&amp;quot;,  #以dose=0.5组为参考组 
+method = &amp;quot;t.test&amp;quot; )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9ba2e25b978710a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#可视化
+ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;, palette = &amp;quot;jco&amp;quot;)+ 
+stat_compare_means(method = &amp;quot;anova&amp;quot;, label.y = 40)+ # Add global p-value
+stat_compare_means(label = &amp;quot;p.signif&amp;quot;, method = &amp;quot;t.test&amp;quot;, ref.group = &amp;quot;0.5&amp;quot;) # Pairwise comparison against reference
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8510992c45710447.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;参考组也可以设置为.all.即所有的平均值&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;compare_means(len~dose, data=ToothGrowth, ref.group = &amp;quot;.all.&amp;quot;, method = &amp;quot;t.test&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-2976426c33943786.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#可视化
+ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;, palette = &amp;quot;jco&amp;quot;)+
+stat_compare_means(method = &amp;quot;anova&amp;quot;, label.y = 40)+# Add global p-value
+stat_compare_means(label = &amp;quot;p.signif&amp;quot;, method = &amp;quot;t.test&amp;quot;, 
+ref.group = &amp;quot;.all.&amp;quot;)#Pairwise comparison against all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e0b10b222601691f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+接下来利用&lt;strong&gt;survminer&lt;/strong&gt;包中的数据集&lt;strong&gt;myeloma&lt;/strong&gt;来讲解一下为什么有时候我们需要将ref.group设置为.all.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(survminer)#没安装的先安装再加载
+data(&amp;quot;myeloma&amp;quot;)
+head(myeloma)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-96dcc29ad0882230.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;我们将根据患者的分组来绘制&lt;strong&gt;DEPDC1&lt;/strong&gt;基因的表达谱，看不同组之间是否存在显著性的差异，我们可以在7组之间进行比较，但是这样的话组间比较的组合就太多了，因此我们可以将7组中每一组与全部平均值进行比较，看看&lt;strong&gt;DEPDC1&lt;/strong&gt;基因在不同的组中是否过表达还是低表达。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;compare_means(DEPDC1~molecular_group, data = myeloma, ref.group = &amp;quot;.all.&amp;quot;, method = &amp;quot;t.test&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-53c1d6a7df55e7d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#可视化DEPDC1基因表达谱
+ggboxplot(myeloma, x=&amp;quot;molecular_group&amp;quot;, y=&amp;quot;DEPDC1&amp;quot;, 
+color = &amp;quot;molecular_group&amp;quot;, add = &amp;quot;jitter&amp;quot;, legend=&amp;quot;none&amp;quot;)+ 
+rotate_x_text(angle = 45)+ 
+geom_hline(yintercept = mean(myeloma$DEPDC1), linetype=2)+# Add horizontal line at base mean 
+stat_compare_means(method = &amp;quot;anova&amp;quot;, label.y = 1600)+ # Add global annova p-value 
+stat_compare_means(label = &amp;quot;p.signif&amp;quot;, method = &amp;quot;t.test&amp;quot;, ref.group = &amp;quot;.all.&amp;quot;)# Pairwise comparison against all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c6188f0a83617dcd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&amp;gt;从图中可以看出，DEPDC1基因在Proliferation组中显著性地过表达，而在Hyperdiploid和Low bone disease显著性地低表达&lt;/p&gt;
+
+&lt;p&gt;我们也可以将非显著性标记ns去掉，只需要将参数hide.ns=TRUE&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggboxplot(myeloma, x=&amp;quot;molecular_group&amp;quot;, y=&amp;quot;DEPDC1&amp;quot;, 
+color = &amp;quot;molecular_group&amp;quot;, add = &amp;quot;jitter&amp;quot;, legend=&amp;quot;none&amp;quot;)+
+rotate_x_text(angle = 45)+ 
+geom_hline(yintercept = mean(myeloma$DEPDC1), linetype=2)+# Add horizontal line at base mean 
+stat_compare_means(method = &amp;quot;anova&amp;quot;, label.y = 1600)+ # Add global annova p-value 
+stat_compare_means(label = &amp;quot;p.signif&amp;quot;, method = &amp;quot;t.test&amp;quot;, ref.group = &amp;quot;.all.&amp;quot;, hide.ns = TRUE)# Pairwise comparison against all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-15bd512052d55bf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;多个分组变量&#34;&gt;多个分组变量&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;按另一个变量进行分组之后进行统计检验，比如按变量dose进行分组：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;compare_means(len~supp, data=ToothGrowth, group.by = &amp;quot;dose&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-56f713ae2fa2c591.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#可视化
+p &amp;lt;- ggboxplot(ToothGrowth, x=&amp;quot;supp&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;supp&amp;quot;, 
+palette = &amp;quot;jco&amp;quot;, add = &amp;quot;jitter&amp;quot;, facet.by = &amp;quot;dose&amp;quot;, short.panel.labs = FALSE)#按dose进行分面
+#label只绘制
+p-valuep+stat_compare_means(label = &amp;quot;p.format&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a235626a981e4709.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#label绘制显著性水平
+p+stat_compare_means(label = &amp;quot;p.signif&amp;quot;, label.x = 1.5)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3ebf7d89f1a517cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#将所有箱线图绘制在一个panel中
+p &amp;lt;- ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;supp&amp;quot;, 
+palette = &amp;quot;jco&amp;quot;, add = &amp;quot;jitter&amp;quot;)
+p+stat_compare_means(aes(group=supp))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6529191fdef8f3dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#只显示p-value
+p+stat_compare_means(aes(group=supp), label = &amp;quot;p.format&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-ce9c6136407ca58a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#显示显著性水平
+p+stat_compare_means(aes(group=supp), label = &amp;quot;p.signif&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f2cf5728cc9cf67a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;进行paired sample检验
+compare_means(len~supp, data=ToothGrowth, group.by = &amp;quot;dose&amp;quot;, paired = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f5d2ebfd37391113.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#可视化
+p &amp;lt;- ggpaired(ToothGrowth, x=&amp;quot;supp&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;supp&amp;quot;, 
+palette = &amp;quot;jco&amp;quot;, line.color=&amp;quot;gray&amp;quot;, line.size=0.4, facet.by = &amp;quot;dose&amp;quot;, 
+short.panel.labs = FALSE)#按dose分面
+#只显示p-value
+p+stat_compare_means(label = &amp;quot;p.format&amp;quot;, paired = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-cc7db564846fae97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;其他图形&#34;&gt;其他图形&lt;/h2&gt;
+
+&lt;h3 id=&#34;条形图与线图-一个分组变量&#34;&gt;条形图与线图（一个分组变量）&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;#有误差棒的条形图，实际上我以前的文章里有纯粹用ggplot2实现
+ggbarplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, add = &amp;quot;mean_se&amp;quot;)+ 
+stat_compare_means()+ 
+stat_compare_means(ref.group = &amp;quot;0.5&amp;quot;, label = &amp;quot;p.signif&amp;quot;, label.y = c(22, 29))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0a38300e74bbce61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#有误差棒的线图
+ggline(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, add = &amp;quot;mean_se&amp;quot;)+
+stat_compare_means()+ 
+stat_compare_means(ref.group = &amp;quot;0.5&amp;quot;, label = &amp;quot;p.signif&amp;quot;, label.y = c(22, 29))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9bbc6411123c593a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;条形图与线图-两个分组变量&#34;&gt;条形图与线图（两个分组变量）&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;ggbarplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, add = &amp;quot;mean_se&amp;quot;, color = &amp;quot;supp&amp;quot;, 
+palette = &amp;quot;jco&amp;quot;, position = position_dodge(0.8))+ 
+stat_compare_means(aes(group=supp), label = &amp;quot;p.signif&amp;quot;, label.y = 29)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b2dd950f78f7a642.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ggline(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, add = &amp;quot;mean_se&amp;quot;, color = &amp;quot;supp&amp;quot;, 
+palette = &amp;quot;jco&amp;quot;)+ 
+stat_compare_means(aes(group=supp), label = &amp;quot;p.signif&amp;quot;, label.y = c(16, 25, 29))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-bd2413a61ece0ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;Sessioninfo&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 8.1 x64 (build 9600)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936 
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C 
+## [5] LC_TIME=Chinese (Simplified)_China.936 
+## 
+## attached base packages:
+## [1] stats graphics grDevices utils datasets methods base 
+## 
+## other attached packages:
+## [1] survminer_0.4.0 ggpubr_0.1.3 magrittr_1.5 ggplot2_2.2.1 
+## 
+## loaded via a namespace (and not attached):
+## [1] Rcpp_0.12.11 compiler_3.4.0 plyr_1.8.4
+## [4] tools_3.4.0 digest_0.6.12 evaluate_0.10 
+## [7] tibble_1.3.3 gtable_0.2.0 nlme_3.1-131 
+## [10] lattice_0.20-35 rlang_0.1.1 Matrix_1.2-10 
+## [13] psych_1.7.5 ggsci_2.4 DBI_0.6-1 
+## [16] cmprsk_2.2-7 yaml_2.1.14 parallel_3.4.0 
+## [19] gridExtra_2.2.1 dplyr_0.5.0 stringr_1.2.0 
+## [22] knitr_1.16 survMisc_0.5.4 rprojroot_1.2 
+## [25] grid_3.4.0 data.table_1.10.4 KMsurv_0.1-5 
+## [28] R6_2.2.1 km.ci_0.5-2 survival_2.41-3 
+## [31] foreign_0.8-68 rmarkdown_1.5 reshape2_1.4.2 
+## [34] tidyr_0.6.3 purrr_0.2.2.2 splines_3.4.0 
+## [37] backports_1.1.0 scales_0.4.1 htmltools_0.3.6 
+## [40] assertthat_0.2.0 mnormt_1.5-5 xtable_1.8-2 
+## [43] colorspace_1.3-2 ggsignif_0.2.0 labeling_0.3 
+## [46] stringi_1.1.5 lazyeval_0.2.0 munsell_0.4.3 
+## [49] broom_0.4.2 zoo_1.8-0
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>”R语言可视化学习笔记之ggrepel包“</title>
+      <link>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/</link>
+      <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
+      <guid>/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9824653100d11fec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当我们在图形中添加标签时，标签之间很容易相互重叠，包&lt;a href=&#34;https://github.com/slowkow/ggrepel&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;ggrepel&lt;/strong&gt;&lt;/a&gt;就专门用来解决这个问题！ 首先我们来看看通过geom_text()添加标签时的情形：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(ggplot2)
+#使用数据集mtcars演示
+ggplot(mtcars)+ geom_point(aes(wt, mpg), color=&amp;quot;red&amp;quot;)+ 
+geom_text(aes(wt, mpg, label=rownames(mtcars)))+ 
+theme_classic(base_size = 16)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0110517941711504.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以看到可视化效果不是很好。接下来看看包&lt;strong&gt;ggrepel&lt;/strong&gt;的效果。
+geom_text_repel()是基于geom_text()&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;library(ggrepel)
+set.seed(42)
+ggplot(mtcars)+ geom_point(aes(wt, mpg), color=&amp;quot;red&amp;quot;)+ 
+geom_text_repel(aes(wt, mpg, label=rownames(mtcars)))+
+theme_classic(base_size = 16)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-7f9edd980e5504ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;geom-label-repel&#34;&gt;geom_label_repel()&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;geom_label_repel()是基于geom_label(),它将标签置于一个小方框中&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(42)
+ggplot(mtcars)+ geom_point(aes(wt, mpg), color=&amp;quot;grey&amp;quot;, size=5)+
+geom_label_repel(aes(wt, mpg, fill=factor(cyl), 
+label=rownames(mtcars)), fontface=&amp;quot;bold&amp;quot;, color=&amp;quot;white&amp;quot;, 
+box.padding=unit(0.35, &amp;quot;lines&amp;quot;), point.padding=unit(0.5, &amp;quot;lines&amp;quot;), 
+segment.colour = &amp;quot;grey50&amp;quot;)+ theme_classic(base_size = 16)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5e60c14166f9c915.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;大部分&lt;code&gt;geom_text()&lt;/code&gt;的参数都适用于&lt;code&gt;geom_text_repel()&lt;/code&gt;,除了以下几个：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;hjust&lt;/li&gt;
+&lt;li&gt;vjust&lt;/li&gt;
+&lt;li&gt;position&lt;/li&gt;
+&lt;li&gt;check_overlap&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;ggrepel&lt;/strong&gt;包为&lt;code&gt;geom_text_repel()&lt;/code&gt;与&lt;code&gt;geom_label_repel()&lt;/code&gt;提供了特有的参数设置：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;segment.color:连接点与标签的线段的颜色&lt;/li&gt;
+&lt;li&gt;segment.size:线段的粗细&lt;/li&gt;
+&lt;li&gt;segment.alpha:线段的透明度&lt;/li&gt;
+&lt;li&gt;box.padding:文本框周边填充&lt;/li&gt;
+&lt;li&gt;point.padding:点周围填充&lt;/li&gt;
+&lt;li&gt;arrow:grid:arrow提供的箭头&lt;/li&gt;
+&lt;li&gt;force:强制性将重叠文本散开&lt;/li&gt;
+&lt;li&gt;max.oter:最大迭代次数&lt;/li&gt;
+&lt;li&gt;nudge_x/y:标签开始位置在坐标轴的移动距离&lt;/li&gt;
+&lt;li&gt;direction:允许标签的方向，x、y or both&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下面举个栗子来详细了解这些参数的图形效果&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(42)
+ggplot(mtcars)+ geom_point(aes(wt, mpg, color=factor(cyl)), size=3)+
+geom_text_repel(aes(wt, mpg, color=factor(cyl), 
+label=rownames(mtcars), angle=ifelse(mtcars$cyl==4, 90, 0)), 
+size=4, family=&amp;quot;Times&amp;quot;, fontface=&amp;quot;bold&amp;quot;, 
+box.padding=unit(0.5, &amp;quot;lines&amp;quot;), point.padding=unit(1.6, &amp;quot;lines&amp;quot;), 
+segment.color = &amp;quot;#cccccc&amp;quot;, segment.size = 0.5, 
+arrow = arrow(length=unit(0.01, &amp;quot;npc&amp;quot;)),force = 1, max.iter = 3e3, 
+nudge_x = ifelse(mtcars$cyl==6, 2, 0), nudge_y = ifelse(mtcars$cyl==6, 9, 0))+ 
+scale_color_discrete(name=&amp;quot;cyl&amp;quot;)+ 
+scale_x_continuous(expand = c(0.5, 0))+ 
+scale_y_continuous(expand = c(0.25, 0))+ 
+theme_classic(base_size = 16)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9824653100d11fec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;也可以通过设置参数&lt;code&gt;point.padding=NA&lt;/code&gt;不对点进行&lt;strong&gt;repel&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(42)
+mtcars$label &amp;lt;- rownames(mtcars)
+ggplot(mtcars, aes(wt, mpg, label=label))+ 
+geom_point(color=&amp;quot;red&amp;quot;)+ geom_text_repel(point.padding = NA)+
+theme_classic(base_size = 16)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-238389207de940a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;通过赋值某些&lt;strong&gt;label&lt;/strong&gt;空字符“”来隐藏。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(42)
+mtcars$label &amp;lt;- rownames(mtcars)
+mtcars$label[1:15] &amp;lt;- &amp;quot;&amp;quot;
+ggplot(mtcars, aes(wt, mpg))+ geom_point(aes(color=factor(cyl)), size=2)+
+geom_text_repel(aes(color=factor(cyl), size=hp, label=label), 
+point.padding = unit(0.25, &amp;quot;lines&amp;quot;), box.padding = unit(0.25, &amp;quot;lines&amp;quot;), 
+nudge_y = 0.1)+ theme_classic(base_size = 16)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b6f7d76fe1e36113.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;将标签控制在特定区域&#34;&gt;将标签控制在特定区域&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;通过设置参数xlim和ylim来限制label的位置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set.seed(42)
+data &amp;lt;- mtcars
+mu &amp;lt;- mean(data$wt)
+left &amp;lt;- data[data$wt &amp;lt;mu, ]
+right &amp;lt;- data[data$wt&amp;gt;=mu, ]
+ggplot()+ geom_vline(xintercept = mu)+ 
+geom_point(aes(wt, mpg), data=data)+ 
+geom_text_repel(data=left, aes(wt, mpg, label=rownames(left), 
+color=&amp;quot;Left half&amp;quot;), xlim=c(NA, mu))+ 
+geom_text_repel(data=right, aes(wt, mpg, label=rownames(right), 
+color=&amp;quot;Rigth half&amp;quot;), xlim=c(mu, NA))+ theme_classic(base_size = 16)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-91519695f1b33a20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+通过控制参数direction来决定label是左右移动还是上下移动， 默认是both&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(42)
+#direction=&amp;quot;x&amp;quot; 左右移动
+ggplot(mtcars)+
+  geom_point(aes(wt, mpg), color=&amp;quot;red&amp;quot;)+
+  geom_text_repel(aes(wt, mpg, label=rownames(mtcars)), direction=&amp;quot;x&amp;quot;)+
+  theme_classic(base_size = 16)+xlim(1, 6)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-771214ebd632ce09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#direction=&amp;quot;x&amp;quot; 上下移动
+ggplot(mtcars)+
+  geom_point(aes(wt, mpg), color=&amp;quot;red&amp;quot;)+
+  geom_text_repel(aes(wt, mpg, label=rownames(mtcars)), direction=&amp;quot;y&amp;quot;)+
+  theme_classic(base_size = 16)+xlim(1, 6)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-771214ebd632ce09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;线图&#34;&gt;线图&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(42)
+ggplot(Orange, aes(age, circumference, color=Tree))+
+  geom_line()+
+  coord_cartesian(xlim=c(min(Orange$age), max(Orange$age)+90))+
+  geom_text_repel(data=subset(Orange, age==max(age)),
+                  aes(label=paste(&amp;quot;Tree&amp;quot;, Tree)),size=6, nudge_x = 45, segment.color = NA)+
+  theme_classic(base_size = 16)+
+  theme(legend.position = &amp;quot;none&amp;quot;)+
+  labs(title=&amp;quot;Orange Trees&amp;quot;, x=&amp;quot;Age(days)&amp;quot;, y=&amp;quot;Circumference(mm)&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9b5718dafd8b2739.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 8.1 x64 (build 9600)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936 
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C 
+## [5] LC_TIME=Chinese (Simplified)_China.936 
+## 
+## attached base packages:
+## [1] stats graphics grDevices utils datasets methods base 
+##
+## other attached packages:
+## [1] ggrepel_0.6.5 ggplot2_2.2.1
+## 
+## loaded via a namespace (and not attached):
+## [1] Rcpp_0.12.11 digest_0.6.12 rprojroot_1.2 plyr_1.8.4 
+## [5] grid_3.4.0 gtable_0.2.0 backports_1.1.0 magrittr_1.5 
+## [9] evaluate_0.10 scales_0.4.1 rlang_0.1.1 stringi_1.1.5 
+## [13] lazyeval_0.2.0 rmarkdown_1.5 labeling_0.3 tools_3.4.0 
+## [17] stringr_1.2.0 munsell_0.4.3 yaml_2.1.14 compiler_3.4.0 
+## [21] colorspace_1.3-2 htmltools_0.3.6 knitr_1.16 tibble_1.3.3
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

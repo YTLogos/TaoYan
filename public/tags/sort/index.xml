@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sort | Tao Yan</title>
+    <link>/tags/sort/</link>
+      <atom:link href="/tags/sort/index.xml" rel="self" type="application/rss+xml" />
+    <description>sort</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Tue, 14 Nov 2017 13:19:05 +0000</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>sort</title>
+      <link>/tags/sort/</link>
+    </image>
+    
+    <item>
+      <title>Linux学习笔记（五）</title>
+      <link>/post/2017-11-14.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</link>
+      <pubDate>Tue, 14 Nov 2017 13:19:05 +0000</pubDate>
+      <guid>/post/2017-11-14.linux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BA%94/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/9Egg9ALKHB.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sort&#34;&gt;&lt;strong&gt;&lt;code&gt;sort&lt;/code&gt;&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;sort&lt;/code&gt;命令在&lt;strong&gt;linux&lt;/strong&gt;中非常有用，它可以对文件进行排序并将排序结果标准输出。&lt;code&gt;sort&lt;/code&gt;即可以从特定的文件中也可以从STDIN中获取输入。
+&lt;code&gt;sort&lt;/code&gt;语法规则如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sort (选项) (参数) 文件
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;参数详解：
+* -b：忽略每行前面开始出的空格字符；
+* -c：检查文件是否已经按照顺序排序；
+* -d：排序时，处理英文字母、数字及空格字符外，忽略其他的字符；
+* -f：排序时，将小写字母视为大写字母；
+* -i：排序时，除了040至176之间的ASCII字符外，忽略其他的字符；
+* -m：将几个排序号的文件进行合并；
+* -M：将前面3个字母依照月份的缩写进行排序；
+* -n：依照数值的大小排序；
+* -o&amp;lt;输出文件&amp;gt;：将排序后的结果存入制定的文件；
+* -r：以相反的顺序来排序；
+* -t&amp;lt;分隔字符&amp;gt;：指定排序时所用的栏位分隔字符；
+* +&amp;lt;起始栏位&amp;gt;-&amp;lt;结束栏位&amp;gt;：以指定的栏位来排序，范围由起始栏位到结束栏位的前一栏位。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sort&lt;/code&gt;将文件/文本的每一行作为一个单位相互比较，比较原则是从首字符向后，一次按&lt;strong&gt;ASCII&lt;/strong&gt;码值进行比较，最后将他们按升序格式输出。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat example.bed
+chr1    26      39
+chr1    32      47
+chr3    11      28
+chr1    40      49
+chr3    16      27
+chr1    9       28
+chr2    35      54
+chr1    10      19
+#没有任何参数排序
+$ sort example.bed
+chr1    10      19
+chr1    26      39
+chr1    32      47
+chr1    40      49
+chr1    9       28
+chr2    35      54
+chr3    11      28
+chr3    16      27
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;sort&lt;/code&gt;默认空格（tab or spaces）作为分隔符，因此如果你的文件使用其他的分隔符，比如CSV文件（分隔符为“,”），这时就需要通过参数&lt;code&gt;-t&lt;/code&gt;指定分隔符。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;实际排序过程中我们希望能够指定依次按哪一列进行排序，这里面就涉及到了参数选项-k了。-k参数的语法格式如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;FStart.CStart Modifie,FEnd.CEnd Modifier 
+-------Start--------,-------End-------- 
+FStart.CStart 选项 , FEnd.CEnd 选项
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;格式被&amp;rdquo;,&amp;ldquo;分为两部分&lt;code&gt;Start&lt;/code&gt;以及&lt;code&gt;End&lt;/code&gt;两部分。其中&lt;code&gt;Start&lt;/code&gt;部分又分为三部分,重点解释一下其中的&lt;code&gt;FStart&lt;/code&gt;以及&lt;code&gt;CStart&lt;/code&gt;部分，&lt;code&gt;CStart&lt;/code&gt;不是必须的可以省略，省略的话表示从本域的开头部分开始，&lt;code&gt;FStart.CStart&lt;/code&gt;中的&lt;code&gt;FStart&lt;/code&gt;表示作用的域，&lt;code&gt;CStart&lt;/code&gt;则表示在&lt;code&gt;FStart&lt;/code&gt;域中从第几个字符开始排序，同理，在&lt;code&gt;End&lt;/code&gt;部分类似。下面我们举个例子说明一下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ head -n 3 example.bed
+chr1    26      39
+chr1    32      47
+chr3    11      28
+# sort 进行排序
+$ sort -k1,1 -k2,2n example.bed
+chr1    9       28
+chr1    10      19
+chr1    26      39
+chr1    32      47
+chr1    40      49
+chr2    35      54
+chr3    11      28
+chr3    16      27
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在上面的命令中，我们通过参数-k来指定按哪一列来进行排序，首先第一个-k参数表示我们想要第一按第一列排序，接下来的第二个-k参数表示按第二列排序，n表示这一列是数值型数据。-k的语法十分复杂，再举个简单例子，假设我们有这样一个文件&lt;em&gt;company.txt&lt;/em&gt;:有三个域，第一个域是公司名称，第二个域是公司人数，第三个域是员工平均工资。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat company.txt|column -t
+baidu   100  5000
+sohu    100  4500
+google  110  5000
+guge    50   3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;按第一个域业也就是按公司名称的字母进行排序&#34;&gt;按第一个域业也就是按公司名称的字母进行排序&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1 company.txt
+baidu 100 5000
+google 110 5000
+guge 50 3000
+sohu 100 4500
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这很好理解&lt;/p&gt;
+
+&lt;h3 id=&#34;按每个公司的人数也就是第二个域进行排序-n表示这一个域是数值型数据&#34;&gt;按每个公司的人数也就是第二个域进行排序(n表示这一个域是数值型数据)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k2n company.txt
+guge 50 3000
+baidu 100 5000
+sohu 100 4500
+google 110 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;从上面可以看出，baidu和sohu的员工人数相同，这时会按照默认的规则从第一个域进行升序排列，所以可以看到baidu排在sohu前面。&lt;/p&gt;
+
+&lt;h3 id=&#34;按公司员工人数排序-员工人数相同的按第三个域升序排列&#34;&gt;按公司员工人数排序，员工人数相同的按第三个域升序排列&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k2n -k3n company.txt
+guge 50 3000
+sohu 100 4500
+baidu 100 5000
+google 110 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看出与前面的差别，这里按员工平均工资进行第二次排序，所以sohu排在baidu前面。&lt;/p&gt;
+
+&lt;h3 id=&#34;先按员工工资降序排序-如果员工人数相同-则再按公司人数升序排序&#34;&gt;先按员工工资降序排序，如果员工人数相同，则再按公司人数升序排序&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k3nr -k2n company.txt
+baidu 100 5000
+google 110 5000
+sohu 100 4500
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;命令中的r表示降序排序，可以看到我们将n、r这样的选项加入到了每一个-k选项中，其实就是-k语法中的Modifier选项。&lt;/p&gt;
+
+&lt;h3 id=&#34;从公司名称字母的第二个字母开始排序&#34;&gt;从公司名称字母的第二个字母开始排序&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1.2 company.txt
+baidu 100 5000
+sohu 100 4500
+google 110 5000
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;-k1.2表示对第一个域的第二个字符开始到本域的最后一个字符为止的字符串进行排序，可以看到sohu与google的第二个字母都是o，但是接下来的字母sohu的h排在google的o之前，因此sohu排在google前面。&lt;/p&gt;
+
+&lt;h3 id=&#34;只针对公司名称的第二字母进行排序-相同的话则按员工平均工资降序排序&#34;&gt;只针对公司名称的第二字母进行排序，相同的话则按员工平均工资降序排序&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;注意了，敲黑板！！！上面我们是从第一个域的第二个字符开始进行排序，而这里只针对第二个字符进行排序，如果第二字符相同的话则按员工平均工资降序排序，上面的例子是按第三个字符进行排序。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1.2,1.2 -k3rn company.txt
+baidu 100 5000
+google 110 5000
+sohu 100 4500
+guge 50 3000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到这次google排在sohu前面了。
+-k选项部分讲到这里基本脉络清楚了,此时再结合其他选项&lt;code&gt;sort&lt;/code&gt;就会变得十分强大。&lt;/p&gt;
+
+&lt;h3 id=&#34;sort的-u选项&#34;&gt;sort的-u选项&lt;/h3&gt;
+
+&lt;p&gt;u代表unique，因此此选项会将重复的选项删除，举个例子，这里我们根据第二域进行排序，添加-u选项，这样具有相同员工数且处于后续位置的行将被删除。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k2n -u company.txt
+guge 50 3000
+baidu 100 5000
+google 110 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;这里就将sohu这一行删除了。注意了，当-k与u结合使用时，-u只识别-k设定的域，发现相同就将后续相同的行删除。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;再举个例子看看特殊情况&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k2n -k3n -u company.txt
+guge 50 3000
+sohu 100 4500
+baidu 100 5000
+google 110 5000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到这次没有删除任何行，这主要是由于-u会权衡所有-k选项，只会将都相同的删除，只要其中有一级不同就不会轻易删除。&lt;/p&gt;
+
+&lt;h3 id=&#34;其他注意点&#34;&gt;其他注意点&lt;/h3&gt;
+
+&lt;p&gt;最后我还想再讲讲&lt;code&gt;sort&lt;/code&gt;一些其他比较有用的选项。第一个是-V选项。我们通过一个例子看看。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat example2.bed
+chr2    15      19
+chr22   32      46
+chr10   31      47
+chr1    34      49
+chr11   6       16
+chr2    17      22
+chr2    27      46
+chr10   30      42
+# 进行排序
+$ sort -k1,1 -k2,2n example2.bed
+chr1    34      49
+chr10   30      42
+chr10   31      47
+chr11   6       16
+chr2    15      19
+chr2    17      22
+chr2    27      46
+chr22   32      46
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;我们可以看到chr2排在chr11之后，主要是因为1排在2之前，&lt;code&gt;sort&lt;/code&gt;对文本进行排序时无法按数字进行排序，通过选项-V可以解决这个问题：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1,1V -k2,2n example2.bed
+chr1    34      49
+chr2    15      19
+chr2    17      22
+chr2    27      46
+chr10   30      42
+chr10   31      47
+chr11   6       16
+chr22   32      46
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另外一个需要考虑的是当我们处理大数据集文本时，提高运行速度是很重要的，&lt;code&gt;sort&lt;/code&gt;提供了几种方法，第一是提供了-S选项：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1,1 -k4,4n -S2G Mus_musculus.GRCm38.75_chr1_random.gtf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中G表示gigabyte，另外一种方法是提供了并行多线程计算&amp;ndash;parallel选项&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sort -k1,1 -k4,4n --parallel=4 Mus_musculus.GRCm38.75_chr1_random.gtf
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

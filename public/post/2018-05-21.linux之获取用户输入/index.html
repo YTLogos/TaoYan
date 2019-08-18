@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.4.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Tao Yan">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#E13D3D">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/paraiso-light.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/paraiso-light.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arapey:400,400i|Karla:400,700|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.271ffa4140fad041464911a0b7fff4cf.css">
+
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academic.d93a68285af0f7ef7f5ea22fb59113cf.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/">
+
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@TaoYANLogos">
+  <meta property="twitter:creator" content="@TaoYANLogos">
+  
+  <meta property="og:site_name" content="Tao Yan">
+  <meta property="og:url" content="/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/">
+  <meta property="og:title" content="Linux之获取用户输入 | Tao Yan">
+  <meta property="og:description" content=""><meta property="og:image" content="img/avatar.jpg">
+  <meta property="twitter:image" content="img/avatar.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2018-05-21T21:19:05&#43;00:00">
+    
+    <meta property="article:modified_time" content="2018-05-21T21:19:05&#43;00:00">
+  
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#E13D3D",
+          "text": "#fbf9f4"
+        },
+        "button": {
+          "background": "#fbf9f4",
+          "text": "#E13D3D"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://cookies.insites.com"
+      }
+    })});
+</script>
+
+
+
+  
+
+
+
+
+
+  <title>Linux之获取用户输入 | Tao Yan</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Tao Yan</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/courses/"><span>Courses</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Linux之获取用户输入</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2018-05-21 21:19:05 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2018-05-21 21:19:05 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>May 21, 2018</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/linux/">Linux</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/&amp;text=Linux%e4%b9%8b%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e8%be%93%e5%85%a5" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/&amp;t=Linux%e4%b9%8b%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e8%be%93%e5%85%a5" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Linux%e4%b9%8b%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e8%be%93%e5%85%a5&amp;body=/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/&amp;title=Linux%e4%b9%8b%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e8%be%93%e5%85%a5" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Linux%e4%b9%8b%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e8%be%93%e5%85%a5%20/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/2018-05-21.linux%E4%B9%8B%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/&amp;title=Linux%e4%b9%8b%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e8%be%93%e5%85%a5" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      <p><img src="https://github.com/YTLogos/Pic_blog/blob/master/CGbkeLBFc9.png?raw=true" alt="mark" /></p>
+
+<h2 id="基本读取">基本读取</h2>
+
+<p>read命令从标准输入（键盘）或另一个文件描述符中接受输入，在收到输入后，read命令会将数据放进一个变量</p>
+
+<pre><code>$ cat test21.sh
+#!/bin/bash
+# testing the read command
+#
+echo -n &quot;Enter your name: &quot;
+read name
+echo &quot;Hello $name, welcome to my program. &quot;
+#
+$
+$ ./test21.sh
+Enter your name: Rich Blum
+Hello Rich Blum, welcome to my program.
+</code></pre>
+
+<p>echo命令使用了-n选项，该选项不会在字符串末尾输出换行符，允许脚本用户紧跟其后输入数据，而不是下一行。
+read命令包含了-p选项，允许用户直接在read命令行指定提示符</p>
+
+<pre><code>$ cat test22.sh
+#!/bin/bash
+# testing the read -p option
+#
+read -p &quot;Please enter your age: &quot; age
+days=$[ $age * 365 ]
+echo &quot;That makes you over $days days old! &quot;
+#
+$
+$ ./test22.sh
+Please enter your age: 10
+That makes you over 3650 days old!
+</code></pre>
+
+<blockquote>
+<p>read命令会将提示符后输入的所有数据分配给单个变量，要么指定多个变量，输入的每个数据值都会分配给变量列表中的下一个变量，如果变量数量不够，剩下的数据就全部分配给最后一个变量。</p>
+</blockquote>
+
+<pre><code>$ cat test23.sh
+#!/bin/bash
+# entering multiple variables
+#
+read -p &quot;Enter your name: &quot; first last
+echo &quot;Checking data for $last, $first…&quot;
+$
+$ ./test23.sh
+Enter your name: Rich Blum
+Checking data for Blum, Rich...
+</code></pre>
+
+<p>也可以在read命令行中不指定变量，此时read会将它收到的任何数据存入环境变量REPLY中</p>
+
+<pre><code>$ cat test24.sh
+#!/bin/bash
+# Testing the REPLY Environment variable
+#
+read -p &quot;Enter your name: &quot;
+echo
+echo Hello $REPLY, welcome to my program.
+#
+$
+$ ./test24.sh
+Enter your name: Christine
+Hello Christine, welcome to my program.
+</code></pre>
+
+<h3 id="超时">超时</h3>
+
+<p>使用read命令时脚本很可能会一直等着用户输入，此时可以设置一个计时器来让脚本在超过输入时间后继续执行</p>
+
+<pre><code>$ cat test25.sh
+#!/bin/bash
+# timing the data entry
+#
+if read -t 5 -p &quot;Please enter your name: &quot; name
+then
+echo &quot;Hello $name, welcome to my script&quot;
+else
+echo
+echo &quot;Sorry, too slow! &quot;
+fi
+$
+$ ./test25.sh
+Please enter your name: Rich
+Hello Rich, welcome to my script
+$ ./test25.sh
+Please enter your name:
+Sorry, too slow!
+</code></pre>
+
+<p>也可以不对输入过程计时，而是让read命令来统计输入的字符数，当输入的字符数达到预设的字符数时，就会自动退出，将输入的数据赋值给变量</p>
+
+<pre><code>$ cat test26.sh
+#!/bin/bash
+# getting just one character of input
+#
+read -n1 -p &quot;Do you want to continue [Y/N]? &quot; answer
+case $answer in
+Y | y) echo
+echo &quot;fine, continue on…&quot;;;
+N | n) echo
+echo OK, goodbye
+exit;;
+esac
+echo &quot;This is the end of the script&quot;
+$
+$ ./test26.sh
+Do you want to continue [Y/N]? Y
+fine, continue on…
+This is the end of the script
+$
+$ ./test26.sh
+Do you want to continue [Y/N]? n
+OK, goodbye
+</code></pre>
+
+<p>将-n选项与值1一起使用，告诉read命令在接受单个字符后退出。</p>
+
+<h3 id="隐藏方式读取">隐藏方式读取</h3>
+
+<p>-s选项可以避免在read命令中输入的数据出现在显示器上</p>
+
+<pre><code>$ cat test27.sh
+#!/bin/bash
+# hiding input data from the monitor
+#
+read -s -p &quot;Enter your password: &quot; pass
+echo
+echo &quot;Is your password really $pass? &quot;
+$
+$ ./test27.sh
+Enter your password:
+Is your password really T3st1ng?
+</code></pre>
+
+<h3 id="文件中读取">文件中读取</h3>
+
+<p>read可以用来直接读取文件里保存的数据，每次调用read命令，它都会从文件中读取一行，当文件中没有内容后，read退出</p>
+
+<pre><code>$ cat test28.sh
+#!/bin/bash
+# reading data from a file
+#
+count=1
+cat test | while read line
+do
+echo &quot;Line $count: $line&quot;
+count=$[ $count + 1]
+done
+echo &quot;Finished processing the file&quot;
+$
+$ cat test
+The quick brown dog jumps over the lazy fox.
+This is a test, this is only a test.
+O Romeo, Romeo! Wherefore art thou Romeo?
+$
+$ ./test28.sh
+Line 1: The quick brown dog jumps over the lazy fox.
+Line 2: This is a test, this is only a test.
+Line 3: O Romeo, Romeo! Wherefore art thou Romeo?
+Finished processing the file
+</code></pre>
+    </div>
+
+    
+<p class="edit-page">
+  <a href="https://github.com/YTLogos/mywebsite/edit/master/content/post%5c2018-05-21.Linux%e4%b9%8b%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7%e8%be%93%e5%85%a5.md">
+    <i class="fas fa-pen pr-2"></i>Edit this page
+  </a>
+</p>
+
+
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/shell/">Shell</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hufa245e75a5e5fa47274790393ba89624_26717_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="">Tao Yan</a></h5>
+      <h6 class="card-subtitle">PhD Candidate of Crop Science</h6>
+      <p class="card-text" itemprop="description">My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/TaoYANLogos" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/YTLogos" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/2018-05-20.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%B8%89/">Linux之处理用户输入（三）</a></li>
+          
+          <li><a href="/post/2018-05-19.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5%E4%BA%8C/">Linux之处理用户输入(二)</a></li>
+          
+          <li><a href="/post/2018-05-18.linux%E4%B9%8B%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E8%BE%93%E5%85%A5/">Linux之处理用户输入</a></li>
+          
+          <li><a href="/post/2018-05-17.linux%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4which/">Linux结构化命令which</a></li>
+          
+          <li><a href="/post/2018-05-16.linux%E4%B9%8B%E7%BB%93%E6%9E%84%E5%8C%96%E5%91%BD%E4%BB%A4/">Linux之结构化命令</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "logos-1" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/bash.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/js.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/markdown.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/html.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://logos-1.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.16bbb3750feb7244c9bc409a5a4fe678.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy; Tao Yan, 2018-2019 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

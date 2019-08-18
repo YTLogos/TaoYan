@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>地图 | Tao Yan</title>
+    <link>/tags/%E5%9C%B0%E5%9B%BE/</link>
+      <atom:link href="/tags/%E5%9C%B0%E5%9B%BE/index.xml" rel="self" type="application/rss+xml" />
+    <description>地图</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Thu, 08 Feb 2018 12:19:05 +0000</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>地图</title>
+      <link>/tags/%E5%9C%B0%E5%9B%BE/</link>
+    </image>
+    
+    <item>
+      <title>利用gganimate可视化R-Ladies发展情况</title>
+      <link>/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</link>
+      <pubDate>Thu, 08 Feb 2018 12:19:05 +0000</pubDate>
+      <guid>/post/2018-02-08.%E5%88%A9%E7%94%A8gganimate%E5%8F%AF%E8%A7%86%E5%8C%96r-ladies%E5%8F%91%E5%B1%95%E6%83%85%E5%86%B5/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/raw/master/g0hLljaEb9.gif&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;这篇博客主要基于&lt;a href=&#34;https://d4tagirl.com/2017/05/how-to-plot-animated-maps-with-gganimate&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;d4tagirl&lt;/strong&gt;&lt;/a&gt;,稍微有所修改。&lt;/p&gt;
+
+&lt;h2 id=&#34;数据加载&#34;&gt;数据加载&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(pacman)
+p_load(tidyverse, gganomate, maps, ggthemes)
+rladies &amp;lt;- read_csv(url(&amp;quot;https://raw.githubusercontent.com/d4tagirl/R-Ladies-growth-maps/master/rladies.csv&amp;quot;))%&amp;gt;%
+  select(-1)
+head(rladies)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 7
+##   screen_name     location     created_at followers age_days     lon   lat
+##   &amp;lt;chr&amp;gt;           &amp;lt;chr&amp;gt;        &amp;lt;date&amp;gt;         &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+## 1 RLadiesSF       San Francis~ 2012-10-15       916     1673 -122     37.8
+## 2 RLadiesNYC      New York     2016-09-01       309      256 - 74.0   40.7
+## 3 RLadiesIstanbul &amp;lt;U+0130&amp;gt;stanbul, T~ 2016-09-06       436      251   29.0   41.0
+## 4 RLadiesBCN      Barcelona, ~ 2016-10-11       377      216    2.17  41.4
+## 5 RLadiesColumbus Columbus, OH 2016-10-04       179      223 - 83.0   40.0
+## 6 RLadiesBoston   Boston, MA   2016-09-06       259      251 - 71.1   42.4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;可视化&#34;&gt;可视化&lt;/h2&gt;
+
+&lt;p&gt;主要是根据地理位置信息映射到地图上&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r,fig.width=24,&#34;&gt;ggplot()+
+  borders(&amp;quot;world&amp;quot;, color=&amp;quot;gray85&amp;quot;, fill=&amp;quot;grey80&amp;quot;)+
+  geom_point(data = rladies, aes(lon, lat, size=followers), color=&amp;quot;purple&amp;quot;, alpha=0.5)+
+  scale_size_continuous(range = c(8, 24), breaks = c(250, 500, 750, 1000))+
+  labs(size=&amp;quot;Followers&amp;quot;, title=&amp;quot;                                             The development of R-Ladies’ Twitter accounts&amp;quot;,x=NULL,y=NULL)+
+  theme(text = element_text(family = &amp;quot;Times New Roman&amp;quot;, color = &amp;quot;#EEEEEE&amp;quot;),
+        plot.title = element_text(size=40,color = &amp;quot;#f9ba00&amp;quot;),
+        plot.subtitle = element_text(size=14),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_rect(fill=&amp;quot;#333333&amp;quot;),
+        plot.background = element_rect(fill = &amp;quot;#333333&amp;quot;),
+        legend.position = c(0.18,0.36),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        legend.text = element_text(size = 28),
+        legend.title = element_text(size=28, color = &amp;quot;#f9ba00&amp;quot;))+
+  annotate(geom = &amp;quot;text&amp;quot;,
+           label=&amp;quot;Made by Logos ytlogos.github.io\nOriginally from d4tagirl https://d4tagirl.com&amp;quot;,
+           x=70, y=-55, size=10, family=&amp;quot;Helvetica Black&amp;quot;, color=&amp;quot;#f9ba00&amp;quot;, hjust=&amp;quot;left&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/emDGG7e91G.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;动画展示&#34;&gt;动画展示&lt;/h2&gt;
+
+&lt;p&gt;为了利用&lt;strong&gt;gganimate&lt;/strong&gt;进行动态展示，需要构建一个映射变量：时间。同时为了使得可视化开始和结尾呈现的是空白，又构建了两个空白图层&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ghost_points_ini &amp;lt;- tibble(created_at=as.Date(&amp;quot;2011-09-01&amp;quot;), followers=0, lon=0, lat=0)
+ghost_points_fin &amp;lt;- tibble(created_at=seq(as.Date(&amp;quot;2017-05-16&amp;quot;), as.Date(&amp;quot;2017-05-30&amp;quot;),by=&amp;quot;days&amp;quot;), followers=0, lon=0,lat=0)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;添加frame映射&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;map &amp;lt;- ggplot()+
+  borders(&amp;quot;world&amp;quot;, color=&amp;quot;gray85&amp;quot;, fill=&amp;quot;grey80&amp;quot;)+
+  geom_point(data = rladies, aes(lon, lat, size=followers, frame=created_at, cumulative=TRUE), color=&amp;quot;purple&amp;quot;, alpha=0.5)+
+  scale_size_continuous(range = c(4, 16), breaks = c(250, 500, 750, 1000))+
+  geom_point(data = ghost_points_ini, aes(lon, lat, size=followers, frame=created_at, cumulative=TRUE), alpha=0)+
+  geom_point(data = ghost_points_fin, aes(lon, lat, size=followers, frame=created_at, cumulative=TRUE), alpha=0)+
+  labs(size=&amp;quot;Followers&amp;quot;, title=&amp;quot;The development of R-Ladies’ Twitter accounts&amp;quot;,x=NULL,y=NULL)+
+  theme(text = element_text(family = &amp;quot;Times New Roman&amp;quot;, color = &amp;quot;#EEEEEE&amp;quot;),
+        plot.title = element_text(size=28, color = &amp;quot;#f9ba00&amp;quot;),
+        plot.subtitle = element_text(size=14),
+        axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        panel.grid = element_blank(),
+        panel.background = element_rect(fill=&amp;quot;#333333&amp;quot;),
+        plot.background = element_rect(fill = &amp;quot;#333333&amp;quot;),
+        legend.position = c(0.18,0.36),
+        legend.background = element_blank(),
+        legend.key = element_blank(),
+        legend.text = element_text(size = 18),
+        legend.title = element_text(size=24, color = &amp;quot;#f9ba00&amp;quot;))+
+  annotate(geom = &amp;quot;text&amp;quot;,
+           label=&amp;quot;Made by Logos ytlogos.github.io\nOriginally from d4tagirl https://d4tagirl.com&amp;quot;,
+           x=70, y=-55, size=6, family=&amp;quot;Helvetica Black&amp;quot;, color=&amp;quot;#f9ba00&amp;quot;, hjust=&amp;quot;left&amp;quot;)
+animation::ani.options(interval=0.15, ani.width=1500, ani.height=800, units=&amp;quot;in&amp;quot;)
+gganimate::gganimate(map, filename = &amp;quot;d4tagirlmap.gif&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/raw/master/g0hLljaEb9.gif&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] ggthemes_3.4.0       maps_3.2.0           BiocInstaller_1.28.0
+##  [4] forcats_0.2.0        stringr_1.2.0        dplyr_0.7.4         
+##  [7] purrr_0.2.4          readr_1.1.1          tidyr_0.8.0         
+## [10] tibble_1.4.2         ggplot2_2.2.1.9000   tidyverse_1.2.1     
+## [13] pacman_0.4.6        
+## 
+## loaded via a namespace (and not attached):
+##  [1] reshape2_1.4.3    haven_1.1.1       lattice_0.20-35  
+##  [4] colorspace_1.3-2  htmltools_0.3.6   yaml_2.1.16      
+##  [7] utf8_1.1.3        rlang_0.1.6       pillar_1.1.0     
+## [10] foreign_0.8-69    glue_1.2.0        modelr_0.1.1     
+## [13] readxl_1.0.0      bindrcpp_0.2      bindr_0.1        
+## [16] plyr_1.8.4        munsell_0.4.3     gtable_0.2.0     
+## [19] cellranger_1.1.0  rvest_0.3.2       psych_1.7.8      
+## [22] evaluate_0.10.1   labeling_0.3      knitr_1.19       
+## [25] parallel_3.4.3    broom_0.4.3       Rcpp_0.12.15     
+## [28] scales_0.5.0.9000 backports_1.1.2   jsonlite_1.5     
+## [31] mnormt_1.5-5      hms_0.4.1         digest_0.6.15    
+## [34] stringi_1.1.6     grid_3.4.3        rprojroot_1.3-2  
+## [37] cli_1.0.0         tools_3.4.3       magrittr_1.5     
+## [40] lazyeval_0.2.1    crayon_1.3.4      pkgconfig_2.0.1  
+## [43] xml2_1.2.0        lubridate_1.7.1   assertthat_0.2.0 
+## [46] rmarkdown_1.8     httr_1.3.1        rstudioapi_0.7   
+## [49] R6_2.2.2          nlme_3.1-131      compiler_3.4.3
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用R语言绘制世界航班路线图</title>
+      <link>/post/2018-02-07.%E5%88%A9%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E4%B8%96%E7%95%8C%E8%88%AA%E7%8F%AD%E8%B7%AF%E7%BA%BF%E5%9B%BE/</link>
+      <pubDate>Wed, 07 Feb 2018 12:19:05 +0000</pubDate>
+      <guid>/post/2018-02-07.%E5%88%A9%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E4%B8%96%E7%95%8C%E8%88%AA%E7%8F%AD%E8%B7%AF%E7%BA%BF%E5%9B%BE/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6HckGG7Jfc.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;本文基于&lt;strong&gt;NASA&lt;/strong&gt;的&lt;a href=&#34;https://www.nasa.gov/specials/blackmarble/2016/globalmaps/BlackMarble_2016_01deg.jpg&#34; target=&#34;_blank&#34;&gt;夜间地图&lt;/a&gt;的基础上进行世界航班路线可视化，参考多篇博客以及可视化案例。&lt;/p&gt;
+
+&lt;h2 id=&#34;包加载&#34;&gt;包加载&lt;/h2&gt;
+
+&lt;p&gt;本博客使用的包较多，利用&lt;strong&gt;pacman&lt;/strong&gt;包里的&lt;code&gt;p_load()&lt;/code&gt;函数进行加载&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(pacman)
+p_load(tidyverse, data.table, geosphere, grid, jpeg, plyr)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;数据准备&#34;&gt;数据准备&lt;/h2&gt;
+
+&lt;p&gt;使用的数据来自于&lt;a href=&#34;https://openflights.org/data.html&#34; target=&#34;_blank&#34;&gt;OpenFlights.org&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h3 id=&#34;数据下载&#34;&gt;数据下载&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;download.file(&amp;quot;https://raw.githubusercontent.com/jpatokal/openflights/master/data/airlines.dat&amp;quot;,
+              destfile = &amp;quot;airlines.dat&amp;quot;, mode = &amp;quot;wb&amp;quot;)
+download.file(&amp;quot;https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat&amp;quot;, 
+              destfile = &amp;quot;airports.dat&amp;quot;, mode = &amp;quot;wb&amp;quot;)
+download.file(&amp;quot;https://raw.githubusercontent.com/jpatokal/openflights/master/data/routes.dat&amp;quot;, 
+              destfile = &amp;quot;routes.dat&amp;quot;, mode = &amp;quot;wb&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;数据导入&#34;&gt;数据导入&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;airlines &amp;lt;- fread(&amp;quot;airlines.dat&amp;quot;, sep = &amp;quot;,&amp;quot;, skip = 1)
+airports &amp;lt;- fread(&amp;quot;airports.dat&amp;quot;, sep = &amp;quot;,&amp;quot;)
+routes &amp;lt;- fread(&amp;quot;routes.dat&amp;quot;, sep = &amp;quot;,&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;数据整理&#34;&gt;数据整理&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#添加列名
+colnames(airlines) &amp;lt;- c(&amp;quot;airline_id&amp;quot;, &amp;quot;name&amp;quot;, &amp;quot;alias&amp;quot;, &amp;quot;iata&amp;quot;, &amp;quot;icao&amp;quot;, &amp;quot;callisign&amp;quot;, &amp;quot;country&amp;quot;, &amp;quot;active&amp;quot;)
+colnames(airports) &amp;lt;- c(&amp;quot;airport_id&amp;quot;, &amp;quot;name&amp;quot;, &amp;quot;city&amp;quot;, &amp;quot;country&amp;quot;,&amp;quot;iata&amp;quot;, &amp;quot;icao&amp;quot;, &amp;quot;latitude&amp;quot;, &amp;quot;longitude&amp;quot;,&amp;quot;altitude&amp;quot;, &amp;quot;timezone&amp;quot;,&amp;quot;dst&amp;quot;,&amp;quot;tz_database_time_zone&amp;quot;,&amp;quot;type&amp;quot;, &amp;quot;source&amp;quot;)
+colnames(routes) &amp;lt;- c(&amp;quot;airline&amp;quot;, &amp;quot;airline_id&amp;quot;, &amp;quot;source_airport&amp;quot;, &amp;quot;source_airport_id&amp;quot;,&amp;quot;destination_airport&amp;quot;,&amp;quot;destination_airport_id&amp;quot;,&amp;quot;codeshare&amp;quot;, &amp;quot;stops&amp;quot;,&amp;quot;equipment&amp;quot;)
+
+#类型转换
+routes$airline_id &amp;lt;- as.numeric(routes$airline_id)
+# airlines与routes数据融合
+flights &amp;lt;- left_join(routes, airlines, by=&amp;quot;airline_id&amp;quot;)
+# flights与airports数据融合
+airports_orig &amp;lt;- airports[,c(5,7,8)]
+colnames(airports_orig) &amp;lt;- c(&amp;quot;source_airport&amp;quot;,&amp;quot;source_airport_lat&amp;quot;, &amp;quot;source_airport_long&amp;quot;)
+airports_dest &amp;lt;- airports[, c(5, 7, 8)]
+colnames(airports_dest) &amp;lt;- c(&amp;quot;destination_airport&amp;quot;, &amp;quot;destination_airport_lat&amp;quot;, &amp;quot;destination_airport_long&amp;quot;)
+flights &amp;lt;- left_join(flights, airports_orig, by = &amp;quot;source_airport&amp;quot;)
+flights &amp;lt;- left_join(flights, airports_dest, by = &amp;quot;destination_airport&amp;quot;)
+#剔除缺失值
+flights &amp;lt;- na.omit(flights, cols = c(&amp;quot;source_airport_long&amp;quot;, &amp;quot;source_airport_lat&amp;quot;, &amp;quot;destination_airport_long&amp;quot;, &amp;quot;destination_airport_lat&amp;quot;))
+#最后数据如下
+head(flights[,c(1:5)])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面就是准备地理信息数据&lt;/p&gt;
+
+&lt;p&gt;本文主要是可视化地理信息上的点与点之间的连接，这可以通过&lt;strong&gt;geosphere&lt;/strong&gt;包里的函数&lt;code&gt;gcIntermediate()&lt;/code&gt;很轻松实现。具体使用方法可以参考&lt;a href=&#34;http://flowingdata.com/2011/05/11/how-to-map-connections-with-great-circles/&#34; target=&#34;_blank&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# 按航空公司拆分数据集
+flights_split &amp;lt;- split(flights, flights$name)
+# Calculate intermediate points between each two locations
+flights_all &amp;lt;- lapply(flights_split, function(x) gcIntermediate(x[, c(&amp;quot;source_airport_long&amp;quot;, &amp;quot;source_airport_lat&amp;quot;)], x[, c(&amp;quot;destination_airport_long&amp;quot;, &amp;quot;destination_airport_lat&amp;quot;)], n=100, breakAtDateLine = FALSE, addStartEnd = TRUE, sp = TRUE))
+
+# 转换为数据框
+flights_fortified &amp;lt;- lapply(flights_all, function(x) ldply(x@lines, fortify))
+
+# Unsplit lists
+flights_fortified &amp;lt;- do.call(&amp;quot;rbind&amp;quot;, flights_fortified)
+
+# Add and clean column with airline names
+flights_fortified$name &amp;lt;- rownames(flights_fortified)
+flights_fortified$name &amp;lt;- gsub(&amp;quot;\\..*&amp;quot;, &amp;quot;&amp;quot;, flights_fortified$name)
+
+# Extract first and last observations for plotting source and destination points (i.e., airports)
+flights_points &amp;lt;- flights_fortified %&amp;gt;%
+  group_by(group) %&amp;gt;%
+  filter(row_number() == 1 | row_number() == n())
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;可视化&#34;&gt;可视化&lt;/h2&gt;
+
+&lt;p&gt;接下来就是进行可视化了，前面讲了我们只是在&lt;strong&gt;NASA&lt;/strong&gt;提供的夜间地球图上面进行数据映射，所以第一我们需要获取该背景地图。&lt;/p&gt;
+
+&lt;h3 id=&#34;图片获取并渲染&#34;&gt;图片获取并渲染&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#下载图片
+download.file(&amp;quot;https://www.nasa.gov/specials/blackmarble/2016/globalmaps/BlackMarble_2016_01deg.jpg&amp;quot;,
+              destfile = &amp;quot;BlackMarble_2016_01deg.jpg&amp;quot;, mode = &amp;quot;wb&amp;quot;)
+#加载并渲染图片
+earth &amp;lt;- readJPEG(&amp;quot;BlackMarble_2016_01deg.jpg&amp;quot;, native = TRUE)
+earth &amp;lt;- rasterGrob(earth, interpolate = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;数据映射&#34;&gt;数据映射&lt;/h3&gt;
+
+&lt;p&gt;由于航空公司十分多，就挑选几个有名的航空公司进行可视化。&lt;/p&gt;
+
+&lt;h4 id=&#34;lufthansa-德国汉莎航空公司&#34;&gt;Lufthansa(德国汉莎航空公司)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
+  annotation_custom(earth, xmin = -180, xmax = 180, ymin = -90, ymax = 90) +
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.0, size = 0.0, data = flights_fortified) + 
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.2, size = 0.3, color = &amp;quot;#f9ba00&amp;quot;, data = flights_fortified[flights_fortified$name == &amp;quot;Lufthansa&amp;quot;, ]) + 
+  geom_point(data = flights_points[flights_points$name == &amp;quot;Lufthansa&amp;quot;, ], aes(long, lat), alpha = 0.8, size = 0.1, colour = &amp;quot;white&amp;quot;) +
+  theme(panel.background = element_rect(fill = &amp;quot;#05050f&amp;quot;, colour = &amp;quot;#05050f&amp;quot;), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.title = element_blank(), 
+        axis.text = element_blank(), 
+        axis.ticks.length = unit(0, &amp;quot;cm&amp;quot;),
+        legend.position = &amp;quot;none&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -18, hjust = 0, size = 14,
+           label = paste(&amp;quot;Lufthansa&amp;quot;), color = &amp;quot;#f9ba00&amp;quot;, family = &amp;quot;Helvetica Black&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -26, hjust = 0, size = 8, 
+           label = paste(&amp;quot;Flight routes&amp;quot;), color = &amp;quot;white&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -30, hjust = 0, size = 7, 
+           label = paste(&amp;quot;ytlogos.github.io || NASA.gov || OpenFlights.org&amp;quot;), color = &amp;quot;white&amp;quot;, alpha = 0.5) +
+  coord_equal() 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/5g2k5l3afB.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;emirates-阿联酋航空公司&#34;&gt;Emirates(阿联酋航空公司)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
+  annotation_custom(earth, xmin = -180, xmax = 180, ymin = -90, ymax = 90) +
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.0, size = 0.0, data = flights_fortified) + 
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.2, size = 0.3, color = &amp;quot;#ff0000&amp;quot;, data = flights_fortified[flights_fortified$name == &amp;quot;Emirates&amp;quot;, ]) + 
+  geom_point(data = flights_points[flights_points$name == &amp;quot;Emirates&amp;quot;, ], aes(long, lat), alpha = 0.8, size = 0.1, colour = &amp;quot;white&amp;quot;) +
+  theme(panel.background = element_rect(fill = &amp;quot;#05050f&amp;quot;, colour = &amp;quot;#05050f&amp;quot;), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.title = element_blank(), 
+        axis.text = element_blank(), 
+        axis.ticks.length = unit(0, &amp;quot;cm&amp;quot;),
+        legend.position = &amp;quot;none&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -18, hjust = 0, size = 14,
+           label = paste(&amp;quot;Emirates&amp;quot;), color = &amp;quot;#ff0000&amp;quot;, family = &amp;quot;Fontin&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -26, hjust = 0, size = 8, 
+           label = paste(&amp;quot;Flight routes&amp;quot;), color = &amp;quot;white&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -30, hjust = 0, size = 7, 
+           label = paste(&amp;quot;ytlogos.github.io || NASA.gov || OpenFlights.org&amp;quot;), color = &amp;quot;white&amp;quot;, alpha = 0.5) +
+  coord_equal() 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mgl6B5ecaJ.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;british-airways-英国航空公司&#34;&gt;British Airways(英国航空公司)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
+  annotation_custom(earth, xmin = -180, xmax = 180, ymin = -90, ymax = 90) +
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.0, size = 0.0, data = flights_fortified) + 
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.2, size = 0.3, color = &amp;quot;#075aaa&amp;quot;, data = flights_fortified[flights_fortified$name == &amp;quot;British Airways&amp;quot;, ]) + 
+  geom_point(data = flights_points[flights_points$name == &amp;quot;British Airways&amp;quot;, ], aes(long, lat), alpha = 0.8, size = 0.1, colour = &amp;quot;white&amp;quot;) +
+  theme(panel.background = element_rect(fill = &amp;quot;#05050f&amp;quot;, colour = &amp;quot;#05050f&amp;quot;), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.title = element_blank(), 
+        axis.text = element_blank(), 
+        axis.ticks.length = unit(0, &amp;quot;cm&amp;quot;),
+        legend.position = &amp;quot;none&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -18, hjust = 0, size = 14,
+           label = paste(&amp;quot;BRITISH AIRWAYS&amp;quot;), color = &amp;quot;#075aaa&amp;quot;, family = &amp;quot;Baker Signet Std&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -26, hjust = 0, size = 8, 
+           label = paste(&amp;quot;Flight routes&amp;quot;), color = &amp;quot;white&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -30, hjust = 0, size = 7, 
+           label = paste(&amp;quot;ytlogos.github.io || NASA.gov || OpenFlights.org&amp;quot;), color = &amp;quot;white&amp;quot;, alpha = 0.5) +
+  coord_equal() 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7H0j1CdIka.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;air-china-中国国航&#34;&gt;Air China(中国国航)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
+  annotation_custom(earth, xmin = -180, xmax = 180, ymin = -90, ymax = 90) +
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.0, size = 0.0, data = flights_fortified) + 
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.2, size = 0.3, color = &amp;quot;#F70C15&amp;quot;, data = flights_fortified[flights_fortified$name == &amp;quot;Air China&amp;quot;, ]) + 
+  geom_point(data = flights_points[flights_points$name == &amp;quot;Air China&amp;quot;, ], aes(long, lat), alpha = 0.8, size = 0.1, colour = &amp;quot;white&amp;quot;) +
+  theme(panel.background = element_rect(fill = &amp;quot;#05050f&amp;quot;, colour = &amp;quot;#05050f&amp;quot;), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.title = element_blank(), 
+        axis.text = element_blank(), 
+        axis.ticks.length = unit(0, &amp;quot;cm&amp;quot;),
+        legend.position = &amp;quot;none&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -18, hjust = 0, size = 14,
+           label = paste(&amp;quot;Air China&amp;quot;), color = &amp;quot;#F70C15&amp;quot;, family = &amp;quot;Times New Roman&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -26, hjust = 0, size = 8, 
+           label = paste(&amp;quot;Flight routes&amp;quot;), color = &amp;quot;white&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -30, hjust = 0, size = 7, 
+           label = paste(&amp;quot;ytlogos.github.io || NASA.gov || OpenFlights.org&amp;quot;), color = &amp;quot;white&amp;quot;, alpha = 0.5) +
+  coord_equal() 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/e9hHgKI1AE.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;china-southern-airlines-中国南航&#34;&gt;China Southern Airlines(中国南航)&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot() +
+  annotation_custom(earth, xmin = -180, xmax = 180, ymin = -90, ymax = 90) +
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.0, size = 0.0, data = flights_fortified) + 
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.2, size = 0.3, color = &amp;quot;#004D9D&amp;quot;, data = flights_fortified[flights_fortified$name == &amp;quot;China Southern Airlines&amp;quot;, ]) + 
+  geom_point(data = flights_points[flights_points$name == &amp;quot;China Southern Airlines&amp;quot;, ], aes(long, lat), alpha = 0.8, size = 0.1, colour = &amp;quot;white&amp;quot;) +
+  theme(panel.background = element_rect(fill = &amp;quot;#05050f&amp;quot;, colour = &amp;quot;#05050f&amp;quot;), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.title = element_blank(), 
+        axis.text = element_blank(), 
+        axis.ticks.length = unit(0, &amp;quot;cm&amp;quot;),
+        legend.position = &amp;quot;none&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -18, hjust = 0, size = 14,
+           label = paste(&amp;quot;China Southern Airlines&amp;quot;), color = &amp;quot;#004D9D&amp;quot;, family = &amp;quot;Times New Roman&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -26, hjust = 0, size = 8, 
+           label = paste(&amp;quot;Flight routes&amp;quot;), color = &amp;quot;white&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -30, hjust = 0, size = 7, 
+           label = paste(&amp;quot;ytlogos.github.io || NASA.gov || OpenFlights.org&amp;quot;), color = &amp;quot;white&amp;quot;, alpha = 0.5) +
+  coord_equal() 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/D0GeF9BC62.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;一次性映射多家航空公司航行路线&#34;&gt;一次性映射多家航空公司航行路线&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#抽取数据集
+flights_subset &amp;lt;- c(&amp;quot;Lufthansa&amp;quot;, &amp;quot;Emirates&amp;quot;, &amp;quot;British Airways&amp;quot;)
+flights_subset &amp;lt;- flights_fortified[flights_fortified$name %in% flights_subset, ]
+flights_subset_points &amp;lt;- flights_subset%&amp;gt;%
+  group_by(group)%&amp;gt;%
+  filter(row_number()==1|row_number()==n())
+#可视化
+ggplot() +
+  annotation_custom(earth, xmin = -180, xmax = 180, ymin = -90, ymax = 90) +
+  geom_path(aes(long, lat, group = id, color = name), alpha = 0.2, size = 0.3, data = flights_subset) + 
+  geom_point(data = flights_subset_points, aes(long, lat), alpha = 0.8, size = 0.1, colour = &amp;quot;white&amp;quot;) +
+  scale_color_manual(values = c(&amp;quot;#f9ba00&amp;quot;, &amp;quot;#ff0000&amp;quot;, &amp;quot;#075aaa&amp;quot;)) +
+  theme(panel.background = element_rect(fill = &amp;quot;#05050f&amp;quot;, colour = &amp;quot;#05050f&amp;quot;), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), 
+        axis.title = element_blank(), 
+        axis.text = element_blank(), 
+        axis.ticks.length = unit(0, &amp;quot;cm&amp;quot;),
+        legend.position = &amp;quot;none&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -4, hjust = 0, size = 14, 
+           label = paste(&amp;quot;Lufthansa&amp;quot;), color = &amp;quot;#f9ba00&amp;quot;, family = &amp;quot;Helvetica Black&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -11, hjust = 0, size = 14, 
+           label = paste(&amp;quot;Emirates&amp;quot;), color = &amp;quot;#ff0000&amp;quot;, family = &amp;quot;Fontin&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -18, hjust = 0, size = 14, 
+           label = paste(&amp;quot;BRITISH AIRWAYS&amp;quot;), color = &amp;quot;#075aaa&amp;quot;, family = &amp;quot;Baker Signet Std&amp;quot;) + 
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -30, hjust = 0, size = 8, 
+           label = paste(&amp;quot;Flight routes&amp;quot;), color = &amp;quot;white&amp;quot;) +
+  annotate(&amp;quot;text&amp;quot;, x = -150, y = -34, hjust = 0, size = 7, 
+           label = paste(&amp;quot;ytlogos.github.io || NASA.gov || OpenFlights.org&amp;quot;), color = &amp;quot;white&amp;quot;, alpha = 0.5) +
+  coord_equal() 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6HckGG7Jfc.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;R version 3.4.3 (2017-11-30)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows &amp;gt;= 8 x64 (build 9200)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=Chinese (Simplified)_China.936  LC_CTYPE=Chinese (Simplified)_China.936   
+[3] LC_MONETARY=Chinese (Simplified)_China.936 LC_NUMERIC=C                              
+[5] LC_TIME=Chinese (Simplified)_China.936    
+
+attached base packages:
+[1] grid      stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] plyr_1.8.4          jpeg_0.1-8          geosphere_1.5-7     data.table_1.10.4-3
+ [5] forcats_0.2.0       stringr_1.2.0       dplyr_0.7.4         purrr_0.2.4        
+ [9] readr_1.1.1         tidyr_0.8.0         tibble_1.4.2        ggplot2_2.2.1.9000 
+[13] tidyverse_1.2.1     pacman_0.4.6       
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_0.12.15      cellranger_1.1.0  pillar_1.1.0      compiler_3.4.3    bindr_0.1        
+ [6] tools_3.4.3       lubridate_1.7.1   jsonlite_1.5      nlme_3.1-131      gtable_0.2.0     
+[11] lattice_0.20-35   pkgconfig_2.0.1   rlang_0.1.6       psych_1.7.8       cli_1.0.0        
+[16] rstudioapi_0.7    yaml_2.1.16       parallel_3.4.3    haven_1.1.1       bindrcpp_0.2     
+[21] xml2_1.2.0        httr_1.3.1        knitr_1.19        hms_0.4.1         glue_1.2.0       
+[26] R6_2.2.2          readxl_1.0.0      foreign_0.8-69    sp_1.2-7          modelr_0.1.1     
+[31] reshape2_1.4.3    magrittr_1.5      scales_0.5.0.9000 rvest_0.3.2       assertthat_0.2.0 
+[36] mnormt_1.5-5      colorspace_1.3-2  stringi_1.1.6     lazyeval_0.2.1    munsell_0.4.3    
+[41] broom_0.4.3       crayon_1.3.4 
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用ggmap绘制简单地图</title>
+      <link>/post/2018-01-03.%E5%88%A9%E7%94%A8ggmap%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</link>
+      <pubDate>Wed, 03 Jan 2018 08:47:05 +0000</pubDate>
+      <guid>/post/2018-01-03.%E5%88%A9%E7%94%A8ggmap%E7%BB%98%E5%88%B6%E7%AE%80%E5%8D%95%E5%9C%B0%E5%9B%BE/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BDJF5FajDc.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://stat405.had.co.nz/ggmap.pdf&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;ggmap&lt;/strong&gt;&lt;/a&gt;允许用户从Google地图下载并绘制地图。并且&lt;strong&gt;ggmap&lt;/strong&gt;完美契合&lt;strong&gt;ggplot2&lt;/strong&gt;，因此经&lt;strong&gt;ggmap&lt;/strong&gt;绘制的图形可以作为&lt;strong&gt;ggplot2&lt;/strong&gt;的图层，进而在此基础上不断添加图形元素形成十分复杂的图形。&lt;strong&gt;ggplot2&lt;/strong&gt;+&lt;strong&gt;ggmap&lt;/strong&gt;是地理可视化的利器。&lt;/p&gt;
+
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+
+&lt;p&gt;安装方法有两种：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# From CRAN
+install.packages(&amp;quot;ggmap&amp;quot;)
+# From Github,必须先安装devtools
+devtools::install_github(&amp;quot;dkahle/ggmap&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;绘制&#34;&gt;绘制&lt;/h2&gt;
+
+&lt;p&gt;先画个杭州的地图，由于调用的是Google地图，可能需要翻墙，同时速度有点慢（访问的是Google地图数据库，由于网络限制数据抓取可能不完整）。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tidyverse)
+library(ggmap)
+map.hangzhou &amp;lt;- get_map(&amp;quot;Hangzhou&amp;quot;)
+ggmap(map.hangzhou)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/j1EhiFDl3B.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里我们只使用了两个函数，分别是&lt;code&gt;get_map()从Google&lt;/code&gt;中检索并下载地图，之后使用函数&lt;code&gt;ggmap()&lt;/code&gt;绘制地图。同时&lt;strong&gt;ggmap&lt;/strong&gt;支持管道操作(%&amp;gt;%)。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;get_map(&amp;quot;Hangzhou&amp;quot;)%&amp;gt;%ggmap()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/1kf8fI3KH7.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;现在我们绘制中国地图&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;get_map(&amp;quot;China&amp;quot;)%&amp;gt;%ggmap()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/jICh8268jb.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以看出画出来的图形十分不美观，加上&lt;code&gt;zoom&lt;/code&gt;参数之后好看一点。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;get_map(&amp;quot;China&amp;quot;, zoom=4)%&amp;gt;%ggmap()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/kImdmk2DEm.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们再来看一下天安门&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;get_map(&amp;quot;Tiananmen&amp;quot;,zoom=18)%&amp;gt;%ggmap()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/DL0JHKhK20.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;应该足够清晰了
+再来看看浙江大学的情形,这里默认显示的是玉泉校区&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;get_map(&amp;quot;ZheJiang University Zijingang Campus&amp;quot;, zoom = 17)%&amp;gt;%ggmap()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/KIIH9be09L.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;接下来我们将浙江大学在杭州的几个校区标识出来，分别是紫金港、玉泉、华家池、西溪、之江&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# 首先创建含有校区名字的数据集
+df.zjucampus_locations &amp;lt;- tibble(location=c(&amp;quot;Zhejiang university Zijingang Campus,Hangzhou,China&amp;quot;,&amp;quot;Zhejiang university Yuquan Campus,Hangzhou,China&amp;quot;,&amp;quot;Zhejiang university Zhijiang Campus,Hangzhou,China&amp;quot;,&amp;quot;Zhejiang university Huajiachi Campus,Hangzhou,China&amp;quot;,&amp;quot;Zhejiang university Xixi Campus,Hangzhou,China&amp;quot;))
+# 获取经纬度
+geo.zjucampus_locations &amp;lt;- geocode(df.zjucampus_locations$location)
+# 合并数据集
+df.zjucampus_locations &amp;lt;- cbind(df.zjucampus_locations,geo.zjucampus_locations)
+# 绘制图形，在地图上将几个校区标识出来
+get_map(&amp;quot;Hangzhou&amp;quot;, zoom = 11)%&amp;gt;%ggmap()+
+  geom_point(data=df.zjucampus_locations, aes(x=lon, y=lat), color=&amp;quot;red&amp;quot;, size=5)+
+  geom_text(data = df.zjucampus_locations,aes(lon, lat, label=c(&amp;quot;Zhejiang university Zijingang Campus&amp;quot;,&amp;quot;Zhejiang university Yuquan Campus&amp;quot;,&amp;quot;Zhejiang university Zhijiang Campus&amp;quot;,&amp;quot;Zhejiang university Huajiachi Campus&amp;quot;,&amp;quot;Zhejiang university Xixi Campus&amp;quot;)), size=3, color=&amp;quot;blue&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/hkgfJKdEeH.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;由于网络限制就不调整了，这次能出图已经不容易了。可以看到玉泉校区与华家池校区竟然重叠在一起，通过它们的经纬度数据也发现相同，可能Google地图数据库对于国内来说还不是很好用，但是没办法调用百度地图只能很好的获取国内地图数据，一遇到国外的就歇菜了！&lt;/p&gt;
+
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;sessionInfo()
+R version 3.4.3 (2017-11-30)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows &amp;gt;= 8 x64 (build 9200)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=Chinese (Simplified)_China.936  LC_CTYPE=Chinese (Simplified)_China.936   
+[3] LC_MONETARY=Chinese (Simplified)_China.936 LC_NUMERIC=C                              
+[5] LC_TIME=Chinese (Simplified)_China.936    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] ggmap_2.6.1        forcats_0.2.0      stringr_1.2.0      dplyr_0.7.4        purrr_0.2.4       
+ [6] readr_1.1.1        tidyr_0.7.2        tibble_1.4.1       ggplot2_2.2.1.9000 tidyverse_1.2.1   
+
+loaded via a namespace (and not attached):
+ [1] reshape2_1.4.3    haven_1.1.0       lattice_0.20-35   colorspace_1.3-2  yaml_2.1.16      
+ [6] rlang_0.1.6       pillar_1.0.1      foreign_0.8-69    glue_1.2.0        sp_1.2-5         
+[11] modelr_0.1.1      readxl_1.0.0      bindrcpp_0.2      jpeg_0.1-8        bindr_0.1        
+[16] plyr_1.8.4        munsell_0.4.3     gtable_0.2.0      cellranger_1.1.0  rvest_0.3.2      
+[21] RgoogleMaps_1.4.1 mapproj_1.2-5     psych_1.7.8       knitr_1.18        parallel_3.4.3   
+[26] proto_1.0.0       broom_0.4.3       Rcpp_0.12.14      geosphere_1.5-7   scales_0.5.0.9000
+[31] jsonlite_1.5      mnormt_1.5-5      rjson_0.2.15      hms_0.4.0         png_0.1-7        
+[36] stringi_1.1.6     grid_3.4.3        cli_1.0.0         tools_3.4.3       maps_3.2.0       
+[41] magrittr_1.5      lazyeval_0.2.1    crayon_1.3.4      pkgconfig_2.0.1   xml2_1.1.1       
+[46] lubridate_1.7.1   assertthat_0.2.0  httr_1.3.1        rstudioapi_0.7    R6_2.2.2         
+[51] nlme_3.1-131      compiler_3.4.3   
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

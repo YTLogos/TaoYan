@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.4.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Tao Yan">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="
+
+生物信息学学习笔记主要是我平常看文献以及一些资料时总结的一些东西，相对来说有点杂，所以我专门开辟出一个新的系列，以便后面可以持续更新。">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#E13D3D">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/paraiso-light.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/paraiso-light.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arapey:400,400i|Karla:400,700|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.271ffa4140fad041464911a0b7fff4cf.css">
+
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academic.d93a68285af0f7ef7f5ea22fb59113cf.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">
+
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@TaoYANLogos">
+  <meta property="twitter:creator" content="@TaoYANLogos">
+  
+  <meta property="og:site_name" content="Tao Yan">
+  <meta property="og:url" content="/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/">
+  <meta property="og:title" content="生物信息学学习笔记（一） | Tao Yan">
+  <meta property="og:description" content="
+
+生物信息学学习笔记主要是我平常看文献以及一些资料时总结的一些东西，相对来说有点杂，所以我专门开辟出一个新的系列，以便后面可以持续更新。"><meta property="og:image" content="img/avatar.jpg">
+  <meta property="twitter:image" content="img/avatar.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2017-11-28T21:19:05&#43;00:00">
+    
+    <meta property="article:modified_time" content="2017-11-28T21:19:05&#43;00:00">
+  
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#E13D3D",
+          "text": "#fbf9f4"
+        },
+        "button": {
+          "background": "#fbf9f4",
+          "text": "#E13D3D"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://cookies.insites.com"
+      }
+    })});
+</script>
+
+
+
+  
+
+
+
+
+
+  <title>生物信息学学习笔记（一） | Tao Yan</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Tao Yan</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/courses/"><span>Courses</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">生物信息学学习笔记（一）</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2017-11-28 21:19:05 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2017-11-28 21:19:05 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Nov 28, 2017</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/bioinformatics/">bioinformatics</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/&amp;text=%e7%94%9f%e7%89%a9%e4%bf%a1%e6%81%af%e5%ad%a6%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%88%e4%b8%80%ef%bc%89" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/&amp;t=%e7%94%9f%e7%89%a9%e4%bf%a1%e6%81%af%e5%ad%a6%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%88%e4%b8%80%ef%bc%89" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e7%94%9f%e7%89%a9%e4%bf%a1%e6%81%af%e5%ad%a6%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%88%e4%b8%80%ef%bc%89&amp;body=/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/&amp;title=%e7%94%9f%e7%89%a9%e4%bf%a1%e6%81%af%e5%ad%a6%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%88%e4%b8%80%ef%bc%89" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e7%94%9f%e7%89%a9%e4%bf%a1%e6%81%af%e5%ad%a6%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%88%e4%b8%80%ef%bc%89%20/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/&amp;title=%e7%94%9f%e7%89%a9%e4%bf%a1%e6%81%af%e5%ad%a6%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%88%e4%b8%80%ef%bc%89" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      <p><img src="https://github.com/YTLogos/Pic_blog/blob/master/D6l28BlfFI.png?raw=true" alt="mark" /></p>
+
+<p>生物信息学学习笔记主要是我平常看文献以及一些资料时总结的一些东西，相对来说有点杂，所以我专门开辟出一个新的系列，以便后面可以持续更新。</p>
+
+<ul>
+<li><p>sequence logos方法利用每个位置的高度来表示其保守程度，这样特征高度就反映了相对的变化频率，比如说一个consensus sequence位置上可能是C或者T，sequence logos上C的高度代表了其出现的频率。</p></li>
+
+<li><p>改良品种中LD显著增加，这是驯化正向选择的结果，栽培品种的π值、w值相比于野生种明显降低</p></li>
+
+<li><p>顺式(cis-)指的是“分子内”，也就是说顺式作用就是自己作用于自己，就像顺式作用元件就是一段DNA序列作用于自己的临近序列，调节它的表达，比如我们常说的增强子、沉默子等。反式(tran-)指的是“分子间”的作用，所以反式作用因子就是一个蛋白质分子，是由A基因编码的，但是可以作用于B基因，调节B基因的表达。但是也存在少量的“顺式作用因子”。因子(factor)在分子生物学中就是特指DNA片段产生的物质，换句话说就是特指蛋白质，比如调节因子、转录因子等。元件(element)指的是DNA或者RNA具有某种特定功能的序列，换句话说就是DNA或者RNA的一片段。</p></li>
+</ul>
+
+<h2 id="染色质开放性">染色质开放性</h2>
+
+<ul>
+<li>染色质开放性(chromatin accessibility)是指真核生物染色质DNA在核小体或转录因子等蛋白与其结合后，对其它蛋白能否再结合的开放程度。这一特征反映了染色质转录活跃程度，结合其他DNA修饰(如甲基化)信息，特定条件下的染色质开放性变化可以提供大量的基因表达调控信息，为各种蛋白质结合新位点的发现指明方向。</li>
+</ul>
+
+<blockquote>
+<p>有趣的是染色质开放性变化往往是各种应激反应(stimulus response)、抗逆反应(stress response)或者发育阶段过渡(transition)发生时非常早期的细胞学事件。在癌症早期诊断和治疗、农作物逆境胁迫的早期防治等方面，染色质结构研究可以提供非常上游的宝贵信息。</p>
+</blockquote>
+
+<p>检测染色质开放性的手段主要是足迹法(footprinting)，即利用外来蛋白(如核酸酶、修饰酶等)处理细胞核，再利用酶切、电泳、测序等手段衡量这些蛋白与DNA的结合程度，以此来体现染色质开放性。
+用于足迹法的外来蛋白主要是核酸酶，最开始简单除暴用的是Dnase Ⅰ，价格低廉，但需要大量的实验材料。DNase Ⅰ主要切割核小体未占据的DNA区域，生成的片段测序之后获得的就是染色质开放区域。后来又出现了MNase Ⅰ，其为外切酶，消化了开放区域之后，测序获得的就是当前状态下核小体或者转录因子等占据的封闭区域。因此二者互为补充。
+得益于二代测序技术的发展，ATAC-seq(Assay for transposase Accessible Chromatin with sequencing)是其中具备高灵敏度的一种方法。ATAC-seq使用Tn5转座酶，在开放区域跳转，边切割边加上接头，利用PCR技术富集开放区域片段，因此灵敏度高，甚至可以做单细胞测序。
+所有以核酸酶为基础的DNA足迹法都有一个致命的缺陷：核酸酶切割的偏好性(Bias)。有研究指出DNase Ⅰ切割无核小体和转录因子结合的“裸”DNA时展现出强烈的偏好性，之前许多DNase Ⅰ印记更多地反映是切割的偏好性而非真实的蛋白质结合情况，再加上植物材料由于其细胞结构的特殊性(主要是细胞壁的存在以及丰富的纤维素和多糖)，获取细胞核用于足迹法分析本身就是一个挑战。
+MAPit(methyltransferase accessibility protocol for individual templates)技术的出现解决了上述部分难题，MAPit利用外源DNA甲基化转移酶处理细胞核，染色质开放区域中的特定“C”位点可被甲基化，封闭区域中的相应“C”位点则不被甲基化，之后进行甲基化测序(Bisulfite sequencing)，从而精确显示染色质的开放程度。该技术利用DNA甲基化组来显示染色质开放性，避免了核酸酶的偏好性问题，且结果同时提供了DNA甲基化组和染色质开放性的信息，配合转录组测序(RNA-seq)，可一次性组合出特定状态下全基因组的甲基化修饰、蛋白结合以及基因表达调控的复杂网络，是功能强大的组合型分析。</p>
+
+<ul>
+<li><p>单体型是指位于一条染色体特定区域的一组相互关联，并倾向于以整体遗传给后代的单核苷酸多态性的组合。简单地说就是同源染色体上同一位点的杂合SNP，如在某一位置同源染色体中一条为G，另一条染色体为A。单体型图谱能够将来自于亲本的遗传信息区分开，研究遗传变异。</p></li>
+
+<li><p>Hi-C技术是染色体构象捕获(Chromosome Confirmation Capture,3C)的一种衍生技术，是指基于高通量进行染色体构象的捕获，它能够在全基因组范围内捕捉不同基因座位之间的空间交互，研究三维空间中调控基因的DNA元件。</p></li>
+</ul>
+
+<h2 id="hi-c技术流程">Hi-C技术流程</h2>
+
+<ul>
+<li>用甲醛对细胞进行交联固定，使DNA与蛋白、蛋白与蛋白之间进行交联，这样会导致相互作用的DNA片段被交联在一起。</li>
+<li>进行酶切(如Hind Ⅲ等限制性内切酶)，使交联两侧产生粘性末端，加入过量限制性内切酶将未交联的DNA与交联的DNA相互分离。限制酶的选择取决于需要分析的基因座位的情况，限制序列较短(4bp)的内切酶切点密集，用于研究较短的座位(10~20kp),而限制序列较长(6bp)的内切酶用于研究较长的座位。</li>
+<li>末端修复，引入生物素标记，连接</li>
+<li>解交联，使DNA和蛋白、蛋白与蛋白分开，提取DNA，打断，捕获带有生物素标记的片段，进行建库</li>
+
+<li><h2 id="测序">测序</h2></li>
+
+<li><p>影响基因表达的染色质相互作用的例子之一是：染色体区域可以折叠将增强子以及相关转录因子带到基因附近。</p></li>
+
+<li><p>拓扑关联结构域(TAD)是利用Hi-C map分析研究染色质构象信息时获取的一种图形现象，也是染色质局部相互作用较为强烈的一个作用单元，与基因转录表达调控有着密切关系。</p></li>
+</ul>
+
+<blockquote>
+<p>2012年四个独立的研究小组利用Hi-C技术分析不同物种染色质构象信息时均发现了一种高度自我相互作用的基因组单元，并称之为拓扑关联结构域(TAD)，具有保守性</p>
+</blockquote>
+
+<ul>
+<li>染色质环(chromatin loop)是染色质物理结构的特性之一。染色质中的调控元件一般都相距较远，比如启动子、增强子等距离调控基因位点均有一定间隔。随着3C技术和一些分子研究技术的证实，这些调控元件在三维空间上的距离要比它们之间的插入序列更近一些，因此形成了染色质环。染色质环通过控制启动子、增强子这些顺式调控元件来调控基因转录表达</li>
+</ul>
+
+<blockquote>
+<p>拓扑关联结构域更像是染色质环在全基因组所有作用位点进行图谱分析时表现出来的一种现象</p>
+</blockquote>
+    </div>
+
+    
+<p class="edit-page">
+  <a href="https://github.com/YTLogos/mywebsite/edit/master/content/post%5c2017-11-28.%e7%94%9f%e7%89%a9%e4%bf%a1%e6%81%af%e5%ad%a6%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%ef%bc%88%e4%b8%80%ef%bc%89.md">
+    <i class="fas fa-pen pr-2"></i>Edit this page
+  </a>
+</p>
+
+
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/bioinformatics/">bioinformatics</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hufa245e75a5e5fa47274790393ba89624_26717_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="">Tao Yan</a></h5>
+      <h6 class="card-subtitle">PhD Candidate of Crop Science</h6>
+      <p class="card-text" itemprop="description">My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/TaoYANLogos" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/YTLogos" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+    
+
+    
+
+    
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "logos-1" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/bash.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/js.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/markdown.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/html.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://logos-1.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.16bbb3750feb7244c9bc409a5a4fe678.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy; Tao Yan, 2018-2019 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.4.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Tao Yan">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="
+
+Lesson02主要讲了如何从Excel导入数据以及如何从UCSC、ENSEMBL和RENCODE上下载数据，因此我就将Lesson02并入Lesson03一起讲了。">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#E13D3D">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/paraiso-light.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/paraiso-light.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arapey:400,400i|Karla:400,700|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.271ffa4140fad041464911a0b7fff4cf.css">
+
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academic.d93a68285af0f7ef7f5ea22fb59113cf.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/">
+
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@TaoYANLogos">
+  <meta property="twitter:creator" content="@TaoYANLogos">
+  
+  <meta property="og:site_name" content="Tao Yan">
+  <meta property="og:url" content="/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/">
+  <meta property="og:title" content="“Lesson 02&amp;03 for Plotting in R for Biologists” | Tao Yan">
+  <meta property="og:description" content="
+
+Lesson02主要讲了如何从Excel导入数据以及如何从UCSC、ENSEMBL和RENCODE上下载数据，因此我就将Lesson02并入Lesson03一起讲了。"><meta property="og:image" content="img/avatar.jpg">
+  <meta property="twitter:image" content="img/avatar.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2018-01-20T12:19:05&#43;00:00">
+    
+    <meta property="article:modified_time" content="2018-01-20T12:19:05&#43;00:00">
+  
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#E13D3D",
+          "text": "#fbf9f4"
+        },
+        "button": {
+          "background": "#fbf9f4",
+          "text": "#E13D3D"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://cookies.insites.com"
+      }
+    })});
+</script>
+
+
+
+  
+
+
+
+
+
+  <title>“Lesson 02&amp;03 for Plotting in R for Biologists” | Tao Yan</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Tao Yan</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/courses/"><span>Courses</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">“Lesson 02&amp;03 for Plotting in R for Biologists”</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2018-01-20 12:19:05 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2018-01-20 12:19:05 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jan 20, 2018</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="">可视化</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/&amp;text=%e2%80%9cLesson%2002&amp;amp;03%20for%20Plotting%20in%20R%20for%20Biologists%e2%80%9d" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/&amp;t=%e2%80%9cLesson%2002&amp;amp;03%20for%20Plotting%20in%20R%20for%20Biologists%e2%80%9d" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=%e2%80%9cLesson%2002&amp;amp;03%20for%20Plotting%20in%20R%20for%20Biologists%e2%80%9d&amp;body=/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/&amp;title=%e2%80%9cLesson%2002&amp;amp;03%20for%20Plotting%20in%20R%20for%20Biologists%e2%80%9d" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=%e2%80%9cLesson%2002&amp;amp;03%20for%20Plotting%20in%20R%20for%20Biologists%e2%80%9d%20/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/&amp;title=%e2%80%9cLesson%2002&amp;amp;03%20for%20Plotting%20in%20R%20for%20Biologists%e2%80%9d" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      <p><img src="https://github.com/YTLogos/Pic_blog/blob/master/dBhf13K3Ge.png?raw=true" alt="mark" /></p>
+
+<p>Lesson02主要讲了如何从Excel导入数据以及如何从UCSC、ENSEMBL和RENCODE上下载数据，因此我就将Lesson02并入Lesson03一起讲了。</p>
+
+<h2 id="从ecxel中导入数据">从ECXEl中导入数据</h2>
+
+<p>数据来源于文献<a href="https://www.nature.com/articles/1209254" target="_blank">&ldquo;Gene expression profiling of breast cell lines identifies potential new basal markers&rdquo;</a>的补充数据集Supplementary Table 1。将之下载到工作目录区。数据读取的话只需要用<code>read.csv()</code>即可，指定<code>sep</code>。<strong>gtf</strong>、<strong>bed</strong>文件都可以通过<code>read.csv()</code>读取。即使是没有后缀的文件，只要知道其分隔符，就可以通过设置<code>sep</code>来读取数据。</p>
+
+<pre><code class="language-r">my_data &lt;- read.csv(&quot;micro_array_results_table1.txt&quot;, sep = '\t', header = TRUE)
+head(my_data[,c(1:6)])
+</code></pre>
+
+<pre><code>##   Probe.Set.ID Gene.Symbol Type  X184B5 BrCa.MZ.01   BT.20
+## 1    1007_s_at        DDR1 gene 1113.91     815.53 1564.76
+## 2      1053_at        RFC2 gene  159.02     253.24  320.22
+## 3       117_at       HSPA6 gene   60.76      33.91   26.39
+## 4       121_at        PAX8 gene  197.76     121.33  122.81
+## 5    1255_g_at      GUCA1A gene    6.73       7.88    6.28
+## 6      1294_at       UBE1L gene  118.82      57.24  432.24
+</code></pre>
+
+<p>试试读取<strong>gtf</strong>文件</p>
+
+<pre><code class="language-r">Brassica_gtf &lt;- read.csv(&quot;E:/Brassica napus database/Brassica_napus.annotation_v5.gtf&quot;, sep = &quot;\t&quot;, header = FALSE)
+head(Brassica_gtf)
+</code></pre>
+
+<pre><code>##       V1     V2   V3   V4   V5   V6 V7 V8                           V9
+## 1 chrA01 GazeA2 exon  831 1437 7.80  +  . transcript_id BnaA01g00010D;
+## 2 chrA01 GazeA2  CDS 1070 1345    .  +  0 transcript_id BnaA01g00010D;
+## 3 chrA01 GazeA2 exon 1487 2124 2.15  -  . transcript_id BnaA01g00020D;
+## 4 chrA01 GazeA2 exon 2256 2436 3.19  -  . transcript_id BnaA01g00020D;
+## 5 chrA01 GazeA2  CDS 1645 2124    .  -  0 transcript_id BnaA01g00020D;
+## 6 chrA01 GazeA2  CDS 2256 2282    .  -  0 transcript_id BnaA01g00020D;
+</code></pre>
+
+<p>其他格式文件我这里就不试了，有兴趣的话可以自己去尝试。</p>
+
+<h2 id="数据探索">数据探索</h2>
+
+<pre><code class="language-r">library(tidyverse)
+#读取数据
+my_data &lt;- read.csv(&quot;Encode_HMM_data.txt&quot;, sep = &quot;\t&quot;, header = FALSE)
+dim(my_data)
+</code></pre>
+
+<pre><code>## [1] 571339      9
+</code></pre>
+
+<pre><code>head(my_data[, c(1:6)])
+</code></pre>
+
+<pre><code>##     V1    V2    V3                V4 V5 V6
+## 1 chr1 10000 10600 15_Repetitive/CNV  0  .
+## 2 chr1 10600 11137 13_Heterochrom/lo  0  .
+## 3 chr1 11137 11737       8_Insulator  0  .
+## 4 chr1 11737 11937       11_Weak_Txn  0  .
+## 5 chr1 11937 12137   7_Weak_Enhancer  0  .
+## 6 chr1 12137 14537       11_Weak_Txn  0  .
+</code></pre>
+
+<p>对数据部分列进行重命名</p>
+
+<pre><code class="language-r">names(my_data)[1:4] &lt;- c(&quot;chrom&quot;, &quot;start&quot;, &quot;stop&quot;, &quot;type&quot;)
+</code></pre>
+
+<h2 id="可视化">可视化</h2>
+
+<p>先初步看一下不同染色体上的type类型</p>
+
+<pre><code class="language-r">ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()
+</code></pre>
+
+<p><img src="https://github.com/YTLogos/Pic_blog/blob/master/dBhf13K3Ge.png?raw=true" alt="mark" /></p>
+
+<p>从这个图中可以看到还有很多缺陷</p>
+
+<ul>
+<li>染色体顺序错乱，前缀chr在坐标轴上排列乱</li>
+<li>类型太多了，我们只需要可视化我们感兴趣的type</li>
+<li>类型的名字乱</li>
+</ul>
+
+<p>这几个问题将在Lesson04解决</p>
+
+<h2 id="sessioninfo">SessionInfo()</h2>
+
+<pre><code class="language-r">sessionInfo()
+</code></pre>
+
+<pre><code>## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] forcats_0.2.0      stringr_1.2.0      dplyr_0.7.4       
+## [4] purrr_0.2.4        readr_1.1.1        tidyr_0.7.2       
+## [7] tibble_1.4.2       ggplot2_2.2.1.9000 tidyverse_1.2.1   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.15      cellranger_1.1.0  pillar_1.1.0     
+##  [4] compiler_3.4.3    plyr_1.8.4        bindr_0.1        
+##  [7] tools_3.4.3       digest_0.6.14     lubridate_1.7.1  
+## [10] jsonlite_1.5      evaluate_0.10.1   nlme_3.1-131     
+## [13] gtable_0.2.0      lattice_0.20-35   pkgconfig_2.0.1  
+## [16] rlang_0.1.6       psych_1.7.8       cli_1.0.0        
+## [19] rstudioapi_0.7    yaml_2.1.16       parallel_3.4.3   
+## [22] haven_1.1.1       bindrcpp_0.2      xml2_1.2.0       
+## [25] httr_1.3.1        knitr_1.18        hms_0.4.1        
+## [28] rprojroot_1.3-2   grid_3.4.3        glue_1.2.0       
+## [31] R6_2.2.2          readxl_1.0.0      foreign_0.8-69   
+## [34] rmarkdown_1.8     modelr_0.1.1      reshape2_1.4.3   
+## [37] magrittr_1.5      backports_1.1.2   scales_0.5.0.9000
+## [40] htmltools_0.3.6   rvest_0.3.2       assertthat_0.2.0 
+## [43] mnormt_1.5-5      colorspace_1.3-2  labeling_0.3     
+## [46] stringi_1.1.6     lazyeval_0.2.1    munsell_0.4.3    
+## [49] broom_0.4.3       crayon_1.3.4
+</code></pre>
+    </div>
+
+    
+<p class="edit-page">
+  <a href="https://github.com/YTLogos/mywebsite/edit/master/content/post%5c2018-01-20.Lesson%2002&amp;03%20for%20Plotting%20in%20R%20for%20Biologists.md">
+    <i class="fas fa-pen pr-2"></i>Edit this page
+  </a>
+</p>
+
+
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/biologists/">Biologists</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hufa245e75a5e5fa47274790393ba89624_26717_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="">Tao Yan</a></h5>
+      <h6 class="card-subtitle">PhD Candidate of Crop Science</h6>
+      <p class="card-text" itemprop="description">My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/TaoYANLogos" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/YTLogos" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/post/2018-01-15.lesson-01-for-plotting-in-r-for-biologists/">Lesson 01 for Plotting in R for Biologists</a></li>
+          
+          <li><a href="/post/2018-01-29.lesson-06-for-plotting-in-r-for-biologists/">Lesson 06 for Plotting in R for Biologists</a></li>
+          
+          <li><a href="/post/2018-01-30.lesson-07-for-plotting-in-r-for-biologists/">Lesson 07 for Plotting in R for Biologists</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+
+    
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "logos-1" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/bash.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/js.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/markdown.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/html.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://logos-1.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.16bbb3750feb7244c9bc409a5a4fe678.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy; Tao Yan, 2018-2019 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

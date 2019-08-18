@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bioinformatics | Tao Yan</title>
+    <link>/tags/bioinformatics/</link>
+      <atom:link href="/tags/bioinformatics/index.xml" rel="self" type="application/rss+xml" />
+    <description>bioinformatics</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2019</copyright><lastBuildDate>Tue, 28 Nov 2017 21:19:05 +0000</lastBuildDate>
+    <image>
+      <url>img/avatar.jpg</url>
+      <title>bioinformatics</title>
+      <link>/tags/bioinformatics/</link>
+    </image>
+    
+    <item>
+      <title>生物信息学学习笔记（一）</title>
+      <link>/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <pubDate>Tue, 28 Nov 2017 21:19:05 +0000</pubDate>
+      <guid>/post/2017-11-28.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/D6l28BlfFI.png?raw=true&#34; alt=&#34;mark&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;生物信息学学习笔记主要是我平常看文献以及一些资料时总结的一些东西，相对来说有点杂，所以我专门开辟出一个新的系列，以便后面可以持续更新。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;sequence logos方法利用每个位置的高度来表示其保守程度，这样特征高度就反映了相对的变化频率，比如说一个consensus sequence位置上可能是C或者T，sequence logos上C的高度代表了其出现的频率。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;改良品种中LD显著增加，这是驯化正向选择的结果，栽培品种的π值、w值相比于野生种明显降低&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;顺式(cis-)指的是“分子内”，也就是说顺式作用就是自己作用于自己，就像顺式作用元件就是一段DNA序列作用于自己的临近序列，调节它的表达，比如我们常说的增强子、沉默子等。反式(tran-)指的是“分子间”的作用，所以反式作用因子就是一个蛋白质分子，是由A基因编码的，但是可以作用于B基因，调节B基因的表达。但是也存在少量的“顺式作用因子”。因子(factor)在分子生物学中就是特指DNA片段产生的物质，换句话说就是特指蛋白质，比如调节因子、转录因子等。元件(element)指的是DNA或者RNA具有某种特定功能的序列，换句话说就是DNA或者RNA的一片段。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;染色质开放性&#34;&gt;染色质开放性&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;染色质开放性(chromatin accessibility)是指真核生物染色质DNA在核小体或转录因子等蛋白与其结合后，对其它蛋白能否再结合的开放程度。这一特征反映了染色质转录活跃程度，结合其他DNA修饰(如甲基化)信息，特定条件下的染色质开放性变化可以提供大量的基因表达调控信息，为各种蛋白质结合新位点的发现指明方向。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;有趣的是染色质开放性变化往往是各种应激反应(stimulus response)、抗逆反应(stress response)或者发育阶段过渡(transition)发生时非常早期的细胞学事件。在癌症早期诊断和治疗、农作物逆境胁迫的早期防治等方面，染色质结构研究可以提供非常上游的宝贵信息。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;检测染色质开放性的手段主要是足迹法(footprinting)，即利用外来蛋白(如核酸酶、修饰酶等)处理细胞核，再利用酶切、电泳、测序等手段衡量这些蛋白与DNA的结合程度，以此来体现染色质开放性。
+用于足迹法的外来蛋白主要是核酸酶，最开始简单除暴用的是Dnase Ⅰ，价格低廉，但需要大量的实验材料。DNase Ⅰ主要切割核小体未占据的DNA区域，生成的片段测序之后获得的就是染色质开放区域。后来又出现了MNase Ⅰ，其为外切酶，消化了开放区域之后，测序获得的就是当前状态下核小体或者转录因子等占据的封闭区域。因此二者互为补充。
+得益于二代测序技术的发展，ATAC-seq(Assay for transposase Accessible Chromatin with sequencing)是其中具备高灵敏度的一种方法。ATAC-seq使用Tn5转座酶，在开放区域跳转，边切割边加上接头，利用PCR技术富集开放区域片段，因此灵敏度高，甚至可以做单细胞测序。
+所有以核酸酶为基础的DNA足迹法都有一个致命的缺陷：核酸酶切割的偏好性(Bias)。有研究指出DNase Ⅰ切割无核小体和转录因子结合的“裸”DNA时展现出强烈的偏好性，之前许多DNase Ⅰ印记更多地反映是切割的偏好性而非真实的蛋白质结合情况，再加上植物材料由于其细胞结构的特殊性(主要是细胞壁的存在以及丰富的纤维素和多糖)，获取细胞核用于足迹法分析本身就是一个挑战。
+MAPit(methyltransferase accessibility protocol for individual templates)技术的出现解决了上述部分难题，MAPit利用外源DNA甲基化转移酶处理细胞核，染色质开放区域中的特定“C”位点可被甲基化，封闭区域中的相应“C”位点则不被甲基化，之后进行甲基化测序(Bisulfite sequencing)，从而精确显示染色质的开放程度。该技术利用DNA甲基化组来显示染色质开放性，避免了核酸酶的偏好性问题，且结果同时提供了DNA甲基化组和染色质开放性的信息，配合转录组测序(RNA-seq)，可一次性组合出特定状态下全基因组的甲基化修饰、蛋白结合以及基因表达调控的复杂网络，是功能强大的组合型分析。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;单体型是指位于一条染色体特定区域的一组相互关联，并倾向于以整体遗传给后代的单核苷酸多态性的组合。简单地说就是同源染色体上同一位点的杂合SNP，如在某一位置同源染色体中一条为G，另一条染色体为A。单体型图谱能够将来自于亲本的遗传信息区分开，研究遗传变异。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Hi-C技术是染色体构象捕获(Chromosome Confirmation Capture,3C)的一种衍生技术，是指基于高通量进行染色体构象的捕获，它能够在全基因组范围内捕捉不同基因座位之间的空间交互，研究三维空间中调控基因的DNA元件。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;hi-c技术流程&#34;&gt;Hi-C技术流程&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用甲醛对细胞进行交联固定，使DNA与蛋白、蛋白与蛋白之间进行交联，这样会导致相互作用的DNA片段被交联在一起。&lt;/li&gt;
+&lt;li&gt;进行酶切(如Hind Ⅲ等限制性内切酶)，使交联两侧产生粘性末端，加入过量限制性内切酶将未交联的DNA与交联的DNA相互分离。限制酶的选择取决于需要分析的基因座位的情况，限制序列较短(4bp)的内切酶切点密集，用于研究较短的座位(10~20kp),而限制序列较长(6bp)的内切酶用于研究较长的座位。&lt;/li&gt;
+&lt;li&gt;末端修复，引入生物素标记，连接&lt;/li&gt;
+&lt;li&gt;解交联，使DNA和蛋白、蛋白与蛋白分开，提取DNA，打断，捕获带有生物素标记的片段，进行建库&lt;/li&gt;
+
+&lt;li&gt;&lt;h2 id=&#34;测序&#34;&gt;测序&lt;/h2&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;影响基因表达的染色质相互作用的例子之一是：染色体区域可以折叠将增强子以及相关转录因子带到基因附近。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;拓扑关联结构域(TAD)是利用Hi-C map分析研究染色质构象信息时获取的一种图形现象，也是染色质局部相互作用较为强烈的一个作用单元，与基因转录表达调控有着密切关系。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2012年四个独立的研究小组利用Hi-C技术分析不同物种染色质构象信息时均发现了一种高度自我相互作用的基因组单元，并称之为拓扑关联结构域(TAD)，具有保守性&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;染色质环(chromatin loop)是染色质物理结构的特性之一。染色质中的调控元件一般都相距较远，比如启动子、增强子等距离调控基因位点均有一定间隔。随着3C技术和一些分子研究技术的证实，这些调控元件在三维空间上的距离要比它们之间的插入序列更近一些，因此形成了染色质环。染色质环通过控制启动子、增强子这些顺式调控元件来调控基因转录表达&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;拓扑关联结构域更像是染色质环在全基因组所有作用位点进行图谱分析时表现出来的一种现象&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

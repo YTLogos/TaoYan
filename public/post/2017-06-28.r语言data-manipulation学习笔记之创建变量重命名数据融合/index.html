@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.4.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Tao Yan">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="
+数据分析中数据处理也就是data manipulation是十分繁琐的，为此我将在博客里特意建一个分类：Data Manipulation。本文将讲讲如何在R语言中创建变量、重命名以及merge。">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#E13D3D">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/paraiso-light.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/paraiso-light.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin="anonymous">
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arapey:400,400i|Karla:400,700|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.271ffa4140fad041464911a0b7fff4cf.css">
+
+  
+    
+    
+    
+    
+      
+    
+    
+    
+    <link rel="stylesheet" href="/css/academic.d93a68285af0f7ef7f5ea22fb59113cf.css">
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon-32.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/">
+
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@TaoYANLogos">
+  <meta property="twitter:creator" content="@TaoYANLogos">
+  
+  <meta property="og:site_name" content="Tao Yan">
+  <meta property="og:url" content="/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/">
+  <meta property="og:title" content="R语言data manipulation学习笔记之创建变量、重命名、数据融合 | Tao Yan">
+  <meta property="og:description" content="
+数据分析中数据处理也就是data manipulation是十分繁琐的，为此我将在博客里特意建一个分类：Data Manipulation。本文将讲讲如何在R语言中创建变量、重命名以及merge。"><meta property="og:image" content="img/avatar.jpg">
+  <meta property="twitter:image" content="img/avatar.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2017-06-28T12:34:08-05:00">
+    
+    <meta property="article:modified_time" content="2017-06-28T12:34:08-05:00">
+  
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#E13D3D",
+          "text": "#fbf9f4"
+        },
+        "button": {
+          "background": "#fbf9f4",
+          "text": "#E13D3D"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://cookies.insites.com"
+      }
+    })});
+</script>
+
+
+
+  
+
+
+
+
+
+  <title>R语言data manipulation学习笔记之创建变量、重命名、数据融合 | Tao Yan</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0 compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Tao Yan</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/courses/"><span>Courses</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/CV.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">R语言data manipulation学习笔记之创建变量、重命名、数据融合</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2017-06-28 12:34:08 -0500 -0500" itemprop="datePublished">
+<meta content="2017-06-28 12:34:08 -0500 -0500" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jun 28, 2017</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/data-manipulation/">Data Manipulation</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/&amp;text=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8b%e5%88%9b%e5%bb%ba%e5%8f%98%e9%87%8f%e3%80%81%e9%87%8d%e5%91%bd%e5%90%8d%e3%80%81%e6%95%b0%e6%8d%ae%e8%9e%8d%e5%90%88" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/&amp;t=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8b%e5%88%9b%e5%bb%ba%e5%8f%98%e9%87%8f%e3%80%81%e9%87%8d%e5%91%bd%e5%90%8d%e3%80%81%e6%95%b0%e6%8d%ae%e8%9e%8d%e5%90%88" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8b%e5%88%9b%e5%bb%ba%e5%8f%98%e9%87%8f%e3%80%81%e9%87%8d%e5%91%bd%e5%90%8d%e3%80%81%e6%95%b0%e6%8d%ae%e8%9e%8d%e5%90%88&amp;body=/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/&amp;title=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8b%e5%88%9b%e5%bb%ba%e5%8f%98%e9%87%8f%e3%80%81%e9%87%8d%e5%91%bd%e5%90%8d%e3%80%81%e6%95%b0%e6%8d%ae%e8%9e%8d%e5%90%88" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8b%e5%88%9b%e5%bb%ba%e5%8f%98%e9%87%8f%e3%80%81%e9%87%8d%e5%91%bd%e5%90%8d%e3%80%81%e6%95%b0%e6%8d%ae%e8%9e%8d%e5%90%88%20/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/post/2017-06-28.r%E8%AF%AD%E8%A8%80data-manipulation%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E9%87%8D%E5%91%BD%E5%90%8D%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88/&amp;title=R%e8%af%ad%e8%a8%80data%20manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8b%e5%88%9b%e5%bb%ba%e5%8f%98%e9%87%8f%e3%80%81%e9%87%8d%e5%91%bd%e5%90%8d%e3%80%81%e6%95%b0%e6%8d%ae%e8%9e%8d%e5%90%88" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      <p><img src="https://upload-images.jianshu.io/upload_images/2084719-4a45f75977c58bb5.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+数据分析中数据处理也就是data manipulation是十分繁琐的，为此我将在博客里特意建一个分类：Data Manipulation。本文将讲讲如何在R语言中创建变量、重命名以及merge。</p>
+
+<h2 id="create-a-dataset">create a dataset</h2>
+
+<pre><code>fy &lt;- c(2010,2011,2012,2010,2011,2012,2010,2011,2012)
+company &lt;- c(&quot;Apple&quot;,&quot;Apple&quot;,&quot;Apple&quot;,&quot;Google&quot;,&quot;Google&quot;,&quot;Google&quot;,&quot;Microsoft&quot;,&quot;Microsoft&quot;,&quot;Microsoft&quot;)
+revenue &lt;- c(65225,108249,156508,29321,37905,50175,62484,69943,73723)
+profit &lt;- c(14013,25922,41733,8505,9737,10737,18760,23150,16978) 
+companiesData &lt;- data.frame(fy, company, revenue, profit)
+head(companiesData)
+##     fy   company revenue profit
+## 1  2010   Apple   65225  14013
+## 2  2011   Apple  108249  25922
+## 3  2012   Apple  156508  41733
+## 4  2010  Google   29321   8505
+## 5  2011  Google   37905   9737
+## 6  2012  Google   50175  10737
+</code></pre>
+
+<p>接下来我们需要查看数据集的结构，用str()函数查看</p>
+
+<pre><code>str(companiesData)
+## 'data.frame':    9 obs. of  4 variables:
+##  $ fy     : num  2010 2011 2012 2010 2011 ...
+##  $ company: Factor w/ 3 levels &quot;Apple&quot;,&quot;Google&quot;,..: 1 1 1 2 2 2 3 3 3
+##  $ revenue: num  65225 108249 156508 29321 37905 ...
+##  $ profit : num  14013 25922 41733 8505 9737 ...
+</code></pre>
+
+<p>可以看到年份fy这里是是数值型，我们需要更改为因子型，方便后期处理</p>
+
+<pre><code>companiesData$fy &lt;- factor(companiesData$fy, ordered = TRUE)
+</code></pre>
+
+<p>现在数据已经整理过好了，下面我们来添加变量，比如我们可以看看各个公司的利润率</p>
+
+<pre><code>companiesData$margin &lt;- (companiesData$profit/companiesData$revenue)*100
+#查看数据
+head(companiesData)
+##     fy company revenue profit   margin
+## 1 2010   Apple   65225  14013 21.48409
+## 2 2011   Apple  108249  25922 23.94664
+## 3 2012   Apple  156508  41733 26.66509
+## 4 2010  Google   29321   8505 29.00651
+## 5 2011  Google   37905   9737 25.68790
+## 6 2012  Google   50175  10737 21.39910
+</code></pre>
+
+<p>小数点位数太多了，这里我们保留一位</p>
+
+<pre><code>companiesData$margin &lt;- round(companiesData$margin, 1)
+head(companiesData)
+##     fy company revenue profit margin
+## 1 2010   Apple   65225  14013   21.5
+## 2 2011   Apple  108249  25922   23.9
+## 3 2012   Apple  156508  41733   26.7
+## 4 2010  Google   29321   8505   29.0
+## 5 2011  Google   37905   9737   25.7
+## 6 2012  Google   50175  10737   21.4
+</code></pre>
+
+<p>这样我们就创建了一个新的变量margin，当然也可以删除变量，只要复制需要删除的变量NULL就行了。</p>
+
+<pre><code>#delete variable margin
+companiesData$margin &lt;- NULL
+head(companiesData)
+##     fy company revenue profit
+## 1 2010   Apple   65225  14013
+## 2 2011   Apple  108249  25922
+## 3 2012   Apple  156508  41733
+## 4 2010  Google   29321   8505
+## 5 2011  Google   37905   9737
+## 6 2012  Google   50175  10737
+</code></pre>
+
+<p>再顺便介绍一下transform函数，用于创建变量，transform的格式如下</p>
+
+<pre><code>dataFrame &lt;- transform(dataFrame, newColumn = oldColumn1 + oldColumn2)
+companiesData &lt;- transform(companiesData, margin=round((profit/revenue)*100), 1)
+head(companiesData)
+##     fy company revenue profit margin X1
+## 1 2010   Apple   65225  14013     21  1
+## 2 2011   Apple  108249  25922     24  1
+## 3 2012   Apple  156508  41733     27  1
+## 4 2010  Google   29321   8505     29  1
+## 5 2011  Google   37905   9737     26  1
+## 6 2012  Google   50175  10737     21  1
+</code></pre>
+
+<p>接下来讲一下merge，主要是merge函数，它要求进行融合的两个数据集需要有共同的变量即id，使用格式如下：</p>
+
+<pre><code>finaldt &lt;- merge(dataset1, dataset2, by=&quot;id&quot;)
+</code></pre>
+
+<p>这里我们再创建一个数据集用于merge</p>
+
+<pre><code>#creat another dataset
+company &lt;- c(&quot;Apple&quot;,&quot;Google&quot;,&quot;Microsoft&quot;)
+ava1 &lt;- c(1,2,3)
+data2 &lt;- data.frame(company, ava1)
+head(data2)
+##     company ava1
+## 1     Apple    1
+## 2    Google    2
+## 3 Microsoft    3
+</code></pre>
+
+<p>数据集data2与数据集companiesData具有共同的变量company(id)</p>
+
+<pre><code>#merge the two dataset
+newdata &lt;- merge(companiesData, data2, by=&quot;company&quot;)
+</code></pre>
+
+<p>这样就得到一个完整的数据集了，当然添加行、列还有两个很有用的函数：rbind()以及cbind(),这里就不介绍了 最后讲一下重命名，其实很简单</p>
+
+<pre><code>companiesData$company &lt;- c(&quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;G&quot;, &quot;G&quot;, &quot;G&quot;, &quot;M&quot;, &quot;M&quot;, &quot;M&quot;)
+head(companiesData)
+##     fy company revenue profit margin X1
+## 1 2010       A   65225  14013     21  1
+## 2 2011       A  108249  25922     24  1
+## 3 2012       A  156508  41733     27  1
+## 4 2010       G   29321   8505     29  1
+## 5 2011       G   37905   9737     26  1
+## 6 2012       G   50175  10737     21  1
+#rename the colname
+colnames(companiesData) &lt;- c(&quot;Year&quot;, &quot;Com&quot;, &quot;Rev&quot;, &quot;Pro&quot;, &quot;Mar&quot;)
+</code></pre>
+
+<h2 id="seessioninfo">seessioninfo</h2>
+
+<pre><code>sessionInfo()
+## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 8.1 x64 (build 9600)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_3.4.0  backports_1.1.0 magrittr_1.5    rprojroot_1.2  
+##  [5] tools_3.4.0     htmltools_0.3.6 yaml_2.1.14     Rcpp_0.12.11   
+##  [9] stringi_1.1.5   rmarkdown_1.5   knitr_1.16      stringr_1.2.0  
+## [13] digest_0.6.12   evaluate_0.10
+</code></pre>
+    </div>
+
+    
+<p class="edit-page">
+  <a href="https://github.com/YTLogos/mywebsite/edit/master/content/post%5c2017-06-28.R%e8%af%ad%e8%a8%80data-manipulation%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8b%e5%88%9b%e5%bb%ba%e5%8f%98%e9%87%8f%e3%80%81%e9%87%8d%e5%91%bd%e5%90%8d%e3%80%81%e6%95%b0%e6%8d%ae%e8%9e%8d%e5%90%88.md">
+    <i class="fas fa-pen pr-2"></i>Edit this page
+  </a>
+</p>
+
+
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/manipulation/">manipulation</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hufa245e75a5e5fa47274790393ba89624_26717_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="">Tao Yan</a></h5>
+      <h6 class="card-subtitle">PhD Candidate of Crop Science</h6>
+      <p class="card-text" itemprop="description">My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://twitter.com/TaoYANLogos" target="_blank" rel="noopener">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/YTLogos" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+    
+
+    
+
+    
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "logos-1" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/bash.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/js.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/markdown.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/html.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://logos-1.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.16bbb3750feb7244c9bc409a5a4fe678.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy; Tao Yan, 2018-2019 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

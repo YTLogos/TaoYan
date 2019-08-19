@@ -594,7 +594,7 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><img src="https://upload-images.jianshu.io/upload_images/2084719-38d068706ad3b03a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142235.png" alt="" />
 本文主要利用<strong>ggpubr</strong>包来探索基因组数据,主要是可视化TCGA基因组数据的基因表达谱。</p>
 
 <pre><code>library(ggpubr)#加载包
@@ -616,7 +616,7 @@ biocLite(&quot;RTCGA.mRNA&quot;)
 infoTCGA()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-b34678958936acea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="这里只显示部分" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142259.png" alt="" /></p>
 
 <p><strong>RTCGA</strong>包里的函数<code>expressionTCGA()</code>可以十分方便地从不同数据集中提取基因的表达值，下面我们将从三个数据集BRCA(乳腺癌)、OV(卵巢癌)、LUSC(肺癌)中提取五个基因的表达值。</p>
 
@@ -627,7 +627,7 @@ extract.cols = c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;, &quot;ES
 expr
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-d4a71b05d7b47010.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142313.png" alt="" />
 查看每个数据集中的样品数量</p>
 
 <pre><code>nb_samples &lt;- table(expr$dataset)nb_samples
@@ -644,7 +644,7 @@ expr$bcr_patient_barcode &lt;- paste0(expr$dataset, c(1:590, 1:561, 1:154))
 expr
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-af94785de32b871b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142333.png" alt="" /></p>
 
 <p>接下来绘制图形：
 1、箱线图</p>
@@ -654,7 +654,7 @@ ggboxplot(expr, x=&quot;dataset&quot;, y=&quot;GATA3&quot;, title=&quot;GATA3&qu
 color = &quot;dataset&quot;, palette = &quot;jco&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-08c6ecf624be4f0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142349.png" alt="" />
 我们可以一次性绘制多个基因，然后一一查看，而不用每次写代码：</p>
 
 <pre><code>#Creat a list of plots
@@ -665,27 +665,27 @@ ylab = &quot;EXpression&quot;, color = &quot;dataset&quot;, palette = &quot;jco&
 p$GATA3
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-4bb5efef9d761338.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142404.png" alt="" /></p>
 
 <pre><code>p$PTEN
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-ad563d41e1fa856d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142417.png" alt="" /></p>
 
 <pre><code>p$XBP1
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-afe413c51f1795d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142429.png" alt="" /></p>
 
 <pre><code>p$ESR1
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-5e292cfe7f0d5e3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142440.png" alt="" /></p>
 
 <pre><code>p$MUC1
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-b61b9b569685a032.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142458.png" alt="" />
 当一次性绘制多个基因时，xlab,ylab,title也可以是一个跟y等长的向量。 接下来就是添加p-value以及显著性了</p>
 
 <pre><code>my_comparisons &lt;- list(c(&quot;BRCA&quot;, &quot;OV&quot;), c(&quot;OV&quot;, &quot;LUSC&quot;))
@@ -693,13 +693,13 @@ ggboxplot(expr, x=&quot;dataset&quot;, y=&quot;GATA3&quot;, title = &quot;GATA3&
 color = &quot;dataset&quot;, palette = &quot;jco&quot;)+ stat_compare_means(comparisons = my_comparisons)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-bb70ab12668b7010.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142518.png" alt="" />
 也可以查看每个类型中每一个基因的比较：</p>
 
 <pre><code>compare_means(c(GATA3, PTEN, XBP1)~dataset, data = expr)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-387bd27a2b95a30c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142529.png" alt="" /></p>
 
 <p>可以通过select以及remove来决定比较那几个类型，比如这里我们只比较BRCA和OV</p>
 
@@ -707,48 +707,48 @@ color = &quot;dataset&quot;, palette = &quot;jco&quot;)+ stat_compare_means(comp
 color = &quot;dataset&quot;, palette = &quot;jco&quot;, select = c(&quot;BRCA&quot;, &quot;OV&quot;))#通过select选择
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-bef1e0aa4148b8be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142541.png" alt="" /></p>
 
 <pre><code>ggboxplot(expr, x=&quot;dataset&quot;, y=&quot;GATA3&quot;, title = &quot;GATA3&quot;, ylab = &quot;Expression&quot;, 
 color = &quot;dataset&quot;, palette = &quot;jco&quot;, remove = &quot;BRCA&quot;)#通过remove选择
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-ccb18f7da8288c6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142559.png" alt="" />
 通过order来改变各类型在x轴上的顺序</p>
 
 <pre><code>ggboxplot(expr, x=&quot;dataset&quot;, y=&quot;GATA3&quot;, title = &quot;GATA3&quot;, ylab = &quot;Expression&quot;, 
 color = &quot;dataset&quot;, palette = &quot;jco&quot;, order = c(&quot;LUSC&quot;, &quot;OV&quot;, &quot;BRCA&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-4598a0d2c3d4f402.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142610.png" alt="" />
 通过rotate=TRUE来变换坐标轴</p>
 
 <pre><code>ggboxplot(expr, x=&quot;dataset&quot;, y=&quot;GATA3&quot;, title = &quot;GATA3&quot;, ylab = &quot;Expression&quot;, 
 color = &quot;dataset&quot;, palette = &quot;jco&quot;, rotate=TRUE)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-46f6e3b2c093c6c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142622.png" alt="" />
 通过combine=TRUE来进行分面（类似于facet）</p>
 
 <pre><code>ggboxplot(expr, x=&quot;dataset&quot;, y=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), ylab = &quot;Expression&quot;, 
 color = &quot;dataset&quot;, palette = &quot;jco&quot;, combine = TRUE)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-3562a99a0a400f3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142638.png" alt="" />
 通过merge=TRUE或者merge=“axis”将三个类型的plot绘制在一个panel中</p>
 
 <pre><code>ggboxplot(expr, x=&quot;dataset&quot;, y=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), ylab = &quot;Expression&quot;,
 color = &quot;dataset&quot;, palette = &quot;jco&quot;, merge = TRUE)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-d90335d2c9e74f13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142650.png" alt="" />
 通过merge=flip利用不同癌症类型进行group</p>
 
 <pre><code>ggboxplot(expr, x=&quot;dataset&quot;, y=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), 
 ylab = &quot;Expression&quot;, palette = &quot;jco&quot;, merge = &quot;flip&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-efc44aeb7221760f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142704.png" alt="" />
 通过add=jitter增加抖动点</p>
 
 <pre><code>ggboxplot(expr, x=&quot;dataset&quot;, y=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), combine = TRUE,
@@ -756,7 +756,7 @@ color = &quot;dataset&quot;, palette = &quot;jco&quot;, ylab = &quot;Expression&
 add.params = list(size=0.1, jitter=0.2))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-5659d5845c1699f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142716.png" alt="" />
 通过add=dotplot增加dotplot</p>
 
 <pre><code>ggboxplot(expr, x=&quot;dataset&quot;, y=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), 
@@ -764,7 +764,7 @@ combine = TRUE, color = &quot;dataset&quot;, palette = &quot;jco&quot;, ylab = &
 add = &quot;dotplot&quot;, add.params = list(binwidth=0.1, dotsize=0.2))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-8111c788c1ceba23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142731.png" alt="" />
 很多时候我们很像知道箱线图两端的数据，我们可以通过label来进行展示</p>
 
 <pre><code>ggboxplot(expr, x=&quot;dataset&quot;, y=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), combine = TRUE,
@@ -774,21 +774,21 @@ label.select = list(top.up=2, top.down=2),
 font.label = list(size=9, face=&quot;italic&quot;), repel = TRUE)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-38d068706ad3b03a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142743.png" alt="" />
 2、小提琴图</p>
 
 <pre><code>ggviolin(expr,x=&quot;dataset&quot;, y=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), combine = TRUE, 
 color = &quot;dataset&quot;, palette = &quot;jco&quot;, ylab = &quot;Expression&quot;, add = &quot;boxplot&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-a24be637c1b4db89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142756.png" alt="" />
 通过修改add来更改添加小提琴图里的图形</p>
 
 <pre><code>ggviolin(expr,x=&quot;dataset&quot;, y=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), combine = TRUE, 
 color = &quot;dataset&quot;, palette = &quot;jco&quot;, ylab = &quot;Expression&quot;, add = &quot;median_iqr&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-845354aeeec09083.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142817.png" alt="" />
 &gt; add有好多选项可以选择：“mean”, “mean_se”, “mean_sd”, “mean_ci”, “mean_range”, “median”, “median_iqr”, “median_mad”, “median_range”.有兴趣的可以自己试试。</p>
 
 <p>3、带状图</p>
@@ -798,7 +798,7 @@ color = &quot;dataset&quot;, palette = &quot;jco&quot;, size = 0.1, jitter=0.2, 
 add = &quot;median_iqr&quot;, add.params = list(color=&quot;red&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-52925943216eac0f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142835.png" alt="" />
 4、dotplot</p>
 
 <pre><code>ggdotplot(expr, x=&quot;dataset&quot;, y=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), combine = TRUE, 
@@ -806,14 +806,14 @@ color = &quot;dataset&quot;, palette = &quot;jco&quot;, fill = &quot;white&quot;
 add = &quot;median_iqr&quot;, add.params = list(size=0.9))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-80f7238f464bba66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142847.png" alt="" />
 5、密度图</p>
 
 <pre><code>ggdensity(expr, x=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), y=&quot;..density..&quot;, 
 combine = TRUE, xlab = &quot;Expression&quot;, add = &quot;median&quot;, rug = TRUE)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-5f6de57b9d6109d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142910.png" alt="" />
 将dataset映射给颜色</p>
 
 <pre><code>ggdensity(expr, x=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), y=&quot;..density..&quot;, combine = TRUE,
@@ -821,7 +821,7 @@ xlab = &quot;Expression&quot;, add = &quot;median&quot;, rug = TRUE, color = &qu
 fill = &quot;dataset&quot;, palette = &quot;jco&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-2495e6aa4b3f106f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142922.png" alt="" />
 将三幅图整合进一个panel中，并对y轴进行..count..，而不是..density..</p>
 
 <pre><code>ggdensity(expr, x=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), y=&quot;..count..&quot;, xlab = &quot;Expression&quot;,
@@ -829,24 +829,24 @@ add = &quot;median&quot;, rug = TRUE, palette = &quot;jco&quot;)
 ## $GATA3
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-c020bff5daa5174a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143008.png" alt="" /></p>
 
 <pre><code>## ## $PTEN
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-357acb14cd62ea30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143023.png" alt="" /></p>
 
 <pre><code>## ## $XBP1
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-9f4facdd2b3bbe8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143041.png" alt="" />
 颜色映射，将x轴变量映射给颜色</p>
 
 <pre><code>ggdensity(expr, x=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), y=&quot;..count..&quot;, color = &quot;.x.&quot;, 
 fill = &quot;.x.&quot;, merge = TRUE, xlab = &quot;Expression&quot;, add = &quot;median&quot;, rug = TRUE, palette = &quot;jco&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-8d0a6cf618230ec0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143107.png" alt="" />
 按dataset进行分面</p>
 
 <pre><code>ggdensity(expr, x=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), y=&quot;..count..&quot;, color = &quot;.x.&quot;, 
@@ -854,7 +854,7 @@ fill = &quot;.x.&quot;, merge = TRUE, xlab = &quot;Expression&quot;, add = &quot
 rug = TRUE, palette = &quot;jco&quot;, facet.by = &quot;dataset&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-cf2dac791630c3ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143119.png" alt="" />
 6、直方图</p>
 
 <pre><code>gghistogram(expr, x=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), y=&quot;..density..&quot;, 
@@ -862,17 +862,17 @@ xlab = &quot;Expression&quot;, add = &quot;median&quot;, rug = TRUE)
 ## $GATA3
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-be8c87506d85f929.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143132.png" alt="" /></p>
 
 <pre><code>## ## $PTEN
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-a0ae7fae20c787bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143144.png" alt="" /></p>
 
 <pre><code>## ## $XBP1
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-709bc0692833b95c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143154.png" alt="" />
 将dataset映射给颜色</p>
 
 <pre><code>gghistogram(expr, x=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), y=&quot;..density..&quot;, xlab = &quot;Expression&quot;, 
@@ -880,31 +880,31 @@ add = &quot;median&quot;, rug = TRUE, color = &quot;dataset&quot;, fill = &quot;
 ## $GATA3
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-08d17067003638cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143208.png" alt="" /></p>
 
 <pre><code>## ## $PTEN
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-0e291051fdf8709b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143228.png" alt="" /></p>
 
 <pre><code>## ## $XBP1
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-3e69df4a748c733c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143239.png" alt="" />
 后面还有一些将几幅图整合在一个panel以及分面等大同小异就不讲了。
 7、Q-Q图</p>
 
 <pre><code>ggqqplot(expr, x=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), combine = TRUE, size = 0.5)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-438ad8dd5a855bae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143251.png" alt="" />
 颜色映射</p>
 
 <pre><code>ggqqplot(expr, x=c(&quot;GATA3&quot;, &quot;PTEN&quot;, &quot;XBP1&quot;), combine = TRUE, size = 0.5, 
 color = &quot;dataset&quot;, palette = &quot;jco&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-edb0e229e75a1e2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143302.png" alt="" /></p>
 
 <p>#sessionInfo</p>
 
@@ -1100,7 +1100,7 @@ color = &quot;dataset&quot;, palette = &quot;jco&quot;)
           
           <li><a href="/post/2017-06-11.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/">ggplot2学习笔记系列之利用ggplot2绘制散点图</a></li>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/">R语言学习笔记之相关性矩阵分析及其可视化</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">R语言可视化学习笔记之添加p-value和显著性标记</a></li>
           
         </ul>
       </div>
@@ -1271,7 +1271,7 @@ color = &quot;dataset&quot;, palette = &quot;jco&quot;)
   <p class="powered-by">
     &copy; Tao Yan, 2018-2019 &middot; 
 
-    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/mywebsite" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
 

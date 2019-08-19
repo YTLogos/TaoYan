@@ -584,7 +584,7 @@ p
       <link>https://taoyan.netlify.com/post/2017-09-10.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E5%9B%A0%E7%BB%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
       <pubDate>Sun, 10 Sep 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-09-10.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E5%9B%A0%E7%BB%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-38d068706ad3b03a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142235.png&#34; alt=&#34;&#34; /&gt;
 本文主要利用&lt;strong&gt;ggpubr&lt;/strong&gt;包来探索基因组数据,主要是可视化TCGA基因组数据的基因表达谱。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;library(ggpubr)#加载包
@@ -606,7 +606,7 @@ biocLite(&amp;quot;RTCGA.mRNA&amp;quot;)
 infoTCGA()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b34678958936acea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;这里只显示部分&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142259.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;RTCGA&lt;/strong&gt;包里的函数&lt;code&gt;expressionTCGA()&lt;/code&gt;可以十分方便地从不同数据集中提取基因的表达值，下面我们将从三个数据集BRCA(乳腺癌)、OV(卵巢癌)、LUSC(肺癌)中提取五个基因的表达值。&lt;/p&gt;
 
@@ -617,7 +617,7 @@ extract.cols = c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;
 expr
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-d4a71b05d7b47010.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142313.png&#34; alt=&#34;&#34; /&gt;
 查看每个数据集中的样品数量&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;nb_samples &amp;lt;- table(expr$dataset)nb_samples
@@ -634,7 +634,7 @@ expr$bcr_patient_barcode &amp;lt;- paste0(expr$dataset, c(1:590, 1:561, 1:154))
 expr
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-af94785de32b871b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142333.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;接下来绘制图形：
 1、箱线图&lt;/p&gt;
@@ -644,7 +644,7 @@ ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=&amp;quot;GATA3&amp;quot;, titl
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-08c6ecf624be4f0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142349.png&#34; alt=&#34;&#34; /&gt;
 我们可以一次性绘制多个基因，然后一一查看，而不用每次写代码：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#Creat a list of plots
@@ -655,27 +655,27 @@ ylab = &amp;quot;EXpression&amp;quot;, color = &amp;quot;dataset&amp;quot;, pale
 p$GATA3
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4bb5efef9d761338.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142404.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;p$PTEN
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-ad563d41e1fa856d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142417.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;p$XBP1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-afe413c51f1795d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142429.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;p$ESR1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5e292cfe7f0d5e3f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142440.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;p$MUC1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b61b9b569685a032.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142458.png&#34; alt=&#34;&#34; /&gt;
 当一次性绘制多个基因时，xlab,ylab,title也可以是一个跟y等长的向量。 接下来就是添加p-value以及显著性了&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;my_comparisons &amp;lt;- list(c(&amp;quot;BRCA&amp;quot;, &amp;quot;OV&amp;quot;), c(&amp;quot;OV&amp;quot;, &amp;quot;LUSC&amp;quot;))
@@ -683,13 +683,13 @@ ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=&amp;quot;GATA3&amp;quot;, titl
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;)+ stat_compare_means(comparisons = my_comparisons)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-bb70ab12668b7010.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142518.png&#34; alt=&#34;&#34; /&gt;
 也可以查看每个类型中每一个基因的比较：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;compare_means(c(GATA3, PTEN, XBP1)~dataset, data = expr)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-387bd27a2b95a30c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142529.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;可以通过select以及remove来决定比较那几个类型，比如这里我们只比较BRCA和OV&lt;/p&gt;
 
@@ -697,48 +697,48 @@ color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;)+ stat_co
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, select = c(&amp;quot;BRCA&amp;quot;, &amp;quot;OV&amp;quot;))#通过select选择
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-bef1e0aa4148b8be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142541.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=&amp;quot;GATA3&amp;quot;, title = &amp;quot;GATA3&amp;quot;, ylab = &amp;quot;Expression&amp;quot;, 
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, remove = &amp;quot;BRCA&amp;quot;)#通过remove选择
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-ccb18f7da8288c6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142559.png&#34; alt=&#34;&#34; /&gt;
 通过order来改变各类型在x轴上的顺序&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=&amp;quot;GATA3&amp;quot;, title = &amp;quot;GATA3&amp;quot;, ylab = &amp;quot;Expression&amp;quot;, 
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, order = c(&amp;quot;LUSC&amp;quot;, &amp;quot;OV&amp;quot;, &amp;quot;BRCA&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4598a0d2c3d4f402.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142610.png&#34; alt=&#34;&#34; /&gt;
 通过rotate=TRUE来变换坐标轴&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=&amp;quot;GATA3&amp;quot;, title = &amp;quot;GATA3&amp;quot;, ylab = &amp;quot;Expression&amp;quot;, 
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, rotate=TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-46f6e3b2c093c6c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142622.png&#34; alt=&#34;&#34; /&gt;
 通过combine=TRUE来进行分面（类似于facet）&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), ylab = &amp;quot;Expression&amp;quot;, 
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, combine = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3562a99a0a400f3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142638.png&#34; alt=&#34;&#34; /&gt;
 通过merge=TRUE或者merge=“axis”将三个类型的plot绘制在一个panel中&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), ylab = &amp;quot;Expression&amp;quot;,
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, merge = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-d90335d2c9e74f13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142650.png&#34; alt=&#34;&#34; /&gt;
 通过merge=flip利用不同癌症类型进行group&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), 
 ylab = &amp;quot;Expression&amp;quot;, palette = &amp;quot;jco&amp;quot;, merge = &amp;quot;flip&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-efc44aeb7221760f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142704.png&#34; alt=&#34;&#34; /&gt;
 通过add=jitter增加抖动点&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), combine = TRUE,
@@ -746,7 +746,7 @@ color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, ylab = &
 add.params = list(size=0.1, jitter=0.2))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5659d5845c1699f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142716.png&#34; alt=&#34;&#34; /&gt;
 通过add=dotplot增加dotplot&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), 
@@ -754,7 +754,7 @@ combine = TRUE, color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp
 add = &amp;quot;dotplot&amp;quot;, add.params = list(binwidth=0.1, dotsize=0.2))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8111c788c1ceba23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142731.png&#34; alt=&#34;&#34; /&gt;
 很多时候我们很像知道箱线图两端的数据，我们可以通过label来进行展示&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(expr, x=&amp;quot;dataset&amp;quot;, y=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), combine = TRUE,
@@ -764,21 +764,21 @@ label.select = list(top.up=2, top.down=2),
 font.label = list(size=9, face=&amp;quot;italic&amp;quot;), repel = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-38d068706ad3b03a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142743.png&#34; alt=&#34;&#34; /&gt;
 2、小提琴图&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggviolin(expr,x=&amp;quot;dataset&amp;quot;, y=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), combine = TRUE, 
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, ylab = &amp;quot;Expression&amp;quot;, add = &amp;quot;boxplot&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a24be637c1b4db89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142756.png&#34; alt=&#34;&#34; /&gt;
 通过修改add来更改添加小提琴图里的图形&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggviolin(expr,x=&amp;quot;dataset&amp;quot;, y=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), combine = TRUE, 
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, ylab = &amp;quot;Expression&amp;quot;, add = &amp;quot;median_iqr&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-845354aeeec09083.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142817.png&#34; alt=&#34;&#34; /&gt;
 &amp;gt; add有好多选项可以选择：“mean”, “mean_se”, “mean_sd”, “mean_ci”, “mean_range”, “median”, “median_iqr”, “median_mad”, “median_range”.有兴趣的可以自己试试。&lt;/p&gt;
 
 &lt;p&gt;3、带状图&lt;/p&gt;
@@ -788,7 +788,7 @@ color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, size = 0
 add = &amp;quot;median_iqr&amp;quot;, add.params = list(color=&amp;quot;red&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-52925943216eac0f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142835.png&#34; alt=&#34;&#34; /&gt;
 4、dotplot&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggdotplot(expr, x=&amp;quot;dataset&amp;quot;, y=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), combine = TRUE, 
@@ -796,14 +796,14 @@ color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;, fill = &
 add = &amp;quot;median_iqr&amp;quot;, add.params = list(size=0.9))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-80f7238f464bba66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142847.png&#34; alt=&#34;&#34; /&gt;
 5、密度图&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggdensity(expr, x=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), y=&amp;quot;..density..&amp;quot;, 
 combine = TRUE, xlab = &amp;quot;Expression&amp;quot;, add = &amp;quot;median&amp;quot;, rug = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5f6de57b9d6109d0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142910.png&#34; alt=&#34;&#34; /&gt;
 将dataset映射给颜色&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggdensity(expr, x=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), y=&amp;quot;..density..&amp;quot;, combine = TRUE,
@@ -811,7 +811,7 @@ xlab = &amp;quot;Expression&amp;quot;, add = &amp;quot;median&amp;quot;, rug = T
 fill = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-2495e6aa4b3f106f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142922.png&#34; alt=&#34;&#34; /&gt;
 将三幅图整合进一个panel中，并对y轴进行..count..，而不是..density..&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggdensity(expr, x=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), y=&amp;quot;..count..&amp;quot;, xlab = &amp;quot;Expression&amp;quot;,
@@ -819,24 +819,24 @@ add = &amp;quot;median&amp;quot;, rug = TRUE, palette = &amp;quot;jco&amp;quot;)
 ## $GATA3
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c020bff5daa5174a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143008.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;## ## $PTEN
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-357acb14cd62ea30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143023.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;## ## $XBP1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9f4facdd2b3bbe8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143041.png&#34; alt=&#34;&#34; /&gt;
 颜色映射，将x轴变量映射给颜色&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggdensity(expr, x=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), y=&amp;quot;..count..&amp;quot;, color = &amp;quot;.x.&amp;quot;, 
 fill = &amp;quot;.x.&amp;quot;, merge = TRUE, xlab = &amp;quot;Expression&amp;quot;, add = &amp;quot;median&amp;quot;, rug = TRUE, palette = &amp;quot;jco&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8d0a6cf618230ec0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143107.png&#34; alt=&#34;&#34; /&gt;
 按dataset进行分面&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggdensity(expr, x=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), y=&amp;quot;..count..&amp;quot;, color = &amp;quot;.x.&amp;quot;, 
@@ -844,7 +844,7 @@ fill = &amp;quot;.x.&amp;quot;, merge = TRUE, xlab = &amp;quot;Expression&amp;qu
 rug = TRUE, palette = &amp;quot;jco&amp;quot;, facet.by = &amp;quot;dataset&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-cf2dac791630c3ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143119.png&#34; alt=&#34;&#34; /&gt;
 6、直方图&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;gghistogram(expr, x=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), y=&amp;quot;..density..&amp;quot;, 
@@ -852,17 +852,17 @@ xlab = &amp;quot;Expression&amp;quot;, add = &amp;quot;median&amp;quot;, rug = T
 ## $GATA3
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-be8c87506d85f929.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143132.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;## ## $PTEN
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a0ae7fae20c787bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143144.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;## ## $XBP1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-709bc0692833b95c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143154.png&#34; alt=&#34;&#34; /&gt;
 将dataset映射给颜色&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;gghistogram(expr, x=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), y=&amp;quot;..density..&amp;quot;, xlab = &amp;quot;Expression&amp;quot;, 
@@ -870,31 +870,31 @@ add = &amp;quot;median&amp;quot;, rug = TRUE, color = &amp;quot;dataset&amp;quot
 ## $GATA3
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-08d17067003638cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143208.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;## ## $PTEN
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0e291051fdf8709b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143228.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;## ## $XBP1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3e69df4a748c733c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143239.png&#34; alt=&#34;&#34; /&gt;
 后面还有一些将几幅图整合在一个panel以及分面等大同小异就不讲了。
 7、Q-Q图&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggqqplot(expr, x=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), combine = TRUE, size = 0.5)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-438ad8dd5a855bae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143251.png&#34; alt=&#34;&#34; /&gt;
 颜色映射&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggqqplot(expr, x=c(&amp;quot;GATA3&amp;quot;, &amp;quot;PTEN&amp;quot;, &amp;quot;XBP1&amp;quot;), combine = TRUE, size = 0.5, 
 color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-edb0e229e75a1e2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143302.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;#sessionInfo&lt;/p&gt;
 
@@ -951,7 +951,7 @@ color = &amp;quot;dataset&amp;quot;, palette = &amp;quot;jco&amp;quot;)
       <link>https://taoyan.netlify.com/post/2017-08-24.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%BE%E5%BD%A2%E6%8E%92%E5%88%97/</link>
       <pubDate>Thu, 24 Aug 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-08-24.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%BE%E5%BD%A2%E6%8E%92%E5%88%97/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e6bf2901af3d315e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143351.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;R语言基本绘图函数中可以利用par()以及layout()来进行图形排列，但是这两个函数对于ggplot图则不太适用，本文主要讲解如何对多ggplot图形多页面进行排列。主要讲解如何利用包gridExtra、cowplot以及ggpubr中的函数进行图形排列。&lt;/p&gt;
 
@@ -969,7 +969,7 @@ mtcars$cyl &amp;lt;- as.factor(mtcars$cyl)
 head(mtcars[, c(&amp;quot;name&amp;quot;, &amp;quot;wt&amp;quot;,&amp;quot;mpg&amp;quot;, &amp;quot;cyl&amp;quot;)])
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e97fd1379156e2e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143411.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#First let&#39;s create some plots
 #Box plot(bxp)
@@ -986,7 +986,7 @@ x.text.angle=90 #Rotate vertically x axis texts )
 bp+font(&amp;quot;x.text&amp;quot;, size = 8)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f1195474adb47ef5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143425.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#Scatter plots(sp)
 sp &amp;lt;- ggscatter(mtcars, x=&amp;quot;wt&amp;quot;, y=&amp;quot;mpg&amp;quot;, add = &amp;quot;reg.line&amp;quot;, #Add regression line 
@@ -997,7 +997,7 @@ shape = &amp;quot;cyl&amp;quot; #Change point shape by groups cyl
 stat_cor(aes(color=cyl), label.x = 3) #Add correlation coefficientsp
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-60d2ce55b9ce82f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143437.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;图形排列&#34;&gt;图形排列&lt;/h2&gt;
 
@@ -1013,21 +1013,21 @@ stat_cor(aes(color=cyl), label.x = 3) #Add correlation coefficientsp
 &lt;pre&gt;&lt;code&gt;ggarrange(bxp, dp, bp+rremove(&amp;quot;x.text&amp;quot;), labels = c(&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;C&amp;quot;), ncol = 2, nrow = 2)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-dbc9f5f6ba4082ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143450.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;cowplot::plot.grid()&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;plot_grid(bxp, dp, bp+rremove(&amp;quot;x.text&amp;quot;), labels = c(&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;C&amp;quot;), ncol = 2, nrow = 2)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-dbc9f5f6ba4082ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143501.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;gridExtra::grid.arrange()&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;grid.arrange(bxp, dp, bp+rremove(&amp;quot;x.text&amp;quot;), ncol=2, nrow=2)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0d3d087bce2af907.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143516.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;排列图形注释&#34;&gt;排列图形注释&lt;/h2&gt;
@@ -1045,7 +1045,7 @@ right = &amp;quot;I&#39;m done, thanks :-)!&amp;quot;, fig.lab = &amp;quot;Figur
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-36ca476191d8af86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143530.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;绘图面板对齐&#34;&gt;绘图面板对齐&lt;/h2&gt;
 
@@ -1081,7 +1081,7 @@ names(ggsurv)
 &lt;pre&gt;&lt;code&gt;ggarrange(ggsurv$plot, ggsurv$table, heights = c(2, 0.7), ncol = 1, nrow = 2)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e53edb9d332af479.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143545.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;上图中的坐标轴没有对齐，可以通过参数align来设置&lt;/p&gt;
@@ -1089,7 +1089,7 @@ names(ggsurv)
 &lt;pre&gt;&lt;code&gt;ggarrange(ggsurv$plot, ggsurv$table, heights = c(2, 0.7), ncol = 1, nrow = 2, align = &amp;quot;v&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4e2c926c330d1680.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143601.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&#34;改变排列图的行列&#34;&gt;改变排列图的行列&lt;/h2&gt;
@@ -1103,7 +1103,7 @@ ggarrange(bxp, dp, ncol = 2, labels = c(&amp;quot;B&amp;quot;,&amp;quot;C&amp;qu
 nrow = 2, labels = &amp;quot;A&amp;quot; #Labels of the scatter plot)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6b2884cdeeb38d66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143613.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;r包cowplot&#34;&gt;R包cowplot&lt;/h2&gt;
 
@@ -1138,7 +1138,7 @@ draw_plot(bp, x=0, y=0, width = 1.5, height = 0.5)+
 draw_plot_label(label = c(&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quot;C&amp;quot;), size = 15, x=c(0, 0.5, 0), y=c(1, 1, 0.5))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a342161e1f1e5cf4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143628.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;r包gridextra&#34;&gt;R包gridExtra&lt;/h2&gt;
 
@@ -1155,7 +1155,7 @@ arrangeGrob(bxp, dp, ncol = 2), #Second row with 2plots in 2 different columns
 nrow=2) #number of rows
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-bd23e000d25050e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143641.png&#34; alt=&#34;&#34; /&gt;
 &amp;gt; 也可以通过函数grid.arrange中的layout_matrix来设置复杂的图形布局&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;grid.arrange(bp, #bar plot spaning two columns 
@@ -1163,7 +1163,7 @@ bxp, sp, #box plot amd scatter plot
 ncol=2, nrow=2, layout_matrix=rbind(c(1, 1), c(2, 3)))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-918661a64ae22dcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143652.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;要相对grid.arrange()以及arrangeGrob()的输出进行注释，首先要利用as_ggplot()将其转化为ggplot图形，进而利用函数draw_plot_label()对其进行注释。&lt;/p&gt;
@@ -1174,7 +1174,7 @@ draw_plot_label(label = c(&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;, &amp;quo
 p
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-251b2907ceddcbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143706.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&#34;r包grid&#34;&gt;R包grid&lt;/h2&gt;
@@ -1225,7 +1225,7 @@ print(bp+rremove(&amp;quot;x.text&amp;quot;), vp=define_region(row=3, col=1:2))
 &lt;pre&gt;&lt;code&gt;ggarrange(bxp, dp, labels = c(&amp;quot;A&amp;quot;, &amp;quot;B&amp;quot;), common.legend = TRUE, legend = &amp;quot;bottom&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-ca42c6bbb45bcfdf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143722.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;含有边际密度图的散点图&#34;&gt;含有边际密度图的散点图&lt;/h2&gt;
@@ -1245,7 +1245,7 @@ ggarrange(xplot, NULL, sp, yplot, ncol = 2, nrow = 2, align = &amp;quot;hv&amp;q
 heights = c(1, 2), common.legend = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1565dd7ff1900770.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143734.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;ggplot图-文本-表格组合&#34;&gt;ggplot图、文本、表格组合&lt;/h2&gt;
 
@@ -1263,7 +1263,7 @@ text.p &amp;lt;- ggparagraph(text = text, face = &amp;quot;italic&amp;quot;, siz
 ggarrange(density.p, stable.p, text.p, ncol = 1, nrow = 3, heights = c(1, 0.5, 0.3))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6d68d9bbc420bdd1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143747.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;ggplot图形中嵌入图形元素&#34;&gt;ggplot图形中嵌入图形元素&lt;/h2&gt;
 
@@ -1288,7 +1288,7 @@ ggarrange(density.p, stable.p, text.p, ncol = 1, nrow = 3, heights = c(1, 0.5, 0
 &lt;pre&gt;&lt;code&gt;density.p+annotation_custom(ggplotGrob(stable.p), xmin = 5.5, xmax = 8, ymin = 0.7)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3806bee958243f30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143803.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;ggplot图形中添加box-plot&#34;&gt;ggplot图形中添加box plot&lt;/h2&gt;
 
@@ -1316,7 +1316,7 @@ annotation_custom(grob = ybp_grob, xmin = xmin-xoffset,
 xmax=xmin+xoffset, ymin=ymin, ymax=ymax)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-d94210f5f4783fbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143814.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;ggplot图形添加背景&#34;&gt;ggplot图形添加背景&lt;/h2&gt;
 
@@ -1337,7 +1337,7 @@ background_image(img)+
 geom_boxplot(aes(fill=Species), color=&amp;quot;white&amp;quot;)+ fill_palette(&amp;quot;jco&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5f7514c22e7add04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143827.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;修改透明度&#34;&gt;修改透明度&lt;/h2&gt;
 
@@ -1348,7 +1348,7 @@ background_image(img)+geom_boxplot(aes(fill=Species), color=&amp;quot;white&amp;
 fill_palette(&amp;quot;jco&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-cd305569d612b588.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143843.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;多页排列&#34;&gt;多页排列&lt;/h2&gt;
 
@@ -1366,12 +1366,12 @@ fill_palette(&amp;quot;jco&amp;quot;)
 &lt;pre&gt;&lt;code&gt;multi.page[[1]]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-033d7bb70f07ee91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143901.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;multi.page[[2]]
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a92858066ced1ad0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143916.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;利用ggarrange-嵌套布局&#34;&gt;利用ggarrange()嵌套布局&lt;/h2&gt;
 
@@ -1383,7 +1383,7 @@ heights = c(1, 0.5, 0.3))
 ggarrange(p1, p2, ncol = 2, nrow = 1)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e6bf2901af3d315e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143929.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
 
@@ -1437,8 +1437,9 @@ ggarrange(p1, p2, ncol = 2, nrow = 1)
       <link>https://taoyan.netlify.com/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-fbe5b444e2efcb8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
-&lt;a href=&#34;https://docs.ggplot2.org/current/&#34; target=&#34;_blank&#34;&gt;Hadley Wickham&lt;/a&gt;创建的可视化包ggplot2可以流畅地进行优美的可视化，但是如果要通过ggplot2定制一套图形，尤其是适用于杂志期刊等出版物的图形，对于那些没有深入了解&lt;strong&gt;ggplot2&lt;/strong&gt;的人来说就有点困难了，&lt;strong&gt;ggplot2&lt;/strong&gt;的部分语法是很晦涩的。为此&lt;a href=&#34;https://www.sthda.com/english/rpkgs/ggpubr/index.html&#34; target=&#34;_blank&#34;&gt;Alboukadel Kassambara&lt;/a&gt;创建了基于&lt;strong&gt;ggplot2&lt;/strong&gt;的可视化包&lt;strong&gt;ggpubr&lt;/strong&gt;用于绘制符合出版物要求的图形。&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144020.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://docs.ggplot2.org/current/&#34; target=&#34;_blank&#34;&gt;Hadley Wickham&lt;/a&gt;创建的可视化包ggplot2可以流畅地进行优美的可视化，但是如果要通过ggplot2定制一套图形，尤其是适用于杂志期刊等出版物的图形，对于那些没有深入了解&lt;strong&gt;ggplot2&lt;/strong&gt;的人来说就有点困难了，&lt;strong&gt;ggplot2&lt;/strong&gt;的部分语法是很晦涩的。为此&lt;a href=&#34;https://www.sthda.com/english/rpkgs/ggpubr/index.html&#34; target=&#34;_blank&#34;&gt;Alboukadel Kassambara&lt;/a&gt;创建了基于&lt;strong&gt;ggplot2&lt;/strong&gt;的可视化包&lt;strong&gt;ggpubr&lt;/strong&gt;用于绘制符合出版物要求的图形。&lt;/p&gt;
 
 &lt;h2 id=&#34;安装及加载-ggpubr-包&#34;&gt;安装及加载&lt;strong&gt;ggpubr&lt;/strong&gt;包&lt;/h2&gt;
 
@@ -1488,7 +1489,7 @@ head(df)
 palette = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#E7B800&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-652675daa1359146.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144035.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;带有均值线和边际地毯线的直方图&#34;&gt;带有均值线和边际地毯线的直方图&lt;/h3&gt;
@@ -1497,7 +1498,7 @@ palette = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#E7B800&amp;quot;))
 palette = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#E7B800&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-d37833ffb4e3102b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144048.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;箱线图与小提琴图&#34;&gt;箱线图与小提琴图&lt;/h3&gt;
 
@@ -1521,7 +1522,7 @@ palette = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#E7B800&amp;quot;, &amp;quot;
 add = &amp;quot;jitter&amp;quot;, shape=&amp;quot;dose&amp;quot;)#增加了jitter点，点shape由dose映射p
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-418d9194e641dd71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144100.png&#34; alt=&#34;&#34; /&gt;
 增加不同组间的p-value值，可以自定义需要标注的组间比较&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;my_comparisons &amp;lt;- list(c(&amp;quot;0.5&amp;quot;, &amp;quot;1&amp;quot;), c(&amp;quot;1&amp;quot;, &amp;quot;2&amp;quot;), c(&amp;quot;0.5&amp;quot;, &amp;quot;2&amp;quot;))
@@ -1529,7 +1530,7 @@ p+stat_compare_means(comparisons = my_comparisons)+#不同组间的比较
 stat_compare_means(label.y = 50)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8bb64a310e2d8a4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144114.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;内有箱线图的小提琴图&#34;&gt;内有箱线图的小提琴图&lt;/h3&gt;
 
@@ -1540,7 +1541,7 @@ stat_compare_means(comparisons = my_comparisons, label = &amp;quot;p.signif&amp;
 stat_compare_means(label.y = 50)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-fbe5b444e2efcb8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144125.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;条形图&#34;&gt;条形图&lt;/h3&gt;
 
@@ -1551,7 +1552,7 @@ df2$name &amp;lt;- rownames(df2)#添加一行name
 head(df2[, c(&amp;quot;name&amp;quot;, &amp;quot;wt&amp;quot;, &amp;quot;mpg&amp;quot;, &amp;quot;cyl&amp;quot;)])
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4ded50c82b9f83fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144135.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;按从小到大顺序绘制条形图（不分组排序）&lt;/p&gt;
 
@@ -1562,7 +1563,7 @@ sort.by.groups=FALSE,#不按组排序
 x.text.angle=60)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-823a0b71c2e85b6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144150.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;按组进行排序&lt;/p&gt;
 
@@ -1573,7 +1574,7 @@ sort.by.groups=TRUE,#按组排序
 x.text.angle=90)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5c28f6c53248e8f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144208.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;偏差图&#34;&gt;偏差图&lt;/h3&gt;
 
@@ -1584,7 +1585,7 @@ df2$mpg_grp &amp;lt;- factor(ifelse(df2$mpg_z&amp;lt;0, &amp;quot;low&amp;quot;,
 head(df2[, c(&amp;quot;name&amp;quot;, &amp;quot;wt&amp;quot;, &amp;quot;mpg&amp;quot;, &amp;quot;mpg_grp&amp;quot;, &amp;quot;cyl&amp;quot;)])
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-34debe47e570b508.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144222.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;绘制排序过的条形图&lt;/p&gt;
 
@@ -1593,7 +1594,7 @@ palette = &amp;quot;jco&amp;quot;, sort.val = &amp;quot;asc&amp;quot;, sort.by.g
 ylab = &amp;quot;MPG z-score&amp;quot;, xlab = FALSE, legend.title=&amp;quot;MPG Group&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8957ea525c3d8853.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144234.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;坐标轴变换&lt;/p&gt;
 
@@ -1603,7 +1604,7 @@ x.text.angle=90, ylab = &amp;quot;MPG z-score&amp;quot;, xlab = FALSE,
 legend.title=&amp;quot;MPG Group&amp;quot;, rotate=TRUE, ggtheme = theme_minimal())
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-253e214a34cb73c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144248.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;点图-dot-charts&#34;&gt;点图(&lt;strong&gt;Dot charts&lt;/strong&gt;)&lt;/h3&gt;
 
@@ -1616,7 +1617,7 @@ palette = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#E7B800&amp;quot;, &amp;quot;
 add = &amp;quot;segments&amp;quot;, ggtheme = theme_pubr())
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a9f7fbd0c12c122c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144302.png&#34; alt=&#34;&#34; /&gt;
 可以自设置各种参数&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggdotchart(df2, x=&amp;quot;name&amp;quot;, y=&amp;quot;mpg&amp;quot;, color = &amp;quot;cyl&amp;quot;, 
@@ -1626,7 +1627,7 @@ label = round(df2$mpg), font.label = list(color=&amp;quot;white&amp;quot;, size=
 ggtheme = theme_pubr())
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-bfce6842b2744304.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144314.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;偏差图-1&#34;&gt;偏差图&lt;/h3&gt;
 
@@ -1638,7 +1639,7 @@ font.label = list(color=&amp;quot;white&amp;quot;, size=9, vjust=0.5), ggtheme =
 geom_line(yintercept=0, linetype=2, color=&amp;quot;lightgray&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-fdc31b81879bbbd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144330.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;cleveland-点图&#34;&gt;&lt;strong&gt;Cleveland&lt;/strong&gt;点图&lt;/h3&gt;
 
@@ -1648,7 +1649,7 @@ rotate = TRUE, dot.size = 2, y.text.col=TRUE, ggtheme = theme_pubr())+
 theme_cleveland()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1c31d9e203d4810a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt; &lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144343.png&#34; alt=&#34;&#34; /&gt; &lt;/p&gt;
 
 &lt;h2 id=&#34;sessioninfo&#34;&gt;&lt;strong&gt;SessionInfo&lt;/strong&gt;&lt;/h2&gt;
 

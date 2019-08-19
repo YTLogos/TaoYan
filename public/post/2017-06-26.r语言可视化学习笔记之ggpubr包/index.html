@@ -29,6 +29,7 @@
     
   
   <meta name="description" content="
+
 Hadley Wickham创建的可视化包ggplot2可以流畅地进行优美的可视化，但是如果要通过ggplot2定制一套图形，尤其是适用于杂志期刊等出版物的图形，对于那些没有深入了解ggplot2的人来说就有点困难了，ggplot2的部分语法是很晦涩的。为此Alboukadel Kassambara创建了基于ggplot2的可视化包ggpubr用于绘制符合出版物要求的图形。">
 
   
@@ -125,6 +126,7 @@ Hadley Wickham创建的可视化包ggplot2可以流畅地进行优美的可视�
   <meta property="og:url" content="https://taoyan.netlify.com/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/">
   <meta property="og:title" content="R语言可视化学习笔记之ggpubr包 | Tao Yan">
   <meta property="og:description" content="
+
 Hadley Wickham创建的可视化包ggplot2可以流畅地进行优美的可视化，但是如果要通过ggplot2定制一套图形，尤其是适用于杂志期刊等出版物的图形，对于那些没有深入了解ggplot2的人来说就有点困难了，ggplot2的部分语法是很晦涩的。为此Alboukadel Kassambara创建了基于ggplot2的可视化包ggpubr用于绘制符合出版物要求的图形。"><meta property="og:image" content="https://taoyan.netlify.com/img/avatar.jpg">
   <meta property="twitter:image" content="https://taoyan.netlify.com/img/avatar.jpg"><meta property="og:locale" content="en-us">
   
@@ -594,8 +596,9 @@ Hadley Wickham创建的可视化包ggplot2可以流畅地进行优美的可视�
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><img src="https://upload-images.jianshu.io/upload_images/2084719-fbe5b444e2efcb8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
-<a href="https://docs.ggplot2.org/current/" target="_blank">Hadley Wickham</a>创建的可视化包ggplot2可以流畅地进行优美的可视化，但是如果要通过ggplot2定制一套图形，尤其是适用于杂志期刊等出版物的图形，对于那些没有深入了解<strong>ggplot2</strong>的人来说就有点困难了，<strong>ggplot2</strong>的部分语法是很晦涩的。为此<a href="https://www.sthda.com/english/rpkgs/ggpubr/index.html" target="_blank">Alboukadel Kassambara</a>创建了基于<strong>ggplot2</strong>的可视化包<strong>ggpubr</strong>用于绘制符合出版物要求的图形。</p>
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144020.png" alt="" /></p>
+
+<p><a href="https://docs.ggplot2.org/current/" target="_blank">Hadley Wickham</a>创建的可视化包ggplot2可以流畅地进行优美的可视化，但是如果要通过ggplot2定制一套图形，尤其是适用于杂志期刊等出版物的图形，对于那些没有深入了解<strong>ggplot2</strong>的人来说就有点困难了，<strong>ggplot2</strong>的部分语法是很晦涩的。为此<a href="https://www.sthda.com/english/rpkgs/ggpubr/index.html" target="_blank">Alboukadel Kassambara</a>创建了基于<strong>ggplot2</strong>的可视化包<strong>ggpubr</strong>用于绘制符合出版物要求的图形。</p>
 
 <h2 id="安装及加载-ggpubr-包">安装及加载<strong>ggpubr</strong>包</h2>
 
@@ -645,7 +648,7 @@ head(df)
 palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-652675daa1359146.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p></li>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144035.png" alt="" /></p></li>
 </ul>
 
 <h3 id="带有均值线和边际地毯线的直方图">带有均值线和边际地毯线的直方图</h3>
@@ -654,7 +657,7 @@ palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;))
 palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-d37833ffb4e3102b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144048.png" alt="" /></p>
 
 <h3 id="箱线图与小提琴图">箱线图与小提琴图</h3>
 
@@ -678,7 +681,7 @@ palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;),
 add = &quot;jitter&quot;, shape=&quot;dose&quot;)#增加了jitter点，点shape由dose映射p
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-418d9194e641dd71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144100.png" alt="" />
 增加不同组间的p-value值，可以自定义需要标注的组间比较</p>
 
 <pre><code>my_comparisons &lt;- list(c(&quot;0.5&quot;, &quot;1&quot;), c(&quot;1&quot;, &quot;2&quot;), c(&quot;0.5&quot;, &quot;2&quot;))
@@ -686,7 +689,7 @@ p+stat_compare_means(comparisons = my_comparisons)+#不同组间的比较
 stat_compare_means(label.y = 50)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-8bb64a310e2d8a4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144114.png" alt="" /></p>
 
 <h3 id="内有箱线图的小提琴图">内有箱线图的小提琴图</h3>
 
@@ -697,7 +700,7 @@ stat_compare_means(comparisons = my_comparisons, label = &quot;p.signif&quot;)+#
 stat_compare_means(label.y = 50)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-fbe5b444e2efcb8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144125.png" alt="" /></p>
 
 <h3 id="条形图">条形图</h3>
 
@@ -708,7 +711,7 @@ df2$name &lt;- rownames(df2)#添加一行name
 head(df2[, c(&quot;name&quot;, &quot;wt&quot;, &quot;mpg&quot;, &quot;cyl&quot;)])
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-4ded50c82b9f83fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144135.png" alt="" /></p>
 
 <p>按从小到大顺序绘制条形图（不分组排序）</p>
 
@@ -719,7 +722,7 @@ sort.by.groups=FALSE,#不按组排序
 x.text.angle=60)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-823a0b71c2e85b6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144150.png" alt="" /></p>
 
 <p>按组进行排序</p>
 
@@ -730,7 +733,7 @@ sort.by.groups=TRUE,#按组排序
 x.text.angle=90)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-5c28f6c53248e8f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144208.png" alt="" /></p>
 
 <h3 id="偏差图">偏差图</h3>
 
@@ -741,7 +744,7 @@ df2$mpg_grp &lt;- factor(ifelse(df2$mpg_z&lt;0, &quot;low&quot;, &quot;high&quot
 head(df2[, c(&quot;name&quot;, &quot;wt&quot;, &quot;mpg&quot;, &quot;mpg_grp&quot;, &quot;cyl&quot;)])
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-34debe47e570b508.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144222.png" alt="" /></p>
 
 <p>绘制排序过的条形图</p>
 
@@ -750,7 +753,7 @@ palette = &quot;jco&quot;, sort.val = &quot;asc&quot;, sort.by.groups = FALSE, x
 ylab = &quot;MPG z-score&quot;, xlab = FALSE, legend.title=&quot;MPG Group&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-8957ea525c3d8853.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144234.png" alt="" /></p>
 
 <p>坐标轴变换</p>
 
@@ -760,7 +763,7 @@ x.text.angle=90, ylab = &quot;MPG z-score&quot;, xlab = FALSE,
 legend.title=&quot;MPG Group&quot;, rotate=TRUE, ggtheme = theme_minimal())
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-253e214a34cb73c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144248.png" alt="" /></p>
 
 <h3 id="点图-dot-charts">点图(<strong>Dot charts</strong>)</h3>
 
@@ -773,7 +776,7 @@ palette = c(&quot;#00AFBB&quot;, &quot;#E7B800&quot;, &quot;#FC4E07&quot;), sort
 add = &quot;segments&quot;, ggtheme = theme_pubr())
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-a9f7fbd0c12c122c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144302.png" alt="" />
 可以自设置各种参数</p>
 
 <pre><code>ggdotchart(df2, x=&quot;name&quot;, y=&quot;mpg&quot;, color = &quot;cyl&quot;, 
@@ -783,7 +786,7 @@ label = round(df2$mpg), font.label = list(color=&quot;white&quot;, size=9, vjust
 ggtheme = theme_pubr())
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-bfce6842b2744304.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144314.png" alt="" /></p>
 
 <h3 id="偏差图-1">偏差图</h3>
 
@@ -795,7 +798,7 @@ font.label = list(color=&quot;white&quot;, size=9, vjust=0.5), ggtheme = theme_p
 geom_line(yintercept=0, linetype=2, color=&quot;lightgray&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-fdc31b81879bbbd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144330.png" alt="" /></p>
 
 <h3 id="cleveland-点图"><strong>Cleveland</strong>点图</h3>
 
@@ -805,7 +808,7 @@ rotate = TRUE, dot.size = 2, y.text.col=TRUE, ggtheme = theme_pubr())+
 theme_cleveland()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-1c31d9e203d4810a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /> </p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144343.png" alt="" /> </p>
 
 <h2 id="sessioninfo"><strong>SessionInfo</strong></h2>
 
@@ -979,15 +982,15 @@ theme_cleveland()
         <h3>Related</h3>
         <ul>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/">R语言学习笔记之相关性矩阵分析及其可视化</a></li>
+          <li><a href="/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">图像处理R包magick学习笔记</a></li>
           
           <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/">”R语言可视化学习笔记之ggrepel包“</a></li>
           
-          <li><a href="/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">ggplot2学习笔记系列之利用ggplot2绘制误差棒及显著性标记</a></li>
-          
           <li><a href="/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/">ggplot2学习笔记系列之主题（theme）设置</a></li>
           
-          <li><a href="/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">图像处理R包magick学习笔记</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/">R语言学习笔记之聚类分析</a></li>
+          
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">R语言可视化学习笔记之添加p-value和显著性标记</a></li>
           
         </ul>
       </div>
@@ -1158,7 +1161,7 @@ theme_cleveland()
   <p class="powered-by">
     &copy; Tao Yan, 2018-2019 &middot; 
 
-    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/mywebsite" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
 

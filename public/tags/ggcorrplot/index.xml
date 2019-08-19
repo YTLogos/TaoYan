@@ -17,7 +17,7 @@
       <link>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6a7b9c76f1b9177c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151730.png&#34; alt=&#34;&#34; /&gt;
 基于&lt;strong&gt;ggplot2&lt;/strong&gt;包以及&lt;strong&gt;corrplot&lt;/strong&gt;包的相关矩阵可视化包&lt;strong&gt;ggcorrplot&lt;/strong&gt;，&lt;strong&gt;ggcorrplot&lt;/strong&gt;包提供对相关矩阵重排序以及在相关图中展示显著性水平的方法，同时也能计算相关性p-value&lt;/p&gt;
 
 &lt;p&gt;安装方法就不提了，不懂的可以浏览我以前的&lt;a href=&#34;https://www.jianshu.com/p/678213d605a5&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;文章&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
@@ -29,70 +29,70 @@ corr &amp;lt;- round(cor(mtcars), 1)
 head(corr[, 1:6])
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6a56840974454525.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151744.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#用ggcorrplot包提供的函数cor_pmat()
 p.mat &amp;lt;- cor_pmat(mtcars)
 head(p.mat[, 1:4])
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-885ea263533e51b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151756.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;可视化相关性矩阵&#34;&gt;可视化相关性矩阵&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;ggcorrplot(corr)#method默认为square
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-679f0410e8d706fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151810.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#方法为circle
 ggcorrplot(corr, method = &amp;quot;circle&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e6cc2527561a9df5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151820.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#重排矩阵，使用分等级聚类
 ggcorrplot(corr, hc.order = TRUE, outline.color = &amp;quot;white&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-bc7ef6b733b0010d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151833.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#控制矩阵形状
 ggcorrplot(corr, hc.order = TRUE, type = &amp;quot;lower&amp;quot;, outline.color = &amp;quot;white&amp;quot;)#下三角形
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3841c6dd4591f121.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151845.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#上三角形
 ggcorrplot(corr, hc.order = TRUE, type = &amp;quot;upper&amp;quot;, outline.color = &amp;quot;white&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-582e2120663d452c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151856.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#更改颜色以及主题
 ggcorrplot(corr, hc.order = TRUE, type = &amp;quot;lower&amp;quot;, outline.color = &amp;quot;white&amp;quot;, 
 ggtheme = ggplot2::theme_gray, colors = c(&amp;quot;#6D9EC1&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;#E46726&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-abbab5e291738694.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151907.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#添加相关系数
 ggcorrplot(corr, hc.order = TRUE, type = &amp;quot;lower&amp;quot;, lab = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6a7b9c76f1b9177c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151918.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#增加显著性水平，不显著的话就不添加了
 ggcorrplot(corr, hc.order = TRUE, type = &amp;quot;lower&amp;quot;, p.mat = p.mat)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-38b016110a10b84b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151929.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#将不显著的色块设置成空白
 ggcorrplot(corr, p.mat = p.mat, hc.order=TRUE, type = &amp;quot;lower&amp;quot;, insig = &amp;quot;blank&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-582c67d095d8e1aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151942.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

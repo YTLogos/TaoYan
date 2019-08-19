@@ -596,7 +596,7 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><img src="https://upload-images.jianshu.io/upload_images/2084719-9824653100d11fec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152751.png" alt="" /></p>
 
 <p>当我们在图形中添加标签时，标签之间很容易相互重叠，包<a href="https://github.com/slowkow/ggrepel" target="_blank"><strong>ggrepel</strong></a>就专门用来解决这个问题！ 首先我们来看看通过geom_text()添加标签时的情形：</p>
 
@@ -607,7 +607,7 @@ geom_text(aes(wt, mpg, label=rownames(mtcars)))+
 theme_classic(base_size = 16)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-0110517941711504.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152803.png" alt="" /></p>
 
 <p>可以看到可视化效果不是很好。接下来看看包<strong>ggrepel</strong>的效果。
 geom_text_repel()是基于geom_text()</p>
@@ -619,7 +619,7 @@ geom_text_repel(aes(wt, mpg, label=rownames(mtcars)))+
 theme_classic(base_size = 16)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-7f9edd980e5504ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152818.png" alt="" /></p>
 
 <h2 id="geom-label-repel">geom_label_repel()</h2>
 
@@ -635,7 +635,7 @@ box.padding=unit(0.35, &quot;lines&quot;), point.padding=unit(0.5, &quot;lines&q
 segment.colour = &quot;grey50&quot;)+ theme_classic(base_size = 16)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-5e60c14166f9c915.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152830.png" alt="" /></p>
 
 <h2 id="参数">参数</h2>
 
@@ -682,7 +682,7 @@ scale_y_continuous(expand = c(0.25, 0))+
 theme_classic(base_size = 16)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-9824653100d11fec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152841.png" alt="" /></p>
 
 <p>也可以通过设置参数<code>point.padding=NA</code>不对点进行<strong>repel</strong></p>
 
@@ -693,7 +693,7 @@ geom_point(color=&quot;red&quot;)+ geom_text_repel(point.padding = NA)+
 theme_classic(base_size = 16)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-238389207de940a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152856.png" alt="" /></p>
 
 <p>通过赋值某些<strong>label</strong>空字符“”来隐藏。</p>
 
@@ -706,7 +706,7 @@ point.padding = unit(0.25, &quot;lines&quot;), box.padding = unit(0.25, &quot;li
 nudge_y = 0.1)+ theme_classic(base_size = 16)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-b6f7d76fe1e36113.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152907.png" alt="" /></p>
 
 <h2 id="将标签控制在特定区域">将标签控制在特定区域</h2>
 
@@ -727,7 +727,7 @@ geom_text_repel(data=right, aes(wt, mpg, label=rownames(right),
 color=&quot;Rigth half&quot;), xlim=c(mu, NA))+ theme_classic(base_size = 16)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-91519695f1b33a20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152930.png" alt="" />
 通过控制参数direction来决定label是左右移动还是上下移动， 默认是both</p>
 
 <pre><code class="language-r">set.seed(42)
@@ -738,7 +738,7 @@ ggplot(mtcars)+
   theme_classic(base_size = 16)+xlim(1, 6)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-771214ebd632ce09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152944.png" alt="" /></p>
 
 <pre><code>#direction=&quot;x&quot; 上下移动
 ggplot(mtcars)+
@@ -747,7 +747,7 @@ ggplot(mtcars)+
   theme_classic(base_size = 16)+xlim(1, 6)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-771214ebd632ce09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152956.png" alt="" /></p>
 
 <h2 id="线图">线图</h2>
 
@@ -764,7 +764,7 @@ ggplot(Orange, aes(age, circumference, color=Tree))+
   labs(title=&quot;Orange Trees&quot;, x=&quot;Age(days)&quot;, y=&quot;Circumference(mm)&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-9b5718dafd8b2739.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153011.png" alt="" /></p>
 
 <h2 id="sessioninfo">SessionInfo</h2>
 
@@ -938,13 +938,13 @@ ggplot(Orange, aes(age, circumference, color=Tree))+
           
           <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">R语言可视化学习笔记之添加p-value和显著性标记</a></li>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/">R语言学习笔记之相关性矩阵分析及其可视化</a></li>
-          
           <li><a href="/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/">R语言可视化学习笔记之ggpubr包</a></li>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/">R语言可视化学习笔记之相关矩阵可视化包ggcorrplot</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/">R语言学习笔记之相关性矩阵分析及其可视化</a></li>
           
-          <li><a href="/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">ggplot2学习笔记系列之利用ggplot2绘制误差棒及显著性标记</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/">R语言学习笔记之聚类分析</a></li>
+          
+          <li><a href="/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">图像处理R包magick学习笔记</a></li>
           
         </ul>
       </div>
@@ -1115,7 +1115,7 @@ ggplot(Orange, aes(age, circumference, color=Tree))+
   <p class="powered-by">
     &copy; Tao Yan, 2018-2019 &middot; 
 
-    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/mywebsite" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
 

@@ -17,7 +17,7 @@
       <link>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-15bd512052d55bf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150115.png&#34; alt=&#34;&#34; /&gt;
 上篇文章中提了一下如何通过&lt;strong&gt;ggpubr&lt;/strong&gt;包为&lt;code&gt;ggplot&lt;/code&gt;图添加&lt;code&gt;p-value&lt;/code&gt;以及显著性标记,本文将详细介绍。利用数据集&lt;strong&gt;ToothGrowth&lt;/strong&gt;进行演示&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;#先加载包
@@ -133,7 +133,7 @@ head(ToothGrowth)
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;compare_means(len~supp, data=ToothGrowth)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b045b6dd37c6efb6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150131.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;结果解释：
 * &lt;code&gt;.y&lt;/code&gt;:测试中使用的y变量
@@ -148,13 +148,13 @@ head(ToothGrowth)
 palette = &amp;quot;jco&amp;quot;, add = &amp;quot;jitter&amp;quot;)#添加p-valuep+stat_compare_means()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e218a1edab30a234.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150143.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#使用其他统计检验方法
 p+stat_compare_means(method = &amp;quot;t.test&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-fc20d4bbb39c1377.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150153.png&#34; alt=&#34;&#34; /&gt;
 上述显著性标记可以通过&lt;code&gt;label.x&lt;/code&gt;、&lt;code&gt;label.y&lt;/code&gt;、&lt;code&gt;hjust&lt;/code&gt;及&lt;code&gt;vjust&lt;/code&gt;来调整
 显著性标记可以通过&lt;code&gt;aes()&lt;/code&gt;映射来更改：
   * &lt;code&gt;aes(label=..p.format..)&lt;/code&gt;或&lt;code&gt;aes(lebel=paste0(&amp;quot;p=&amp;quot;,..p.format..))&lt;/code&gt;:只显示&lt;code&gt;p-value&lt;/code&gt;，不显示统计检验方法
@@ -166,13 +166,13 @@ p+stat_compare_means(method = &amp;quot;t.test&amp;quot;)
 &lt;pre&gt;&lt;code&gt;p+stat_compare_means(aes(label=..p.signif..), label.x = 1.5, label.y = 40)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c0f71b843b6472b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150202.png&#34; alt=&#34;&#34; /&gt;
 也可以将标签指定为字符向量，不要映射，只需将p.signif两端的..去掉即可&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;p+stat_compare_means(label = &amp;quot;p.signif&amp;quot;, label.x = 1.5, label.y = 40)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-15c7ae8bbaaf7b95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150214.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;比较两个paired-sample&#34;&gt;比较两个paired sample&lt;/h2&gt;
 
@@ -181,7 +181,7 @@ p+stat_compare_means(method = &amp;quot;t.test&amp;quot;)
 &lt;pre&gt;&lt;code&gt;compare_means(len~supp, data=ToothGrowth, paired = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-770f433a6a5e4ef3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150224.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;利用ggpaired-进行可视化&#34;&gt;利用ggpaired()进行可视化&lt;/h2&gt;
 
@@ -191,7 +191,7 @@ p+stat_compare_means(method = &amp;quot;t.test&amp;quot;)
 line.size = 0.4, palette = &amp;quot;jco&amp;quot;)+ stat_compare_means(paired = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-2b3b18fa8e3ec2c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150235.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;多组比较&#34;&gt;多组比较&lt;/h2&gt;
 
@@ -202,7 +202,7 @@ line.size = 0.4, palette = &amp;quot;jco&amp;quot;)+ stat_compare_means(paired =
 &lt;pre&gt;&lt;code&gt;compare_means(len~dose, data=ToothGrowth, method = &amp;quot;anova&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-dd4f81af301e529b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150248.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;可视化&#34;&gt;可视化&lt;/h2&gt;
 
@@ -212,20 +212,20 @@ line.size = 0.4, palette = &amp;quot;jco&amp;quot;)+ stat_compare_means(paired =
 stat_compare_means()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a0fcb4c4683d0f07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150259.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#使用其他的方法
 ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;, palette = &amp;quot;jco&amp;quot;)+ 
 stat_compare_means(method = &amp;quot;anova&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6572797c98bbb9a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150311.png&#34; alt=&#34;&#34; /&gt;
 &amp;gt; Pairwise comparisons:如果分组变量中包含两个以上的水平，那么会自动进行pairwise test,默认方法为&amp;rdquo;wilcox.test&amp;rdquo;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;compare_means(len~dose, data=ToothGrowth)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c25c03cedcf149bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150321.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#可以指定比较哪些组
 my_comparisons &amp;lt;- list(c(&amp;quot;0.5&amp;quot;, &amp;quot;1&amp;quot;), c(&amp;quot;1&amp;quot;, &amp;quot;2&amp;quot;), c(&amp;quot;0.5&amp;quot;, &amp;quot;2&amp;quot;))
@@ -234,7 +234,7 @@ stat_compare_means(comparisons=my_comparisons)+ # Add pairwise
 comparisons p-value stat_compare_means(label.y = 50) # Add global p-value
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-87c29855f34018b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150332.png&#34; alt=&#34;&#34; /&gt;
 可以通过修改参数label.y来更改标签的位置&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;,palette = &amp;quot;jco&amp;quot;)+
@@ -242,7 +242,7 @@ stat_compare_means(comparisons=my_comparisons, label.y = c(29, 35, 40))+ # Add p
 stat_compare_means(label.y = 45) # Add global p-value
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-554a2136abe2eee4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150343.png&#34; alt=&#34;&#34; /&gt;
 至于通过添加线条来连接比较的两组，这一功能已由包&lt;a href=&#34;https://github.com/Artjom-Metro/ggsignif&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;ggsignif&lt;/strong&gt;&lt;/a&gt;实现&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;##设定参考组
@@ -250,7 +250,7 @@ compare_means(len~dose, data=ToothGrowth, ref.group = &amp;quot;0.5&amp;quot;,  
 method = &amp;quot;t.test&amp;quot; )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9ba2e25b978710a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150354.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#可视化
 ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;, palette = &amp;quot;jco&amp;quot;)+ 
@@ -258,12 +258,14 @@ stat_compare_means(method = &amp;quot;anova&amp;quot;, label.y = 40)+ # Add glob
 stat_compare_means(label = &amp;quot;p.signif&amp;quot;, method = &amp;quot;t.test&amp;quot;, ref.group = &amp;quot;0.5&amp;quot;) # Pairwise comparison against reference
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8510992c45710447.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;参考组也可以设置为.all.即所有的平均值&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150403.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;参考组也可以设置为.all.即所有的平均值&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;compare_means(len~dose, data=ToothGrowth, ref.group = &amp;quot;.all.&amp;quot;, method = &amp;quot;t.test&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-2976426c33943786.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150420.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#可视化
 ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;dose&amp;quot;, palette = &amp;quot;jco&amp;quot;)+
@@ -272,15 +274,16 @@ stat_compare_means(label = &amp;quot;p.signif&amp;quot;, method = &amp;quot;t.te
 ref.group = &amp;quot;.all.&amp;quot;)#Pairwise comparison against all
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e0b10b222601691f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
-接下来利用&lt;strong&gt;survminer&lt;/strong&gt;包中的数据集&lt;strong&gt;myeloma&lt;/strong&gt;来讲解一下为什么有时候我们需要将ref.group设置为.all.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151326.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;接下来利用&lt;strong&gt;survminer&lt;/strong&gt;包中的数据集&lt;strong&gt;myeloma&lt;/strong&gt;来讲解一下为什么有时候我们需要将ref.group设置为.all.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;library(survminer)#没安装的先安装再加载
 data(&amp;quot;myeloma&amp;quot;)
 head(myeloma)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-96dcc29ad0882230.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151340.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;我们将根据患者的分组来绘制&lt;strong&gt;DEPDC1&lt;/strong&gt;基因的表达谱，看不同组之间是否存在显著性的差异，我们可以在7组之间进行比较，但是这样的话组间比较的组合就太多了，因此我们可以将7组中每一组与全部平均值进行比较，看看&lt;strong&gt;DEPDC1&lt;/strong&gt;基因在不同的组中是否过表达还是低表达。&lt;/p&gt;
@@ -289,7 +292,7 @@ head(myeloma)
 &lt;pre&gt;&lt;code&gt;compare_means(DEPDC1~molecular_group, data = myeloma, ref.group = &amp;quot;.all.&amp;quot;, method = &amp;quot;t.test&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-53c1d6a7df55e7d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151352.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#可视化DEPDC1基因表达谱
 ggboxplot(myeloma, x=&amp;quot;molecular_group&amp;quot;, y=&amp;quot;DEPDC1&amp;quot;, 
@@ -300,7 +303,7 @@ stat_compare_means(method = &amp;quot;anova&amp;quot;, label.y = 1600)+ # Add gl
 stat_compare_means(label = &amp;quot;p.signif&amp;quot;, method = &amp;quot;t.test&amp;quot;, ref.group = &amp;quot;.all.&amp;quot;)# Pairwise comparison against all
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c6188f0a83617dcd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151403.png&#34; alt=&#34;&#34; /&gt;
 &amp;gt;从图中可以看出，DEPDC1基因在Proliferation组中显著性地过表达，而在Hyperdiploid和Low bone disease显著性地低表达&lt;/p&gt;
 
 &lt;p&gt;我们也可以将非显著性标记ns去掉，只需要将参数hide.ns=TRUE&lt;/p&gt;
@@ -313,7 +316,7 @@ stat_compare_means(method = &amp;quot;anova&amp;quot;, label.y = 1600)+ # Add gl
 stat_compare_means(label = &amp;quot;p.signif&amp;quot;, method = &amp;quot;t.test&amp;quot;, ref.group = &amp;quot;.all.&amp;quot;, hide.ns = TRUE)# Pairwise comparison against all
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-15bd512052d55bf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151418.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;多个分组变量&#34;&gt;多个分组变量&lt;/h2&gt;
 
@@ -324,7 +327,7 @@ stat_compare_means(label = &amp;quot;p.signif&amp;quot;, method = &amp;quot;t.te
 &lt;pre&gt;&lt;code&gt;compare_means(len~supp, data=ToothGrowth, group.by = &amp;quot;dose&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-56f713ae2fa2c591.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151428.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#可视化
 p &amp;lt;- ggboxplot(ToothGrowth, x=&amp;quot;supp&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;supp&amp;quot;, 
@@ -333,13 +336,13 @@ palette = &amp;quot;jco&amp;quot;, add = &amp;quot;jitter&amp;quot;, facet.by = 
 p-valuep+stat_compare_means(label = &amp;quot;p.format&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a235626a981e4709.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151438.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#label绘制显著性水平
 p+stat_compare_means(label = &amp;quot;p.signif&amp;quot;, label.x = 1.5)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3ebf7d89f1a517cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151448.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#将所有箱线图绘制在一个panel中
 p &amp;lt;- ggboxplot(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;supp&amp;quot;, 
@@ -347,25 +350,25 @@ palette = &amp;quot;jco&amp;quot;, add = &amp;quot;jitter&amp;quot;)
 p+stat_compare_means(aes(group=supp))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-6529191fdef8f3dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151513.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#只显示p-value
 p+stat_compare_means(aes(group=supp), label = &amp;quot;p.format&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-ce9c6136407ca58a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151523.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#显示显著性水平
 p+stat_compare_means(aes(group=supp), label = &amp;quot;p.signif&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f2cf5728cc9cf67a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151533.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;进行paired sample检验
 compare_means(len~supp, data=ToothGrowth, group.by = &amp;quot;dose&amp;quot;, paired = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f5d2ebfd37391113.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151544.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#可视化
 p &amp;lt;- ggpaired(ToothGrowth, x=&amp;quot;supp&amp;quot;, y=&amp;quot;len&amp;quot;, color = &amp;quot;supp&amp;quot;, 
@@ -375,7 +378,7 @@ short.panel.labs = FALSE)#按dose分面
 p+stat_compare_means(label = &amp;quot;p.format&amp;quot;, paired = TRUE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-cc7db564846fae97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151554.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;其他图形&#34;&gt;其他图形&lt;/h2&gt;
 
@@ -387,7 +390,7 @@ stat_compare_means()+
 stat_compare_means(ref.group = &amp;quot;0.5&amp;quot;, label = &amp;quot;p.signif&amp;quot;, label.y = c(22, 29))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0a38300e74bbce61.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151605.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#有误差棒的线图
 ggline(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, add = &amp;quot;mean_se&amp;quot;)+
@@ -395,7 +398,7 @@ stat_compare_means()+
 stat_compare_means(ref.group = &amp;quot;0.5&amp;quot;, label = &amp;quot;p.signif&amp;quot;, label.y = c(22, 29))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9bbc6411123c593a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151619.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;条形图与线图-两个分组变量&#34;&gt;条形图与线图（两个分组变量）&lt;/h3&gt;
 
@@ -404,14 +407,14 @@ palette = &amp;quot;jco&amp;quot;, position = position_dodge(0.8))+
 stat_compare_means(aes(group=supp), label = &amp;quot;p.signif&amp;quot;, label.y = 29)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b2dd950f78f7a642.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151632.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggline(ToothGrowth, x=&amp;quot;dose&amp;quot;, y=&amp;quot;len&amp;quot;, add = &amp;quot;mean_se&amp;quot;, color = &amp;quot;supp&amp;quot;, 
 palette = &amp;quot;jco&amp;quot;)+ 
 stat_compare_means(aes(group=supp), label = &amp;quot;p.signif&amp;quot;, label.y = c(16, 25, 29))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-bd2413a61ece0ed2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819151647.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sessioninfo&#34;&gt;Sessioninfo&lt;/h2&gt;
 
@@ -463,7 +466,7 @@ stat_compare_means(aes(group=supp), label = &amp;quot;p.signif&amp;quot;, label.
       <link>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9824653100d11fec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152751.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;当我们在图形中添加标签时，标签之间很容易相互重叠，包&lt;a href=&#34;https://github.com/slowkow/ggrepel&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;ggrepel&lt;/strong&gt;&lt;/a&gt;就专门用来解决这个问题！ 首先我们来看看通过geom_text()添加标签时的情形：&lt;/p&gt;
 
@@ -474,7 +477,7 @@ geom_text(aes(wt, mpg, label=rownames(mtcars)))+
 theme_classic(base_size = 16)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0110517941711504.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152803.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;可以看到可视化效果不是很好。接下来看看包&lt;strong&gt;ggrepel&lt;/strong&gt;的效果。
 geom_text_repel()是基于geom_text()&lt;/p&gt;
@@ -486,7 +489,7 @@ geom_text_repel(aes(wt, mpg, label=rownames(mtcars)))+
 theme_classic(base_size = 16)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-7f9edd980e5504ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152818.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;geom-label-repel&#34;&gt;geom_label_repel()&lt;/h2&gt;
 
@@ -502,7 +505,7 @@ box.padding=unit(0.35, &amp;quot;lines&amp;quot;), point.padding=unit(0.5, &amp;
 segment.colour = &amp;quot;grey50&amp;quot;)+ theme_classic(base_size = 16)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5e60c14166f9c915.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152830.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
 
@@ -549,7 +552,7 @@ scale_y_continuous(expand = c(0.25, 0))+
 theme_classic(base_size = 16)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9824653100d11fec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152841.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;也可以通过设置参数&lt;code&gt;point.padding=NA&lt;/code&gt;不对点进行&lt;strong&gt;repel&lt;/strong&gt;&lt;/p&gt;
 
@@ -560,7 +563,7 @@ geom_point(color=&amp;quot;red&amp;quot;)+ geom_text_repel(point.padding = NA)+
 theme_classic(base_size = 16)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-238389207de940a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152856.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;通过赋值某些&lt;strong&gt;label&lt;/strong&gt;空字符“”来隐藏。&lt;/p&gt;
 
@@ -573,7 +576,7 @@ point.padding = unit(0.25, &amp;quot;lines&amp;quot;), box.padding = unit(0.25, 
 nudge_y = 0.1)+ theme_classic(base_size = 16)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b6f7d76fe1e36113.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152907.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;将标签控制在特定区域&#34;&gt;将标签控制在特定区域&lt;/h2&gt;
 
@@ -594,7 +597,7 @@ geom_text_repel(data=right, aes(wt, mpg, label=rownames(right),
 color=&amp;quot;Rigth half&amp;quot;), xlim=c(mu, NA))+ theme_classic(base_size = 16)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-91519695f1b33a20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152930.png&#34; alt=&#34;&#34; /&gt;
 通过控制参数direction来决定label是左右移动还是上下移动， 默认是both&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;set.seed(42)
@@ -605,7 +608,7 @@ ggplot(mtcars)+
   theme_classic(base_size = 16)+xlim(1, 6)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-771214ebd632ce09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152944.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#direction=&amp;quot;x&amp;quot; 上下移动
 ggplot(mtcars)+
@@ -614,7 +617,7 @@ ggplot(mtcars)+
   theme_classic(base_size = 16)+xlim(1, 6)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-771214ebd632ce09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152956.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;线图&#34;&gt;线图&lt;/h2&gt;
 
@@ -631,7 +634,7 @@ ggplot(Orange, aes(age, circumference, color=Tree))+
   labs(title=&amp;quot;Orange Trees&amp;quot;, x=&amp;quot;Age(days)&amp;quot;, y=&amp;quot;Circumference(mm)&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-9b5718dafd8b2739.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153011.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
 

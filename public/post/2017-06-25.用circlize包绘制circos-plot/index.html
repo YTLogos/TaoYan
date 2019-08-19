@@ -604,7 +604,7 @@ circlize包在德国癌症中心的华人博士Zuguang Gu开发的，有兴趣�
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><img src="https://upload-images.jianshu.io/upload_images/2084719-4b332e9275d7088e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145001.png" alt="" />
 <code>circlize</code>包</p>
 
 <hr />
@@ -644,7 +644,7 @@ textcircos.text(1, 0.5, &quot;right&quot;, sector.index = &quot;a&quot;)
 circos.clear()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-d3f6e3b63528471a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145016.png" alt="" /></p>
 
 <h2 id="接下来绘制第二个-track">接下来绘制第二个<code>track</code></h2>
 
@@ -667,7 +667,7 @@ circos.trackHist(a$factors, a$x, bg.col = bg.col, col = NA)
 circos.clear()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-42c29a97051139c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145031.png" alt="" /></p>
 
 <h2 id="创建第三个-track">创建第三个<code>track</code></h2>
 
@@ -701,7 +701,7 @@ circos.points(x[11:20], y[11:20], col = &quot;blue&quot;, cex = 0.6)})
 circos.clear()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-16e1d662c32d6e48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145044.png" alt="" />
 &gt;实际操作中我们常常会更新数据或者想更新图形，这是可以通过<code>circos.updatePlotRegion</code>函数在特定的<code>track</code>、<code>cell</code>里(先删除再添加)<code>update</code>，下面我们将通过<code>circos.updatePlotRegion</code>函数先删除<code>track 2</code>、<code>sector d</code>中的图形元素再添加点图。</p>
 
 <pre><code>par(mar = c(1, 1, 1, 1), lwd = 0.1, cex = 0.6)
@@ -736,7 +736,7 @@ circos.text(mean(xlim), mean(ylim), &quot;updated&quot;)
 circos.clear()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-c1739e4842120955.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145058.png" alt="" /></p>
 
 <h2 id="接下来绘制第四个-track">接下来绘制第四个<code>track</code></h2>
 
@@ -776,7 +776,7 @@ circos.trackPlotRegion(factors = a$factors, y = a$y)
 circos.trackLines(a$factors[1:100], a$x[1:100], a$y[1:100], type = &quot;h&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-dddf4d7d14922cf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145113.png" alt="" />
 &gt;接下来添加<code>links</code>，<code>links</code>可以是<code>point</code>到<code>point</code>、<code>point</code>到<code>interval</code>、<code>interval</code>到<code>interval</code></p>
 
 <pre><code>par(mar = c(1, 1, 1, 1), lwd = 0.1, cex = 0.6)
@@ -816,7 +816,7 @@ circos.link(&quot;c&quot;, c(-0.5, 0.5), &quot;d&quot;, c(-0.5, 0.5), col = &quo
 circos.link(&quot;e&quot;, 0, &quot;g&quot;, c(-1, 1), col = &quot;green&quot;, border = &quot;black&quot;, lwd = 2, lty = 2) #point to interval
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-7c9b4bf33e074663.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145127.png" alt="" /></p>
 
 <h2 id="circlize详述">circlize详述</h2>
 
@@ -839,7 +839,7 @@ get.cell.meta.data(&quot;cell.end.degree&quot;, sector.index = &quot;a&quot;), r
 circos.clear()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-938c7de4bb4c23d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145140.png" alt="" /></p>
 
 <pre><code>### 高亮某一track， 比如第一个track：
 circos.initialize(factors = factors, xlim = c(0, 1))
@@ -851,7 +851,7 @@ rou2 = get.cell.meta.data(&quot;cell.bottom.radius&quot;, track.index = 1), col 
 circos.clear()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-45e3eb273fc3b890.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145152.png" alt="" /></p>
 
 <pre><code># 高亮某一track某一sector，比如地2、3track中的e、f(sector)：
 circos.initialize(factors = factors, xlim = c(0, 1))
@@ -864,7 +864,7 @@ get.cell.meta.data(&quot;cell.bottom.radius&quot;, track.index = 3), col = &quot
 circos.clear() #千万别忘了circos.clear，不然下次无法绘图。
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-68e9fa0e050abfe9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145239.png" alt="" /></p>
 
 <h3 id="放大某一特定区域">放大某一特定区域</h3>
 
@@ -899,7 +899,7 @@ circos.link(&quot;a&quot;, get.cell.meta.data(&quot;cell.xlim&quot;, sector.inde
 get.cell.meta.data(&quot;cell.xlim&quot;, sector.index = &quot;zoom_a&quot;), border = NA, col = &quot;red&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-58a07e148222b8f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145251.png" alt="" />
 circos.clear()</p>
 
 <h2 id="举个栗子">举个栗子</h2>
@@ -941,7 +941,7 @@ circos.dendrogram(dend, max_height = max_height)})
 circos.clear()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-4b332e9275d7088e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145302.png" alt="" /></p>
 
 <h2 id="多图排列">多图排列</h2>
 
@@ -968,12 +968,12 @@ col = rand_color(1, transparency = 0.4), border = NA)
 circos.clear()
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-51d87f7dd942126b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145316.png" alt="" /></p>
 
 <h2 id="sessioninfo">sessionInfo</h2>
 
 <blockquote>
-<p>理解circlize包的原理，绘制基因组数据的图形也是一样的。有时间下次介绍(主要是我自己还没看完，看不太懂)<img src="https://upload-images.jianshu.io/upload_images/2084719-a3ebeb278e1c4ae1.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />。
+<p>理解circlize包的原理，绘制基因组数据的图形也是一样的。有时间下次介绍(主要是我自己还没看完，看不太懂)<img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145332.png" alt="" />。
 老规矩，给出<code>sessionInfo</code>。</p>
 
 <pre><code>sessionInfo()
@@ -1154,15 +1154,15 @@ circos.clear()
         <h3>Related</h3>
         <ul>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">R语言可视化学习笔记之添加p-value和显著性标记</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/">”R语言可视化学习笔记之ggrepel包“</a></li>
           
-          <li><a href="/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">图像处理R包magick学习笔记</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/">R语言学习笔记之聚类分析</a></li>
           
           <li><a href="/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/">R语言可视化学习笔记之ggpubr包</a></li>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/">R语言可视化学习笔记之相关矩阵可视化包ggcorrplot</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">R语言可视化学习笔记之添加p-value和显著性标记</a></li>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/">”R语言可视化学习笔记之ggrepel包“</a></li>
+          <li><a href="/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">图像处理R包magick学习笔记</a></li>
           
         </ul>
       </div>
@@ -1333,7 +1333,7 @@ circos.clear()
   <p class="powered-by">
     &copy; Tao Yan, 2018-2019 &middot; 
 
-    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/mywebsite" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
 

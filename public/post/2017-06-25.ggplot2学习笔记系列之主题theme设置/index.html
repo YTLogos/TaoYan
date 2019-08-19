@@ -592,7 +592,7 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><img src="https://upload-images.jianshu.io/upload_images/2084719-aedad605e759b602.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153552.png" alt="" /></p>
 
 <p>上次提了下<code>theme()</code>,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，<strong>ggplot2</strong>中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神<strong>Hadley Wickham</strong>所讲的，<strong>ggplot2</strong>只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，<strong>ggplot2</strong>都能实现。</p>
 
@@ -655,9 +655,9 @@ theme_gray#函数名不加括号可获得函数源代码
 <p>可以看出，源代码主要是<code>theme()</code>函数，设置也很简单：<code>theme(..., complete = FALSE)</code>,但是其内含的参数则十分多。</p>
 </blockquote>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-d83da9471e3bc837.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153612.png" alt="" /></p>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-12edb55b34046dc6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153623.png" alt="" /></p>
 
 <p>几乎所有元素在<code>theme()</code>里都使用<code>element_line</code>，<code>element_rect</code>，<code>element_text</code>和<code>element_blank</code>函数设置. 下面就举例稍微讲解一下</p>
 
@@ -668,48 +668,48 @@ geom_point(aes(color=factor(cyl)))#先试试图例修改
 p+theme(legend.position = &quot;none&quot;)#无图例
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-f6bc40449646b424.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153635.png" alt="" /></p>
 
 <pre><code>p+theme(legend.position = &quot;bottom&quot;)#图例在底部
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-e451760fc8a576c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153645.png" alt="" /></p>
 
 <pre><code>#也可以自定义
 p+theme(legend.position = c(0.5, 0.7))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-50197c31a252b33b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153658.png" alt="" /></p>
 
 <pre><code>#为图例加边界
 p+theme(legend.background = element_rect(color=&quot;red&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-61e3363e54112d01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153709.png" alt="" /></p>
 
 <pre><code>#或者为图例中的每个元素进行设置，如加边界
 p+theme(legend.key =element_rect(color=&quot;red&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-f4aeac9b93d84040.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153718.png" alt="" /></p>
 
 <pre><code>#进行填充
 p+theme(legend.key = element_rect(fill=&quot;yellow&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-28014be14a16fdc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153728.png" alt="" /></p>
 
 <pre><code>#图例内容字体大小、颜色、角度等设置
 p+theme(legend.text = element_text(size=25, color=&quot;darkred&quot;, angle=45))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-1ab8b127abcdb850.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153739.png" alt="" /></p>
 
 <pre><code>#为图例标题设置字体、颜色、大小等
 p+theme(legend.title = element_text(face=&quot;italic&quot;, size=25, color=&quot;red&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-fed6eaf4130fb8cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153749.png" alt="" /></p>
 
 <p>接下来是坐标以及网格等的自定义</p>
 
@@ -717,23 +717,23 @@ p+theme(legend.title = element_text(face=&quot;italic&quot;, size=25, color=&quo
 p+theme(panel.background = element_rect(fill=&quot;black&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-b277d80d44c26dff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153800.png" alt="" /></p>
 
 <pre><code>#修改边界线类型、颜色
 p+theme(panel.border = element_rect(linetype = &quot;dashed&quot;, color=&quot;red&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-0af39cbe41d20918.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153812.png" alt="" /></p>
 
 <pre><code>#修改网格线p+theme(panel.grid.major = element_line(color=&quot;blue&quot;, size= 3))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-8114011d2c12d3b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153821.png" alt="" /></p>
 
 <pre><code>p+theme(panel.grid.minor = element_line(linetype = &quot;dotted&quot;, color=&quot;red&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-7bddc092cac1f639.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153832.png" alt="" /></p>
 
 <blockquote>
 <p>还可以修改x、y轴等，这里懒得讲了，有兴趣的可以自己捣鼓捣鼓</p>
@@ -786,17 +786,17 @@ ggtitle(&quot;自定义主题theme并应用实践&quot;))+
 xlab(&quot;随便定义了个x&quot;)+ylab(&quot;随机数&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-bc4e002d5f925826.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153846.png" alt="" /></p>
 
 <pre><code>p1+mytheme
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-c12712615e2430bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153857.png" alt="" /></p>
 
 <pre><code>p1+mytheme+mycolor_7
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-aedad605e759b602.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153908.png" alt="" />
 还有线图、饼图等有兴趣的也可以自己刷一刷，你会发现<strong>ggplot2</strong>的魅力所在就是它拥有无穷的可能性。</p>
     </div>
 
@@ -940,11 +940,11 @@ xlab(&quot;随便定义了个x&quot;)+ylab(&quot;随机数&quot;)
           
           <li><a href="/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/">ggplot2学习笔记系列之利用ggplot2绘制条形图</a></li>
           
+          <li><a href="/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">图像处理R包magick学习笔记</a></li>
+          
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/">R语言学习笔记之相关性矩阵分析及其可视化</a></li>
+          
           <li><a href="/post/2017-06-25.%E7%94%A8circlize%E5%8C%85%E7%BB%98%E5%88%B6circos-plot/">用circlize包绘制circos-plot</a></li>
-          
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">R语言可视化学习笔记之添加p-value和显著性标记</a></li>
-          
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/">R语言可视化学习笔记之相关矩阵可视化包ggcorrplot</a></li>
           
         </ul>
       </div>
@@ -1115,7 +1115,7 @@ xlab(&quot;随便定义了个x&quot;)+ylab(&quot;随机数&quot;)
   <p class="powered-by">
     &copy; Tao Yan, 2018-2019 &middot; 
 
-    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/mywebsite" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
 

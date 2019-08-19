@@ -596,7 +596,7 @@ R语言基本绘图函数中可以利用par()以及layout()来进行图形排列
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><img src="https://upload-images.jianshu.io/upload_images/2084719-e6bf2901af3d315e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143351.png" alt="" /></p>
 
 <p>R语言基本绘图函数中可以利用par()以及layout()来进行图形排列，但是这两个函数对于ggplot图则不太适用，本文主要讲解如何对多ggplot图形多页面进行排列。主要讲解如何利用包gridExtra、cowplot以及ggpubr中的函数进行图形排列。</p>
 
@@ -614,7 +614,7 @@ mtcars$cyl &lt;- as.factor(mtcars$cyl)
 head(mtcars[, c(&quot;name&quot;, &quot;wt&quot;,&quot;mpg&quot;, &quot;cyl&quot;)])
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-e97fd1379156e2e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143411.png" alt="" /></p>
 
 <pre><code>#First let's create some plots
 #Box plot(bxp)
@@ -631,7 +631,7 @@ x.text.angle=90 #Rotate vertically x axis texts )
 bp+font(&quot;x.text&quot;, size = 8)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-f1195474adb47ef5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143425.png" alt="" /></p>
 
 <pre><code>#Scatter plots(sp)
 sp &lt;- ggscatter(mtcars, x=&quot;wt&quot;, y=&quot;mpg&quot;, add = &quot;reg.line&quot;, #Add regression line 
@@ -642,7 +642,7 @@ shape = &quot;cyl&quot; #Change point shape by groups cyl
 stat_cor(aes(color=cyl), label.x = 3) #Add correlation coefficientsp
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-60d2ce55b9ce82f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143437.png" alt="" /></p>
 
 <h2 id="图形排列">图形排列</h2>
 
@@ -658,21 +658,21 @@ stat_cor(aes(color=cyl), label.x = 3) #Add correlation coefficientsp
 <pre><code>ggarrange(bxp, dp, bp+rremove(&quot;x.text&quot;), labels = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), ncol = 2, nrow = 2)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-dbc9f5f6ba4082ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p></li>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143450.png" alt="" /></p></li>
 
 <li><p>cowplot::plot.grid()</p>
 
 <pre><code>plot_grid(bxp, dp, bp+rremove(&quot;x.text&quot;), labels = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), ncol = 2, nrow = 2)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-dbc9f5f6ba4082ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p></li>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143501.png" alt="" /></p></li>
 
 <li><p>gridExtra::grid.arrange()</p>
 
 <pre><code>grid.arrange(bxp, dp, bp+rremove(&quot;x.text&quot;), ncol=2, nrow=2)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-0d3d087bce2af907.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p></li>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143516.png" alt="" /></p></li>
 </ul>
 
 <h2 id="排列图形注释">排列图形注释</h2>
@@ -690,7 +690,7 @@ right = &quot;I'm done, thanks :-)!&quot;, fig.lab = &quot;Figure 1&quot;, fig.l
 </code></pre></li>
 </ul>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-36ca476191d8af86.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143530.png" alt="" /></p>
 
 <h2 id="绘图面板对齐">绘图面板对齐</h2>
 
@@ -726,7 +726,7 @@ names(ggsurv)
 <pre><code>ggarrange(ggsurv$plot, ggsurv$table, heights = c(2, 0.7), ncol = 1, nrow = 2)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-e53edb9d332af479.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143545.png" alt="" /></p>
 
 <blockquote>
 <p>上图中的坐标轴没有对齐，可以通过参数align来设置</p>
@@ -734,7 +734,7 @@ names(ggsurv)
 <pre><code>ggarrange(ggsurv$plot, ggsurv$table, heights = c(2, 0.7), ncol = 1, nrow = 2, align = &quot;v&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-4e2c926c330d1680.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143601.png" alt="" /></p>
 </blockquote>
 
 <h2 id="改变排列图的行列">改变排列图的行列</h2>
@@ -748,7 +748,7 @@ ggarrange(bxp, dp, ncol = 2, labels = c(&quot;B&quot;,&quot;C&quot;)),#Second ro
 nrow = 2, labels = &quot;A&quot; #Labels of the scatter plot)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-6b2884cdeeb38d66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143613.png" alt="" /></p>
 
 <h2 id="r包cowplot">R包cowplot</h2>
 
@@ -783,7 +783,7 @@ draw_plot(bp, x=0, y=0, width = 1.5, height = 0.5)+
 draw_plot_label(label = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), size = 15, x=c(0, 0.5, 0), y=c(1, 1, 0.5))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-a342161e1f1e5cf4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143628.png" alt="" /></p>
 
 <h2 id="r包gridextra">R包gridExtra</h2>
 
@@ -800,7 +800,7 @@ arrangeGrob(bxp, dp, ncol = 2), #Second row with 2plots in 2 different columns
 nrow=2) #number of rows
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-bd23e000d25050e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143641.png" alt="" />
 &gt; 也可以通过函数grid.arrange中的layout_matrix来设置复杂的图形布局</p>
 
 <pre><code>grid.arrange(bp, #bar plot spaning two columns 
@@ -808,7 +808,7 @@ bxp, sp, #box plot amd scatter plot
 ncol=2, nrow=2, layout_matrix=rbind(c(1, 1), c(2, 3)))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-918661a64ae22dcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143652.png" alt="" /></p>
 
 <blockquote>
 <p>要相对grid.arrange()以及arrangeGrob()的输出进行注释，首先要利用as_ggplot()将其转化为ggplot图形，进而利用函数draw_plot_label()对其进行注释。</p>
@@ -819,7 +819,7 @@ draw_plot_label(label = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), size = 1
 p
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-251b2907ceddcbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143706.png" alt="" /></p>
 </blockquote>
 
 <h2 id="r包grid">R包grid</h2>
@@ -870,7 +870,7 @@ print(bp+rremove(&quot;x.text&quot;), vp=define_region(row=3, col=1:2))
 <pre><code>ggarrange(bxp, dp, labels = c(&quot;A&quot;, &quot;B&quot;), common.legend = TRUE, legend = &quot;bottom&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-ca42c6bbb45bcfdf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p></li>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143722.png" alt="" /></p></li>
 </ul>
 
 <h2 id="含有边际密度图的散点图">含有边际密度图的散点图</h2>
@@ -890,7 +890,7 @@ ggarrange(xplot, NULL, sp, yplot, ncol = 2, nrow = 2, align = &quot;hv&quot;, wi
 heights = c(1, 2), common.legend = TRUE)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-1565dd7ff1900770.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143734.png" alt="" /></p>
 
 <h2 id="ggplot图-文本-表格组合">ggplot图、文本、表格组合</h2>
 
@@ -908,7 +908,7 @@ text.p &lt;- ggparagraph(text = text, face = &quot;italic&quot;, size = 11, colo
 ggarrange(density.p, stable.p, text.p, ncol = 1, nrow = 3, heights = c(1, 0.5, 0.3))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-6d68d9bbc420bdd1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143747.png" alt="" /></p>
 
 <h2 id="ggplot图形中嵌入图形元素">ggplot图形中嵌入图形元素</h2>
 
@@ -933,7 +933,7 @@ ggarrange(density.p, stable.p, text.p, ncol = 1, nrow = 3, heights = c(1, 0.5, 0
 <pre><code>density.p+annotation_custom(ggplotGrob(stable.p), xmin = 5.5, xmax = 8, ymin = 0.7)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-3806bee958243f30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143803.png" alt="" /></p>
 
 <h2 id="ggplot图形中添加box-plot">ggplot图形中添加box plot</h2>
 
@@ -961,7 +961,7 @@ annotation_custom(grob = ybp_grob, xmin = xmin-xoffset,
 xmax=xmin+xoffset, ymin=ymin, ymax=ymax)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-d94210f5f4783fbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143814.png" alt="" /></p>
 
 <h2 id="ggplot图形添加背景">ggplot图形添加背景</h2>
 
@@ -982,7 +982,7 @@ background_image(img)+
 geom_boxplot(aes(fill=Species), color=&quot;white&quot;)+ fill_palette(&quot;jco&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-5f7514c22e7add04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143827.png" alt="" /></p>
 
 <h2 id="修改透明度">修改透明度</h2>
 
@@ -993,7 +993,7 @@ background_image(img)+geom_boxplot(aes(fill=Species), color=&quot;white&quot;, a
 fill_palette(&quot;jco&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-cd305569d612b588.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143843.png" alt="" /></p>
 
 <h2 id="多页排列">多页排列</h2>
 
@@ -1011,12 +1011,12 @@ fill_palette(&quot;jco&quot;)
 <pre><code>multi.page[[1]]
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-033d7bb70f07ee91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143901.png" alt="" /></p>
 
 <pre><code>multi.page[[2]]
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-a92858066ced1ad0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143916.png" alt="" /></p>
 
 <h2 id="利用ggarrange-嵌套布局">利用ggarrange()嵌套布局</h2>
 
@@ -1028,7 +1028,7 @@ heights = c(1, 0.5, 0.3))
 ggarrange(p1, p2, ncol = 2, nrow = 1)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-e6bf2901af3d315e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819143929.png" alt="" /></p>
 
 <h2 id="sessioninfo">SessionInfo</h2>
 
@@ -1219,9 +1219,9 @@ ggarrange(p1, p2, ncol = 2, nrow = 1)
           
           <li><a href="/post/2017-06-11.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/">ggplot2学习笔记系列之利用ggplot2绘制散点图</a></li>
           
-          <li><a href="/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">ggplot2学习笔记系列之利用ggplot2绘制误差棒及显著性标记</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/">”R语言可视化学习笔记之ggrepel包“</a></li>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/">R语言学习笔记之相关性矩阵分析及其可视化</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">R语言可视化学习笔记之添加p-value和显著性标记</a></li>
           
         </ul>
       </div>
@@ -1392,7 +1392,7 @@ ggarrange(p1, p2, ncol = 2, nrow = 1)
   <p class="powered-by">
     &copy; Tao Yan, 2018-2019 &middot; 
 
-    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/mywebsite" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
 

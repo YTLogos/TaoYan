@@ -17,7 +17,7 @@
       <link>https://taoyan.netlify.com/post/2017-06-25.%E7%94%A8circlize%E5%8C%85%E7%BB%98%E5%88%B6circos-plot/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-06-25.%E7%94%A8circlize%E5%8C%85%E7%BB%98%E5%88%B6circos-plot/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4b332e9275d7088e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145001.png&#34; alt=&#34;&#34; /&gt;
 &lt;code&gt;circlize&lt;/code&gt;包&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -57,7 +57,7 @@ textcircos.text(1, 0.5, &amp;quot;right&amp;quot;, sector.index = &amp;quot;a&am
 circos.clear()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-d3f6e3b63528471a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145016.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;接下来绘制第二个-track&#34;&gt;接下来绘制第二个&lt;code&gt;track&lt;/code&gt;&lt;/h2&gt;
 
@@ -80,7 +80,7 @@ circos.trackHist(a$factors, a$x, bg.col = bg.col, col = NA)
 circos.clear()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-42c29a97051139c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145031.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;创建第三个-track&#34;&gt;创建第三个&lt;code&gt;track&lt;/code&gt;&lt;/h2&gt;
 
@@ -114,7 +114,7 @@ circos.points(x[11:20], y[11:20], col = &amp;quot;blue&amp;quot;, cex = 0.6)})
 circos.clear()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-16e1d662c32d6e48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145044.png&#34; alt=&#34;&#34; /&gt;
 &amp;gt;实际操作中我们常常会更新数据或者想更新图形，这是可以通过&lt;code&gt;circos.updatePlotRegion&lt;/code&gt;函数在特定的&lt;code&gt;track&lt;/code&gt;、&lt;code&gt;cell&lt;/code&gt;里(先删除再添加)&lt;code&gt;update&lt;/code&gt;，下面我们将通过&lt;code&gt;circos.updatePlotRegion&lt;/code&gt;函数先删除&lt;code&gt;track 2&lt;/code&gt;、&lt;code&gt;sector d&lt;/code&gt;中的图形元素再添加点图。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;par(mar = c(1, 1, 1, 1), lwd = 0.1, cex = 0.6)
@@ -149,7 +149,7 @@ circos.text(mean(xlim), mean(ylim), &amp;quot;updated&amp;quot;)
 circos.clear()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c1739e4842120955.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145058.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;接下来绘制第四个-track&#34;&gt;接下来绘制第四个&lt;code&gt;track&lt;/code&gt;&lt;/h2&gt;
 
@@ -189,7 +189,7 @@ circos.trackPlotRegion(factors = a$factors, y = a$y)
 circos.trackLines(a$factors[1:100], a$x[1:100], a$y[1:100], type = &amp;quot;h&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-dddf4d7d14922cf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145113.png&#34; alt=&#34;&#34; /&gt;
 &amp;gt;接下来添加&lt;code&gt;links&lt;/code&gt;，&lt;code&gt;links&lt;/code&gt;可以是&lt;code&gt;point&lt;/code&gt;到&lt;code&gt;point&lt;/code&gt;、&lt;code&gt;point&lt;/code&gt;到&lt;code&gt;interval&lt;/code&gt;、&lt;code&gt;interval&lt;/code&gt;到&lt;code&gt;interval&lt;/code&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;par(mar = c(1, 1, 1, 1), lwd = 0.1, cex = 0.6)
@@ -229,7 +229,7 @@ circos.link(&amp;quot;c&amp;quot;, c(-0.5, 0.5), &amp;quot;d&amp;quot;, c(-0.5, 
 circos.link(&amp;quot;e&amp;quot;, 0, &amp;quot;g&amp;quot;, c(-1, 1), col = &amp;quot;green&amp;quot;, border = &amp;quot;black&amp;quot;, lwd = 2, lty = 2) #point to interval
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-7c9b4bf33e074663.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145127.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;circlize详述&#34;&gt;circlize详述&lt;/h2&gt;
 
@@ -252,7 +252,7 @@ get.cell.meta.data(&amp;quot;cell.end.degree&amp;quot;, sector.index = &amp;quot
 circos.clear()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-938c7de4bb4c23d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145140.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;### 高亮某一track， 比如第一个track：
 circos.initialize(factors = factors, xlim = c(0, 1))
@@ -264,7 +264,7 @@ rou2 = get.cell.meta.data(&amp;quot;cell.bottom.radius&amp;quot;, track.index = 
 circos.clear()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-45e3eb273fc3b890.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145152.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# 高亮某一track某一sector，比如地2、3track中的e、f(sector)：
 circos.initialize(factors = factors, xlim = c(0, 1))
@@ -277,7 +277,7 @@ get.cell.meta.data(&amp;quot;cell.bottom.radius&amp;quot;, track.index = 3), col
 circos.clear() #千万别忘了circos.clear，不然下次无法绘图。
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-68e9fa0e050abfe9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145239.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;放大某一特定区域&#34;&gt;放大某一特定区域&lt;/h3&gt;
 
@@ -312,7 +312,7 @@ circos.link(&amp;quot;a&amp;quot;, get.cell.meta.data(&amp;quot;cell.xlim&amp;qu
 get.cell.meta.data(&amp;quot;cell.xlim&amp;quot;, sector.index = &amp;quot;zoom_a&amp;quot;), border = NA, col = &amp;quot;red&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-58a07e148222b8f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145251.png&#34; alt=&#34;&#34; /&gt;
 circos.clear()&lt;/p&gt;
 
 &lt;h2 id=&#34;举个栗子&#34;&gt;举个栗子&lt;/h2&gt;
@@ -354,7 +354,7 @@ circos.dendrogram(dend, max_height = max_height)})
 circos.clear()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4b332e9275d7088e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145302.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;多图排列&#34;&gt;多图排列&lt;/h2&gt;
 
@@ -381,12 +381,12 @@ col = rand_color(1, transparency = 0.4), border = NA)
 circos.clear()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-51d87f7dd942126b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145316.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;sessioninfo&#34;&gt;sessionInfo&lt;/h2&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;理解circlize包的原理，绘制基因组数据的图形也是一样的。有时间下次介绍(主要是我自己还没看完，看不太懂)&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a3ebeb278e1c4ae1.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;。
+&lt;p&gt;理解circlize包的原理，绘制基因组数据的图形也是一样的。有时间下次介绍(主要是我自己还没看完，看不太懂)&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145332.png&#34; alt=&#34;&#34; /&gt;。
 老规矩，给出&lt;code&gt;sessionInfo&lt;/code&gt;。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;sessionInfo()

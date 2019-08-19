@@ -2579,7 +2579,7 @@ p+geom_bar(position = &amp;quot;dodge&amp;quot;)
       <link>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-aedad605e759b602.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153552.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;上次提了下&lt;code&gt;theme()&lt;/code&gt;,本文将专门讲解一下。凡是与数据无关的图形设置可以归为主题类，&lt;strong&gt;ggplot2&lt;/strong&gt;中主题设置十分多，根本不可能讲解完，只能稍微讲点皮毛，灵活运用才是关键，本文只是总体上略作介绍。正如R语言大神&lt;strong&gt;Hadley Wickham&lt;/strong&gt;所讲的，&lt;strong&gt;ggplot2&lt;/strong&gt;只是提供了一个平台，可以根据自己的需要无限创造。理论上来讲，只要能想到的图形，&lt;strong&gt;ggplot2&lt;/strong&gt;都能实现。&lt;/p&gt;
 
@@ -2642,9 +2642,9 @@ theme_gray#函数名不加括号可获得函数源代码
 &lt;p&gt;可以看出，源代码主要是&lt;code&gt;theme()&lt;/code&gt;函数，设置也很简单：&lt;code&gt;theme(..., complete = FALSE)&lt;/code&gt;,但是其内含的参数则十分多。&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-d83da9471e3bc837.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153612.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-12edb55b34046dc6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153623.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;几乎所有元素在&lt;code&gt;theme()&lt;/code&gt;里都使用&lt;code&gt;element_line&lt;/code&gt;，&lt;code&gt;element_rect&lt;/code&gt;，&lt;code&gt;element_text&lt;/code&gt;和&lt;code&gt;element_blank&lt;/code&gt;函数设置. 下面就举例稍微讲解一下&lt;/p&gt;
 
@@ -2655,48 +2655,48 @@ geom_point(aes(color=factor(cyl)))#先试试图例修改
 p+theme(legend.position = &amp;quot;none&amp;quot;)#无图例
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f6bc40449646b424.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153635.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;p+theme(legend.position = &amp;quot;bottom&amp;quot;)#图例在底部
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e451760fc8a576c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153645.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#也可以自定义
 p+theme(legend.position = c(0.5, 0.7))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-50197c31a252b33b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153658.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#为图例加边界
 p+theme(legend.background = element_rect(color=&amp;quot;red&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-61e3363e54112d01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153709.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#或者为图例中的每个元素进行设置，如加边界
 p+theme(legend.key =element_rect(color=&amp;quot;red&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f4aeac9b93d84040.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153718.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#进行填充
 p+theme(legend.key = element_rect(fill=&amp;quot;yellow&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-28014be14a16fdc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153728.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#图例内容字体大小、颜色、角度等设置
 p+theme(legend.text = element_text(size=25, color=&amp;quot;darkred&amp;quot;, angle=45))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1ab8b127abcdb850.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153739.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#为图例标题设置字体、颜色、大小等
 p+theme(legend.title = element_text(face=&amp;quot;italic&amp;quot;, size=25, color=&amp;quot;red&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-fed6eaf4130fb8cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153749.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;接下来是坐标以及网格等的自定义&lt;/p&gt;
 
@@ -2704,23 +2704,23 @@ p+theme(legend.title = element_text(face=&amp;quot;italic&amp;quot;, size=25, co
 p+theme(panel.background = element_rect(fill=&amp;quot;black&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b277d80d44c26dff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153800.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#修改边界线类型、颜色
 p+theme(panel.border = element_rect(linetype = &amp;quot;dashed&amp;quot;, color=&amp;quot;red&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0af39cbe41d20918.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153812.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#修改网格线p+theme(panel.grid.major = element_line(color=&amp;quot;blue&amp;quot;, size= 3))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8114011d2c12d3b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153821.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;p+theme(panel.grid.minor = element_line(linetype = &amp;quot;dotted&amp;quot;, color=&amp;quot;red&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-7bddc092cac1f639.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153832.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;还可以修改x、y轴等，这里懒得讲了，有兴趣的可以自己捣鼓捣鼓&lt;/p&gt;
@@ -2773,17 +2773,17 @@ ggtitle(&amp;quot;自定义主题theme并应用实践&amp;quot;))+
 xlab(&amp;quot;随便定义了个x&amp;quot;)+ylab(&amp;quot;随机数&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-bc4e002d5f925826.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153846.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;p1+mytheme
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c12712615e2430bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153857.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;p1+mytheme+mycolor_7
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-aedad605e759b602.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819153908.png&#34; alt=&#34;&#34; /&gt;
 还有线图、饼图等有兴趣的也可以自己刷一刷，你会发现&lt;strong&gt;ggplot2&lt;/strong&gt;的魅力所在就是它拥有无穷的可能性。&lt;/p&gt;</description>
     </item>
     
@@ -2792,7 +2792,7 @@ xlab(&amp;quot;随便定义了个x&amp;quot;)+ylab(&amp;quot;随机数&amp;quot;
       <link>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E8%AF%AF%E5%B7%AE%E6%A3%92%E5%8F%8A%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-46b1e37462ac6440.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145522.png&#34; alt=&#34;&#34; /&gt;
 绘制带有误差棒的条形图&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;library(ggplot2)
@@ -2822,7 +2822,7 @@ position = position_dodge(0.9), width = 0.15) +
 scale_fill_brewer(palette = &amp;quot;Set1&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0d1a0cc2f8ac5129.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145536.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;绘制带有显著性标记的条形图&#34;&gt;绘制带有显著性标记的条形图&lt;/h2&gt;
 
@@ -2839,7 +2839,7 @@ position = position_dodge(0.9), size = 5, fontface = &amp;quot;bold&amp;quot;) +
 scale_fill_brewer(palette = &amp;quot;Set1&amp;quot;) #这里的label就是刚才设置的，group是数据集中的，fontface设置字体。
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-d7a71cdebe7aaecb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145549.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;绘制两条形图中间带有星号的统计图&#34;&gt;绘制两条形图中间带有星号的统计图&lt;/h2&gt;
 
@@ -2863,7 +2863,7 @@ geom_segment(aes(x=1.55, y=3.8, xend=2, yend=3.8))+#绘制两段横线
 annotate(&amp;quot;text&amp;quot;, x=1.5, y=3.8, label=&amp;quot;〇&amp;quot;, size=5)#annotate函数也可以添加标签
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-fd824d52ccfd97f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145604.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;为图形添加标题&#34;&gt;为图形添加标题&lt;/h2&gt;
 
@@ -2879,7 +2879,7 @@ scale_fill_brewer(palette = &amp;quot;Set1&amp;quot;)# 利用ggtitle()添加图�
 p + ggtitle(&amp;quot;利用ggtitle()添加图标题&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-437d4f549444463d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145618.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# 利用xlab()\ylab()添加/修改坐标轴标题
 p + ggtitle(&amp;quot;利用ggtitle()添加图标题&amp;quot;) + 
@@ -2887,7 +2887,7 @@ xlab(&amp;quot;不同处理&amp;quot;) +
 ylab(&amp;quot;response&amp;quot;) #标题的参数修改在theme里，theme是一个很大的函数，几乎可以定义一切，下次有时间会讲解
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-2b799bb7890f0624.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145632.png&#34; alt=&#34;&#34; /&gt;
 最后再讲解一下如何将多副图至于一个页面 利用包&lt;strong&gt;gridExtra&lt;/strong&gt;中&lt;code&gt;grid.arrange()&lt;/code&gt;函数实现&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# 将四幅图放置于一个页面中
@@ -2909,7 +2909,7 @@ library(gridExtra) #没有安装此包先用install.packages(&#39;gridExtra&#39;
 grid.arrange(p, p1, p2, p3)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8ea6aa114eeab5ba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145650.png&#34; alt=&#34;&#34; /&gt;
 上次有人问坐标轴旋转的实现，坐标轴旋转有时是很有用的，下面是我看过的一个例子，用来介绍一下。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#先加载他的数据
@@ -2918,7 +2918,7 @@ load(url.world_ports)
 knitr::kable(df.world_ports[1:5,])#该数据是关于世界上各个港口的数据汇总
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-01c06eb52b6848d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145702.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;library(dplyr) #用于数据操作，与ggplot2一样是R语言必学包#现在绘制条形图(%&amp;gt;%上次说过是管道操作，用于连接各个代码，十分有用)
 df.world_ports%&amp;gt;%filter(year==2014)%&amp;gt;% #筛选2014年的数据 
@@ -2930,7 +2930,7 @@ labs(x = &amp;quot;Port&amp;quot;, y = &amp;quot;Shipping\nVolume&amp;quot;)+
 theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = .4))#调整x轴标签，angle=90表示标签旋转90度，从图中可以看出
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-11d43dfb82953994.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145713.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#现在旋转坐标轴，并筛选排名小于25的港口，并且添加数据标签
 df.world_ports %&amp;gt;% filter(year==2014, rank&amp;lt;=25) %&amp;gt;% #筛选2014年并且rank小于等于25的数据 
@@ -2943,7 +2943,7 @@ geom_text(aes(label=volume), hjust=1.2, color=&amp;quot;white&amp;quot;)+
 coord_flip()#旋转坐标轴
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-46b1e37462ac6440.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145724.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;两图相比，明显第二幅图好，一是可以添加数据标签，二是不用歪着脖子看。
 本来打算讲讲图例的但是发现内容太多了，就不讲了，下次吧！&lt;/p&gt;</description>
@@ -2954,7 +2954,7 @@ coord_flip()#旋转坐标轴
       <link>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</link>
       <pubDate>Sun, 25 Jun 2017 09:23:05 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%9D%A1%E5%BD%A2%E5%9B%BE/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5c9a37089f4883ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144529.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 
@@ -2987,7 +2987,7 @@ geom_bar(stat = &amp;quot;identity&amp;quot;)#必须将geom_bar()中的stat(统�
 为”identity“，即对原始数据集不作任何统计变换，而该参数的默认值为&#39;count&#39;，即观测数量。
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a1a6cfbc69210db2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144542.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;当x是连续型（数值型）变量时，条形图略有不同，需要略作调整，具体如下：&lt;/p&gt;
 
@@ -3002,13 +3002,13 @@ geom_bar(stat = &amp;quot;identity&amp;quot;)#必须将geom_bar()中的stat(统�
 &lt;pre&gt;&lt;code&gt;ggplot(data=BOD, aes(x=Time, y=demand))+ geom_bar(stat = &amp;quot;identity&amp;quot;)#此时Time是数值型
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-91c3a599b1385e04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144559.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggplot(data=BOD, aes(x=factor(Time), y=demand))+ 
 geom_bar(stat = &amp;quot;identity&amp;quot;)#将Time转换为因子型（分类/离散变量），仔细比较两图
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a2cb3446cf895736.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144616.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;条形图颜色有两部分：填充颜色（&lt;strong&gt;fill&lt;/strong&gt;）以及边框颜色（&lt;strong&gt;color&lt;/strong&gt;），因此调整条形图颜色要调两部分，具体如下：&lt;/p&gt;
 
@@ -3016,7 +3016,7 @@ geom_bar(stat = &amp;quot;identity&amp;quot;)#将Time转换为因子型（分类
 geom_bar(stat = &amp;quot;identity&amp;quot;, fill=&amp;quot;blue&amp;quot;, color=&amp;quot;black&amp;quot;)#可以自己设定喜好的颜色
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-af48e367d1ff7f47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144629.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;绘制簇状条形图&#34;&gt;绘制簇状条形图&lt;/h2&gt;
 
@@ -3039,19 +3039,19 @@ geom_bar(stat = &amp;quot;identity&amp;quot;, fill=&amp;quot;blue&amp;quot;, col
 geom_bar(stat = &amp;quot;identity&amp;quot;, position = &amp;quot;dodge&amp;quot;)#position = &amp;quot;dodge&amp;quot;表示条形图分开不重叠(簇形图)，默认的为stack（堆叠式）,还有百分比堆叠式(fill)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-703232c6cbde3d69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144653.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggplot(data=cabbage_exp, aes(x=Date, y=Weight, fill=Cultivar))+
 geom_bar(stat = &amp;quot;identity&amp;quot;, position = &amp;quot;stack&amp;quot;)#堆叠式
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b95adaf8b70d9bf6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144707.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggplot(data=cabbage_exp, aes(x=Date, y=Weight, fill=Cultivar))+ 
 geom_bar(stat = &amp;quot;identity&amp;quot;, position = &amp;quot;fill&amp;quot;)#百分比堆叠式
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-06bc452dce49d4c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144718.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;设置颜色或者调用调色板&#34;&gt;设置颜色或者调用调色板&lt;/h2&gt;
 
@@ -3062,14 +3062,14 @@ geom_bar(stat = &amp;quot;identity&amp;quot;, position = &amp;quot;dodge&amp;quo
 scale_fill_brewer(palette = &amp;quot;Set1&amp;quot;)#Set1为调色板，后期将会专门讲解Color设置
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1533b0dd9e638405.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144729.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggplot(data=cabbage_exp, aes(x=Date, y=Weight, fill=Cultivar))+ 
 geom_bar(stat = &amp;quot;identity&amp;quot;, position = &amp;quot;dodge&amp;quot;, color=&amp;quot;black&amp;quot;)+ 
 scale_fill_manual(values = c(&amp;quot;darkred&amp;quot;, &amp;quot;purple&amp;quot;))#自设置颜色
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0ca0540506105191.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144741.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;绘制频数条形图&#34;&gt;绘制频数条形图&lt;/h2&gt;
 
@@ -3096,7 +3096,7 @@ scale_fill_manual(values = c(&amp;quot;darkred&amp;quot;, &amp;quot;purple&amp;q
 geom_bar()#等价于geom_bar(stat=&amp;quot;bin&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-95f3a46ca2f42a1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144752.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;绘制y轴正负轴都有数据的条形图&#34;&gt;绘制y轴正负轴都有数据的条形图&lt;/h2&gt;
 
@@ -3135,7 +3135,7 @@ ggplot(data=mydata, aes(x=x, y=y, fill=judge))+
 scale_fill_manual(values = c(&amp;quot;purple&amp;quot;, &amp;quot;blue&amp;quot;), guide=FALSE)+xlab(&amp;quot;Year&amp;quot;)#guide=FALSE表示不要图例,x轴标题为Year
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5c9a37089f4883ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144802.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;通过width来调整条形宽度以及条形距离&#34;&gt;通过width来调整条形宽度以及条形距离&lt;/h2&gt;
 
@@ -3159,7 +3159,7 @@ geom_bar(stat = &amp;quot;identity&amp;quot;, width = 0.6, position = position_d
 scale_fill_brewer(palette = &amp;quot;Set1&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-0cf73b4e51ec0430.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144813.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;geom-text-添加数据标签&#34;&gt;&lt;code&gt;geom_text()&lt;/code&gt;添加数据标签&lt;/h2&gt;
 
@@ -3173,7 +3173,7 @@ geom_bar(stat = &amp;quot;identity&amp;quot;)+
 geom_text(aes(label=Weight), vjust=1.5, color=&amp;quot;white&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-aab91b53fbdb3b5c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144827.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;### 标签在条形图顶端上方
 ggplot(data=cabbage_exp, aes(x=interaction(Date, Cultivar), y=Weight))+ 
@@ -3181,7 +3181,7 @@ geom_bar(stat = &amp;quot;identity&amp;quot;)+
 geom_text(aes(label=Weight), vjust=-0.3, color=&amp;quot;red&amp;quot;)#可以通过color、size等自行调整标签属性
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-72f4b5a03f700c8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144844.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;堆叠图也一样
 ggplot(data=cabbage_exp, aes(x=Date, y=Weight, fill=Cultivar))+ 
@@ -3190,7 +3190,7 @@ geom_text(aes(label=Weight), size=5, color=&amp;quot;black&amp;quot;, vjust=3.5,
 position = position_stack())#这里的position要与geom_bar()里面的保持一致，各种参数多调整才能效果最佳
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5545ef422328ac23.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819144901.png&#34; alt=&#34;&#34; /&gt;
 下次将重点讲解如何添加误差棒、显著性标记、坐标轴标题、图标题以及部分小技巧等等&lt;/p&gt;</description>
     </item>
     

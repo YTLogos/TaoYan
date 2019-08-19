@@ -17,7 +17,7 @@
       <link>https://taoyan.netlify.com/post/2017-08-12.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/</link>
       <pubDate>Sat, 12 Aug 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-08-12.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-076503522b98e6a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819140939.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 
@@ -39,15 +39,16 @@
 &lt;p&gt;主要是函数&lt;code&gt;heatmap(x, scale=&amp;quot;row&amp;quot;)&lt;/code&gt;
 * x:数据矩阵
 * scale：表示不同方向，可选值有：row, columa, none
-* Default plotheatmap(df, scale = &amp;ldquo;none&amp;rdquo;)
-&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c7bea2866745dab0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+* Default plotheatmap(df, scale = &amp;ldquo;none&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141017.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;Use custom colors
 col &amp;lt;- colorRampPalette(c(&amp;quot;red&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;blue&amp;quot;))(256)
 heatmap(df, scale = &amp;quot;none&amp;quot;, col=col)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-ebc5d8bff1232cd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141034.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#Use RColorBrewer color palette names
 library(RColorBrewer)col &amp;lt;- colorRampPalette(brewer.pal(10, &amp;quot;RdYlBu&amp;quot;))(256)#自设置调色板dim(df)#查看行列数
@@ -59,7 +60,7 @@ ColSideColors = c(rep(&amp;quot;purple&amp;quot;, 5), rep(&amp;quot;orange&amp;q
 #参数RowSideColors和ColSideColors用于分别注释行和列颜色等,可help(heatmap)详情
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-4d1b42636045984b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141058.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;增强热图&#34;&gt;增强热图&lt;/h2&gt;
 
@@ -70,7 +71,7 @@ ColSideColors = c(rep(&amp;quot;purple&amp;quot;, 5), rep(&amp;quot;orange&amp;q
 trace = &amp;quot;none&amp;quot;, density.info = &amp;quot;none&amp;quot;)#还有其他参数可参考help(heatmap.2())
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-68ac84c2447943b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141118.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;交互式热图绘制&#34;&gt;交互式热图绘制&lt;/h2&gt;
 
@@ -108,7 +109,7 @@ hclust %&amp;gt;% as.dendrogram %&amp;gt;%
 heatmap(df, Rowv = Rowv, Colv = Colv, scale = &amp;quot;none&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-efdf6c2b659c0af0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141153.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#增强heatmap.2()函数
 heatmap.2(df, scale = &amp;quot;none&amp;quot;, col = bluered(100), Rowv = Rowv, Colv = Colv, trace = &amp;quot;none&amp;quot;, density.info = &amp;quot;none&amp;quot;)
@@ -120,7 +121,9 @@ heatmap.2(df, scale = &amp;quot;none&amp;quot;, col = bluered(100), Rowv = Rowv,
 d2heatmap()d3heatmap(scale(mtcars), colors = &amp;quot;RdBu&amp;quot;, Rowv = Rowv, Colv = Colv)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;绘制复杂热图&#34;&gt;绘制复杂热图&lt;/h2&gt;
+&lt;p&gt;绘制复杂热图&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;p&gt;&lt;code&gt;ComplexHeatmap&lt;/code&gt;包是&lt;code&gt;bioconductor&lt;/code&gt;包，用于绘制复杂热图，它提供了一个灵活的解决方案来安排和注释多个热图。它还允许可视化来自不同来源的不同数据之间的关联热图。可通过以下代码安装：&lt;/p&gt;
 
@@ -137,21 +140,21 @@ devtools::install_github(&amp;quot;jokergoo/ComplexHeatmap&amp;quot;)
 Heatmap(df, name = &amp;quot;mtcars&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-30f041fb4859171f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141219.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#自设置颜色
 library(circlize)
 Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = colorRamp2(c(-2, 0, 2), c(&amp;quot;green&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;red&amp;quot;)))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b118f36783b5d212.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141236.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;使用调色板&#34;&gt;使用调色板&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;,col = colorRamp2(c(-2, 0, 2), brewer.pal(n=3, name=&amp;quot;RdBu&amp;quot;)))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-de34356535c8a3e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141254.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#自定义颜色
 mycol &amp;lt;- colorRamp2(c(-2, 0, 2), c(&amp;quot;blue&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;red&amp;quot;))
@@ -163,7 +166,7 @@ mycol &amp;lt;- colorRamp2(c(-2, 0, 2), c(&amp;quot;blue&amp;quot;, &amp;quot;wh
 &amp;quot;Row title&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-2f553afb61a6370a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141310.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;注意，行标题的默认位置是“left”，列标题的默认是“top”。可以使用以下选项更改：
 * &lt;code&gt;row_title_side&lt;/code&gt;：允许的值为“左”或“右”（例如：row_title_side =“right”）
@@ -176,16 +179,19 @@ column_title_gp = gpar(fontsize = 14, fontface = &amp;quot;bold&amp;quot;),
 row_title = &amp;quot;Row title&amp;quot;, row_title_gp = gpar(fontsize = 14, fontface = &amp;quot;bold&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f35f017c7d0118d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
-&amp;gt; 在上面的R代码中，&lt;code&gt;fontface&lt;/code&gt;的可能值可以是整数或字符串：1 = plain，2 = bold，3 =斜体，4 =粗体斜体。如果是字符串，则有效值为：“plain”，“bold”，“italic”，“oblique”和“bold.italic”。
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141327.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;在上面的R代码中，&lt;code&gt;fontface&lt;/code&gt;的可能值可以是整数或字符串：1 = plain，2 = bold，3 =斜体，4 =粗体斜体。如果是字符串，则有效值为：“plain”，“bold”，“italic”，“oblique”和“bold.italic”。
 显示行/列名称：
-&amp;gt;* &lt;code&gt;show_row_names&lt;/code&gt;：是否显示行名称。默认值为&lt;code&gt;TRUE&lt;/code&gt;
-&amp;gt;* &lt;code&gt;show_column_names&lt;/code&gt;：是否显示列名称。默认值为&lt;code&gt;TRUE&lt;/code&gt;&lt;/p&gt;
+* &lt;code&gt;show_row_names&lt;/code&gt;：是否显示行名称。默认值为&lt;code&gt;TRUE&lt;/code&gt;
+* &lt;code&gt;show_column_names&lt;/code&gt;：是否显示列名称。默认值为&lt;code&gt;TRUE&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, show_row_names = FALSE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-d0c74b9038eb0021.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141342.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;更改聚类外观&#34;&gt;更改聚类外观&lt;/h2&gt;
 
@@ -197,16 +203,18 @@ row_title = &amp;quot;Row title&amp;quot;, row_title_gp = gpar(fontsize = 14, fo
 Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, cluster_rows = FALSE)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1935cb8a6b1bc7ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
-如果要更改列集群的高度或宽度，可以使用选项&lt;code&gt;column_dend_height&lt;/code&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141403.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;如果要更改列集群的高度或宽度，可以使用选项&lt;code&gt;column_dend_height&lt;/code&gt;
 和&lt;code&gt;row_dend_width&lt;/code&gt;：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, column_dend_height = unit(2, &amp;quot;cm&amp;quot;), 
 row_dend_width = unit(2, &amp;quot;cm&amp;quot;) )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c7fb9371e59ca553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
-我们还可以利用&lt;code&gt;color_branches()&lt;/code&gt;自定义树状图外观&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141419.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们还可以利用&lt;code&gt;color_branches()&lt;/code&gt;自定义树状图外观&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;library(dendextend)
 row_dend = hclust(dist(df)) # row clustering
@@ -215,7 +223,7 @@ Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, cluster_rows =
 color_branches(row_dend, k = 4), cluster_columns = color_branches(col_dend, k = 2))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1d01beb556d77bdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141433.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;不同的聚类距离计算方式&#34;&gt;不同的聚类距离计算方式&lt;/h2&gt;
 
@@ -226,19 +234,22 @@ color_branches(row_dend, k = 4), cluster_columns = color_branches(col_dend, k = 
 clustering_distance_columns = &amp;quot;pearson&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3f47cf3bfa173e5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141452.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#也可以自定义距离计算方式
 Heatmap(df, name = &amp;quot;mtcars&amp;quot;, clustering_distance_rows = function(m) dist(m))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-30f041fb4859171f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141511.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;Heatmap(df, name = &amp;quot;mtcars&amp;quot;, clustering_distance_rows = function(x, y) 1 - cor(x, y))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f5c6d3f00a17d107.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
-&amp;gt;请注意，在上面的R代码中，通常为指定行聚类的度量的参数  &lt;code&gt;clustering_distance_rows&lt;/code&gt;显示示例。建议对参数&lt;code&gt;clustering_distance_columns&lt;/code&gt;（列聚类的度量标准）使用相同的度量标准。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141535.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;请注意，在上面的R代码中，通常为指定行聚类的度量的参数  &lt;code&gt;clustering_distance_rows&lt;/code&gt;显示示例。建议对参数&lt;code&gt;clustering_distance_columns&lt;/code&gt;（列聚类的度量标准）使用相同的度量标准。&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code&gt;# Clustering metric function
 robust_dist = function(x, y) { 
@@ -250,7 +261,7 @@ clustering_distance_columns = robust_dist,
 col = colorRamp2(c(-2, 0, 2), c(&amp;quot;purple&amp;quot;, &amp;quot;white&amp;quot;, &amp;quot;orange&amp;quot;)))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a3580fa85ed00103.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141606.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;聚类方法&#34;&gt;聚类方法&lt;/h2&gt;
 
@@ -260,7 +271,7 @@ col = colorRamp2(c(-2, 0, 2), c(&amp;quot;purple&amp;quot;, &amp;quot;white&amp;
 clustering_method_columns = &amp;quot;ward.D&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-c542bd89bd2b8ef2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141623.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;热图拆分&#34;&gt;热图拆分&lt;/h2&gt;
 
@@ -271,26 +282,26 @@ clustering_method_columns = &amp;quot;ward.D&amp;quot;)
 # split into 2 groupsHeatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, k = 2)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-a12bdb36af791864.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141638.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# split by a vector specifying row classes， 有点类似于ggplot2里的分面
 Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, split = mtcars$cyl )
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-03aaca5b56b58b89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141655.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#split也可以是一个数据框，其中不同级别的组合拆分热图的行。
 # Split by combining multiple variables
 Heatmap(df, name =&amp;quot;mtcars&amp;quot;, col = mycol, split = data.frame(cyl = mtcars$cyl, am = mtcars$am))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-ddb8f5cd7783f7ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141711.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# Combine km and split
 Heatmap(df, name =&amp;quot;mtcars&amp;quot;, col = mycol, km = 2, split = mtcars$cyl)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-5f8ed156f47b714d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141725.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#也可以自定义分割
 library(&amp;quot;cluster&amp;quot;)
@@ -299,7 +310,7 @@ pa = pam(df, k = 3)Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, s
 pa$clustering))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8b2b49dda4e4d01b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141741.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;还可以将用户定义的树形图和分割相结合。在这种情况下，&lt;code&gt;split&lt;/code&gt;可以指定为单个数字：&lt;/p&gt;
@@ -310,7 +321,7 @@ grow_dend = color_branches(row_dend, k = 4)
 Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, cluster_rows = row_dend, split = 2)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-7d0430ea9a918019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141800.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;热图注释&#34;&gt;热图注释&lt;/h2&gt;
 
@@ -324,7 +335,7 @@ Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, cluster_rows = row_d
 Heatmap(df, name =&amp;quot;mtcars&amp;quot;, col = mycol)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-b05bd797cc012742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141817.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# Annotation data frame
 annot_df &amp;lt;- data.frame(cyl = mtcars$cyl, am = mtcars$am, mpg = mtcars$mpg)
@@ -338,14 +349,14 @@ ha &amp;lt;- HeatmapAnnotation(annot_df, col = col)
 Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, top_annotation = ha)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-542529c17f0077c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141835.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#可以使用参数show_legend = FALSE来隐藏注释图例
 ha &amp;lt;- HeatmapAnnotation(annot_df, col = col, show_legend = FALSE)
 Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, top_annotation = ha)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e82c0d3998fdf782.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141851.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#注释名称可以使用下面的R代码添加
 library(&amp;quot;GetoptLong&amp;quot;)
@@ -362,7 +373,7 @@ for(an in colnames(annot_df)) { seekViewport(qq(&amp;quot;annotation_@{an}&amp;q
 unit(1, &amp;quot;npc&amp;quot;) - unit(2, &amp;quot;mm&amp;quot;), 0.5, default.units = &amp;quot;npc&amp;quot;, just = &amp;quot;left&amp;quot;)}
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-f421ede2e684f6fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141909.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;复杂注释&#34;&gt;复杂注释&lt;/h2&gt;
 
@@ -383,7 +394,7 @@ Heatmap(df, name = &amp;quot;mtcars&amp;quot;, col = mycol, column_names_gp = gp
 top_annotation = ha_mix_top, top_annotation_height = unit(4, &amp;quot;cm&amp;quot;)) + ha_mix_right
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-492515c5a7fcc4d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141927.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;热图组合&#34;&gt;热图组合&lt;/h2&gt;
 
@@ -395,8 +406,11 @@ ht2 = Heatmap(df, name = &amp;quot;ht2&amp;quot;, col = colorRamp2(c(-2, 0, 2), 
 ht1 + ht2
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-3ce17a03ce5f71af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
-&amp;gt;可以使用选项width = unit（3，“cm”））来控制热图大小。注意，当组合多个热图时，第一个热图被视为主热图。剩余热图的一些设置根据主热图的设置自动调整。这些设置包括：删除行集群和标题，以及添加拆分等。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141943.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;可以使用选项width = unit（3，“cm”））来控制热图大小。注意，当组合多个热图时，第一个热图被视为主热图。剩余热图的一些设置根据主热图的设置自动调整。这些设置包括：删除行集群和标题，以及添加拆分等。&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code&gt;draw(ht1 + ht2, 
       # Titles 
@@ -408,7 +422,7 @@ ht1 + ht2
      gap = unit(0.5, &amp;quot;cm&amp;quot;))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-e348e9abf5f7cf82.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141958.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;可以使用参数&lt;code&gt;show_heatmap_legend = FALSE&lt;/code&gt;，&lt;code&gt;show_annotation_legend = FALSE&lt;/code&gt;删除图例。&lt;/p&gt;
 
@@ -437,7 +451,7 @@ Heatmap(expr$chr, name = &amp;quot;chr&amp;quot;, width = unit(5, &amp;quot;mm&a
 &lt;pre&gt;&lt;code&gt;densityHeatmap(df)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-de948c8b938cfa9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142019.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;infos&#34;&gt;Infos&lt;/h2&gt;
 

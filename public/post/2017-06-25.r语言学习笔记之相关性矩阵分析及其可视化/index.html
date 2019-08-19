@@ -598,7 +598,7 @@ R内置函数cor()可以用来计算相关系数：cor(x, method = c(&quot;pears
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><img src="https://upload-images.jianshu.io/upload_images/2084719-dfdeb96ba28fda4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152129.png" alt="" />
 计算相关矩阵</p>
 
 <p>R内置函数<code>cor()</code>可以用来计算相关系数：<code>cor(x, method = c(&quot;pearson&quot;, &quot;kendall&quot;, &quot;spearman&quot;))</code>，如果数据有缺失值，用<code>cor(x, method = &quot;pearson&quot;, use = &quot;complete.obs&quot;)</code>。</p>
@@ -617,7 +617,7 @@ head(mydata, 6)#查看数据前6行
 </code></pre></li>
 </ul>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-b3f1a7b1a3a3e181.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152142.png" alt="" /></p>
 
 <h2 id="计算相关系数矩阵">计算相关系数矩阵</h2>
 
@@ -627,7 +627,7 @@ head(mydata, 6)#查看数据前6行
 round(res, 2)#保留两位小数
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-bafb635e01db2201.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152151.png" alt="" /></p>
 
 <p><code>cor()</code>只能计算出相关系数，无法给出显著性水平<code>p-value</code>,<strong>Hmisc</strong>
 包里的<code>rcorr()</code>函数能够同时给出相关系数以及显著性水平<code>p-value</code>。<code>rcorr(x, type = c(“pearson”,“spearman”))</code>。</p>
@@ -641,18 +641,18 @@ res2 &lt;- rcorr(as.matrix(mydata))
 res2
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-f86b5405d4687fd4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152203.png" alt="" /></p>
 
 <pre><code>#可以用res2$r、res2$P来提取相关系数以及显著性p-value
 res2$r
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-f17bff3ff57c9f0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152215.png" alt="" /></p>
 
 <pre><code>res2$P
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-e6696eca58e651c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152225.png" alt="" /></p>
 
 <blockquote>
 <p>如何将相关系数以及显著性水平p-value整合进一个矩阵内，可以自定义一个函数<code>flattenCorrMatrix</code>。</p>
@@ -673,7 +673,7 @@ res3 &lt;- rcorr(as.matrix(mtcars[,1:7]))
 flattenCorrMatrix(res3$r, res3$P)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-80de5562641e38d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152237.png" alt="" /></p>
 
 <h2 id="可视化相关系数矩阵">可视化相关系数矩阵</h2>
 
@@ -701,7 +701,7 @@ abbr.colnames = TRUE) #很好理解，0-0.3用空格表示， 0.3-0.6用.表示�
 <pre><code>symnum(res, abbr.colnames = FALSE)#abbr.colnames用来控制列名
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-ad753adf20edfbbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152251.png" alt="" /></p>
 
 <h2 id="corrplot-function-to-plot-a-correlogram">corrplot() function to plot a correlogram</h2>
 
@@ -715,7 +715,7 @@ abbr.colnames = TRUE) #很好理解，0-0.3用空格表示， 0.3-0.6用.表示�
 corrplot(res, type = &quot;upper&quot;, order = &quot;hclust&quot;, tl.col = &quot;black&quot;, tl.srt = 45)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-645b747c02956615.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152302.png" alt="" /></p>
 
 <h2 id="也可以结合显著性绘制">也可以结合显著性绘制</h2>
 
@@ -723,7 +723,7 @@ corrplot(res, type = &quot;upper&quot;, order = &quot;hclust&quot;, tl.col = &qu
 corrplot(res2$r, type=&quot;upper&quot;, order=&quot;hclust&quot;, p.mat = res2$P, sig.level = 0.01, insig = &quot;blank&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-dfdeb96ba28fda4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152313.png" alt="" /></p>
 
 <h2 id="use-chart-correlation-draw-scatter-plots">Use <em>chart.Correlation()</em>: Draw scatter plots</h2>
 
@@ -733,7 +733,7 @@ corrplot(res2$r, type=&quot;upper&quot;, order=&quot;hclust&quot;, p.mat = res2$
 chart.Correlation(mydata, histogram=TRUE, pch=19)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-a4b28a80a7dcd3b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152327.png" alt="" />
 解释一下上图：
 * 对角线上显示的是分布图
 * 左下部显示的是具有拟合线的双变量散点图
@@ -745,7 +745,7 @@ chart.Correlation(mydata, histogram=TRUE, pch=19)
 heatmap(x = res, col = col, symm = TRUE)#symm表示是否对称
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-8155004e32f38369.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819152339.png" alt="" /></p>
     </div>
 
     
@@ -884,15 +884,15 @@ heatmap(x = res, col = col, symm = TRUE)#symm表示是否对称
         <h3>Related</h3>
         <ul>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/">”R语言可视化学习笔记之ggrepel包“</a></li>
+          <li><a href="/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">图像处理R包magick学习笔记</a></li>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">R语言可视化学习笔记之添加p-value和显著性标记</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/">”R语言可视化学习笔记之ggrepel包“</a></li>
           
           <li><a href="/post/2017-06-26.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggpubr%E5%8C%85/">R语言可视化学习笔记之ggpubr包</a></li>
           
-          <li><a href="/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/">ggplot2学习笔记系列之主题（theme）设置</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/">R语言学习笔记之聚类分析</a></li>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/">R语言可视化学习笔记之相关矩阵可视化包ggcorrplot</a></li>
+          <li><a href="/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/">ggplot2学习笔记系列之主题（theme）设置</a></li>
           
         </ul>
       </div>
@@ -1063,7 +1063,7 @@ heatmap(x = res, col = col, symm = TRUE)#symm表示是否对称
   <p class="powered-by">
     &copy; Tao Yan, 2018-2019 &middot; 
 
-    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/mywebsite" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
 

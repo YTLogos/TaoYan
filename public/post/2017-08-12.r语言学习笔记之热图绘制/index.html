@@ -608,7 +608,7 @@ ComplexHeatmap:用于绘制、注释和排列复杂热图的R&amp;bioconductor�
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <p><img src="https://upload-images.jianshu.io/upload_images/2084719-076503522b98e6a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819140939.png" alt="" /></p>
 
 <h2 id="简介">简介</h2>
 
@@ -630,15 +630,16 @@ ComplexHeatmap:用于绘制、注释和排列复杂热图的R&amp;bioconductor�
 <p>主要是函数<code>heatmap(x, scale=&quot;row&quot;)</code>
 * x:数据矩阵
 * scale：表示不同方向，可选值有：row, columa, none
-* Default plotheatmap(df, scale = &ldquo;none&rdquo;)
-<img src="https://upload-images.jianshu.io/upload_images/2084719-c7bea2866745dab0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+* Default plotheatmap(df, scale = &ldquo;none&rdquo;)</p>
+
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141017.png" alt="" /></p>
 
 <pre><code>Use custom colors
 col &lt;- colorRampPalette(c(&quot;red&quot;, &quot;white&quot;, &quot;blue&quot;))(256)
 heatmap(df, scale = &quot;none&quot;, col=col)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-ebc5d8bff1232cd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141034.png" alt="" /></p>
 
 <pre><code>#Use RColorBrewer color palette names
 library(RColorBrewer)col &lt;- colorRampPalette(brewer.pal(10, &quot;RdYlBu&quot;))(256)#自设置调色板dim(df)#查看行列数
@@ -650,7 +651,7 @@ ColSideColors = c(rep(&quot;purple&quot;, 5), rep(&quot;orange&quot;, 6)))
 #参数RowSideColors和ColSideColors用于分别注释行和列颜色等,可help(heatmap)详情
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-4d1b42636045984b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141058.png" alt="" /></p>
 
 <h2 id="增强热图">增强热图</h2>
 
@@ -661,7 +662,7 @@ ColSideColors = c(rep(&quot;purple&quot;, 5), rep(&quot;orange&quot;, 6)))
 trace = &quot;none&quot;, density.info = &quot;none&quot;)#还有其他参数可参考help(heatmap.2())
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-68ac84c2447943b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141118.png" alt="" /></p>
 
 <h2 id="交互式热图绘制">交互式热图绘制</h2>
 
@@ -699,7 +700,7 @@ hclust %&gt;% as.dendrogram %&gt;%
 heatmap(df, Rowv = Rowv, Colv = Colv, scale = &quot;none&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-efdf6c2b659c0af0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141153.png" alt="" /></p>
 
 <pre><code>#增强heatmap.2()函数
 heatmap.2(df, scale = &quot;none&quot;, col = bluered(100), Rowv = Rowv, Colv = Colv, trace = &quot;none&quot;, density.info = &quot;none&quot;)
@@ -711,7 +712,9 @@ heatmap.2(df, scale = &quot;none&quot;, col = bluered(100), Rowv = Rowv, Colv = 
 d2heatmap()d3heatmap(scale(mtcars), colors = &quot;RdBu&quot;, Rowv = Rowv, Colv = Colv)
 </code></pre>
 
-<h2 id="绘制复杂热图">绘制复杂热图</h2>
+<p>绘制复杂热图</p>
+
+<hr />
 
 <p><code>ComplexHeatmap</code>包是<code>bioconductor</code>包，用于绘制复杂热图，它提供了一个灵活的解决方案来安排和注释多个热图。它还允许可视化来自不同来源的不同数据之间的关联热图。可通过以下代码安装：</p>
 
@@ -728,21 +731,21 @@ devtools::install_github(&quot;jokergoo/ComplexHeatmap&quot;)
 Heatmap(df, name = &quot;mtcars&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-30f041fb4859171f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141219.png" alt="" /></p>
 
 <pre><code>#自设置颜色
 library(circlize)
 Heatmap(df, name = &quot;mtcars&quot;, col = colorRamp2(c(-2, 0, 2), c(&quot;green&quot;, &quot;white&quot;, &quot;red&quot;)))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-b118f36783b5d212.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141236.png" alt="" /></p>
 
 <h2 id="使用调色板">使用调色板</h2>
 
 <pre><code>Heatmap(df, name = &quot;mtcars&quot;,col = colorRamp2(c(-2, 0, 2), brewer.pal(n=3, name=&quot;RdBu&quot;)))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-de34356535c8a3e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141254.png" alt="" /></p>
 
 <pre><code>#自定义颜色
 mycol &lt;- colorRamp2(c(-2, 0, 2), c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))
@@ -754,7 +757,7 @@ mycol &lt;- colorRamp2(c(-2, 0, 2), c(&quot;blue&quot;, &quot;white&quot;, &quot
 &quot;Row title&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-2f553afb61a6370a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141310.png" alt="" /></p>
 
 <p>注意，行标题的默认位置是“left”，列标题的默认是“top”。可以使用以下选项更改：
 * <code>row_title_side</code>：允许的值为“左”或“右”（例如：row_title_side =“right”）
@@ -767,16 +770,19 @@ column_title_gp = gpar(fontsize = 14, fontface = &quot;bold&quot;),
 row_title = &quot;Row title&quot;, row_title_gp = gpar(fontsize = 14, fontface = &quot;bold&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-f35f017c7d0118d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
-&gt; 在上面的R代码中，<code>fontface</code>的可能值可以是整数或字符串：1 = plain，2 = bold，3 =斜体，4 =粗体斜体。如果是字符串，则有效值为：“plain”，“bold”，“italic”，“oblique”和“bold.italic”。
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141327.png" alt="" /></p>
+
+<blockquote>
+<p>在上面的R代码中，<code>fontface</code>的可能值可以是整数或字符串：1 = plain，2 = bold，3 =斜体，4 =粗体斜体。如果是字符串，则有效值为：“plain”，“bold”，“italic”，“oblique”和“bold.italic”。
 显示行/列名称：
-&gt;* <code>show_row_names</code>：是否显示行名称。默认值为<code>TRUE</code>
-&gt;* <code>show_column_names</code>：是否显示列名称。默认值为<code>TRUE</code></p>
+* <code>show_row_names</code>：是否显示行名称。默认值为<code>TRUE</code>
+* <code>show_column_names</code>：是否显示列名称。默认值为<code>TRUE</code></p>
+</blockquote>
 
 <pre><code>Heatmap(df, name = &quot;mtcars&quot;, show_row_names = FALSE)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-d0c74b9038eb0021.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141342.png" alt="" /></p>
 
 <h2 id="更改聚类外观">更改聚类外观</h2>
 
@@ -788,16 +794,18 @@ row_title = &quot;Row title&quot;, row_title_gp = gpar(fontsize = 14, fontface =
 Heatmap(df, name = &quot;mtcars&quot;, col = mycol, cluster_rows = FALSE)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-1935cb8a6b1bc7ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
-如果要更改列集群的高度或宽度，可以使用选项<code>column_dend_height</code>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141403.png" alt="" /></p>
+
+<p>如果要更改列集群的高度或宽度，可以使用选项<code>column_dend_height</code>
 和<code>row_dend_width</code>：</p>
 
 <pre><code>Heatmap(df, name = &quot;mtcars&quot;, col = mycol, column_dend_height = unit(2, &quot;cm&quot;), 
 row_dend_width = unit(2, &quot;cm&quot;) )
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-c7fb9371e59ca553.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
-我们还可以利用<code>color_branches()</code>自定义树状图外观</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141419.png" alt="" /></p>
+
+<p>我们还可以利用<code>color_branches()</code>自定义树状图外观</p>
 
 <pre><code>library(dendextend)
 row_dend = hclust(dist(df)) # row clustering
@@ -806,7 +814,7 @@ Heatmap(df, name = &quot;mtcars&quot;, col = mycol, cluster_rows =
 color_branches(row_dend, k = 4), cluster_columns = color_branches(col_dend, k = 2))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-1d01beb556d77bdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141433.png" alt="" /></p>
 
 <h2 id="不同的聚类距离计算方式">不同的聚类距离计算方式</h2>
 
@@ -817,19 +825,22 @@ color_branches(row_dend, k = 4), cluster_columns = color_branches(col_dend, k = 
 clustering_distance_columns = &quot;pearson&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-3f47cf3bfa173e5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141452.png" alt="" /></p>
 
 <pre><code>#也可以自定义距离计算方式
 Heatmap(df, name = &quot;mtcars&quot;, clustering_distance_rows = function(m) dist(m))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-30f041fb4859171f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141511.png" alt="" /></p>
 
 <pre><code>Heatmap(df, name = &quot;mtcars&quot;, clustering_distance_rows = function(x, y) 1 - cor(x, y))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-f5c6d3f00a17d107.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
-&gt;请注意，在上面的R代码中，通常为指定行聚类的度量的参数  <code>clustering_distance_rows</code>显示示例。建议对参数<code>clustering_distance_columns</code>（列聚类的度量标准）使用相同的度量标准。</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141535.png" alt="" /></p>
+
+<blockquote>
+<p>请注意，在上面的R代码中，通常为指定行聚类的度量的参数  <code>clustering_distance_rows</code>显示示例。建议对参数<code>clustering_distance_columns</code>（列聚类的度量标准）使用相同的度量标准。</p>
+</blockquote>
 
 <pre><code># Clustering metric function
 robust_dist = function(x, y) { 
@@ -841,7 +852,7 @@ clustering_distance_columns = robust_dist,
 col = colorRamp2(c(-2, 0, 2), c(&quot;purple&quot;, &quot;white&quot;, &quot;orange&quot;)))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-a3580fa85ed00103.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141606.png" alt="" /></p>
 
 <h2 id="聚类方法">聚类方法</h2>
 
@@ -851,7 +862,7 @@ col = colorRamp2(c(-2, 0, 2), c(&quot;purple&quot;, &quot;white&quot;, &quot;ora
 clustering_method_columns = &quot;ward.D&quot;)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-c542bd89bd2b8ef2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141623.png" alt="" /></p>
 
 <h2 id="热图拆分">热图拆分</h2>
 
@@ -862,26 +873,26 @@ clustering_method_columns = &quot;ward.D&quot;)
 # split into 2 groupsHeatmap(df, name = &quot;mtcars&quot;, col = mycol, k = 2)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-a12bdb36af791864.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141638.png" alt="" /></p>
 
 <pre><code># split by a vector specifying row classes， 有点类似于ggplot2里的分面
 Heatmap(df, name = &quot;mtcars&quot;, col = mycol, split = mtcars$cyl )
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-03aaca5b56b58b89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141655.png" alt="" /></p>
 
 <pre><code>#split也可以是一个数据框，其中不同级别的组合拆分热图的行。
 # Split by combining multiple variables
 Heatmap(df, name =&quot;mtcars&quot;, col = mycol, split = data.frame(cyl = mtcars$cyl, am = mtcars$am))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-ddb8f5cd7783f7ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141711.png" alt="" /></p>
 
 <pre><code># Combine km and split
 Heatmap(df, name =&quot;mtcars&quot;, col = mycol, km = 2, split = mtcars$cyl)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-5f8ed156f47b714d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141725.png" alt="" /></p>
 
 <pre><code>#也可以自定义分割
 library(&quot;cluster&quot;)
@@ -890,7 +901,7 @@ pa = pam(df, k = 3)Heatmap(df, name = &quot;mtcars&quot;, col = mycol, split = p
 pa$clustering))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-8b2b49dda4e4d01b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141741.png" alt="" /></p>
 
 <blockquote>
 <p>还可以将用户定义的树形图和分割相结合。在这种情况下，<code>split</code>可以指定为单个数字：</p>
@@ -901,7 +912,7 @@ grow_dend = color_branches(row_dend, k = 4)
 Heatmap(df, name = &quot;mtcars&quot;, col = mycol, cluster_rows = row_dend, split = 2)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-7d0430ea9a918019.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141800.png" alt="" /></p>
 
 <h2 id="热图注释">热图注释</h2>
 
@@ -915,7 +926,7 @@ Heatmap(df, name = &quot;mtcars&quot;, col = mycol, cluster_rows = row_dend, spl
 Heatmap(df, name =&quot;mtcars&quot;, col = mycol)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-b05bd797cc012742.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141817.png" alt="" /></p>
 
 <pre><code># Annotation data frame
 annot_df &lt;- data.frame(cyl = mtcars$cyl, am = mtcars$am, mpg = mtcars$mpg)
@@ -929,14 +940,14 @@ ha &lt;- HeatmapAnnotation(annot_df, col = col)
 Heatmap(df, name = &quot;mtcars&quot;, col = mycol, top_annotation = ha)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-542529c17f0077c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141835.png" alt="" /></p>
 
 <pre><code>#可以使用参数show_legend = FALSE来隐藏注释图例
 ha &lt;- HeatmapAnnotation(annot_df, col = col, show_legend = FALSE)
 Heatmap(df, name = &quot;mtcars&quot;, col = mycol, top_annotation = ha)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-e82c0d3998fdf782.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141851.png" alt="" /></p>
 
 <pre><code>#注释名称可以使用下面的R代码添加
 library(&quot;GetoptLong&quot;)
@@ -953,7 +964,7 @@ for(an in colnames(annot_df)) { seekViewport(qq(&quot;annotation_@{an}&quot;)) g
 unit(1, &quot;npc&quot;) - unit(2, &quot;mm&quot;), 0.5, default.units = &quot;npc&quot;, just = &quot;left&quot;)}
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-f421ede2e684f6fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141909.png" alt="" /></p>
 
 <h2 id="复杂注释">复杂注释</h2>
 
@@ -974,7 +985,7 @@ Heatmap(df, name = &quot;mtcars&quot;, col = mycol, column_names_gp = gpar(fonts
 top_annotation = ha_mix_top, top_annotation_height = unit(4, &quot;cm&quot;)) + ha_mix_right
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-492515c5a7fcc4d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141927.png" alt="" /></p>
 
 <h2 id="热图组合">热图组合</h2>
 
@@ -986,8 +997,11 @@ ht2 = Heatmap(df, name = &quot;ht2&quot;, col = colorRamp2(c(-2, 0, 2), c(&quot;
 ht1 + ht2
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-3ce17a03ce5f71af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" />
-&gt;可以使用选项width = unit（3，“cm”））来控制热图大小。注意，当组合多个热图时，第一个热图被视为主热图。剩余热图的一些设置根据主热图的设置自动调整。这些设置包括：删除行集群和标题，以及添加拆分等。</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141943.png" alt="" /></p>
+
+<blockquote>
+<p>可以使用选项width = unit（3，“cm”））来控制热图大小。注意，当组合多个热图时，第一个热图被视为主热图。剩余热图的一些设置根据主热图的设置自动调整。这些设置包括：删除行集群和标题，以及添加拆分等。</p>
+</blockquote>
 
 <pre><code>draw(ht1 + ht2, 
       # Titles 
@@ -999,7 +1013,7 @@ ht1 + ht2
      gap = unit(0.5, &quot;cm&quot;))
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-e348e9abf5f7cf82.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819141958.png" alt="" /></p>
 
 <p>可以使用参数<code>show_heatmap_legend = FALSE</code>，<code>show_annotation_legend = FALSE</code>删除图例。</p>
 
@@ -1028,7 +1042,7 @@ Heatmap(expr$chr, name = &quot;chr&quot;, width = unit(5, &quot;mm&quot;), col =
 <pre><code>densityHeatmap(df)
 </code></pre>
 
-<p><img src="https://upload-images.jianshu.io/upload_images/2084719-de948c8b938cfa9b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819142019.png" alt="" /></p>
 
 <h2 id="infos">Infos</h2>
 
@@ -1211,13 +1225,13 @@ Heatmap(expr$chr, name = &quot;chr&quot;, width = unit(5, &quot;mm&quot;), col =
           
           <li><a href="/post/2017-06-11.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E5%88%A9%E7%94%A8ggplot2%E7%BB%98%E5%88%B6%E6%95%A3%E7%82%B9%E5%9B%BE/">ggplot2学习笔记系列之利用ggplot2绘制散点图</a></li>
           
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggrepel%E5%8C%85/">”R语言可视化学习笔记之ggrepel包“</a></li>
-          
-          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9F%A9%E9%98%B5%E5%88%86%E6%9E%90%E5%8F%8A%E5%85%B6%E5%8F%AF%E8%A7%86%E5%8C%96/">R语言学习笔记之相关性矩阵分析及其可视化</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/">R语言可视化学习笔记之添加p-value和显著性标记</a></li>
           
           <li><a href="/post/2017-06-25.%E7%94%A8circlize%E5%8C%85%E7%BB%98%E5%88%B6circos-plot/">用circlize包绘制circos-plot</a></li>
           
-          <li><a href="/post/2017-06-25.ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%97%E4%B9%8B%E4%B8%BB%E9%A2%98theme%E8%AE%BE%E7%BD%AE/">ggplot2学习笔记系列之主题（theme）设置</a></li>
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%81%9A%E7%B1%BB%E5%88%86%E6%9E%90/">R语言学习笔记之聚类分析</a></li>
+          
+          <li><a href="/post/2017-06-25.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%9B%B8%E5%85%B3%E7%9F%A9%E9%98%B5%E5%8F%AF%E8%A7%86%E5%8C%96%E5%8C%85ggcorrplot/">R语言可视化学习笔记之相关矩阵可视化包ggcorrplot</a></li>
           
         </ul>
       </div>
@@ -1388,7 +1402,7 @@ Heatmap(expr$chr, name = &quot;chr&quot;, width = unit(5, &quot;mm&quot;), col =
   <p class="powered-by">
     &copy; Tao Yan, 2018-2019 &middot; 
 
-    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/mywebsite" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
     <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
 

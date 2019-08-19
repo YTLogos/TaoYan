@@ -17,7 +17,7 @@
       <link>https://taoyan.netlify.com/post/2017-07-01.r4ds%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggplot2/</link>
       <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
       <guid>https://taoyan.netlify.com/post/2017-07-01.r4ds%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggplot2/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-515da9e1fb644123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145900.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;为了进一步加强以及整合自己&lt;strong&gt;data science&lt;/strong&gt;的能力，最近打算在&lt;a href=&#34;https://ytlogos.github.io/&#34; target=&#34;_blank&#34;&gt;我的博客&lt;/a&gt;开辟一个新类&lt;strong&gt;r4ds&lt;/strong&gt;，专门用来记录学习&lt;strong&gt;Hadley Wickham&lt;/strong&gt;大神的新作&lt;a href=&#34;https://r4ds.had.co.nz/&#34; target=&#34;_blank&#34;&gt;R for Data Science&lt;/a&gt;的读书笔记。该书推荐我们入门data science可以从可视化开始，这也是该书目录布局的第一章。因此开始学习R语言可视化。&lt;/p&gt;
 
@@ -42,7 +42,7 @@ library(tidyverse)
 &lt;pre&gt;&lt;code&gt;head(mpg)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-08f00cbdb4b66222.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145912.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;在各个变量中：
 * disp:车发动机大小
@@ -53,7 +53,7 @@ library(tidyverse)
 &lt;pre&gt;&lt;code&gt;ggplot(data=mpg)+ geom_point(mapping = aes(x=displ, y=hwy))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8feb017d39aaa075.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145926.png&#34; alt=&#34;&#34; /&gt;
 图中显示两者呈现负相关，disp越大，hwy越低。
 &lt;strong&gt;ggplot2&lt;/strong&gt;绘图规则主要如下：&lt;/p&gt;
 
@@ -67,7 +67,7 @@ library(tidyverse)
 p+geom_point(aes(x=displ, y=hwy))#add a layer to the empty graph
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-8feb017d39aaa075.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145941.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;美学映射aesthetic-mappings&#34;&gt;美学映射Aesthetic Mappings&lt;/h2&gt;
 
@@ -79,30 +79,30 @@ p+geom_point(aes(x=displ, y=hwy))#add a layer to the empty graph
 geom_point(aes(x=displ, y=hwy, color=class))#将class映射给颜色属性，这样不同class就表现不同颜色
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-515da9e1fb644123.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819145951.png&#34; alt=&#34;&#34; /&gt;
 可以看到，通过颜色映射&lt;strong&gt;ggplot2&lt;/strong&gt;会自动创建一个&lt;strong&gt;legend&lt;/strong&gt;，需要注意的是这里颜色颜色我们是利用class，这是一个离散性变量，如果我们将之映射给点的size，则会出现warning,至于原因，看warning。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggplot(mpg)+ geom_point(aes(x=displ, y=hwy, size=class))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-75b7814d86b5f5b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150002.png&#34; alt=&#34;&#34; /&gt;
 或者将class映射给alpha参数，这是一个控制点透明度的参数;shape是一个控制形状的参数&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggplot(mpg)+ geom_point(aes(x=displ, y=hwy, alpha=class))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-1d6dd6c8cbe3b016.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150015.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggplot(mpg)+ geom_point(aes(x=displ, y=hwy, shape=class))
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-53c76d1b9cf0fea6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150026.png&#34; alt=&#34;&#34; /&gt;
 发现当映射shape其中SUV是没有形状的，这是因为&lt;strong&gt;ggplot2&lt;/strong&gt;只默认6种形状，这个问题后续解决。 需要注意的是映射参数必须在aes(),不然就无法映射。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ggplot(mpg)+ geom_point(aes(x=displ, y=hwy), color=&amp;quot;blue&amp;quot;)#all the points are blue
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://upload-images.jianshu.io/upload_images/2084719-742710de940018e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&#34; alt=&#34;&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20190819150040.png&#34; alt=&#34;&#34; /&gt;
 今天就讲到这，下次继续&lt;/p&gt;
 
 &lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;

@@ -55,7 +55,7 @@
   title = "Reddit"
   icon_pack = "fab"
   icon = "jianshu"
-  enable = true
+  enable = false
 
 [[buttons]]
   id = "pinterest"

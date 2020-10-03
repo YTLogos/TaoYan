@@ -3,30 +3,19 @@
   command = "hugo"
 
 [context.production.environment]
-<<<<<<< HEAD
   HUGO_VERSION = "0.71.1"
-=======
-  HUGO_VERSION = "0.68.0"
->>>>>>> 4b74bccec4e0ad24d022ca4b3ec64e609472ace3
   HUGO_ENV = "production"
   HUGO_ENABLEGITINFO = "true"
   
 [context.branch-deploy.environment]
-<<<<<<< HEAD
   HUGO_VERSION = "0.71.1"
 
 [context.deploy-preview.environment]
   HUGO_VERSION = "0.71.1"
-=======
-  HUGO_VERSION = "0.68.0"
->>>>>>> 4b74bccec4e0ad24d022ca4b3ec64e609472ace3
   
 [context.deploy-preview]
   command = "hugo -b $DEPLOY_PRIME_URL --buildFuture"
 
 [context.branch-deploy]
   command = "hugo -b $DEPLOY_PRIME_URL --buildFuture"
-<<<<<<< HEAD
 
-=======
->>>>>>> 4b74bccec4e0ad24d022ca4b3ec64e609472ace3

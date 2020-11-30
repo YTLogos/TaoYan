@@ -1,9 +1,5 @@
 {{ $is_list := .is_list }}
-{{ $share := .share | default false }}
 {{ $page := .page }}
-
-<meta content="{{ $page.Params.Date }}" itemprop="datePublished">
-<meta content="{{ $page.Params.LastMod }}" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -27,7 +23,7 @@
           {{ i18n "last_updated" }}
       {{ end }}
     {{ end }}
-    <time>{{ $date }}</time>
+    {{ $date }}
   </span>
   {{ end }}
 
@@ -57,19 +53,15 @@
   {{ end}}
 
   {{ $taxonomy := "categories" }}
-  {{ with $page.Param $taxonomy }}
+  {{ if $page.Param $taxonomy }}
   <span class="middot-divider"></span>
   <span class="article-categories">
     <i class="fas fa-folder mr-1"></i>
-    {{- range $index, $value := . -}}
+    {{- range $index, $value := ($page.GetTerms $taxonomy) -}}
       {{- if gt $index 0 }}, {{ end -}}
-      <a href="{{ (site.GetPage (printf "/%s/%s" $taxonomy (. | urlize))).RelPermalink }}">{{ . }}</a>
+      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
     {{- end -}}
   </span>
-  {{ end }}
-
-  {{ if $share }}
-    {{ partial "share.html" $page }}
   {{ end }}
 
 </div>

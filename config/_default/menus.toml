@@ -25,7 +25,7 @@
 
 [[main]]
   name = "Resume"
-  url = "files/pdf/CV.pdf"
+  url = "pdf/CV.pdf"
   weight = 40
 
 # Link to a PDF of your resume/CV from the menu.

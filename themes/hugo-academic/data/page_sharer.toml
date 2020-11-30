@@ -14,7 +14,7 @@
   url = "https://www.facebook.com/sharer.php?u={url}&t={title}"
   title = "Facebook"
   icon_pack = "fab"
-  icon = "facebook-f"
+  icon = "facebook"
   enable = true
 
 [[buttons]]
@@ -35,7 +35,7 @@
 
 [[buttons]]
   id = "whatsapp"
-  url = "https://web.whatsapp.com/send?text={title}%20{url}"
+  url = "whatsapp://send?text={title}%20{url}"
   title = "WhatsApp"
   icon_pack = "fab"
   icon = "whatsapp"
@@ -50,12 +50,12 @@
   enable = true
 
 [[buttons]]
-  id = "Jianshu"
-  url = "https://jianshu.com//submit?url={url}&title={title}"
+  id = "reddit"
+  url = "https://reddit.com/submit?url={url}&title={title}"
   title = "Reddit"
   icon_pack = "fab"
-  icon = "jianshu"
-  enable = true
+  icon = "reddit-alien"
+  enable = false
 
 [[buttons]]
   id = "pinterest"

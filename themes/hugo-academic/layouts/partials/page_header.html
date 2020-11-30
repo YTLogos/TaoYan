@@ -19,9 +19,9 @@
 <div class="article-header">
   {{ $img_src := urls.Parse .Params.header.image }}
   {{ if $img_src.Scheme }}
-  <img src="{{ .Params.header.image }}" class="article-banner" itemprop="image" alt="">
+  <img src="{{ .Params.header.image }}" class="article-banner" alt="">
   {{ else }}
-  <img src="{{ (printf "/img/%s" .Params.header.image) | relURL }}" class="article-banner" itemprop="image" alt="">
+  <img src="{{ (printf "/img/%s" .Params.header.image) | relURL }}" class="article-banner" alt="">
   {{ end }}
 
   {{ with .Params.header.caption }}<span class="article-header-caption">{{ . | markdownify | emojify }}</span>{{ end }}
@@ -53,7 +53,7 @@
 {{end}}
 
 <div class="article-container pt-3">
-  <h1 itemprop="name">{{ $title }}</h1>
+  <h1>{{ $title }}</h1>
 
   {{ with $page.Params.subtitle }}
   <p class="page-subtitle">{{ . | markdownify | emojify }}</p>
@@ -66,7 +66,7 @@
 {{/* Featured image */}}
 <div class="article-header {{$image_container}} featured-image-wrapper mt-4 mb-4" style="max-width: {{$image.Width}}px; max-height: {{$image.Height}}px;">
   <div style="position: relative">
-    <img src="{{ $image.RelPermalink }}" alt="" class="featured-image">
+    <img src="{{ $image.RelPermalink }}" alt="{{ with $.Params.image.alt_text }}{{.}}{{ end }}" class="featured-image">
     {{ with $.Params.image.caption }}<span class="article-header-caption">{{ . | markdownify | emojify }}</span>{{ end }}
   </div>
 </div>
@@ -79,7 +79,7 @@
     {{ $ctnr = "universal-wrapper" }}
   {{end}}
 <div class="{{$ctnr}} pt-3">
-  <h1 itemprop="name">{{ $title }}</h1>
+  <h1>{{ $title }}</h1>
 
   {{ with $page.Params.subtitle }}
   <p class="page-subtitle">{{ . | markdownify | emojify }}</p>

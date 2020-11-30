@@ -86,14 +86,14 @@ phone = "+86 13372566428"
 
 # Address
 # For country_code, use the 2-letter ISO code (see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 )
-address = "Building A Room 369, Zhejiang University (ZJG Campus), Hangzhou, 310058, China"
+# address = "Building A Room 369, Zhejiang University (ZJG Campus), Hangzhou, 310058, China"
 
 # Geographic coordinates
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
 coordinates = {latitude = "30.298715", longitude = "120.086917"}
 
 # Directions for visitors to locate you.
-directions = "Enter Building A and take the stairs to Office 369 on Floor 3"
+#vdirections = "Enter Building A and take the stairs to Office 369 on Floor 3"
 
 # Office hours
 # A list of your office hours. To remove, set to an empty list `[]`.

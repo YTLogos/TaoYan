@@ -53,7 +53,7 @@ description = "Personal website of Tao Yan"
 # Enable source code highlighting? true/false
 # Documentation: https://sourcethemes.com/academic/docs/writing-markdown-latex/#highlighting-options
 highlight = true
-highlight_languages = ["r"]  # Add support for highlighting additional languages
+highlight_languages = ["r", "Shell", "Python"]  # Add support for highlighting additional languages
 highlight_style = "tomorrow"  # For supported styles, see https://cdnjs.com/libraries/highlight.js/
 
 # Enable LaTeX math rendering? true/false
@@ -230,15 +230,15 @@ plugins_js  = []
   #   0: No search engine
   #   1: Academic (built-in)
   #   2: Algolia (https://www.algolia.com)
-  engine = 1
+  engine = 2
 
   # Configuration of Algolia search engine.
   # Paste the values from your Algolia dashboard.
   [search.algolia]
-    app_id = ""
-    api_key = ""
-    index_name = ""
-    show_logo = false
+    app_id = "Q41IFWC735"
+    api_key = "a8ed1aa67d4f38fde68006c12b1cbcdf"
+    index_name = "TaoYan"
+    show_logo = true
 
 ############################
 ## Maps

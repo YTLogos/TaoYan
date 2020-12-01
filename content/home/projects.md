@@ -32,9 +32,10 @@ subtitle = ""
   [[content.filter_button]]
     name = "website"
     tag = "Website"
+
   [[content.filter_button]]
-    name = "Packages"
-    tag = "R"
+    name = "software"
+    tag = "software"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.

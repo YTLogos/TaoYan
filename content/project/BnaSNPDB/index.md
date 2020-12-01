@@ -14,7 +14,7 @@ categories:
 tags:
 - R
 - Shiny
-- Website
+- website
 
 url_code: "https://github.com/YTLogos/BnaSNPDB"
 url_pdf: "pdf/2020-bnasnpdb.pdf"

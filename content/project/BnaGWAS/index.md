@@ -14,7 +14,7 @@ categories:
 tags:
 - R
 - Shiny
-- Website
+- website
 
 url_code: "https://github.com/YTLogos/BnaGWAS"
 url_pdf: ""

@@ -2,7 +2,7 @@
 name = "alison"
 
 # Is theme light or dark?
-light = true
+#light = true
 
 # Primary
 primary = "#06805E"

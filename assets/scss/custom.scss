@@ -249,6 +249,7 @@ img {
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
+
 iframe {
 	border: 0;
 }
@@ -290,4 +291,13 @@ iframe {
 
 .section-heading p {
 	color: #004346;
+}
+
+
+/* below is my personal css */
+
+.media.stream-item img {
+  max-width: 500px;
+  height: auto;
+  object-fit: cover;
 }

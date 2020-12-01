@@ -34,7 +34,7 @@ subtitle = ""
     tag = "R"
     
   [[content.filter_button]]
-    name = "Software"
+    name = "software"
     tag = "software"
 
 #  [[content.filter_button]]

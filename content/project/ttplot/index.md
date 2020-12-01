@@ -12,7 +12,7 @@ image:
 categories:
 - software
 tags:
-- Software
+- software
 - R
 
 url_code: "https://github.com/YTLogos/ttplot"

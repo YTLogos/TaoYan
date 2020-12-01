@@ -1,6 +1,6 @@
 ---
 authors:
-- taoyan
+- alison
 bio: My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.
 education:
   courses:

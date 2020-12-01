@@ -29,7 +29,7 @@ social:
   link: "mailto:tyan@zju.edu.cn"  
 - icon: envelope
   icon_pack: fas
-  link: '#contact'
+  link: 'mailto:tyan@zju.edu.cn'
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/TaoYANLogos

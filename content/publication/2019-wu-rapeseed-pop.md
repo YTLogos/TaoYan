@@ -16,6 +16,7 @@ url_pdf = "pdf/2019-wu-rapeseed-pop.pdf"
 url_project = ""
 url_slides = "pdf/2019-jiang-mp-slide.pdf"
 url_video = ""
+url_poster = "pdf/2019-mp-poster.pdf"
 
 [[url_custom]]
 name = "View Journal Article"

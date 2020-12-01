@@ -22,6 +22,7 @@ url_pdf = "pdf/2018-zhou-night-temp-rapeseed.pdf"
 url_project = ""
 url_slides = ""
 url_video = ""
+url_poster = "pdf/2019-zhou-jxb-poster.pdf"
 
 [[url_custom]]
 name = "View Journal Article"

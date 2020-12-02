@@ -31,7 +31,7 @@ subtitle = ""
   
   [[content.filter_button]]
     name = "website"
-    tag = "Website"
+    tag = "website"
 
   [[content.filter_button]]
     name = "software"

@@ -1,7 +1,7 @@
 ---
 authors:
 - alison
-bio: My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.
+bio: I am a PhD student of Crop Genetics and Breeding at the *Zhejiang University* Crop Science Lab. My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of Oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.
 education:
   courses:
   - course: PhD Candidate in Crop Genetics and Breeding
@@ -45,4 +45,4 @@ user_groups:
 - Visitors
 ---
 
-I am a PhD student of Crop Genetics and Breeding at the *Zhejiang University* Crop Science Lab. My Ph.D research work covers a range of issues : **Population Genetics Evolution and Ecotype Divergence Analysis of oilseed Rape**, **Genome-wide Association Study (GWAS) of Agronomic Traits**. Currently, I am interested in Transposable Elements Insertion Polymorphisms (TIPs) in Crop Population and genetic basis such as SV, CNV and TIPs etc shapes the diversity of different morphotypes of *B.napus*.
+I am a PhD student of Crop Genetics and Breeding at the *Zhejiang University* Crop Science Lab. My Ph.D research work covers a range of issues : **Population Genetics Evolution and Ecotype Divergence Analysis of Oilseed Rape**, **Genome-wide Association Study (GWAS) of Agronomic Traits**. Currently, I am interested in Transposable Elements Insertion Polymorphisms (TIPs) in Crop Population and genetic basis such as SV, CNV and TIPs etc shapes the diversity of different morphotypes of *B. napus*.

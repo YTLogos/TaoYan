@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>layout | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/layout/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/layout/index.xml" rel="self" type="application/rss+xml" />
+    <description>layout</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Fri, 10 Apr 2020 10:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>layout</title>
+      <link>https://taoyan.netlify.app/tags/layout/</link>
+    </image>
+    
+    <item>
+      <title>Shiny学习笔记:UI之布局</title>
+      <link>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%B8%83%E5%B1%80/</link>
+      <pubDate>Fri, 10 Apr 2020 10:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%B8%83%E5%B1%80/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410222025.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;前面学习了UI中的输入输出，下面学习如何将它们布局在页面上。UI布局由&lt;code&gt;layout&lt;/code&gt;完成，这里主要学习&lt;code&gt;fluidPage()&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;布局&#34;&gt;布局&lt;/h2&gt;
+&lt;p&gt;布局是一层层设计的，每一层布局在输出中都有对应。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fluidPage(
+  titlePanel(),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(&amp;quot;obs&amp;quot;)
+    ),
+    mainPanel(
+      plotOutput(&amp;quot;distPlot&amp;quot;)
+    )
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;page函数&#34;&gt;Page()函数&lt;/h3&gt;
+&lt;p&gt;最重要的布局函数&lt;code&gt;fluidPage()&lt;/code&gt;。&lt;code&gt;fluidPage()&lt;/code&gt;设置了&lt;strong&gt;Shiny&lt;/strong&gt;所需要的&lt;code&gt;HTML&lt;/code&gt;、&lt;code&gt;CSS&lt;/code&gt;以及&lt;code&gt;JS&lt;/code&gt;。&lt;code&gt;fluidPage()&lt;/code&gt;使用的布局系统是
+&lt;a href=&#34;https://getbootstrap.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bootstrap&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;sidebar&#34;&gt;sidebar&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;sidebarLayout()&lt;/code&gt;连同&lt;code&gt;titlePanel&lt;/code&gt;、&lt;code&gt;sidebarPanel&lt;/code&gt;、&lt;code&gt;mainPanel&lt;/code&gt;可以将输入布局到左侧，输出布局到右侧，默认是这样，在&lt;code&gt;sidebarLayout()&lt;/code&gt;s设置&lt;code&gt;position=&amp;quot;right&amp;quot;&lt;/code&gt;，则布局相反。基本语法如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fluidPage(
+  titlePanel(
+    # app title/description
+  ),
+  sidebarLayout(
+    sidebarPanel(
+      # inputs
+    ),
+    mainPanel(
+      # outputs
+    )
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;基本布局如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410220131.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下面是一个例子展示中心极限定理&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  headerPanel(&amp;quot;Central limit theorem&amp;quot;),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput(&amp;quot;m&amp;quot;, &amp;quot;Number of samples:&amp;quot;, 50, min = 1, max = 100)
+    ),
+    mainPanel(
+      plotOutput(&amp;quot;hist&amp;quot;)
+    )
+  )
+)
+
+server &amp;lt;- function(input, output, session) {
+  output$hist &amp;lt;- renderPlot({
+    means &amp;lt;- replicate(1e4, mean(runif(input$m)))
+    hist(means, breaks = 20)
+  })
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410220349.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;多行布局&#34;&gt;多行布局&lt;/h3&gt;
+&lt;p&gt;多行布局可以利用&lt;code&gt;fluidRow()&lt;/code&gt;创建多行，&lt;code&gt;column()&lt;/code&gt;创建多列，模板如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fluidPage(
+  fluidRow(
+    column(4, 
+      ...
+    ),
+    column(8, 
+      ...
+    )
+  ),
+  fluidRow(
+    column(6, 
+      ...
+    ),
+    column(6, 
+      ...
+    )
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;布局如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410220805.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;column()&lt;/code&gt;的第一个参数是宽度，每一行的总宽度是12&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;主题&#34;&gt;主题&lt;/h3&gt;
+&lt;p&gt;有一个&lt;strong&gt;Shiny&lt;/strong&gt;主题包&lt;code&gt;shinythemes&lt;/code&gt;，提供了很多种&lt;code&gt;theme&lt;/code&gt;，具体可以查看
+&lt;a href=&#34;http://rstudio.github.io/shinythemes/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我这里也提供一个
+&lt;a href=&#34;http://rapeseed.zju.edu.cn:3838/shinythemes_show/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Shiny App&lt;/strong&gt;&lt;/a&gt;浏览不同主题效果。&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-ui.html&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

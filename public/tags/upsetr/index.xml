@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UpSetR | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/upsetr/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/upsetr/index.xml" rel="self" type="application/rss+xml" />
+    <description>UpSetR</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Sun, 15 Oct 2017 12:34:08 -0500</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>UpSetR</title>
+      <link>https://taoyan.netlify.app/tags/upsetr/</link>
+    </image>
+    
+    <item>
+      <title>R语言可视化之UpSetR包</title>
+      <link>https://taoyan.netlify.app/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</link>
+      <pubDate>Sun, 15 Oct 2017 12:34:08 -0500</pubDate>
+      <guid>https://taoyan.netlify.app/post/2017-10-15.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B9%8Bupsetr%E5%8C%85/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JK4Hhj821g.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;集合可视化我们用得最多的是韦恩图，韦恩图在集合数少的时候是很好用的，但是当集合数多比如五个以上的时候那就会看花眼了，比如下面这副含有6个集合韦恩图，是发表在&lt;strong&gt;Nature&lt;/strong&gt;上的文章里的，漂亮是漂亮，但是眼都快看花了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Khec36GlKg.png?raw=true&#34; alt=&#34;banana&#34;&gt;&lt;/p&gt;
+&lt;p&gt;今天介绍一个R包&lt;strong&gt;UpSetR&lt;/strong&gt;，专门用来集合可视化，来源于
+&lt;a href=&#34;http://caleydo.org/tools/upset/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;UpSet&lt;/a&gt;，Python里面也有一个相似的包&lt;strong&gt;py-upset&lt;/strong&gt;。此外还有个
+&lt;a href=&#34;https://gehlenborglab.shinyapps.io/upsetr/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;UpSetR shiny app&lt;/a&gt;以及
+&lt;a href=&#34;https://github.com/hms-dbmi/UpSetR-shiny&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;源代码&lt;/a&gt;.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;p&gt;两种方式安装：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#从CRAN安装
+install.packages(&amp;quot;UpSetR&amp;quot;)
+#从Github上安装
+devtools::install_github(&amp;quot;hms-dbmi/UpSetR&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;数据导入&#34;&gt;数据导入&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;UpSetR&lt;/strong&gt;提供了两个函数&lt;code&gt;fromList&lt;/code&gt;以及&lt;code&gt;fromExpression&lt;/code&gt;将数据转换为&lt;strong&gt;UpsetR&lt;/strong&gt;适用的数据格式。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#fromList
+listinput &amp;lt;- list(one = c(1, 2, 3, 5, 7, 8, 11, 12, 13), two = c(1, 2, 4, 5, 
+    10), three = c(1, 5, 6, 7, 8, 9, 10, 12, 13))
+#fromExpression
+expressionInput &amp;lt;- c(one = 2, two = 1, three = 2, `one&amp;amp;two` = 1, `one&amp;amp;three` = 4, 
+    `two&amp;amp;three` = 1, `one&amp;amp;two&amp;amp;three` = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来就可以绘制绘制图形了&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(UpSetR)
+upset(fromList(listinput), order.by = &amp;quot;freq&amp;quot;)
+#下面绘制的图形等同于上图
+upset(fromExpression(expressionInput), order.by = &amp;quot;freq&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/m0KhE6H1EG.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参数详解&#34;&gt;参数详解&lt;/h2&gt;
+&lt;p&gt;下面所有的例子都将使用&lt;strong&gt;UpSetR&lt;/strong&gt;内置的数据集&lt;code&gt;movies&lt;/code&gt;来绘制。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#导入数据
+movies &amp;lt;- read.csv(system.file(&amp;quot;extdata&amp;quot;, &amp;quot;movies.csv&amp;quot;, package = &amp;quot;UpSetR&amp;quot;), header = TRUE, sep = &amp;quot;;&amp;quot;)
+#先大致浏览一下该数据集,数据集太长，就只看前几列
+knitr::kable(head(movies[,1:10]))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/56g2k8ba7B.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;该数据集展示的是电影名（name）、发行时间（ReleaseDate）以及电影类型，多了去了就不详讲了，自个可以看去。
+&lt;strong&gt;UpsetR&lt;/strong&gt;绘制集合可视化图形使用函数&lt;code&gt;upset()&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, nsets = 6, number.angles = 30, point.size = 2, line.size = 1, mainbar.y.label = &amp;quot;Genre Intersections&amp;quot;, sets.x.label = &amp;quot;Movies Per Genre&amp;quot;, text.scale = c(1.3, 1.3, 1, 1, 1.5, 1))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/claalIAdBg.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;解释一下上面部分参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;nsets: 顾名思义，就是展示几个集合，&lt;code&gt;movies&lt;/code&gt;数据集由20几个集合，不可能全部展示，另外从图中可以看出，这6个集合应该不是按顺序选择的。&lt;/li&gt;
+&lt;li&gt;numble.angle: 柱子上的数字看到了吧，这个参数就是调整数字角度的，可有可无的&lt;/li&gt;
+&lt;li&gt;mainbar.y.label/sets.x.label：坐标轴名称&lt;/li&gt;
+&lt;li&gt;text.scale(): 有六个数字，分别控制c(intersection size title, intersection size tick labels, set size title, set size tick labels, set names, numbers above bars)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;很多时候我们想要看特定的几个集合，&lt;strong&gt;UpSetR&lt;/strong&gt;满足我们的需求。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, sets = c(&amp;quot;Action&amp;quot;, &amp;quot;Adventure&amp;quot;, &amp;quot;Comedy&amp;quot;, &amp;quot;Drama&amp;quot;, &amp;quot;Mystery&amp;quot;, 
+    &amp;quot;Thriller&amp;quot;, &amp;quot;Romance&amp;quot;, &amp;quot;War&amp;quot;, &amp;quot;Western&amp;quot;), mb.ratio = c(0.55, 0.45), order.by = &amp;quot;freq&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/KC6gI5kg3H.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;文中的参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;mb.ratio: 控制上方条形图以及下方点图的比例&lt;/li&gt;
+&lt;li&gt;order.by: 如何排序，这里&lt;code&gt;freq&lt;/code&gt;表示从大到小排序展示，其他选项有&lt;code&gt;degree&lt;/code&gt;以及先按&lt;code&gt;freq&lt;/code&gt;再按&lt;code&gt;degree&lt;/code&gt;排序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;各个变量也可以通过参数&lt;code&gt;keep.order&lt;/code&gt;来排序&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, sets = c(&amp;quot;Action&amp;quot;, &amp;quot;Adventure&amp;quot;, &amp;quot;Comedy&amp;quot;, &amp;quot;Drama&amp;quot;, &amp;quot;Mystery&amp;quot;, 
+    &amp;quot;Thriller&amp;quot;, &amp;quot;Romance&amp;quot;, &amp;quot;War&amp;quot;, &amp;quot;Western&amp;quot;), mb.ratio = c(0.55, 0.45), order.by = &amp;quot;freq&amp;quot;, 
+    keep.order = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/KC2EhHf71g.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;也可以按&lt;code&gt;group&lt;/code&gt;进行展示，这图展示的就是按各个变量自身、两个交集、三个交集&amp;hellip;依次展示。参数&lt;code&gt;cutoff&lt;/code&gt;控制每个&lt;code&gt;group&lt;/code&gt;显示几个交集。
+参数&lt;code&gt;intersects&lt;/code&gt;控制总共显示几个交集。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, nintersects = 70, group.by = &amp;quot;sets&amp;quot;, cutoff = 7)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/29DlaBFaKc.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;还有很多参数比如控制颜色的参数，点、线大小等，具体可查看?upset&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;queries参数&#34;&gt;queries参数&lt;/h2&gt;
+&lt;p&gt;queries参数分为四个部分：&lt;code&gt;query&lt;/code&gt;, &lt;code&gt;param&lt;/code&gt;, &lt;code&gt;color&lt;/code&gt;, &lt;code&gt;active&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;query: 指定哪个query，&lt;strong&gt;UpSetR&lt;/strong&gt;有内置的，也可以自定义，说到底就是一个查询函数&lt;/li&gt;
+&lt;li&gt;param: list, query作用于哪个交集&lt;/li&gt;
+&lt;li&gt;color：每个query都是一个list，里面可以设置颜色,没设置的话将调用包里默认的调色板&lt;/li&gt;
+&lt;li&gt;active：被指定的条形图是否需要颜色覆盖，TRUE的话显示颜色，FALSE的话则在条形图顶端显示三角形&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;内置的intersects-query&#34;&gt;内置的intersects query&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, queries = list(list(query=intersects, params=list(&amp;quot;Drama&amp;quot;, &amp;quot;Comedy&amp;quot;, &amp;quot;Action&amp;quot;), color=&amp;quot;orange&amp;quot;, active=T),
+                             list(query=intersects, params=list(&amp;quot;Drama&amp;quot;), color=&amp;quot;red&amp;quot;, active=F),
+                             list(query=intersects, params=list(&amp;quot;Action&amp;quot;, &amp;quot;Drama&amp;quot;), active=T)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/IF81B9E86k.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;内置的elements-query&#34;&gt;内置的&lt;code&gt;elements&lt;/code&gt; query&lt;/h3&gt;
+&lt;p&gt;此query可以可视化特定交集在不同条件下的情况&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, queries = list(list(query=elements, params=list(&amp;quot;AvgRating&amp;quot;, 3.5, 4.1), color=&amp;quot;blue&amp;quot;, active=T),
+                             list(query=elements, params=list(&amp;quot;ReleaseDate&amp;quot;, 1980, 1990, 2000), color=&amp;quot;red&amp;quot;, active=F)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/66a2m1gmE2.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;自定义一个query&#34;&gt;自定义一个&lt;code&gt;query&lt;/code&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;myfunc &amp;lt;- function(row, release, rating){
+  newdata &amp;lt;- (row[&amp;quot;ReleaseDate&amp;quot;]%in%release)&amp;amp;(row[&amp;quot;AvgRating&amp;quot;]&amp;gt;rating)
+}
+upset(movies, queries = list(list(query=myfunc, params=list(c(1950,1960,1990,2000), 3.0), color=&amp;quot;red&amp;quot;, active=T)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/2B75j4641e.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;添加query图例&#34;&gt;添加&lt;code&gt;query&lt;/code&gt;图例&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, query.legend = &amp;quot;top&amp;quot;, queries = list(list(query = intersects, 
+    params = list(&amp;quot;Drama&amp;quot;, &amp;quot;Comedy&amp;quot;, &amp;quot;Action&amp;quot;), color = &amp;quot;orange&amp;quot;, active = T, 
+    query.name = &amp;quot;Funny action&amp;quot;), list(query = intersects, params = list(&amp;quot;Drama&amp;quot;), 
+    color = &amp;quot;red&amp;quot;, active = F), list(query = intersects, params = list(&amp;quot;Action&amp;quot;, 
+    &amp;quot;Drama&amp;quot;), active = T, query.name = &amp;quot;Emotional action&amp;quot;)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/jffFG8aKD6.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参数attributeplots&#34;&gt;参数&lt;code&gt;attribute.plots&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;主要是用于添加属性图，内置有柱形图、散点图、热图等&lt;/p&gt;
+&lt;h3 id=&#34;柱形图&#34;&gt;柱形图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, main.bar.color = &amp;quot;black&amp;quot;, queries = list(list(query = intersects, 
+    params = list(&amp;quot;Drama&amp;quot;), active = T)), attribute.plots = list(gridrows = 50, 
+    plots = list(list(plot = histogram, x = &amp;quot;ReleaseDate&amp;quot;, queries = F), list(plot = histogram, 
+        x = &amp;quot;AvgRating&amp;quot;, queries = T)), ncols = 2))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gfc18maAjI.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;散点图&#34;&gt;散点图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, main.bar.color = &amp;quot;black&amp;quot;, queries = list(list(query = intersects, 
+    params = list(&amp;quot;Drama&amp;quot;), color = &amp;quot;red&amp;quot;, active = F), list(query = intersects, 
+    params = list(&amp;quot;Action&amp;quot;, &amp;quot;Drama&amp;quot;), active = T), list(query = intersects, 
+    params = list(&amp;quot;Drama&amp;quot;, &amp;quot;Comedy&amp;quot;, &amp;quot;Action&amp;quot;), color = &amp;quot;orange&amp;quot;, active = T)), 
+    attribute.plots = list(gridrows = 45, plots = list(list(plot = scatter_plot, 
+        x = &amp;quot;ReleaseDate&amp;quot;, y = &amp;quot;AvgRating&amp;quot;, queries = T), list(plot = scatter_plot, 
+        x = &amp;quot;AvgRating&amp;quot;, y = &amp;quot;Watches&amp;quot;, queries = F)), ncols = 2), query.legend = &amp;quot;bottom&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JK4Hhj821g.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;箱线图&#34;&gt;箱线图&lt;/h3&gt;
+&lt;p&gt;箱线图可以展示数据的分布,通过参数&lt;code&gt;boxplot.summary&lt;/code&gt;控制，最多可以一次性显示两个箱线图&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;upset(movies, boxplot.summary = c(&amp;quot;AvgRating&amp;quot;, &amp;quot;ReleaseDate&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/FAH4If1bgh.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;还有一个十分重要的功能&lt;strong&gt;Incorporating Set Metadata&lt;/strong&gt;这里就不讲了，有兴趣的可以参考这份
+&lt;a href=&#34;https://cran.rstudio.com/web/packages/UpSetR/vignettes/set.metadata.plots.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;文档&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+## R version 3.4.2 (2017-09-28)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 15063)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] UpSetR_1.3.3
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.13     knitr_1.17       magrittr_1.5     munsell_0.4.3   
+##  [5] colorspace_1.3-2 rlang_0.1.2      stringr_1.2.0    highr_0.6       
+##  [9] plyr_1.8.4       tools_3.4.2      grid_3.4.2       gtable_0.2.0    
+## [13] htmltools_0.3.6  yaml_2.1.14      lazyeval_0.2.0   rprojroot_1.2   
+## [17] digest_0.6.12    tibble_1.3.4     gridExtra_2.3    ggplot2_2.2.1   
+## [21] evaluate_0.10.1  rmarkdown_1.6    labeling_0.3     stringi_1.1.5   
+## [25] compiler_3.4.2   scales_0.5.0     backports_1.1.1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

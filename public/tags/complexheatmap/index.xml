@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Complexheatmap | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/complexheatmap/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/complexheatmap/index.xml" rel="self" type="application/rss+xml" />
+    <description>Complexheatmap</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Sun, 08 Apr 2018 21:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Complexheatmap</title>
+      <link>https://taoyan.netlify.app/tags/complexheatmap/</link>
+    </image>
+    
+    <item>
+      <title>利用ComplexHeatmap绘制热图(一)</title>
+      <link>https://taoyan.netlify.app/post/2018-04-08.%E5%88%A9%E7%94%A8complexheatmap%E7%BB%98%E5%88%B6%E7%83%AD%E5%9B%BE%E4%B8%80/</link>
+      <pubDate>Sun, 08 Apr 2018 21:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-04-08.%E5%88%A9%E7%94%A8complexheatmap%E7%BB%98%E5%88%B6%E7%83%AD%E5%9B%BE%E4%B8%80/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6hE9lcGmjf.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Complexheatmap&lt;/strong&gt;是由
+&lt;a href=&#34;https://github.com/jokergoo&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;顾祖光&lt;/a&gt;博士创建的绘制热图的R包，在他的
+&lt;a href=&#34;https://github.com/jokergoo/ComplexHeatmap&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;GitHub&lt;/strong&gt;&lt;/a&gt;有十分详细的&lt;code&gt;小品文(Vignettes)&lt;/code&gt;说明。&lt;strong&gt;Complexheatmap&lt;/strong&gt;是基于绘图系统&lt;strong&gt;grid&lt;/strong&gt;，因此如果有相应&lt;strong&gt;grid&lt;/strong&gt;的知识，学习起来应该更顺手！&lt;/p&gt;
+&lt;h2 id=&#34;设计&#34;&gt;设计&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Complexheatmap&lt;/strong&gt;提供了一套非常灵活的方法用于多热图也就是热图列表布局以及支持自定义注释绘图，一个热图列表包含若干热图以及注释信息&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/FBA7hkj7a4.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;绘制单个热图&#34;&gt;绘制单个热图&lt;/h2&gt;
+&lt;h3 id=&#34;安装&#34;&gt;安装&lt;/h3&gt;
+&lt;p&gt;包的安装就不细说了，有不懂的可以翻我以前的博客，里面有详细的教程，下面直接给出安装代码不解释&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# installed from bioconductor
+source(&amp;quot;http://bioconductor.org/biocLite.R&amp;quot;)
+options(BioC_mirror=&amp;quot;http://mirrors.ustc.edu.cn/bioc/&amp;quot;)
+biocLite(&amp;quot;ComplexHeatmap&amp;quot;)
+# installed from GitHub
+if(!require(devtools)){install.packages(&amp;quot;devtools&amp;quot;)}
+devtools::install_github(&amp;quot;jokergoo/ComplexHeatmap&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;创建数据集&#34;&gt;创建数据集&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;pacman::p_load(ComplexHeatmap, circlize)
+set.seed(7)
+mat &amp;lt;- cbind(rbind(matrix(rnorm(16, -1),4), matrix(rnorm(32, 1), 8)), rbind(matrix(rnorm(24, 1), 4), matrix(rnorm(48, -1), 8)))
+mat &amp;lt;- mat[sample(nrow(mat), nrow(mat)), sample(ncol(mat), ncol(mat))]
+rownames(mat) &amp;lt;- paste0(&amp;quot;R&amp;quot;, 1:12)
+colnames(mat) &amp;lt;- paste0(&amp;quot;C&amp;quot;, 1:10)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;绘图&#34;&gt;绘图&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;ComplexHeatmap&lt;/strong&gt;绘制热图十分简单,使用默认参数&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(mat)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/KlK9dIHkk0.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;定制化&#34;&gt;定制化&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;ComplexHeatmap&lt;/strong&gt;十分灵活，可以自定义多种参数绘制热图&lt;/p&gt;
+&lt;h3 id=&#34;颜色&#34;&gt;颜色&lt;/h3&gt;
+&lt;p&gt;大多数情况下，绘制热图的矩阵都是连续性变量，通过提供颜色映射函数，我们可以自定义颜色，这主要是通过&lt;strong&gt;circlize&lt;/strong&gt;包中的&lt;code&gt;colorRamp2()&lt;/code&gt;函数来实现的,&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;mat2 &amp;lt;- mat
+mat2[1,1] &amp;lt;- 100000
+Heatmap(mat2, col = colorRamp2(c(-3,0,3), c(&amp;quot;green&amp;quot;,&amp;quot;white&amp;quot;,&amp;quot;red&amp;quot;)), cluster_rows = FALSE, cluster_columns = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/iGBchD1c3J.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看出，&lt;strong&gt;ComplexHeatmap&lt;/strong&gt;对于异常值也能显示出来，不会剔除掉&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(mat, col = rev(rainbow(10)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/eHkcmJld54.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果是离散型变量或者数值型、字符型变量的话，这时就需要特别指定颜色了&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#离散型变量/数值型变量
+discrete_mat &amp;lt;- matrix(sample(1:4, 100, replace = TRUE), 10, 10)
+colors &amp;lt;- structure(circlize::rand_color(4), names=c(&amp;quot;1&amp;quot;,&amp;quot;2&amp;quot;,&amp;quot;3&amp;quot;,&amp;quot;4&amp;quot;))
+Heatmap(discrete_mat, col = colors)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/C4IIB3Kebi.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#字符型变量
+character_mat &amp;lt;- matrix(sample(letters[1:4], 100, replace = TRUE), 10, 10)
+colors &amp;lt;- structure(circlize::rand_color(4), names=letters[1:4])
+Heatmap(character_mat, col = colors)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/DALJBe1FKb.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看出，对于离散型变量/数值型变量，默认对行/列进行聚类，而对于字符型变量，则不进行聚类&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ComplexHeatmap&lt;/strong&gt;允许数据中含有&lt;code&gt;NA&lt;/code&gt;,只需要通过参数&lt;code&gt;na_col&lt;/code&gt;来控制&lt;code&gt;NA&lt;/code&gt;的颜色&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;mat_with_NA &amp;lt;- mat
+mat_with_NA[sample(c(TRUE, FALSE), nrow(mat)*ncol(mat), replace = TRUE, prob = c(1,9))] &amp;lt;- NA
+Heatmap(mat_with_NA, na_col = &amp;quot;orange&amp;quot;, clustering_distance_rows = &amp;quot;pearson&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/3d9FbLfE8b.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ComplexHeatmap&lt;/strong&gt;默认使用
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Lab_color_space&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;LAB颜色空间(LAB color space)&lt;/a&gt;，&lt;code&gt;colorRamp2()&lt;/code&gt;提供了选择颜色空间的参数选项&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;f1 &amp;lt;- colorRamp2(seq(min(mat), max(mat), length=3), c(&amp;quot;blue&amp;quot;,&amp;quot;#EEEEEE&amp;quot;, &amp;quot;red&amp;quot;))
+f2 &amp;lt;- colorRamp2(seq(min(mat), max(mat), length=3), c(&amp;quot;blue&amp;quot;,&amp;quot;#EEEEEE&amp;quot;, &amp;quot;red&amp;quot;), space = &amp;quot;RGB&amp;quot;)
+H1 &amp;lt;- Heatmap(mat, col = f1, column_title = &amp;quot;LAB color space&amp;quot;)
+H2 &amp;lt;- Heatmap(mat, col = f2, column_title = &amp;quot;RGB color space&amp;quot;)
+H1+H2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6hE9lcGmjf.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ComplexHeatmap&lt;/strong&gt;提供了多种颜色空间选项，可以根据自身数据不断调整，选取合适的颜色空间&lt;/p&gt;
+&lt;h3 id=&#34;标题&#34;&gt;标题&lt;/h3&gt;
+&lt;p&gt;一个热图的标题有：图标题、图例标题、行列标题等
+&lt;code&gt;Heatmap&lt;/code&gt;里提供的&lt;code&gt;name&lt;/code&gt;参数默认的是图例的标题&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(mat, name = &amp;quot;legend&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/43dh8Jc9h3.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;图里标题可以通过&lt;code&gt;heatmap_legend_param()&lt;/code&gt;进行修改&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(mat, heatmap_legend_param = list(title=&amp;quot;legend&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/fa86cCBd61.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;行列标题&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(mat, name = &amp;quot;legend&amp;quot;, column_title = &amp;quot;Column&amp;quot;, row_title = &amp;quot;Row&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/i220513hIG.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(mat, name = &amp;quot;legend&amp;quot;, column_title = &amp;quot;Column&amp;quot;, column_title_side = &amp;quot;bottom&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ECkjcEedbA.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果需要修改图例参数，可以通过&lt;code&gt;gpar()&lt;/code&gt;参数&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(mat, name = &amp;quot;legend&amp;quot;,column_title = &amp;quot;Column&amp;quot;, row_title = &amp;quot;Row&amp;quot;, column_title_gp = gpar(fontsize=20, fontface=&amp;quot;bold&amp;quot;), row_title_gp = gpar(fontsize=20, fontface=&amp;quot;bold&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/bi079kAgg7.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;标题可以旋转(水平或竖直)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(mat, name = &amp;quot;legend&amp;quot;, row_title = &amp;quot;Row&amp;quot;, row_title_rot = 0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/i9dA7DDbLJ.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.4 (2018-03-15)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+## [1] circlize_0.4.3        ComplexHeatmap_1.17.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.16         digest_0.6.15        rprojroot_1.3-2     
+##  [4] backports_1.1.2      pacman_0.4.6         magrittr_1.5        
+##  [7] evaluate_0.10.1      GlobalOptions_0.0.13 stringi_1.1.7       
+## [10] GetoptLong_0.1.6     rmarkdown_1.9        RColorBrewer_1.1-2  
+## [13] rjson_0.2.15         tools_3.4.4          stringr_1.3.0       
+## [16] yaml_2.1.18          compiler_3.4.4       colorspace_1.3-2    
+## [19] shape_1.4.4          htmltools_0.3.6      knitr_1.20
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

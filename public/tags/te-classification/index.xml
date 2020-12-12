@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TE Classification | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/te-classification/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/te-classification/index.xml" rel="self" type="application/rss+xml" />
+    <description>TE Classification</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Sun, 15 Mar 2020 16:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>TE Classification</title>
+      <link>https://taoyan.netlify.app/tags/te-classification/</link>
+    </image>
+    
+    <item>
+      <title>TEsorter:转座子分类</title>
+      <link>https://taoyan.netlify.app/post/2020-03-15.tesorter%E8%BD%AC%E5%BA%A7%E5%AD%90%E5%88%86%E7%B1%BB/</link>
+      <pubDate>Sun, 15 Mar 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-03-15.tesorter%E8%BD%AC%E5%BA%A7%E5%AD%90%E5%88%86%E7%B1%BB/</guid>
+      <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;TEsorter&lt;/code&gt;是基于保守蛋白结构域以及
+&lt;a href=&#34;http://repeatexplorer.org/?page_id=918&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;REXdb&lt;/a&gt;数据库进行分类。&lt;code&gt;TEsorter&lt;/code&gt;不仅仅可以对&lt;code&gt;LTR-RTs&lt;/code&gt;进行分类，还可以对其它&lt;code&gt;Class Ⅰ&lt;/code&gt;以及&lt;code&gt;Class Ⅱ&lt;/code&gt;等类型的&lt;code&gt;TE&lt;/code&gt;进行分类，只要
+&lt;a href=&#34;http://repeatexplorer.org/?page_id=918&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;REXdb&lt;/a&gt;数据库覆盖了的TE都可以分类，具体如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;      --mobile_element                             
+          ¦--Class_I                                
+          ¦   ¦--SINE                               
+          ¦   ¦--LTR                                
+          ¦   ¦   ¦--Ty1                            
+          ¦   ¦   ¦   °--copia                      
+          ¦   ¦   ¦       ¦--Ale                    
+          ¦   ¦   ¦       ¦--Alesia                 
+          ¦   ¦   ¦       ¦--Angela                 
+          ¦   ¦   ¦       ¦--Bianca                 
+          ¦   ¦   ¦       ¦--Bryco                  
+          ¦   ¦   ¦       ¦--Lyco                   
+          ¦   ¦   ¦       ¦--Gymco-III              
+          ¦   ¦   ¦       ¦--Gymco-I                
+          ¦   ¦   ¦       ¦--Gymco-II               
+          ¦   ¦   ¦       ¦--Ikeros                 
+          ¦   ¦   ¦       ¦--Ivana                  
+          ¦   ¦   ¦       ¦--Gymco-IV               
+          ¦   ¦   ¦       ¦--Osser                  
+          ¦   ¦   ¦       ¦--SIRE                   
+          ¦   ¦   ¦       ¦--TAR                    
+          ¦   ¦   ¦       ¦--Tork                   
+          ¦   ¦   ¦       °--Ty1-outgroup           
+          ¦   ¦   °--Ty3                            
+          ¦   ¦       °--gypsy                      
+          ¦   ¦           ¦--non-chromovirus        
+          ¦   ¦           ¦   ¦--non-chromo-outgroup
+          ¦   ¦           ¦   ¦--Phygy              
+          ¦   ¦           ¦   ¦--Selgy              
+          ¦   ¦           ¦   °--OTA                
+          ¦   ¦           ¦       ¦--Athila         
+          ¦   ¦           ¦       °--Tat            
+          ¦   ¦           ¦           ¦--TatI       
+          ¦   ¦           ¦           ¦--TatII      
+          ¦   ¦           ¦           ¦--TatIII     
+          ¦   ¦           ¦           ¦--Ogre       
+          ¦   ¦           ¦           °--Retand     
+          ¦   ¦           °--chromovirus            
+          ¦   ¦               ¦--Chlamyvir          
+          ¦   ¦               ¦--Tcn1               
+          ¦   ¦               ¦--chromo-outgroup    
+          ¦   ¦               ¦--CRM                
+          ¦   ¦               ¦--Galadriel          
+          ¦   ¦               ¦--Tekay              
+          ¦   ¦               ¦--Reina              
+          ¦   ¦               °--chromo-unclass     
+          ¦   ¦--pararetrovirus                     
+          ¦   ¦--DIRS                               
+          ¦   ¦--Penelope                           
+          ¦   °--LINE                               
+          °--Class_II                               
+              ¦--Subclass_1                         
+              ¦   °--TIR                            
+              ¦       ¦--MITE                       
+              ¦       ¦--EnSpm                      
+              ¦       ¦   °--CACTA                  
+              ¦       ¦--hAT                        
+              ¦       ¦--Kolobok                    
+              ¦       ¦--Merlin                     
+              ¦       ¦--MuDR                       
+              ¦       ¦   °--Mutator                
+              ¦       ¦--Novosib                    
+              ¦       ¦--P                          
+              ¦       ¦--PIF                        
+              ¦       ¦   °--Harbinger              
+              ¦       ¦--PiggyBac                   
+              ¦       ¦--Sola1                      
+              ¦       ¦--Sola2                      
+              ¦       °--Tc1                        
+              ¦           °--Mariner                
+              °--Subclass_2                         
+                  °--Helitron   
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;TEsorter&lt;/code&gt;基于&lt;code&gt;python&lt;/code&gt;开发的，目前有两个版本，
+&lt;a href=&#34;https://github.com/zhangrengang/TEsorter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Python2版本&lt;/a&gt;以及
+&lt;a href=&#34;https://github.com/NBISweden/TEsorter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Python3版本&lt;/a&gt;,
+&lt;a href=&#34;https://github.com/NBISweden/TEsorter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Python3版本&lt;/a&gt;安装起来更友好。直接&lt;code&gt;conda&lt;/code&gt;一键安装(推荐)即可：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;conda install -c bioconda tesorter
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;没有&lt;code&gt;conda&lt;/code&gt;的话也可以按下面方法安装：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;依赖于&lt;code&gt;Python3&lt;/code&gt;环境以及&lt;code&gt;biopython&lt;/code&gt;库&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hmmscan 3.1x or 3.2x&lt;/code&gt;、&lt;code&gt;blast+&lt;/code&gt;,加入环境变量即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后安装&lt;code&gt;TEsorter&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/NBISweden/TEsorter
+cd TEsorter
+python setup.py install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;使用&#34;&gt;使用&lt;/h2&gt;
+&lt;p&gt;使用很简单：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ TEsorter  -h
+usage: TEsorter [-h] [-v] [-db {rexdb,rexdb-plant,rexdb-metazoa,gydb}]
+                   [-st {nucl,prot}] [-pre PREFIX] [-fw] [-p PROCESSORS]
+                   [-tmp TMP_DIR] [-cov MIN_COVERAGE] [-eval MAX_EVALUE]
+                   [-dp2] [-rule PASS2_RULE] [-nolib] [-norc] [-nocln]
+                   sequence
+
+positional arguments:
+  sequence              input TE sequences in fasta format [required]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show program&#39;s version number and exit
+  -db {rexdb,rexdb-plant,rexdb-metazoa,gydb}, --hmm-database {rexdb,rexdb-plant,rexdb-metazoa,gydb}
+                        the database used [default=rexdb]
+  -st {nucl,prot}, --seq-type {nucl,prot}
+                        &#39;nucl&#39; for DNA or &#39;prot&#39; for protein [default=nucl]
+  -pre PREFIX, --prefix PREFIX
+                        output prefix [default=&#39;{-s}.{-db}&#39;]
+  -fw, --force-write-hmmscan
+                        if False, will use the existed hmmscan outfile and
+                        skip hmmscan [default=False]
+  -p PROCESSORS, --processors PROCESSORS
+                        processors to use [default=4]
+  -tmp TMP_DIR, --tmp-dir TMP_DIR
+                        directory for temporary files [default=./tmp]
+  -cov MIN_COVERAGE, --min-coverage MIN_COVERAGE
+                        mininum coverage for protein domains in HMMScan output
+                        [default=20]
+  -eval MAX_EVALUE, --max-evalue MAX_EVALUE
+                        maxinum E-value for protein domains in HMMScan output
+                        [default=0.001]
+  -dp2, --disable-pass2
+                        do not further classify the unclassified sequences
+                        [default=False for `nucl`, True for `prot`]
+  -rule PASS2_RULE, --pass2-rule PASS2_RULE
+                        classifying rule [identity-coverage-length] in pass-2
+                        based on simliarity [default=80-80-80]
+  -nolib, --no-library  do not generate a library file for RepeatMasker
+                        [default=False]
+  -norc, --no-reverse   do not reverse complement sequences if they are
+                        detected in minus strand [default=False]
+  -nocln, --no-cleanup  do not clean up the temporary directory
+                        [default=False]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;建议植物的话就直接使用&lt;code&gt;rexdb-plant&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;结果&#34;&gt;结果&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;rice6.9.5.liban.rexdb.domtbl        HMMScan raw output
+rice6.9.5.liban.rexdb.dom.faa       protein sequences of domain, which can be used for phylogenetic analysis.
+rice6.9.5.liban.rexdb.dom.tsv       inner domains of TEs/LTR-RTs, which might be used to filter domains based on their scores and coverages.
+rice6.9.5.liban.rexdb.dom.gff3      domain annotations in `gff3` format
+rice6.9.5.liban.rexdb.cls.tsv       TEs/LTR-RTs classifications
+    Column 1: raw id
+    Column 2: Order, e.g. LTR
+    Column 3: Superfamily, e.g. Copia
+    Column 4: Clade, e.g. SIRE
+    Column 5: Complete, &amp;quot;yes&amp;quot; means one LTR Copia/Gypsy element with full GAG-POL domains.
+    Column 6: Strand, + or - or ?
+    Column 7: Domains, e.g. GAG|SIRE PROT|SIRE INT|SIRE RT|SIRE RH|SIRE; `none` for pass-2 classifications
+rice6.9.5.liban.rexdb.cls.lib       fasta library for RepeatMasker
+rice6.9.5.liban.rexdb.cls.pep       the same sequences as `rice6.9.5.liban.rexdb.dom.faa`, but id is changed with classifications.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中以&lt;code&gt;.cls.tsv&lt;/code&gt;结尾的文件里面就有我们需要的分类信息。&lt;/p&gt;
+&lt;h2 id=&#34;限制&#34;&gt;限制&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;针对每一个保守结构域，只会产生最佳比对的那一个&lt;/li&gt;
+&lt;li&gt;很多&lt;code&gt;TE&lt;/code&gt;无法被分类,可能是数据库不完善、&lt;code&gt;TE&lt;/code&gt;中突变太多，丢失了保守结构域&lt;/li&gt;
+&lt;li&gt;很多&lt;code&gt;TE&lt;/code&gt;没有保守结构域，比如非自主性转座子(&lt;code&gt;Non-autonomous TEs&lt;/code&gt;)以及一些不活跃的自主性转座子(&lt;code&gt;un-active autonomous TEs&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;其他&#34;&gt;其他&lt;/h2&gt;
+&lt;p&gt;该软件还提供了一些进化分析、序列提取的脚本，有兴趣的可以去
+&lt;a href=&#34;https://github.com/zhangrengang/TEsorter&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;主页&lt;/a&gt;浏览。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

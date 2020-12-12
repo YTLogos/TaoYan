@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R tips | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/r-tips/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/r-tips/index.xml" rel="self" type="application/rss+xml" />
+    <description>R tips</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Tue, 02 Jun 2020 16:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>R tips</title>
+      <link>https://taoyan.netlify.app/tags/r-tips/</link>
+    </image>
+    
+    <item>
+      <title>使用override.aes控制ggplot2中的图例外观</title>
+      <link>https://taoyan.netlify.app/post/2020-06-02.%E4%BD%BF%E7%94%A8override.aes%E6%8E%A7%E5%88%B6ggplot2%E4%B8%AD%E7%9A%84%E5%9B%BE%E4%BE%8B%E5%A4%96%E8%A7%82/</link>
+      <pubDate>Tue, 02 Jun 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-06-02.%E4%BD%BF%E7%94%A8override.aes%E6%8E%A7%E5%88%B6ggplot2%E4%B8%AD%E7%9A%84%E5%9B%BE%E4%BE%8B%E5%A4%96%E8%A7%82/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200720160555.png&#34; alt=&#34;20200720160555.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;本文来自于https://aosmith.rbind.io/2020/07/09/ggplot2-override-aes/，记录翻译学习&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ggplot2&lt;/strong&gt;中的&lt;code&gt;aesthetics&lt;/code&gt;以及&lt;code&gt;scale_*()&lt;/code&gt;函数会同时修改包括图例在内的整个图形。&lt;code&gt;guide_legend()&lt;/code&gt;中的&lt;code&gt;override.aes&lt;/code&gt;参数允许用户只修改图例外观，不会对图形的其他部分进行修改。这对于使图例更具可读性或者创建一些类型的组合图例十分有用。&lt;/p&gt;
+&lt;p&gt;本文先介绍&lt;code&gt;override.aes&lt;/code&gt;的一个基本示例，然后再介绍另外三种绘图方案以说明&lt;code&gt;override.aes&lt;/code&gt;如何使用。&lt;/p&gt;
+&lt;h2 id=&#34;r包&#34;&gt;R包&lt;/h2&gt;
+&lt;p&gt;本文唯一使用的R包只有&lt;strong&gt;ggplot2&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (!requireNamespace(&amp;quot;BiocManager&amp;quot;, quietly = TRUE))
+    install.packages(&amp;quot;BiocManager&amp;quot;)
+library(ggplot2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;overrideaes&#34;&gt;override.aes&lt;/h2&gt;
+&lt;p&gt;更改图例的同时不修改图的原因是使图例更具有可读性，先使用数据集&lt;code&gt;diamonds&lt;/code&gt;开始，我们将&lt;code&gt;cut&lt;/code&gt;变量映射为&lt;code&gt;color&lt;/code&gt;属性，然后设置&lt;code&gt;alpha&lt;/code&gt;增加透明度，&lt;code&gt;size&lt;/code&gt;控制点大小&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = diamonds, aes(x = carat, y = price, color = cut) ) +
+     geom_point(alpha = .25, size = 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200719192139.png&#34; alt=&#34;20200719192139.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到&lt;code&gt;alpha&lt;/code&gt;以及&lt;code&gt;size&lt;/code&gt;不仅修改了图中点的属性，同时图例中的点的属性也被修改了。&lt;/p&gt;
+&lt;h2 id=&#34;添加guides图层&#34;&gt;添加guides()图层&lt;/h2&gt;
+&lt;p&gt;当散点图绘制大量的点时，将点变小变透明是可取的，但是对于图例就不是那么具有可读性了，这种情况下，我们修改额外通过修改图例点的大小以及透明度来使图例更具有可读性。一种方法是添加&lt;code&gt;guides()&lt;/code&gt;层，这里是&lt;code&gt;color&lt;/code&gt;属性，所以我们可以通过&lt;code&gt;color = guides_legend()&lt;/code&gt;来进行修改，&lt;code&gt;override.aes&lt;/code&gt;是&lt;code&gt;guide_legend()&lt;/code&gt;的其中一个参数，可以一次性提供一系列的美学参数列表，这些参数将覆盖默认（全局）的图例外观。&lt;/p&gt;
+&lt;p&gt;这里我们先修改图例点大小&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = diamonds, aes(x = carat, y = price, color = cut) ) +
+     geom_point(alpha = .25, size = 1) +
+     guides(color = guide_legend(override.aes = list(size = 3) ) )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200719192910.png&#34; alt=&#34;20200719192910.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到图中的点属性是没有发生变化的，但是图例中的点大小变化了&lt;/p&gt;
+&lt;h2 id=&#34;在scale_中使用guide参数&#34;&gt;在scale_*()中使用guide参数&lt;/h2&gt;
+&lt;p&gt;如果想通过&lt;code&gt;scale_color_*()&lt;/code&gt;函数来修改颜色，我们可以直接在函数里面使用&lt;code&gt;guide&lt;/code&gt;参数来代替单独添加的&lt;code&gt;guides()&lt;/code&gt;图层。这里假设使用&lt;code&gt;scale_colr_viridis_d()&lt;/code&gt;来更改整个图的默认颜色，我们可以直接直接通过&lt;code&gt;guide&lt;/code&gt;参数来修改图例属性：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = diamonds, aes(x = carat, y = price, color = cut) ) +
+     geom_point(alpha = .25, size = 1) +
+     scale_color_viridis_d(option = &amp;quot;magma&amp;quot;,
+                           guide = guide_legend(override.aes = list(size = 3) ) )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200719194510.png&#34; alt=&#34;20200719194510.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;修改多个美学参数&#34;&gt;修改多个美学参数&lt;/h2&gt;
+&lt;p&gt;直接将多个参数添加到&lt;code&gt;list&lt;/code&gt;中就行了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = diamonds, aes(x = carat, y = price, color = cut) ) +
+     geom_point(alpha = .25, size = 1) +
+     scale_color_viridis_d(option = &amp;quot;magma&amp;quot;,
+                           guide = guide_legend(override.aes = list(size = 3,
+                                                                    alpha = 1) ) )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200719194707.png&#34; alt=&#34;20200719194707.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;修改图例中的部分美学属性&#34;&gt;修改图例中的部分美学属性&lt;/h2&gt;
+&lt;p&gt;仅删除图例中的部分美学属性是&lt;code&gt;override.aes&lt;/code&gt;的另一种用法，比如当基于不同数据集但是基于相同&lt;code&gt;id&lt;/code&gt;的变量映射进行图层添加的时候，这种用法就非常有用了。&lt;/p&gt;
+&lt;p&gt;下面这个例子基于
+&lt;a href=&#34;https://stackoverflow.com/questions/59548358/r-ggplot2-in-the-legend-how-do-i-hide-unused-colors-from-one-geom-while-show&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this Stack Overflow question&lt;/a&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;points = structure(list(x = c(5L, 10L, 7L, 9L, 86L, 46L, 22L, 94L, 21L, 
+6L, 24L, 3L), y = c(51L, 54L, 50L, 60L, 97L, 74L, 59L, 68L, 45L, 
+56L, 25L, 70L), id = c(&amp;quot;a&amp;quot;, &amp;quot;a&amp;quot;, &amp;quot;a&amp;quot;, &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;b&amp;quot;, 
+&amp;quot;c&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;c&amp;quot;, &amp;quot;c&amp;quot;)), row.names = c(NA, -12L), class = &amp;quot;data.frame&amp;quot;)
+
+head(points)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#    x  y id
+# 1  5 51  a
+# 2 10 54  a
+# 3  7 50  a
+# 4  9 60  a
+# 5 86 97  b
+# 6 46 74  b
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;box = data.frame(left = 1, right = 10, bottom = 50, top = 60, id = &amp;quot;a&amp;quot;)
+box
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#   left right bottom top id
+# 1    1    10     50  60  a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;基于这两个数据集进行图层叠加：将&lt;code&gt;id&lt;/code&gt;变量映射给&lt;code&gt;color&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = points, aes(color = id) ) +
+     geom_point(aes(x = x, y = y), size = 4) +
+     geom_rect(data = box, aes(xmin = left,
+                               xmax = right,
+                               ymin = 50,
+                               ymax = top),
+               fill = NA, size = 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200720153021.png&#34; alt=&#34;20200720153021.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到，矩阵框颜色映射到了所以点上，导致图例中所有点都有一个外轮廓，这里我们想的是去除&lt;code&gt;b&lt;/code&gt;,&lt;code&gt;c&lt;/code&gt;两个点的轮廓映射，只保留点&lt;code&gt;a&lt;/code&gt;的。图例中点的轮廓是基于&lt;code&gt;linetype&lt;/code&gt;美学的，所以我们可以利用&lt;code&gt;override.aes&lt;/code&gt; 来去除这些线条框，将之设置为0即可：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = points, aes(color = id) ) +
+     geom_point(aes(x = x, y = y), size = 4) +
+     geom_rect(data = box, aes(xmin = left,
+                               xmax = right,
+                               ymin = 50,
+                               ymax = top),
+               fill = NA, size = 1) +
+     guides(color = guide_legend(override.aes = list(linetype = c(1, 0, 0) ) ) )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200720153001.png&#34; alt=&#34;20200720153001.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;组合多图层图例&#34;&gt;组合多图层图例&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = mtcars, aes(x = mpg, y = wt, color = factor(am) ) ) +
+     geom_point(size = 3) +
+     geom_smooth(method = &amp;quot;lm&amp;quot;, se = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200720154509.png&#34; alt=&#34;20200720154509.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;上面实际上是两个图层，一个是散点图层，另一个是直线图层，但是图例是结合在一起的展示的，现在我们想只留下&lt;code&gt;color&lt;/code&gt;图例，然后添加一个额外的线图层：一个图例表示点是观察值，线是拟合线，使用&lt;code&gt;alpha&lt;/code&gt;美学来实现，这里实际上我们是没有用到&lt;code&gt;alpha&lt;/code&gt;美学，但是却可以影响所有图层，这是一个添加额外图例的小技巧，这里我不想更改图形外观，所以添加&lt;code&gt;scale_alpha_manual()&lt;/code&gt;设置&lt;code&gt;values=c(1,1)&lt;/code&gt;来保证所有图层都是不透明的，同时还移除了图例名称(name=NULL):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = mtcars, aes(x = mpg, y = wt, color = factor(am) ) ) +
+     geom_point(aes(alpha = &amp;quot;Observed&amp;quot;), size = 3) +
+     geom_smooth(method = &amp;quot;lm&amp;quot;, se = FALSE, aes(alpha = &amp;quot;Fitted&amp;quot;) ) +
+     scale_alpha_manual(name = NULL,
+                        values = c(1, 1),
+                        breaks = c(&amp;quot;Observed&amp;quot;, &amp;quot;Fitted&amp;quot;) )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200720154750.png&#34; alt=&#34;20200720154750.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;又有新的问题，两个图例都同时含有点以及线，我们需要移除第二个图例的点，这就需要用到我们上面讲的技巧了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = mtcars, aes(x = mpg, y = wt, color = factor(am) ) ) +
+     geom_point(aes(alpha = &amp;quot;Observed&amp;quot;), size = 3) +
+     geom_smooth(method = &amp;quot;lm&amp;quot;, se = FALSE, aes(alpha = &amp;quot;Fitted&amp;quot;) ) +
+     scale_alpha_manual(name = NULL,
+                        values = c(1, 1),
+                        breaks = c(&amp;quot;Observed&amp;quot;, &amp;quot;Fitted&amp;quot;),
+                        guide = guide_legend(override.aes = list(linetype = c(0, 1),
+                                                                  shape = c(16, NA),
+                                                                  color = &amp;quot;black&amp;quot;) ) )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200720155919.png&#34; alt=&#34;20200720155919.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;控制多图例外观&#34;&gt;控制多图例外观&lt;/h2&gt;
+&lt;p&gt;先构造两个数据集：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dat = structure(list(g1 = structure(c(1L, 2L, 1L, 2L, 1L, 2L, 1L, 2L, 
+1L, 2L, 1L, 2L, 1L, 2L, 1L, 2L), class = &amp;quot;factor&amp;quot;, .Label = c(&amp;quot;High&amp;quot;, 
+&amp;quot;Low&amp;quot;)), g2 = structure(c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L, 1L, 
+1L, 2L, 2L, 1L, 1L, 2L, 2L), class = &amp;quot;factor&amp;quot;, .Label = c(&amp;quot;Control&amp;quot;, 
+&amp;quot;Treatment&amp;quot;)), x = c(0.42, 0.39, 0.56, 0.59, 0.17, 0.95, 0.85, 
+0.25, 0.31, 0.75, 0.58, 0.9, 0.6, 0.86, 0.61, 0.61), y = c(-1.4, 
+3.6, 1.1, -0.1, 0.5, 0, -1.8, 0.8, -1.1, -0.6, 0.2, 0.3, 1.1, 
+1.6, 0.9, -0.6)), class = &amp;quot;data.frame&amp;quot;, row.names = c(NA, -16L
+))
+
+head(dat)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#     g1        g2    x    y
+# 1 High   Control 0.42 -1.4
+# 2  Low   Control 0.39  3.6
+# 3 High Treatment 0.56  1.1
+# 4  Low Treatment 0.59 -0.1
+# 5 High   Control 0.17  0.5
+# 6  Low   Control 0.95  0.0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = dat, aes(x = x, y = y, fill = g1, shape = g2) ) +
+     geom_point(size = 5) +
+     scale_fill_manual(values = c(&amp;quot;#002F70&amp;quot;, &amp;quot;#EDB4B5&amp;quot;) ) +
+     scale_shape_manual(values = c(21, 24) )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200720160349.png&#34; alt=&#34;20200720160349.png&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(data = dat, aes(x = x, y = y, fill = g1, shape = g2) ) +
+     geom_point(size = 5) +
+     scale_fill_manual(values = c(&amp;quot;#002F70&amp;quot;, &amp;quot;#EDB4B5&amp;quot;) ) +
+     scale_shape_manual(values = c(21, 24) ) +
+     guides(fill = guide_legend(override.aes = list(shape = 21) ),
+            shape = guide_legend(override.aes = list(fill = &amp;quot;black&amp;quot;) ) )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200720160555.png&#34; alt=&#34;20200720160555.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这个看起来有点难以理解，实际上就是我们设置的这类形状具有两个属性：&lt;code&gt;fill&lt;/code&gt;以及&lt;code&gt;shape&lt;/code&gt;，所以&lt;code&gt;g1&lt;/code&gt;映射给&lt;code&gt;fill&lt;/code&gt;，&lt;code&gt;g2&lt;/code&gt;映射给&lt;code&gt;shape&lt;/code&gt;，通过&lt;code&gt;overrid.aes&lt;/code&gt;我们赋予了&lt;code&gt;g2&lt;/code&gt;图例填充颜色黑色，然后赋予&lt;code&gt;g1&lt;/code&gt;形状为&lt;code&gt;21&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ggplot2常用theme参数</title>
+      <link>https://taoyan.netlify.app/post/2020-05-02.ggplot2%E5%B8%B8%E7%94%A8theme%E5%8F%82%E6%95%B0/</link>
+      <pubDate>Sat, 02 May 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-05-02.ggplot2%E5%B8%B8%E7%94%A8theme%E5%8F%82%E6%95%B0/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200627183728.png&#34; alt=&#34;20200627183728.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ggplot2&lt;/strong&gt;不可否认是一个很强大的可视化包，随着不断的开发，其参数越来越多，也意味着定制化可视化越来越方便，同时也意味着需要使用很多的参数进行图形控制，反正我每次使用&lt;strong&gt;ggplot2&lt;/strong&gt;我都要Google，最近我在某推闲逛的时候发现一位用户总结了自己常用的参数，方便实用，我这里Mark下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200627183728.png&#34; alt=&#34;20200627183728.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;基本上大部分常用参数都涉及到了，分面参数这里没有，我在其他地方搜索到另外一份类似包含分面的tips:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200627183936.png&#34; alt=&#34;20200627183936.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我这里提供原版PDF下载：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://taoyan.netlify.app/pdf/ggplot2-themes.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ggplot2-themes.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&#34;https://taoyan.netlify.app/pdf/ggplot2-theme-elements-reference-v2.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ggplot2-theme-elements-reference-v2.pdf&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>如何选择使用哪个*apply函数</title>
+      <link>https://taoyan.netlify.app/post/2020-04-02.%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E4%BD%BF%E7%94%A8%E5%93%AA%E4%B8%AAapply%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Thu, 02 Apr 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-02.%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E4%BD%BF%E7%94%A8%E5%93%AA%E4%B8%AAapply%E5%87%BD%E6%95%B0/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/UMzZ4.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;R有很多的*&lt;strong&gt;apply&lt;/strong&gt;函数，然后&lt;code&gt;plyr&lt;/code&gt;包提供了很多函数来替换*&lt;strong&gt;apply&lt;/strong&gt;函数，但是我们还是经常用到*&lt;strong&gt;apply&lt;/strong&gt;函数，很多时候不知道选择使用哪个*&lt;strong&gt;apply&lt;/strong&gt;函数。&lt;/p&gt;
+&lt;h3 id=&#34;apply函数&#34;&gt;apply函数&lt;/h3&gt;
+&lt;p&gt;当需要对矩阵（或更高维的矩阵数据）的行或列进行函数操作的时候，用&lt;strong&gt;apply&lt;/strong&gt;函数，不建议对&lt;code&gt;dataframe&lt;/code&gt;使用，因为&lt;strong&gt;apply&lt;/strong&gt;会第一时间将之转换为矩阵。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Two dimensional matrix
+M &amp;lt;- matrix(seq(1,16), 4, 4)
+
+# apply min to rows
+apply(M, 1, min)
+[1] 1 2 3 4
+
+# apply max to columns
+apply(M, 2, max)
+[1]  4  8 12 16
+
+# 3 dimensional array
+M &amp;lt;- array( seq(32), dim = c(4,4,2))
+
+# Apply sum across each M[*, , ] - i.e Sum across 2nd and 3rd dimension
+apply(M, 1, sum)
+# Result is one-dimensional
+[1] 120 128 136 144
+
+# Apply sum across each M[*, *, ] - i.e Sum across 3rd dimension
+apply(M, c(1,2), sum)
+# Result is two-dimensional
+     [,1] [,2] [,3] [,4]
+[1,]   18   26   34   42
+[2,]   20   28   36   44
+[3,]   22   30   38   46
+[4,]   24   32   40   48
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;lapply函数&#34;&gt;lapply函数&lt;/h3&gt;
+&lt;p&gt;当需要对&lt;code&gt;list&lt;/code&gt;的每一个元素进行函数操作的时候，用&lt;strong&gt;lapply&lt;/strong&gt;函数，返回的也是一个list&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;x &amp;lt;- list(a = 1, b = 1:3, c = 10:100) 
+lapply(x, FUN = length) 
+$a 
+[1] 1
+$b 
+[1] 3
+$c 
+[1] 91
+lapply(x, FUN = sum) 
+$a 
+[1] 1
+$b 
+[1] 6
+$c 
+[1] 5005
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;sapply函数&#34;&gt;sapply函数&lt;/h3&gt;
+&lt;p&gt;当需要对&lt;code&gt;list&lt;/code&gt;的每一个元素进行函数操作，但是希望返回的是向量而不是&lt;code&gt;list&lt;/code&gt;，用&lt;strong&gt;sapply&lt;/strong&gt;函数，因此如果当你发现正在用&lt;code&gt;unlist(lappply(...))&lt;/code&gt;的时候，直接用&lt;strong&gt;sapply&lt;/strong&gt;吧&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;x &amp;lt;- list(a = 1, b = 1:3, c = 10:100)
+# Compare with above; a named vector, not a list 
+sapply(x, FUN = length)  
+a  b  c   
+1  3 91
+
+sapply(x, FUN = sum)   
+a    b    c    
+1    6 5005 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;sapply&lt;/strong&gt;高级用法：&lt;strong&gt;sapply&lt;/strong&gt;会强制性的将结果生成为数组&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;比如如果我们的函数返回的向量具有相同的长度，&lt;strong&gt;sapply&lt;/strong&gt;会将返回的每一个向量作为列组成矩阵&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sapply(1:5,function(x) rnorm(3,x))
+           [,1]     [,2]     [,3]     [,4]     [,5]
+[1,]  3.5989315 2.073428 2.011637 3.679340 6.354837
+[2,] -0.2045726 1.848288 3.453982 2.810947 5.231291
+[3,] -0.4243982 1.141556 2.675633 3.268007 3.128108
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果函数返回的是二维矩阵，那么&lt;strong&gt;sapply&lt;/strong&gt;会将每一个返回的矩阵当做一个长向量处理&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sapply(1:5,function(x) matrix(x,2,2))
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    2    3    4    5
+[2,]    1    2    3    4    5
+[3,]    1    2    3    4    5
+[4,]    1    2    3    4    5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;除非指定参数&lt;code&gt;simplify=&amp;quot;array&amp;quot;&lt;/code&gt;，此时&lt;strong&gt;sapply&lt;/strong&gt;会返回一个数组&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sapply(1:5,function(x) matrix(x,2,2), simplify = &amp;quot;array&amp;quot;)
+
+, , 1
+
+     [,1] [,2]
+[1,]    1    1
+[2,]    1    1
+
+, , 2
+
+     [,1] [,2]
+[1,]    2    2
+[2,]    2    2
+
+, , 3
+
+     [,1] [,2]
+[1,]    3    3
+[2,]    3    3
+
+, , 4
+
+     [,1] [,2]
+[1,]    4    4
+[2,]    4    4
+
+, , 5
+
+     [,1] [,2]
+[1,]    5    5
+[2,]    5    5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;vapply函数&#34;&gt;vapply函数&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;vapply&lt;/strong&gt;函数其实跟&lt;strong&gt;sapply&lt;/strong&gt;函数一样，就是提供了&lt;code&gt;FUN.VALUE&lt;/code&gt;参数来设置返回值的行名，相对于&lt;strong&gt;sapply&lt;/strong&gt;节省了一行代码，使代码更流程健壮，一般不用，直接用&lt;strong&gt;sapply&lt;/strong&gt;就好了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;vapply(1:5,function(x) matrix(x,2,2), FUN.VALUE = c(&amp;quot;a&amp;quot;=0,&amp;quot;b&amp;quot;=0,&amp;quot;c&amp;quot;=0,&amp;quot;d&amp;quot;=0))
+  [,1] [,2] [,3] [,4] [,5]
+a    1    2    3    4    5
+b    1    2    3    4    5
+c    1    2    3    4    5
+d    1    2    3    4    5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;mapply函数&#34;&gt;mapply函数&lt;/h3&gt;
+&lt;p&gt;当输入数据含有多类(等长度的)数据结构（向量，数据框，矩阵，列表等），想依次对每所有数据结构的第1个元素进行函数操作，第2个元素进行函数操作&amp;hellip;，此时就用&lt;strong&gt;mapply&lt;/strong&gt;，返回的是类似于&lt;strong&gt;sapply&lt;/strong&gt;的向量或数组&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#Sums the 1st elements, the 2nd elements, etc. 
+mapply(sum, 1:5, 1:5, 1:5) 
+[1]  3  6  9 12 15
+#To do rep(1,4), rep(2,3), etc.
+mapply(rep, 1:4, 4:1)   
+[[1]]
+[1] 1 1 1 1
+
+[[2]]
+[1] 2 2 2
+
+[[3]]
+[1] 3 3
+
+[[4]]
+[1] 4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;还有一个&lt;strong&gt;Map&lt;/strong&gt;函数，是&lt;strong&gt;mapply&lt;/strong&gt;的简单版，返回列表&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Map(sum, 1:5, 1:5, 1:5)
+[[1]]
+[1] 3
+
+[[2]]
+[1] 6
+
+[[3]]
+[1] 9
+
+[[4]]
+[1] 12
+
+[[5]]
+[1] 15
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;tapply函数&#34;&gt;tapply函数&lt;/h3&gt;
+&lt;p&gt;当需要对向量的子集进行函数操作，用&lt;strong&gt;tapply&lt;/strong&gt;，该子集一般是由其它向量决定，一般是因子（factor），&lt;strong&gt;tapply&lt;/strong&gt;理解起来有点难度，实际上它的帮助文档都很难看明白：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;apply a Function Over a &amp;quot;Ragged&amp;quot; Array
+
+Description:
+
+     Apply a function to each cell of a ragged array, that is to each
+     (non-empty) group of values given by a unique combination of the
+     levels of certain factors.
+
+Usage:
+
+     tapply(X, INDEX, FUN = NULL, ..., simplify = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;大家看懂了吗？咋一看是很难理解的，举个例子理解一下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#A vector:
+x &amp;lt;- 1:20
+
+#A factor (of the same length!) defining groups:
+y &amp;lt;- factor(c(rep(&amp;quot;a&amp;quot;,1),rep(&amp;quot;b&amp;quot;,9),rep(&amp;quot;c&amp;quot;,10)))
+#Add up the values in x within each subgroup defined by y:
+tapply(x,y,sum)
+  a   b   c 
+  1  54 155
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看出，很简单就是个&lt;code&gt;group by&lt;/code&gt;操作，上面理解起来就是分成三组，分组个数为1，9，10，&lt;code&gt;sum&lt;/code&gt;函数将第一个数加起来为1，将2-10个数加起来是54, &amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R启动项配置文件</title>
+      <link>https://taoyan.netlify.app/post/2020-03-30.r%E5%90%AF%E5%8A%A8%E9%A1%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Mon, 30 Mar 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-03-30.r%E5%90%AF%E5%8A%A8%E9%A1%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200407234529.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置文件&#34;&gt;配置文件&lt;/h2&gt;
+&lt;p&gt;R每次启动的时候都会读取两个文件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;.Renviron&lt;/code&gt;：主要作用是设置环境变量，告诉R在哪里寻找外部程序，可以自定义用户信息&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;.Rprofile&lt;/code&gt;：每次R启动的时候会运行里面的代码，所以如果里面设置的很多代码，R启动就会变慢&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;R启动的时候最开始读取&lt;code&gt;.Renviron&lt;/code&gt;文件，接着读取&lt;code&gt;.Rprofile&lt;/code&gt;文件&lt;/p&gt;
+&lt;h2 id=&#34;配置文件在哪里&#34;&gt;配置文件在哪里？&lt;/h2&gt;
+&lt;p&gt;实际上每台电脑里存在好几个版本的配置文件，但是每次启动的时候只会读取一个，需要注意以下三个目录：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;R_HOME&lt;/code&gt;：R安装的文件夹，&lt;code&gt;etc&lt;/code&gt;子目录包含配置文件，可以利用&lt;code&gt;R.home()&lt;/code&gt;获取该目录&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;HOME&lt;/code&gt;：用户的家目录，用户特异性的配置文件，一般是在&lt;code&gt;/home/username&lt;/code&gt;(Linux)，&lt;code&gt;c:\User\username&lt;/code&gt;(Windows)，可以通过&lt;code&gt;Sys.getenv(&amp;quot;HOME&amp;quot;)&lt;/code&gt;获取&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;R的工作目录，&lt;code&gt;getwd()&lt;/code&gt;获取&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;R读取配置文件(&lt;code&gt;.Renviron&lt;/code&gt;，&lt;code&gt;.Rprofile&lt;/code&gt;)的优先级是工作目录&amp;gt;&lt;code&gt;HOME&lt;/code&gt;&amp;gt;&lt;code&gt;R_HOME&lt;/code&gt;，因此如果需要创建项目特异的配置文件的话，可以在项目根目录下创建配置文件：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;file.edit(&amp;quot;~/.Rprofile&amp;quot;) # edit .Rprofile in HOME
+file.edit(&amp;quot;.Rprofile&amp;quot;) # edit project specific .Rprofile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们可以通过以下的脚本来检查是否存在配置文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;site_path = R.home(component = &amp;quot;home&amp;quot;)
+fname = file.path(site_path, &amp;quot;etc&amp;quot;, &amp;quot;Rprofile.site&amp;quot;)
+file.exists(fname)
+[1] FALSE
+
+file.exists(&amp;quot;~/.Rprofile&amp;quot;)
+[1] TRUE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看到R安装的子目录&lt;code&gt;etc&lt;/code&gt;里面不存在&lt;code&gt;.Rprofile.site&lt;/code&gt;，但是我的家目录里面存在。&lt;/p&gt;
+&lt;h2 id=&#34;如何理解配置文件&#34;&gt;如何理解配置文件&lt;/h2&gt;
+&lt;p&gt;这里创建一个简单的配置文件，我们使用&lt;code&gt;file.edit(&amp;quot;~/.Rprofile&amp;quot;)&lt;/code&gt;来打开文件，添加内容并重启R&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# A fun welcome message
+message(&amp;quot;Hi Tom, welcome to R&amp;quot;)
+# Customise the R prompt that prefixes every command
+# (use &amp;quot; &amp;quot; for a blank prompt)
+options(prompt = &amp;quot;R-&amp;gt; &amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重启之后显示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Hi Tom, welcome to R
+R-&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;R默认提示符是&lt;code&gt;&amp;gt; &lt;/code&gt;，这里我们设置成了&lt;code&gt;R-&amp;gt; &lt;/code&gt;，所以通过&lt;code&gt;.Rprofile&lt;/code&gt;可以很方便个性化设置启动配置，可以参考
+&lt;a href=&#34;https://www.statmethods.net/interface/customizing.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;statmethods.net&lt;/code&gt;&lt;/a&gt;来定制化启动项。比如我一般会设置代码连接符为&lt;code&gt;&amp;quot; &amp;quot;&lt;/code&gt;，默认的是&lt;code&gt;+&lt;/code&gt;，每次复制代码的时候都带着一堆&lt;code&gt;+&lt;/code&gt;号，修改后就没有了。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;options(prompt = &amp;quot;-&amp;gt; &amp;quot;, continue = &amp;quot;  &amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;对于我们来说最重要的就是在&lt;code&gt;.Rprofile&lt;/code&gt;中设置默认镜像等，不然国内使用默认镜像的话下载包速度感人：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;options(BioC_mirror=&amp;quot;https://mirrors.tuna.tsinghua.edu.cn/bioconductor&amp;quot;)
+options(repos=&amp;quot;https://mirrors.tuna.tsinghua.edu.cn/CRAN/&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;.Renviron&lt;/code&gt;文件设置环境变量等，R启动的时候首先搜索全局&lt;code&gt;.Renviron&lt;/code&gt;，接着本地&lt;code&gt;.Renviron&lt;/code&gt;，&lt;code&gt;.Renviron&lt;/code&gt;一个典型应用是设置&lt;code&gt;.R_LIBS&lt;/code&gt;，决定R包安装文件夹：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Linux
+R_LIBS=~/R/library
+# Windows
+R_LIBS=C:/R/library
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以通过&lt;code&gt;Sys.getenv(&amp;quot;R_LIBS_USER&amp;quot;)&lt;/code&gt;看包安装的默认文件夹。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要注意的是千万别胡乱添加，不然出错你都不知道错在哪？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;参考：https://csgillespie.github.io/efficientR/set-up.html&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

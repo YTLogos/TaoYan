@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tao Yan</title>
+    <link>https://taoyan.netlify.app/authors/alison/</link>
+      <atom:link href="https://taoyan.netlify.app/authors/alison/index.xml" rel="self" type="application/rss+xml" />
+    <description>Tao Yan</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Tao Yan</title>
+      <link>https://taoyan.netlify.app/authors/alison/</link>
+    </image>
+    
+  </channel>
+</rss>

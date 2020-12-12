@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>进化 | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/%E8%BF%9B%E5%8C%96/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/%E8%BF%9B%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <description>进化</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Tue, 24 Apr 2018 21:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>进化</title>
+      <link>https://taoyan.netlify.app/tags/%E8%BF%9B%E5%8C%96/</link>
+    </image>
+    
+    <item>
+      <title>群体遗传进化</title>
+      <link>https://taoyan.netlify.app/post/2018-04-24.%E7%BE%A4%E4%BD%93%E9%81%97%E4%BC%A0%E8%BF%9B%E5%8C%96/</link>
+      <pubDate>Tue, 24 Apr 2018 21:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-04-24.%E7%BE%A4%E4%BD%93%E9%81%97%E4%BC%A0%E8%BF%9B%E5%8C%96/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/3dDKl9a3DD.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;群体结构又称为群体分层，指所研究的群体中存在基因频率不同的亚群。其基本原理是将群体分成k个服从哈迪温伯格平衡的亚群，将每个材料归到各个亚群并计算每个材料基因组变异源于第k个亚群的可能性，主要是利用Q矩阵进行衡量，一般来说Q值越大，表明每个材料来自于某个亚群的可能性越大。群体结构分析的软件有很多，比如：&lt;code&gt;STRUCTURE&lt;/code&gt;、&lt;code&gt;ADMIXTURE&lt;/code&gt;、&lt;code&gt;FASTSTRUCTURE&lt;/code&gt;、&lt;code&gt;TESS&lt;/code&gt;、&lt;code&gt;BAPS&lt;/code&gt;等。这里不介绍如何使用这些软件进行群体结构分析，下次有时间再进行介绍。本文主要介绍利用R包&lt;code&gt;pophelper&lt;/code&gt;对这些软件生成的数据进行展示。具体情况可以参考&lt;code&gt;pophelper&lt;/code&gt;的
+&lt;a href=&#34;http://royfrancis.github.io/pophelper/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;vignette&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;p&gt;安装过程不多说&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;install.packages(c(&amp;quot;Cairo&amp;quot;,&amp;quot;devtools&amp;quot;,&amp;quot;ggplot2&amp;quot;,&amp;quot;gridExtra&amp;quot;,&amp;quot;gtable&amp;quot;,&amp;quot;tidyr&amp;quot;),dependencies=T)
+devtools::install_github(&#39;royfrancis/pophelper&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;流程&#34;&gt;流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Gg71K3jgfa.png?raw=true&#34; alt=&#34;workflow&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;数据读取&#34;&gt;数据读取&lt;/h3&gt;
+&lt;p&gt;使用&lt;code&gt;pophelper&lt;/code&gt;提供的数据,这里只使用structure软件生成的格式文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(pophelper)
+sfiles &amp;lt;- list.files(path=system.file(&amp;quot;files/structure&amp;quot;,package = &amp;quot;pophelper&amp;quot;), full.names = T)
+sfiles
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_01&amp;quot;
+##  [2] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_02&amp;quot;
+##  [3] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_03&amp;quot;
+##  [4] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_04&amp;quot;
+##  [5] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_05&amp;quot;
+##  [6] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_06&amp;quot;
+##  [7] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_07&amp;quot;
+##  [8] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_08&amp;quot;
+##  [9] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_09&amp;quot;
+## [10] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_10&amp;quot;
+## [11] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_11&amp;quot;
+## [12] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_12&amp;quot;
+## [13] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_13&amp;quot;
+## [14] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_14&amp;quot;
+## [15] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_15&amp;quot;
+## [16] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_16&amp;quot;
+## [17] &amp;quot;D:/R-3.5.0/library/pophelper/files/structure/structure_17&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看到总共有17个structure文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;slist &amp;lt;- readQ(files = sfiles,indlabfromfile = T, filetype = &amp;quot;structure&amp;quot;)
+tr1 &amp;lt;- tabulateQ(qlist = slist)
+summariseQ(tr1, writetable = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   loci ind k runs  elpdmean     elpdsd elpdmin elpdmax
+## 1   25 149 2    3 -7509.367  0.8082904 -7510.1 -7508.5
+## 2   25 149 3    3 -7476.000  0.4358899 -7476.5 -7475.7
+## 3   25 149 4    3 -7650.800 46.1418465 -7687.5 -7599.0
+## 4   25 149 5    3 -7743.567 74.0671542 -7828.5 -7692.4
+## 5   25 149 6    3 -7985.833 32.6353081 -8023.3 -7963.6
+## 6   25 149 7    2 -8614.000 60.5283405 -8656.8 -8571.2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;summariseQ&lt;/code&gt;会给出一些信息，&lt;code&gt;writetable = TRUE&lt;/code&gt;将文件写入到工作文件夹中&lt;/p&gt;
+&lt;h3 id=&#34;估计最佳分层数&#34;&gt;估计最佳分层数&lt;/h3&gt;
+&lt;p&gt;函数&lt;code&gt;evannoMethodStructure&lt;/code&gt;用来估计最佳分层数k,使用的方法是&lt;strong&gt;Evanno method&lt;/strong&gt;，这一函数只适应于STRUCTURE软件运行的结果&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sr1 &amp;lt;- summariseQ(tr1)
+p &amp;lt;- evannoMethodStructure(data = sr1, exportplot = F, returnplot = T, returndata = F, basesize = 12, linesize = 0.7)
+gridExtra::grid.arrange(p)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mjEIL6a5Kj.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;一般我们是通过看ΔK来确定最佳分群，这里可以看到是k=3&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;pophelper&lt;/strong&gt;提供了一个封装函数，可以一次性出来所有结果&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;analyseQ(sfiles)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以挑出k=3时的structure图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/3dDKl9a3DD.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;美化&#34;&gt;美化&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;pophelper&lt;/strong&gt;还提供了一个绘图函数&lt;code&gt;plotQ&lt;/code&gt;,里面内置了大量图形参数设置用来美化图片，这里就不一一展示了，有兴趣的可以去实践一下&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/KecCc9fciG.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.5.0 (2018-04-23)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] pophelper_2.2.5.1 ggplot2_2.2.1     Cairo_1.5-9      
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.16     knitr_1.20       magrittr_1.5     tidyselect_0.2.4
+##  [5] munsell_0.4.3    colorspace_1.3-2 rlang_0.2.0      stringr_1.3.0   
+##  [9] plyr_1.8.4       tools_3.5.0      grid_3.5.0       gtable_0.2.0    
+## [13] htmltools_0.3.6  yaml_2.1.19      lazyeval_0.2.1   rprojroot_1.3-2 
+## [17] digest_0.6.15    tibble_1.4.2     gridExtra_2.3    purrr_0.2.4     
+## [21] tidyr_0.8.0      glue_1.2.0       evaluate_0.10.1  rmarkdown_1.9   
+## [25] labeling_0.3     stringi_1.1.7    compiler_3.5.0   pillar_1.2.2    
+## [29] scales_0.5.0     backports_1.1.2
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>save data | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/save-data/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/save-data/index.xml" rel="self" type="application/rss+xml" />
+    <description>save data</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Sun, 12 Apr 2020 10:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>save data</title>
+      <link>https://taoyan.netlify.app/tags/save-data/</link>
+    </image>
+    
+    <item>
+      <title>将数据保存为R的数据格式:RDS,RDATA</title>
+      <link>https://taoyan.netlify.app/post/2020-04-12.%E5%B0%86%E6%95%B0%E6%8D%AE%E4%BF%9D%E5%AD%98%E4%B8%BAr%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8Frdsrdata/</link>
+      <pubDate>Sun, 12 Apr 2020 10:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-12.%E5%B0%86%E6%95%B0%E6%8D%AE%E4%BF%9D%E5%AD%98%E4%B8%BAr%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8Frdsrdata/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/Reading-Exporting-Data-in-R.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;R&lt;/code&gt;里面我们一般将数据保存为&lt;code&gt;txt&lt;/code&gt;，&lt;code&gt;cvs&lt;/code&gt;或者&lt;strong&gt;Excel&lt;/strong&gt;格式，这有利于我们在电脑中打开浏览这些文件，但是这些保存格式无法将数据结构嵌入进去，比如数据列类型（数值型，字符型或者因子型），为了解决这些问题，我们可以将数据保存为R数据格式&lt;/p&gt;
+&lt;h3 id=&#34;保存一个对象&#34;&gt;保存一个对象&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;saveRDS()&lt;/code&gt;可以将单个&lt;strong&gt;R&lt;/strong&gt;对象保存为一个特殊的文件格式：&lt;strong&gt;rds&lt;/strong&gt;格式，该格式文件可由&lt;code&gt;readRDS()&lt;/code&gt;读入&lt;strong&gt;R&lt;/strong&gt;中。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Save a single object to a file
+saveRDS(mtcars, &amp;quot;mtcars.rds&amp;quot;)
+# Restore it under a different name
+my_data &amp;lt;- readRDS(&amp;quot;mtcars.rds&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;读取的时候可以将之赋值给另外的变量&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;保存多个对象&#34;&gt;保存多个对象&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;save()&lt;/code&gt;可以将一到多个&lt;strong&gt;R&lt;/strong&gt;对象保存为 &lt;strong&gt;.RData&lt;/strong&gt; 或者 &lt;strong&gt;.rds&lt;/strong&gt;，可以设置压缩模式，减小储空间，可由&lt;code&gt;load()&lt;/code&gt;读取&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Saving on object in RData format
+save(data1, file = &amp;quot;data.RData&amp;quot;,compress=&amp;quot;xz&amp;quot;)
+# Save multiple objects
+save(data1, data2, file = &amp;quot;data.RData&amp;quot;)
+# To load the data again
+load(&amp;quot;data.RData&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;无法将读取的文件赋值给其它变量，自动用保存时的文件名。这是个重要区别&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;保存整个工作台&#34;&gt;保存整个工作台&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;save.image()&lt;/code&gt;可以将整个工作台保存并自动以后缀&lt;code&gt;.RData&lt;/code&gt;命名：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;save.image(file = &amp;quot;my_work_space.RData&amp;quot;)
+load(&amp;quot;my_work_space.RData&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

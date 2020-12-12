@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xinze Zhao | Tao Yan</title>
+    <link>https://taoyan.netlify.app/authors/xinze-zhao/</link>
+      <atom:link href="https://taoyan.netlify.app/authors/xinze-zhao/index.xml" rel="self" type="application/rss+xml" />
+    <description>Xinze Zhao</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Xinze Zhao</title>
+      <link>https://taoyan.netlify.app/authors/xinze-zhao/</link>
+    </image>
+    
+    <item>
+      <title>Genome-wide association study reveals new genes involvedin leaf trichome formation in polyploid oilseed rape(Brassica napus L.)</title>
+      <link>https://taoyan.netlify.app/publication/2019-xuan-hair/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2019-xuan-hair/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>reactive | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/reactive/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/reactive/index.xml" rel="self" type="application/rss+xml" />
+    <description>reactive</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Fri, 10 Apr 2020 21:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>reactive</title>
+      <link>https://taoyan.netlify.app/tags/reactive/</link>
+    </image>
+    
+    <item>
+      <title>Shiny学习笔记:响应式编程-2</title>
+      <link>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B2/</link>
+      <pubDate>Fri, 10 Apr 2020 21:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B2/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411172124.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;reactive-programming&#34;&gt;Reactive Programming&lt;/h2&gt;
+&lt;p&gt;只有输入或者只有输出的&lt;strong&gt;Shiny App&lt;/strong&gt;是十分无聊的，当一个&lt;strong&gt;Shiny App&lt;/strong&gt;既有输入有有输出，就十分有魅力了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  textInput(&amp;quot;name&amp;quot;, &amp;quot;What&#39;s your name?&amp;quot;),
+  textOutput(&amp;quot;greeting&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  output$greeting &amp;lt;- renderText({
+    paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410235847.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这就是&lt;strong&gt;Shiny&lt;/strong&gt;魅力所在，你无需告诉输出何时更新，&lt;strong&gt;Shiny&lt;/strong&gt;会自动帮你完成更新。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;记住一点，&lt;strong&gt;Shiny App&lt;/strong&gt;只是提供&lt;code&gt;recipes&lt;/code&gt;给&lt;strong&gt;Shiny&lt;/strong&gt;，而不是&lt;code&gt;commands&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;imperative-vs-declarative-programming&#34;&gt;Imperative vs declarative programming&lt;/h3&gt;
+&lt;p&gt;命令式编程与声明式编程之间的关键区别就是&lt;code&gt;recipes&lt;/code&gt;与&lt;code&gt;commands&lt;/code&gt;的区别：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;命令式编程：你敲入一行代码，立即运行，就像在&lt;code&gt;R&lt;/code&gt;里面加载数据、转换数据、可视化以及保存结果等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;声明式编程：你只是传递更高一级的指令，依赖于别人决定如何何时行动，这就是&lt;strong&gt;Shiny&lt;/strong&gt;的编程方式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;laziness&#34;&gt;Laziness&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Shiny&lt;/strong&gt;声明式编程的一个优势允许&lt;code&gt;app&lt;/code&gt;极度懒惰。&lt;strong&gt;Shiny&lt;/strong&gt;只会做一小部分结果需要更新的工作，其它不必做的一概不做，比如下面例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  output$greetnig &amp;lt;- renderText({
+    paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;就是&lt;code&gt;greetning&lt;/code&gt;写错了，&lt;strong&gt;Shiny&lt;/strong&gt;是不会报这个错的，但是你无法做任何你想做的事，因为&lt;code&gt;greetning&lt;/code&gt;不存在的，&lt;code&gt;renderText()&lt;/code&gt;里面的代码永远不会运行。所以多检查你的&lt;code&gt;app&lt;/code&gt;是否存在拼写错误。&lt;/p&gt;
+&lt;h3 id=&#34;the-reactive-graph&#34;&gt;The reactive graph&lt;/h3&gt;
+&lt;p&gt;我们平时运行代码的时候是从上到下依次运行，但是&lt;strong&gt;Shiny&lt;/strong&gt;不是这样工作的，代码只是在需要的时候才运行。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411001842.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这是一个很简单的&lt;code&gt;reactive graph&lt;/code&gt;，如果&lt;code&gt;name&lt;/code&gt;发生变化，&lt;code&gt;greeting&lt;/code&gt;需要从新运行。&lt;/p&gt;
+&lt;h3 id=&#34;reactive-expressions&#34;&gt;Reactive expressions&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Shiny&lt;/strong&gt;代码的执行顺序只由&lt;code&gt;reactive graph&lt;/code&gt;决定，更代码在&lt;code&gt;server&lt;/code&gt;函数中的顺序无关：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  output$greeting &amp;lt;- renderText(text())
+  text &amp;lt;- reactive(paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;与&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  text &amp;lt;- reactive(paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;))
+  output$greeting &amp;lt;- renderText(text())
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;是一样的。&lt;/p&gt;
+&lt;p&gt;上面我们讲过，为什么&lt;code&gt;reactive expression&lt;/code&gt;对于&lt;strong&gt;Shiny&lt;/strong&gt;如此重要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;尽可能多地提供&lt;strong&gt;Shiny&lt;/strong&gt;信息，这样当输入变化时，&lt;strong&gt;Shiny&lt;/strong&gt;尽量少运行计算，&lt;strong&gt;Shiny App&lt;/strong&gt;更高效；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过简化&lt;code&gt;reactive graph&lt;/code&gt;，&lt;strong&gt;Shiny App&lt;/strong&gt;更易理解。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面通过一个更复杂的&lt;code&gt;app&lt;/code&gt;来理解&lt;code&gt;reactive expression&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;假设我们需要通过图表以及假设检验来比较两个数据集，先定义两个函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;histogram()&lt;/code&gt;：在一个直方图中可视化两个数据集分布&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;t_test()&lt;/code&gt;：比较均值及其它值&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;library(ggplot2)
+
+histogram &amp;lt;- function(x1, x2, binwidth = 0.1, xlim = c(-3, 3)) {
+  df &amp;lt;- data.frame(
+    x = c(x1, x2),
+    g = c(rep(&amp;quot;x1&amp;quot;, length(x1)), rep(&amp;quot;x2&amp;quot;, length(x2)))
+  )
+
+  ggplot(df, aes(x, fill = g)) +
+    geom_histogram(binwidth = binwidth) +
+    coord_cartesian(xlim = xlim)
+}
+
+t_test &amp;lt;- function(x1, x2) {
+  test &amp;lt;- t.test(x1, x2)
+  
+  sprintf(
+    &amp;quot;p value: %0.3f\n[%0.2f, %0.2f]&amp;quot;,
+    test$p.value, test$conf.int[1], test$conf.int[2]
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们模拟两个数据集测试一下两个函数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;x1 &amp;lt;- rnorm(100, mean = 0, sd = 0.5)
+x2 &amp;lt;- rnorm(200, mean = 0.15, sd = 0.9)
+
+histogram(x1, x2)
+cat(t_test(x1, x2))
+#&amp;gt; p value: 0.006
+#&amp;gt; [-0.36, -0.06]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411130923.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Shiny app&lt;/strong&gt;开发中尽快能多地从&lt;code&gt;app&lt;/code&gt;中提取出代码，&lt;code&gt;app&lt;/code&gt;中的代码只负责响应用户点击，&lt;code&gt;app&lt;/code&gt;外的函数专门负责运行计算。&lt;/p&gt;
+&lt;p&gt;下面我们将上述函数封装成一个&lt;code&gt;app&lt;/code&gt;，这样我们可以很方便地测试大量的数据集：&lt;/p&gt;
+&lt;p&gt;根据上面的&lt;code&gt;histogram()&lt;/code&gt;函数可以知道，我们需要设计生成两个数据集的输入，每个数据集由&lt;code&gt;n&lt;/code&gt;,&lt;code&gt;mean&lt;/code&gt;,&lt;code&gt;sd&lt;/code&gt;组成，还有一个控制绘图的输入，&lt;code&gt;binwidth&lt;/code&gt;，&lt;code&gt;range&lt;/code&gt;；两个输出：直方图输出，文本输出，根据我们前面学习的UI设计，我们可以很快就写好UI部分：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  fluidRow(
+    column(4, 
+      &amp;quot;Distribution 1&amp;quot;,
+      numericInput(&amp;quot;n1&amp;quot;, label = &amp;quot;n&amp;quot;, value = 1000, min = 1),
+      numericInput(&amp;quot;mean1&amp;quot;, label = &amp;quot;µ&amp;quot;, value = 0, step = 0.1),
+      numericInput(&amp;quot;sd1&amp;quot;, label = &amp;quot;σ&amp;quot;, value = 0.5, min = 0.1, step = 0.1)
+    ),
+    column(4, 
+      &amp;quot;Distribution 2&amp;quot;,
+      numericInput(&amp;quot;n2&amp;quot;, label = &amp;quot;n&amp;quot;, value = 1000, min = 1),
+      numericInput(&amp;quot;mean2&amp;quot;, label = &amp;quot;µ&amp;quot;, value = 0, step = 0.1),
+      numericInput(&amp;quot;sd2&amp;quot;, label = &amp;quot;σ&amp;quot;, value = 0.5, min = 0.1, step = 0.1)
+    ),
+    column(4,
+      &amp;quot;Histogram&amp;quot;,
+      numericInput(&amp;quot;binwidth&amp;quot;, label = &amp;quot;Bin width&amp;quot;, value = 0.1, step = 0.1),
+      sliderInput(&amp;quot;range&amp;quot;, label = &amp;quot;range&amp;quot;, value = c(-3, 3), min = -5, max = 5)
+    )
+  ),
+  fluidRow(
+    column(9, plotOutput(&amp;quot;hist&amp;quot;)),
+    column(3, verbatimTextOutput(&amp;quot;ttest&amp;quot;))
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;server&lt;/code&gt;就是调用上面写好的函数，输出结果：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  output$hist &amp;lt;- renderPlot({
+    x1 &amp;lt;- rnorm(input$n1, input$mean1, input$sd1)
+    x2 &amp;lt;- rnorm(input$n2, input$mean2, input$sd2)
+    
+    histogram(x1, x2, binwidth = input$binwidth, xlim = input$range)
+  })
+
+  output$ttest &amp;lt;- renderText({
+    x1 &amp;lt;- rnorm(input$n1, input$mean1, input$sd1)
+    x2 &amp;lt;- rnorm(input$n2, input$mean2, input$sd2)
+    
+    t_test(x1, x2)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411132155.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们来理解一下这个&lt;code&gt;app&lt;/code&gt;的&lt;code&gt;reactive graph&lt;/code&gt;，&lt;strong&gt;Shiny&lt;/strong&gt;将整个输出视为一个整体，所以只要&lt;code&gt;n1,mean1,sd1,n2,mean2,sd2&lt;/code&gt;中的任何一个发生变化，&lt;code&gt;x1,x2&lt;/code&gt;都会自动变化，其&lt;code&gt;reactive graph&lt;/code&gt;如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411132721.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到&lt;code&gt;reactive graph&lt;/code&gt;之间十分紧密，几乎每一个输入都直接关联输入，这就带来两个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;app&lt;/code&gt;之间联系太过紧密，无法隔离开来进行分析&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;app&lt;/code&gt;十分低效，因为运行了太多不必要的计算。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们可以使用&lt;code&gt;reactive expression&lt;/code&gt;来避免这些问题，&lt;code&gt;reactive()&lt;/code&gt;函数将结果赋值给变量x1,x2。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  x1 &amp;lt;- reactive(rnorm(input$n1, input$mean1, input$sd1))
+  x2 &amp;lt;- reactive(rnorm(input$n2, input$mean2, input$sd2))
+
+  output$hist &amp;lt;- renderPlot({
+    histogram(x1(), x2(), binwidth = input$binwidth, xlim = input$range)
+  })
+
+  output$ttest &amp;lt;- renderText({
+    t_test(x1(), x2())
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样就使得&lt;code&gt;reactive graph&lt;/code&gt;更简化了：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411133655.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到，当&lt;code&gt;binwidth&lt;/code&gt;以及&lt;code&gt;range&lt;/code&gt;变化时，只有图是会从新绘制的，数据集是不会变化的，&lt;code&gt;x1&lt;/code&gt;，&lt;code&gt;x2&lt;/code&gt;也只被相应的输入影响。&lt;/p&gt;
+&lt;p&gt;复制粘贴一段代码超过三次，那么你应该写个函数，但是在&lt;strong&gt;Shiny&lt;/strong&gt;里只要复制粘贴一段代码超过一次，你应该将之写成&lt;code&gt;reactive expression&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;控制执行次数&#34;&gt;控制执行次数&lt;/h3&gt;
+&lt;p&gt;我们知道输出会自动随着输入的变化而变化，但是有的时候我们希望当输入变化时输出不要立即变化，但我们需要输出变化时再变化。我们举个例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  fluidRow(
+    column(3, 
+      numericInput(&amp;quot;lambda1&amp;quot;, label = &amp;quot;lambda1&amp;quot;, value = 3),
+      numericInput(&amp;quot;lambda2&amp;quot;, label = &amp;quot;lambda2&amp;quot;, value = 3),
+      numericInput(&amp;quot;n&amp;quot;, label = &amp;quot;n&amp;quot;, value = 1e4, min = 0)
+    ),
+    column(9, plotOutput(&amp;quot;hist&amp;quot;))
+  )
+)
+server &amp;lt;- function(input, output, session) {
+  x1 &amp;lt;- reactive(rpois(input$n, input$lambda1))
+  x2 &amp;lt;- reactive(rpois(input$n, input$lambda2))
+  output$hist &amp;lt;- renderPlot({
+    histogram(x1(), x2(), binwidth = 1, xlim = c(0, 40))
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411140324.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411140352.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里我们介绍一个函数&lt;code&gt;reactiveTimer()&lt;/code&gt;来控制一定时间内自动更新的次数，下面的代码设置每分钟更新两次，所以我们不点击任何按钮，图形一直在变，是个动态图。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  timer &amp;lt;- reactiveTimer(500)
+  
+  x1 &amp;lt;- reactive({
+    timer()
+    rpois(input$n, input$lambda1)
+  })
+  x2 &amp;lt;- reactive({
+    timer()
+    rpois(input$n, input$lambda2)
+  })
+  
+  output$hist &amp;lt;- renderPlot({
+    histogram(x1(), x2(), binwidth = 1, xlim = c(0, 40))
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411141851.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411140834.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;点击&#34;&gt;点击&lt;/h3&gt;
+&lt;p&gt;想象一下，当用户不断地点击按钮，服务器端会积压大量的工作，进而导致&lt;code&gt;app&lt;/code&gt;响应迟缓，用户体验就十分差了，如果我们设置一个运行按钮，只有输入变化且用户点击了运行按钮，&lt;code&gt;app&lt;/code&gt;才会更新，这样就可以节省资源，提高用户体验。这个功能可以由&lt;code&gt;actionButton()&lt;/code&gt;实现：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  fluidRow(
+    column(3, 
+      numericInput(&amp;quot;lambda1&amp;quot;, label = &amp;quot;lambda1&amp;quot;, value = 3),
+      numericInput(&amp;quot;lambda2&amp;quot;, label = &amp;quot;lambda2&amp;quot;, value = 3),
+      numericInput(&amp;quot;n&amp;quot;, label = &amp;quot;n&amp;quot;, value = 1e4, min = 0),
+      actionButton(&amp;quot;simulate&amp;quot;, &amp;quot;Simulate!&amp;quot;)
+    ),
+    column(9, plotOutput(&amp;quot;hist&amp;quot;))
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;要实现，只有当用户点击&lt;code&gt;Simulate!&lt;/code&gt;按钮时，&lt;code&gt;app&lt;/code&gt;才运行计算，我们还需要一个新的函数&lt;code&gt;eventReactive()&lt;/code&gt;来实现，&lt;code&gt;eventReactive()&lt;/code&gt;有两个参数：第一个参数指定哪个依赖，第二个参数指定运行哪些代码，下面的代码允许&lt;code&gt;app&lt;/code&gt;只在&lt;code&gt;simulate&lt;/code&gt;被点击之后，才运行&lt;code&gt;x1()&lt;/code&gt;，&lt;code&gt;x2()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  x1 &amp;lt;- eventReactive(input$simulate, {
+    rpois(input$n, input$lambda1)
+  })
+  x2 &amp;lt;- eventReactive(input$simulate, {
+    rpois(input$n, input$lambda2)
+  })
+
+  output$hist &amp;lt;- renderPlot({
+    histogram(x1(), x2(), binwidth = 1, xlim = c(0, 40))
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其&lt;code&gt;reactive graph&lt;/code&gt;如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411143932.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;x1&lt;/code&gt;,&lt;code&gt;x2&lt;/code&gt;不在响应依赖&lt;code&gt;lambda1&lt;/code&gt;，&lt;code&gt;lambda2&lt;/code&gt;以及&lt;code&gt;n&lt;/code&gt;，这三个输入的变化不会启动计算运行。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411144439.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;observers&#34;&gt;Observers&lt;/h2&gt;
+&lt;p&gt;目前为止我们只专注于&lt;code&gt;app&lt;/code&gt;内部发生了什么，但有时我们需要关注&lt;code&gt;app&lt;/code&gt;外面的变化：保存文件，发送数据到API，更新数据库，打印调试信息等，这些不会影响&lt;code&gt;app&lt;/code&gt;的外观，你无法使用&lt;code&gt;render&lt;/code&gt;来输出，此时就要用到&lt;code&gt;observer&lt;/code&gt;。这里只简单介绍如何使用&lt;code&gt;observerEvent()&lt;/code&gt;，&lt;code&gt;observerEvent()&lt;/code&gt;是一种非常重要的&lt;code&gt;debug&lt;/code&gt;工具，&lt;code&gt;observerEvent()&lt;/code&gt;与&lt;code&gt;eventReactive()&lt;/code&gt;十分相似，有两个参数：&lt;code&gt;eventExpr&lt;/code&gt;以及&lt;code&gt;handlerExpr&lt;/code&gt;，第一个参数是输入或者表达式的依赖项，第二个参数是需要运行的代码。比如下面的例子表示每次&lt;code&gt;name&lt;/code&gt;更新的时候，都会向后台发送信息&lt;code&gt;Greeting performed&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  text &amp;lt;- reactive(paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;))
+  
+  output$greeting &amp;lt;- renderText(text())
+  observeEvent(input$name, {
+    message(&amp;quot;Greeting performed&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411171531.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;observerEvent()&lt;/code&gt;与&lt;code&gt;eventReactive()&lt;/code&gt;有两个重要区别：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无需将&lt;code&gt;observerEvent()&lt;/code&gt;赋值给变量&lt;/li&gt;
+&lt;li&gt;因此就无法从其它用户获取&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;observer&lt;/code&gt;与输出紧密相关。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Reactive&lt;/code&gt;是&lt;strong&gt;Shiny&lt;/strong&gt;十分重要的部分，后续还需要不断在实践中加强理解。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411172124.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-reactivity.html&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:响应式编程-1</title>
+      <link>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B1/</link>
+      <pubDate>Fri, 10 Apr 2020 20:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B1/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410235230.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;前面主要学习的是用户前段UI，现在开始将学习服务端，这是用户不可见的&lt;strong&gt;Shiny&lt;/strong&gt;部分，&lt;strong&gt;Shiny&lt;/strong&gt;服务端利用的是响应式编程(&lt;code&gt;Reactive Programming&lt;/code&gt;)，这是一种优美的、强大的编程范式，但是也是容易让人迷惑的。&lt;code&gt;Reactive Programming&lt;/code&gt;的核心是指定从属关系，当输出变化时，所有与其相关的输出将自动变化。这使得&lt;strong&gt;Shiny App&lt;/strong&gt;变得流畅。&lt;/p&gt;
+&lt;h3 id=&#34;server函数&#34;&gt;server()函数&lt;/h3&gt;
+&lt;p&gt;一个&lt;strong&gt;Shiny App&lt;/strong&gt;的框架如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+
+ui &amp;lt;- fluidPage(
+  # front end interface
+)
+
+server &amp;lt;- function(input, output, session) {
+  # back end logic
+}
+
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;UI相对来说是很简单的，所有用户看到都是同样的前端界面，但是&lt;code&gt;server&lt;/code&gt;端不一样，每个的用户都需要一份&lt;code&gt;app&lt;/code&gt;拷贝，不同用户之间互不干扰。&lt;/p&gt;
+&lt;p&gt;为了实现这种独立性，&lt;strong&gt;Shiny&lt;/strong&gt;在每一个&lt;code&gt;session&lt;/code&gt;启动的时候会调用一次&lt;code&gt;server()&lt;/code&gt;函数。当&lt;code&gt;server()&lt;/code&gt;函数被调用的时候，会创建一个独立的本地环境，这可以保证每一个&lt;code&gt;session&lt;/code&gt;都有其独一无二的状态，可以隔离函数内部创建的变量，所以你会发现几乎所有的&lt;code&gt;reactive programming&lt;/code&gt;都是在&lt;code&gt;server()&lt;/code&gt;函数内部。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;server()&lt;/code&gt;函数有三个参数：&lt;code&gt;input&lt;/code&gt;、&lt;code&gt;output&lt;/code&gt;、&lt;code&gt;session&lt;/code&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;input&#34;&gt;Input&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;input&lt;/code&gt;类似于一个list，包含用户在浏览器传递的数据，举个例子，如果UI含有一个数值输入&lt;code&gt;count&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  numericInput(&amp;quot;count&amp;quot;, label = &amp;quot;Number of values&amp;quot;, value = 100)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;那么你获取的数据就是&lt;code&gt;input$count&lt;/code&gt;，它的初始值为100， 当用户改变值的时候，&lt;code&gt;input$count&lt;/code&gt;值自动同步改变。&lt;code&gt;input&lt;/code&gt;是只读对象，如果在&lt;code&gt;server()&lt;/code&gt;函数内部修改&lt;code&gt;input&lt;/code&gt;会报错：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  input$count &amp;lt;- 10  
+}
+
+shinyApp(ui, server)
+#&amp;gt; Error: Attempted to assign value to a read-only reactivevalues object
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;input&lt;/code&gt;会有选择性地允许谁可以读取它，要读取&lt;code&gt;input&lt;/code&gt;中的值，必须是由&lt;code&gt;renderText()&lt;/code&gt;,&lt;code&gt;reactive()&lt;/code&gt;等类似函数创建的&lt;code&gt;reactive context&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  message(&amp;quot;The value of input$count is &amp;quot;, input$count)
+}
+
+shinyApp(ui, server)
+#&amp;gt; Error: Operation not allowed without an active reactive context. 
+#&amp;gt; (You tried to do something that can only be done from inside 
+#&amp;gt; a reactive expression or observer.)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;output&#34;&gt;Output&lt;/h4&gt;
+&lt;p&gt;与&lt;code&gt;input&lt;/code&gt;类似，区别是&lt;code&gt;output&lt;/code&gt;传递输出，&lt;code&gt;input&lt;/code&gt;接收输入。&lt;code&gt;output&lt;/code&gt;往往是与&lt;code&gt;render&lt;/code&gt;函数一起。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  textOutput(&amp;quot;greeting&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  output$greeting &amp;lt;- renderText(&amp;quot;Hello human!&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;render&lt;/code&gt;函数做两件事：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它指定了&lt;code&gt;output&lt;/code&gt;与对应的&lt;code&gt;input&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;将&lt;code&gt;R&lt;/code&gt;代码转化为HTML&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

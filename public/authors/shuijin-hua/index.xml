@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shuijin Hua | Tao Yan</title>
+    <link>https://taoyan.netlify.app/authors/shuijin-hua/</link>
+      <atom:link href="https://taoyan.netlify.app/authors/shuijin-hua/index.xml" rel="self" type="application/rss+xml" />
+    <description>Shuijin Hua</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Shuijin Hua</title>
+      <link>https://taoyan.netlify.app/authors/shuijin-hua/</link>
+    </image>
+    
+    <item>
+      <title>Genome-wide association study reveals new genes involvedin leaf trichome formation in polyploid oilseed rape(Brassica napus L.)</title>
+      <link>https://taoyan.netlify.app/publication/2019-xuan-hair/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2019-xuan-hair/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Whole-Genome Resequencing of a Worldwide Collection of Rapeseed Accessions Reveals the Genetic Basis of Ecotype Divergence</title>
+      <link>https://taoyan.netlify.app/publication/2019-wu-rapeseed-pop/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2019-wu-rapeseed-pop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Effect of high night temperature on storage lipids and transcriptome changes in developing seeds of oilseed rape</title>
+      <link>https://taoyan.netlify.app/publication/2018-zhou-rapeseed-night-temp-fatty-acid/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2018-zhou-rapeseed-night-temp-fatty-acid/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

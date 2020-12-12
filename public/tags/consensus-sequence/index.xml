@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>consensus sequence | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/consensus-sequence/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/consensus-sequence/index.xml" rel="self" type="application/rss+xml" />
+    <description>consensus sequence</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Thu, 12 Mar 2020 16:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>consensus sequence</title>
+      <link>https://taoyan.netlify.app/tags/consensus-sequence/</link>
+    </image>
+    
+    <item>
+      <title>构建Consensus sequence</title>
+      <link>https://taoyan.netlify.app/post/2020-03-12.%E6%9E%84%E5%BB%BAconsensus-sequence/</link>
+      <pubDate>Thu, 12 Mar 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-03-12.%E6%9E%84%E5%BB%BAconsensus-sequence/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200321184100.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Consensus sequence&lt;/code&gt;又称为一致性序列、保守序列、共有序列等。维基百科的解释：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In molecular biology and bioinformatics, the consensus sequence (or canonical sequence) 
+is the calculated order of most frequent residues, either nucleotide or amino acid, 
+found at each position in a sequence alignment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我个人理解就是通过序列比对在每个位置出现频率最高的碱基或者氨基酸。&lt;/p&gt;
+&lt;p&gt;所以如果你的序列比较少，就直接用&lt;code&gt;Bioedit&lt;/code&gt;进行比对，可以导出&lt;code&gt;consensus sequence&lt;/code&gt;。序列比较多的话使用软件批量运行比较好。请教一位老师之后推荐就用&lt;code&gt;RepeatScout&lt;/code&gt;这个软件比较好，简单实用，最主要的是准确性也很高。&lt;/p&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;wget http://bix.ucsd.edu/repeatscout/RepeatScout-1.0.5.tar.gz
+tar -xvfz RepeatScout-1.0.5.tar.gz
+cd RepeatScout-1.0.5
+make
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;用法&#34;&gt;用法&lt;/h2&gt;
+&lt;h4 id=&#34;1-create-an-l-mer--1-option-frequency-table-for-a-given-genome-sequence&#34;&gt;1. Create an l-mer (-1 option) frequency table for a given genome sequence&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;build_lmer_table -sequence input_genome_sequence.fas -freq output_lmer.frequency
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;l值可以使用默认的，也可以自行设置，具体选择如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The l value used in the build_lmer_table program is set to ceil (log_4 (L) +1) by default. Here, the ceil function is a function to round up a real number having a decimal point to an integer, log_4 is a logarithm of base 4, L is a length (bp) of a genomic sequence.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can change the l-mer value using the -l parameter. At this time, when using the RepeatScout program, the same l-mer must be applied. RepeatScout also takes a value with the -l parameter.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;2-find-repetitive-elements-from-frequency-table-and-genome-sequence-information-and-store-them-in-fasta-format-including-simple-repeats-tandem-repeats&#34;&gt;2. Find repetitive elements from frequency table and genome sequence information and store them in fasta format (including simple repeats, tandem repeats).&lt;/h4&gt;
+&lt;p&gt;这一步&lt;code&gt;RepeatScout&lt;/code&gt;构建&lt;code&gt;Consensus sequence&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;RepeatScout -sequence input_genome_sequence.fas -output output_repeats.fas -freq output_lmer.frequency
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后生成的output_repeats.fas里面就有我们需要的&lt;code&gt;Consensus sequence&lt;/code&gt;，但是很多时候会生成多条&lt;code&gt;Consensus sequence&lt;/code&gt;，这个时候可以利用&lt;code&gt;cd-hit-est&lt;/code&gt;去除冗余序列，一般是可以获取到唯一的一条&lt;code&gt;Consensus sequence&lt;/code&gt;，如果经去冗余之后还是多条序列的话，可以考虑手动比对，看是否存在部分重叠等情况。当然如果提供的序列本来就不存在唯一的&lt;code&gt;Consensus sequence&lt;/code&gt;，那么最后肯定无法生成唯一的&lt;code&gt;Consensus sequence&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

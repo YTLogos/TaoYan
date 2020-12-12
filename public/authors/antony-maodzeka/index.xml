@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Antony Maodzeka | Tao Yan</title>
+    <link>https://taoyan.netlify.app/authors/antony-maodzeka/</link>
+      <atom:link href="https://taoyan.netlify.app/authors/antony-maodzeka/index.xml" rel="self" type="application/rss+xml" />
+    <description>Antony Maodzeka</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Tue, 29 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Antony Maodzeka</title>
+      <link>https://taoyan.netlify.app/authors/antony-maodzeka/</link>
+    </image>
+    
+    <item>
+      <title>BnaSNPDB: An interactive web portal for the efficient retrieval and analysis of SNPs among 1,007 rapeseed accessions</title>
+      <link>https://taoyan.netlify.app/publication/2020-bnasnpdb/</link>
+      <pubDate>Tue, 29 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2020-bnasnpdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Whole-Genome Resequencing of a Worldwide Collection of Rapeseed Accessions Reveals the Genetic Basis of Ecotype Divergence</title>
+      <link>https://taoyan.netlify.app/publication/2019-wu-rapeseed-pop/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2019-wu-rapeseed-pop/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

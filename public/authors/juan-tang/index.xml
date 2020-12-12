@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Juan Tang | Tao Yan</title>
+    <link>https://taoyan.netlify.app/authors/juan-tang/</link>
+      <atom:link href="https://taoyan.netlify.app/authors/juan-tang/index.xml" rel="self" type="application/rss+xml" />
+    <description>Juan Tang</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Juan Tang</title>
+      <link>https://taoyan.netlify.app/authors/juan-tang/</link>
+    </image>
+    
+    <item>
+      <title>Whole-Genome Resequencing of a Worldwide Collection of Rapeseed Accessions Reveals the Genetic Basis of Ecotype Divergence</title>
+      <link>https://taoyan.netlify.app/publication/2019-wu-rapeseed-pop/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2019-wu-rapeseed-pop/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

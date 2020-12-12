@@ -1,0 +1,2148 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>shiny | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/shiny/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/shiny/index.xml" rel="self" type="application/rss+xml" />
+    <description>shiny</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Mon, 14 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>shiny</title>
+      <link>https://taoyan.netlify.app/tags/shiny/</link>
+    </image>
+    
+    <item>
+      <title>BnaGWAS:GWAS platform of rapeseed</title>
+      <link>https://taoyan.netlify.app/project/bnagwas/</link>
+      <pubDate>Mon, 14 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/project/bnagwas/</guid>
+      <description>&lt;h1 id=&#34;bnagwas&#34;&gt;BnaGWAS&lt;/h1&gt;
+&lt;h1 id=&#34;font-facetime-colorgreen-size6introductionfont&#34;&gt;&lt;font face=&#34;Time&#34; color=green size=6&gt;Introduction&lt;/font&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;font face=&#34;Time&#34; size=4&gt;Rapeseed (&lt;em&gt;&lt;strong&gt;Brassica napus&lt;/strong&gt;&lt;/em&gt; L.) is an important source of edible oil and protein-rich livestock feed in the world. &lt;em&gt;&lt;strong&gt;B. napus&lt;/strong&gt;&lt;/em&gt; (AACC) was ancestrally originated from an interspecific hybridization between two diploid progenitors, &lt;em&gt;&lt;strong&gt;B. rapa&lt;/strong&gt;&lt;/em&gt; (AA) (n = 10) and &lt;em&gt;&lt;strong&gt;B. oleracea&lt;/strong&gt;&lt;/em&gt; (CC) (n = 9), less than 7500 years ago. In our previous study, we resequenced a world-wide collection of &lt;code&gt;1007&lt;/code&gt; &lt;em&gt;&lt;strong&gt;B. napus&lt;/strong&gt;&lt;/em&gt; gerplasm accessions, including 658 winter types, 145 semi-winter types and 188 spring types, from 39 countries (&lt;a href=&#34;https://www.sciencedirect.com/science/article/pii/S1674205218303435?via%3Dihub&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Wu et al., 2019&lt;/strong&gt;&lt;/a&gt;). This app is deployed at &lt;a href=&#34;https://bnapus-zju.com/gwas&#34;&gt;https://bnapus-zju.com/gwas&lt;/a&gt; for online use.&lt;/p&gt;
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure &gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://taoyan.netlify.app/project/bnagwas/Bna_map_hub3f6a0ac4e0aeeefc0734ce61f10a172_344228_2000x2000_fit_lanczos_2.png&#34; &gt;
+
+
+  &lt;img data-src=&#34;https://taoyan.netlify.app/project/bnagwas/Bna_map_hub3f6a0ac4e0aeeefc0734ce61f10a172_344228_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;3172&#34; height=&#34;1296&#34;&gt;
+&lt;/a&gt;
+
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;In genetics, a genome-wide association study (&lt;strong&gt;GWAS&lt;/strong&gt;), also known as whole genome association study (WGAS), is an observational study of a genome-wide set of genetic variants in different individuals to see if any variant is associated with a trait. &lt;strong&gt;GWAS&lt;/strong&gt; typically focus on associations between single-nucleotide polymorphisms (&lt;strong&gt;SNPs&lt;/strong&gt;) and traits like major agronomic traits.&lt;/p&gt;
+&lt;p&gt;In order to make better use of this huge &lt;em&gt;&lt;strong&gt;B. napus&lt;/strong&gt;&lt;/em&gt; gerplasm accessions, we develop this interactive application (
+&lt;a href=&#34;https://bnapus-zju.com/gwas&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;BnaGWAS&lt;/strong&gt;&lt;/a&gt;) in &lt;a href=&#34;https://www.r-project.org/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;R&lt;/strong&gt;&lt;/a&gt; with &lt;a href=&#34;https://shiny.rstudio.com/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;&lt;code&gt;Shiny&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt;. This aaplication can conduct &lt;strong&gt;GWAS&lt;/strong&gt;, visualization of &lt;strong&gt;GWAS&lt;/strong&gt; results (Manhattan plot and QQ plot), extraction of significant genes and annotation of genes&lt;/font&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;font-facetime-colorgreen-size6data-inputfont&#34;&gt;&lt;font face=&#34;Time&#34; color=green size=6&gt;Data input&lt;/font&gt;&lt;/h1&gt;
+&lt;h2 id=&#34;font-colorgreen-size5-facetimephenotype-data-txtfont&#34;&gt;&lt;font color=green size=5 face=&#34;Time&#34;&gt;phenotype data (.txt)&lt;/font&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;&lt;font color=red size=4 face=&#34;Time&#34;&gt; Noted: Your Samples Uploaded MUST Be The 300 Core Collection Samples Used Here ! So If Some Samples Are Not In Your LIST, You Need Add Them In Your List, And Set The Value NA. If Some Samples In Your List Are Not In The 300 Core Collection Samples Here, JUST REMOVE THEM!&lt;/font&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;font color=green size=4 face=&#34;Time&#34;&gt;I highly recommended first download the example of the expected input phenotype dataset below, and then replace the phenotype values with you own data&lt;/font&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;font size=4 face=&#34;Time&#34;&gt;You just need upload your phenotype data to run &lt;strong&gt;GWAS&lt;/strong&gt;. Here we just use the &lt;strong&gt;&lt;code&gt;300&lt;/code&gt;&lt;/strong&gt; core collection gerplasm which represent the most of genetic resources of 1000 &lt;em&gt;&lt;strong&gt;B. napus&lt;/strong&gt;&lt;/em&gt; gerplasm accessions. an example of the expected input data format is present as below:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;R4157&lt;/td&gt;
+&lt;td&gt;0.859791123&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R4158&lt;/td&gt;
+&lt;td&gt;0.87369142&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R4163&lt;/td&gt;
+&lt;td&gt;0.842593709&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R4168&lt;/td&gt;
+&lt;td&gt;0.884782609&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R4171&lt;/td&gt;
+&lt;td&gt;NA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R4176&lt;/td&gt;
+&lt;td&gt;0.885619807&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R4177&lt;/td&gt;
+&lt;td&gt;0.885884455&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R4179&lt;/td&gt;
+&lt;td&gt;0.879374612&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R4180&lt;/td&gt;
+&lt;td&gt;0.878567797&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;R4182&lt;/td&gt;
+&lt;td&gt;0.868825911&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;td&gt;&amp;hellip;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Where, column one correspond to samples, column two correspond to phenotype values.&lt;/p&gt;
+&lt;p&gt;An example of the expected input phenotype dataset can be accessible &lt;a href=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/sample_phenotype.txt&#34; target=&#34;_blank&#34;&gt; &lt;strong&gt;here&lt;/strong&gt;&lt;/a&gt;.&lt;/font&gt;&lt;/p&gt;
+&lt;h2 id=&#34;font-colorgreen-szie5-facetimeother-parametersfont&#34;&gt;&lt;font color=green szie=5 face=&#34;Time&#34;&gt;Other parameters&lt;/font&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;font size=4 face=&#34;Time&#34;&gt;Next you need enter your trait name (&lt;code&gt;recommended&lt;/code&gt;) (default: Bna_trait). Now just support the &lt;a href=&#34;https://genome.sph.umich.edu/wiki/EMMAX&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;EMMAX&lt;/strong&gt;&lt;/a&gt; model. After all the prepared works are ready, then clink &lt;strong&gt;Run Analysis&lt;/strong&gt; to start GWAS.&lt;/font&gt;&lt;/p&gt;
+&lt;h1 id=&#34;font-colorgreen-size6-facetimevisualizationfont&#34;&gt;&lt;font color=green size=6 face=&#34;Time&#34;&gt;Visualization&lt;/font&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;font size=4 face=&#34;Time&#34;&gt;For the &lt;code&gt;Visualization&lt;/code&gt; section in this App, it is aiming to visualize the Manhattan plot and QQ plot. You can choose the alternate colors for alternate chromosomes and p-value threshold (default: p-value=5).&lt;/font&gt;&lt;/p&gt;
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure &gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://taoyan.netlify.app/project/bnagwas/manhattan_hude9f1049ed713f989ef3867571ae7565_369957_2000x2000_fit_lanczos_2.png&#34; &gt;
+
+
+  &lt;img data-src=&#34;https://taoyan.netlify.app/project/bnagwas/manhattan_hude9f1049ed713f989ef3867571ae7565_369957_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;4500&#34; height=&#34;2100&#34;&gt;
+&lt;/a&gt;
+
+
+
+&lt;/figure&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure &gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://taoyan.netlify.app/project/bnagwas/QQ_hu7e99ad80c35574ded681b9ec03196361_43799_2000x2000_fit_lanczos_2.png&#34; &gt;
+
+
+  &lt;img data-src=&#34;https://taoyan.netlify.app/project/bnagwas/QQ_hu7e99ad80c35574ded681b9ec03196361_43799_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;2100&#34; height=&#34;2100&#34;&gt;
+&lt;/a&gt;
+
+
+
+&lt;/figure&gt;
+
+&lt;h1 id=&#34;font-colorgreen-size6-facetimeextractionfont&#34;&gt;&lt;font color=green size=6 face=&#34;Time&#34;&gt;Extraction&lt;/font&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;font size=4 face=&#34;Time&#34;&gt;The extraction of significant genes is based on the significant p-value of SNPs. So here you need choose the p-value threshold and the distance up/down-stream of SNPs (&lt;code&gt;recommended&lt;/code&gt;) (default: 75kb).&lt;/font&gt;&lt;/p&gt;
+&lt;h1 id=&#34;font-colorgreen-size6-facetimeannotationfont&#34;&gt;&lt;font color=green size=6 face=&#34;Time&#34;&gt;Annotation&lt;/font&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;font size=4 face=&#34;Time&#34;&gt;This section is designed for gene annotation based on different databases (&lt;code&gt;eggNOG&lt;/code&gt;, &lt;code&gt;GO&lt;/code&gt;, &lt;code&gt;KEGG&lt;/code&gt;, &lt;code&gt;NR&lt;/code&gt;, etc.).&lt;/font&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>BnaSNPDB:SNP Database of Brassica napus L.</title>
+      <link>https://taoyan.netlify.app/project/bnasnpdb/</link>
+      <pubDate>Mon, 14 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/project/bnasnpdb/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The SNP database of &lt;em&gt;Brassica napus&lt;/em&gt; (&lt;strong&gt;BnaSNPDB&lt;/strong&gt;) is an interactive web portal that provides multiple analysis modules to visualize and explore SNPs among 1007 rapeseed germplasm accessions based on the data reported by previous research (
+&lt;a href=&#34;http://rapeseed.zju.edu.cn/pdf/mp.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Wu et al., 2019&lt;/a&gt;). The app is deployed at &lt;a href=&#34;https://bnapus-zju.com/bnasnpdb&#34;&gt;https://bnapus-zju.com/bnasnpdb&lt;/a&gt; and &lt;a href=&#34;http://rapeseed.zju.edu.cn&#34;&gt;http://rapeseed.zju.edu.cn&lt;/a&gt;:3838/bnasnpdb for online use.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BnaSNPDB&lt;/strong&gt; is idle until you activate it by accessing the 
+&lt;a href=&#34;https://bnapus-zju.com/bnasnpdb&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;URL&lt;/a&gt;. So it may take some time to load for the first time. Once it was activated, &lt;strong&gt;BnaSNPDB&lt;/strong&gt; could be used smoothly and easily.&lt;/p&gt;
+&lt;p&gt;The portal is built entirely in &lt;strong&gt;R&lt;/strong&gt; and &lt;strong&gt;Shiny&lt;/strong&gt; using the &lt;strong&gt;RStudio&lt;/strong&gt; development environment.&lt;/p&gt;
+&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
+&lt;h3 id=&#34;requirements&#34;&gt;Requirements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;R: &lt;a href=&#34;https://www.r-project.org/&#34;&gt;https://www.r-project.org/&lt;/a&gt; v4.0.0+&lt;/li&gt;
+&lt;li&gt;RStudio: &lt;a href=&#34;https://rstudio.com/products/rstudio/download&#34;&gt;https://rstudio.com/products/rstudio/download&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Shiny Server: &lt;a href=&#34;https://rstudio.com/products/shiny/download-server&#34;&gt;https://rstudio.com/products/shiny/download-server&lt;/a&gt; (only required for deploying &lt;strong&gt;BnaSNPDB&lt;/strong&gt; on web linux server)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;initialize-app&#34;&gt;Initialize app&lt;/h3&gt;
+&lt;h4 id=&#34;to-run-the-app-locally&#34;&gt;To run the app locally:&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Clone this repository&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/YTLogos/BnaSNPDB.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The repository is large so it may need some time to finish it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Open &lt;code&gt;BnaSNPDB.Rproj&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Install packages. In the RStudio console, run:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;# try an http CRAN (Bioc) mirror if https CRAN (Bioc) mirror doesn&#39;t work
+# First install Bioconductor
+if (!requireNamespace(&amp;quot;BiocManager&amp;quot;, quietly = TRUE))
+    install.packages(&amp;quot;BiocManager&amp;quot;)
+BiocManager::install(version = &amp;quot;3.11&amp;quot;)
+
+BiocManager::install(&amp;quot;shiny&amp;quot;)
+BiocManager::install(&amp;quot;ggplot2&amp;quot;)
+BiocManager::install(&amp;quot;stringr&amp;quot;)
+BiocManager::install(&amp;quot;dplyr&amp;quot;)
+BiocManager::install(&amp;quot;tidyr&amp;quot;)
+BiocManager::install(&amp;quot;forcats&amp;quot;)
+BiocManager::install(&amp;quot;patchwork&amp;quot;)
+BiocManager::install(&amp;quot;glue&amp;quot;)
+BiocManager::install(&amp;quot;ggpubr&amp;quot;)
+BiocManager::install(&amp;quot;writexl&amp;quot;)
+BiocManager::install(&amp;quot;snpStats&amp;quot;)
+BiocManager::install(&amp;quot;IRanges&amp;quot;)
+BiocManager::install(&amp;quot;LDheatmap&amp;quot;)
+BiocManager::install(&amp;quot;ape&amp;quot;)
+BiocManager::install(&amp;quot;pegas&amp;quot;)
+BiocManager::install(&amp;quot;gridExtra&amp;quot;)
+BiocManager::install(&amp;quot;grid&amp;quot;)
+BiocManager::install(&amp;quot;ggtree&amp;quot;)
+BiocManager::install(&amp;quot;shinycssloaders&amp;quot;)
+BiocManager::install(&amp;quot;shinydashboard&amp;quot;)
+BiocManager::install(&amp;quot;shinydisconnect&amp;quot;)
+BiocManager::install(&amp;quot;shinyWidgets&amp;quot;)
+BiocManager::install(&amp;quot;gggenes&amp;quot;)
+BiocManager::install(&amp;quot;DT&amp;quot;)
+BiocManager::install(&amp;quot;shinythemes&amp;quot;)
+BiocManager::install(&amp;quot;NAM&amp;quot;)
+BiocManager::install(&amp;quot;adegenet&amp;quot;)
+
+if (require(devtools)) install.packages(&amp;quot;devtools&amp;quot;)#if not already installed
+devtools::install_github(&amp;quot;AnalytixWare/ShinySky&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This may take some time to complete - walk away from your computer, rest your eyes, and catch up on those stretching exercises you are meant to be doing :)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;Start tha app by running&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;shiny::runApp(launch.browser = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;deploy-bnasnpdb-on-web-linux-server&#34;&gt;Deploy BnaSNPDB on web Linux server&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Clone/Upload this repository into /srv/shiny-server&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;$ cd /srv/shiny-server
+git clone https://github.com/YTLogos/BnaSNPDB.git
+# Or clone it locally and upload the directory to /srv/shiny-server using scp or other tools 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Configure Shiny Server (/etc/shiny-server/shiny-server.conf)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;# Instruct Shiny Server to run applications as the user &amp;quot;shiny&amp;quot;
+preserve_logs true;
+sanitize_errors false;
+run_as shiny;
+
+# Define a server that listens on port 3838
+server {
+  listen 3838;
+
+  # Define a location at the base URL
+  location / {
+
+    # Host the directory of Shiny Apps stored in this directory
+    site_dir /srv/shiny-server;
+
+    # Log all Shiny output to files in this directory
+    log_dir /var/log/shiny-server;
+
+    # When a user visits the base URL rather than a particular application,
+    # an index of the applications available in this directory will be shown.
+    directory_index on;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Change the owner of the &lt;strong&gt;BnaSNPDB&lt;/strong&gt; directory&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;$ chown -R shiny /srv/shiny-server/BnaSNPDB  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;Start Shiny-Server&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;$ start shiny-server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now you can access the &lt;strong&gt;BnaSNPDB&lt;/strong&gt; app at http://IPAddressOfYourServer:3838/BnaSNPDB.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:用户反馈2</title>
+      <link>https://taoyan.netlify.app/post/2020-04-15.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%882/</link>
+      <pubDate>Wed, 15 Apr 2020 10:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-15.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%882/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/feedback5.gif&#34; alt=&#34;feedback5.gif&#34;&gt;&lt;/p&gt;
+&lt;p&gt;对于运行时间比较长的任务，最佳的反馈形式是进度条(&lt;strong&gt;progress bar&lt;/strong&gt;)。不仅提示你运行到哪一步，还帮助你估算需要运行多长时间。本文主要介绍两种方法：&lt;strong&gt;Shiny&lt;/strong&gt;内置的以及包
+&lt;a href=&#34;https://waiter.john-coene.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;waiter&lt;/strong&gt;&lt;/a&gt;。不幸的是这些方法都有一个致命的缺点：如果你想使用&lt;strong&gt;progress bar&lt;/strong&gt;，你需要将一个大任务分解成多个小任务，而且每个小任务的运行时间的大致相同，这就很困难了。&lt;/p&gt;
+&lt;h2 id=&#34;shiny&#34;&gt;Shiny&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Shiny&lt;/strong&gt;提供了进度条的实现方式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Create a progress bar object with `Progress$new(max = number_of_steps)`.
+progress &amp;lt;- Progress$new(max = 5)
+
+# Display the progress bar by calling the `$set()` method, 
+# providing a title for the progress bar in the `message` argument.
+progress$set(message = &amp;quot;Starting process&amp;quot;)
+
+# Call `$inc()` repeatedly, once for each step.
+for (i in 1:5) {
+  progress$inc(1)
+}
+
+# When done, call `$close()` to terminate the progress bar.
+progress$close()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;具体在&lt;strong&gt;Shinyapp&lt;/strong&gt;的实现：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  numericInput(&amp;quot;steps&amp;quot;, &amp;quot;How many steps?&amp;quot;, 10),
+  actionButton(&amp;quot;go&amp;quot;, &amp;quot;go&amp;quot;),
+  textOutput(&amp;quot;result&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  data &amp;lt;- reactive({
+    req(input$go)
+    
+    progress &amp;lt;- Progress$new(max = input$steps)
+    on.exit(progress$close())
+    
+    progress$set(message = &amp;quot;Computing random number&amp;quot;)
+    for (i in seq_len(input$steps)) {
+      Sys.sleep(0.5)
+      progress$inc(1)
+    }
+    runif(1)
+  })
+  
+  output$result &amp;lt;- renderText(round(data(), 2))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;将&lt;code&gt;Sys.sleep()&lt;/code&gt;替换为自己的脚本就行了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;waiter&#34;&gt;Waiter&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Shiny&lt;/strong&gt;内置的进度条比较单调，&lt;strong&gt;Waiter&lt;/strong&gt;包提供了更加丰富的的实现方式：&lt;/p&gt;
+&lt;p&gt;第一步：在&lt;code&gt;UI&lt;/code&gt;中添加&lt;code&gt;use_waitress()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  waiter::use_waitress(),
+  numericInput(&amp;quot;steps&amp;quot;, &amp;quot;How many steps?&amp;quot;, 10),
+  actionButton(&amp;quot;go&amp;quot;, &amp;quot;go&amp;quot;),
+  textOutput(&amp;quot;result&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;第二步，将&lt;code&gt;Progress&lt;/code&gt;替换为&lt;code&gt;Waitress&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  data &amp;lt;- reactive({
+    req(input$go)
+    waitress &amp;lt;- waiter::Waitress$new(max = input$steps)
+    on.exit(waitress$close())
+    
+    for (i in seq_len(input$steps)) {
+      Sys.sleep(0.5)
+      waitress$inc(1)
+    }
+    
+    runif(1)
+  })
+  
+  output$result &amp;lt;- renderText(round(data(), 2))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;默认是在顶部显示细进度条，&lt;strong&gt;Waiter&lt;/strong&gt;提供了多种个性化设置&lt;code&gt;theme&lt;/code&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;overlay&lt;/code&gt;：覆盖整个界面的进度条&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;overlay-opacity&lt;/code&gt;：半透明的&lt;code&gt;overlay&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;overlay-percent&lt;/code&gt;：显示进度百分数的&lt;code&gt;overlay&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;也可以将进度条的位置设置到某一个&lt;code&gt;input&lt;/code&gt;或者&lt;code&gt;output&lt;/code&gt;里&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;waitress &amp;lt;- Waitress$new(selector = &amp;quot;#steps&amp;quot;, theme = &amp;quot;overlay&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;spinners&#34;&gt;Spinners&lt;/h3&gt;
+&lt;p&gt;很多时间我们无法估计运行时间，只想提醒用户程序正在运行，我们可以使用&lt;strong&gt;Spinner&lt;/strong&gt;，此时使用&lt;code&gt;Waiter&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  waiter::use_waiter(),
+  actionButton(&amp;quot;go&amp;quot;, &amp;quot;go&amp;quot;),
+  textOutput(&amp;quot;result&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  data &amp;lt;- reactive({
+    req(input$go)
+    waiter &amp;lt;- waiter::Waiter$new()
+    waiter$show()
+    on.exit(waiter$hide())
+    
+    Sys.sleep(sample(5, 1))
+    runif(1)
+  })
+  output$result &amp;lt;- renderText(round(data(), 2))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;跟&lt;code&gt;Waitress&lt;/code&gt;一样，也可设置的&lt;code&gt;input&lt;/code&gt;或者&lt;code&gt;output&lt;/code&gt;显示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  waiter::use_waiter(),
+  actionButton(&amp;quot;go&amp;quot;, &amp;quot;go&amp;quot;),
+  plotOutput(&amp;quot;plot&amp;quot;),
+)
+
+server &amp;lt;- function(input, output, session) {
+  data &amp;lt;- reactive({
+    req(input$go)
+    waiter::Waiter$new(id = &amp;quot;plot&amp;quot;)$show()
+    
+    Sys.sleep(3)
+    data.frame(x = runif(50), y = runif(50))
+  })
+  
+  output$plot &amp;lt;- renderPlot(plot(data()), res = 96)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;waiter&lt;/strong&gt;包提供了大量的&lt;strong&gt;Spinners&lt;/strong&gt;，还有一个更加简单的方式就是使用包
+&lt;a href=&#34;https://github.com/daattali/shinycssloaders&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;shinycssloaders&lt;/strong&gt;&lt;/a&gt;，这个包提供了十分实用的函数&lt;code&gt;withSpinner()&lt;/code&gt;，只需要用此函数将&lt;code&gt;output&lt;/code&gt;封装一下就可以了，目前我几乎所有的&lt;strong&gt;Shinyapp&lt;/strong&gt;都是使用该包实现的：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shinycssloaders)
+
+ui &amp;lt;- fluidPage(
+  actionButton(&amp;quot;go&amp;quot;, &amp;quot;go&amp;quot;),
+  withSpinner(plotOutput(&amp;quot;plot&amp;quot;)),
+)
+server &amp;lt;- function(input, output, session) {
+  data &amp;lt;- reactive({
+    req(input$go)
+    Sys.sleep(3)
+    data.frame(x = runif(50), y = runif(50))
+  })
+  
+  output$plot &amp;lt;- renderPlot(plot(data()), res = 96)
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:用户反馈</title>
+      <link>https://taoyan.netlify.app/post/2020-04-13.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%88/</link>
+      <pubDate>Mon, 13 Apr 2020 10:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-13.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%94%A8%E6%88%B7%E5%8F%8D%E9%A6%88/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/feedback3.gif&#34; alt=&#34;feedback3.gif&#34;&gt;&lt;/p&gt;
+&lt;p&gt;为了使&lt;strong&gt;Shinyapp&lt;/strong&gt;的可用性得到提高，我们需要给用户提供反馈，比如用户输入时消息提醒，运行操作时间过长时提供进度显示等。&lt;strong&gt;Shiny&lt;/strong&gt;自身就提供了多种用户反馈机制，还有一些十分优秀的扩展包也提供了一些方法。&lt;/p&gt;
+&lt;h2 id=&#34;validation&#34;&gt;Validation&lt;/h2&gt;
+&lt;p&gt;第一个也是最重要中的一个反馈是当用户输入错误的时候，app可以发送提示信息给用户。这个就跟我们平时写&lt;strong&gt;R&lt;/strong&gt;函数一样，参数错误的话会提供&lt;code&gt;message&lt;/code&gt;给用户。由于&lt;strong&gt;Shinyapp&lt;/strong&gt;只提供用户&lt;strong&gt;UI&lt;/strong&gt;，所以如果不提供反馈信息的话用户不知道是否运行正常。&lt;/p&gt;
+&lt;h3 id=&#34;validating-input&#34;&gt;Validating input&lt;/h3&gt;
+&lt;p&gt;如果我们需要给用户提供额外反馈的话，
+&lt;a href=&#34;https://github.com/merlinoa/shinyFeedback&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;shinyFeedback&lt;/strong&gt;&lt;/a&gt;是一个很好的选择。&lt;strong&gt;shinyFeedback&lt;/strong&gt;使用非常简单，在&lt;code&gt;ui&lt;/code&gt;中添加&lt;code&gt;useShinyFeedback()&lt;/code&gt;即可：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  shinyFeedback::useShinyFeedback(),
+  numericInput(&amp;quot;n&amp;quot;, &amp;quot;n&amp;quot;, value = 10),
+  textOutput(&amp;quot;half&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;shinyFeedback&lt;/strong&gt;提供了四种反馈函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;feedback()&lt;/li&gt;
+&lt;li&gt;feedbackWarning()&lt;/li&gt;
+&lt;li&gt;feedbackDanger()&lt;/li&gt;
+&lt;li&gt;feedbackSucess()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;它们都有三个主要参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;inputId&lt;/code&gt;：指定feedback显示的输入ID位置&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;show&lt;/code&gt;：逻辑值，用来判断显示反馈信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;text&lt;/code&gt;：反馈信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如我们可以提供反馈信息给用户，提示用户输入偶数，不要输入奇数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  observeEvent(input$n,
+    shinyFeedback::feedbackWarning(
+      &amp;quot;n&amp;quot;, 
+      input$n %% 2 != 0,
+      &amp;quot;Please select an even number&amp;quot;
+    )  
+  )
+  output$half &amp;lt;- renderText(input$n / 2)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/feedback1.gif&#34; alt=&#34;feedback1.gif&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这些feedback函数还提供了&lt;code&gt;color&lt;/code&gt;和&lt;code&gt;icon&lt;/code&gt;参数用户修改反馈信息的颜色图案等，具体用户可以阅读文档
+&lt;a href=&#34;https://github.com/merlinoa/shinyFeedback&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;shinyFeedback&lt;/strong&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们可以看到，上面的app即使在用户输入奇数的时候仍然打印结果，我们可以通过&lt;code&gt;req()&lt;/code&gt;函数来避免这种情况发生：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  half &amp;lt;- reactive({
+    even &amp;lt;- input$n %% 2 == 0
+    shinyFeedback::feedbackWarning(&amp;quot;n&amp;quot;, !even, &amp;quot;Please select an even number&amp;quot;)
+    req(even)
+    input$n / 2    
+  })
+  
+  output$half &amp;lt;- renderText(half())
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/feedback2.gif&#34; alt=&#34;feedback2.gif&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果&lt;code&gt;req()&lt;/code&gt;函数的输入不是TRUE的话，它就会发送一个特别的信号给&lt;strong&gt;shiny&lt;/strong&gt;，告诉&lt;strong&gt;shiny&lt;/strong&gt; &lt;code&gt;reactive&lt;/code&gt;没有它需要的输入，进而中止执行，因此所有基于它的&lt;code&gt;reactive consumers&lt;/code&gt;都将不会更新。&lt;/p&gt;
+&lt;h3 id=&#34;req中止执行&#34;&gt;&lt;code&gt;req()&lt;/code&gt;中止执行&lt;/h3&gt;
+&lt;p&gt;一个&lt;strong&gt;Shinyapp&lt;/strong&gt;一旦启动的话，用户无需做任何事情，整个程序实际上已经运行了一遍，由于我们一般会设置好默认输入，所以程序运行正常，但是一旦我们没有设置默认输入，&lt;strong&gt;Shiny&lt;/strong&gt;的这种机制就会带来一些问题，很多时候，我们是想在用户下达指令之后运行&lt;strong&gt;Shinyapp&lt;/strong&gt;，这主要涉及到三个输入函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;textInput()&lt;/code&gt;：不设置默认输入，&lt;code&gt;value = &amp;quot;&amp;quot;&lt;/code&gt;，&lt;strong&gt;Shinyapp&lt;/strong&gt;不做任何事，直到用户输入&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;selectInput()&lt;/code&gt;：提供了空选项&lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;，只有用户选择了选项，程序才运行&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;fileInput()&lt;/code&gt;：用户上传文件之前，这个是空的。我们也可以设置默认文件，这个我会在后面的我的一个&lt;strong&gt;Shinyapp&lt;/strong&gt;中用到，到时讲解一下&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果没有设置默认输入，这个时候我们就需要一个机制来中止这种&lt;code&gt;reactive&lt;/code&gt;，直到用户输入。这就是&lt;code&gt;req()&lt;/code&gt;的作用，检查输入是否符合要求，允许下一步的&lt;code&gt;reactive&lt;/code&gt;继续。&lt;/p&gt;
+&lt;p&gt;下面通过一个小例子讲解一下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  selectInput(&amp;quot;language&amp;quot;, &amp;quot;Language&amp;quot;, choices = c(&amp;quot;&amp;quot;, &amp;quot;English&amp;quot;, &amp;quot;Maori&amp;quot;)),
+  textInput(&amp;quot;name&amp;quot;, &amp;quot;Name&amp;quot;),
+  textOutput(&amp;quot;greeting&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  greetings &amp;lt;- c(
+    English = &amp;quot;Hello&amp;quot;, 
+    Maori = &amp;quot;Ki ora&amp;quot;
+  )
+  output$greeting &amp;lt;- renderText({
+    paste0(greetings[[input$language]], &amp;quot; &amp;quot;, input$name, &amp;quot;!&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个&lt;strong&gt;Shinyapp&lt;/strong&gt;启动的时候时会报错的，因为&lt;code&gt;selectInput()&lt;/code&gt;我们提供了一个空选项&lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;，而且我们也没有设置&lt;code&gt;selected&lt;/code&gt;，该输入就默认选择的就是第一个选项&lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200520161228.png&#34; alt=&#34;20200520161228.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们可以通过&lt;code&gt;req()&lt;/code&gt;来修正这个问题：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  greetings &amp;lt;- c(
+    English = &amp;quot;Hello&amp;quot;, 
+    Maori = &amp;quot;Ki ora&amp;quot;
+  )
+  output$greeting &amp;lt;- renderText({
+    req(input$language, input$name)
+    paste0(greetings[[input$language]], &amp;quot; &amp;quot;, input$name, &amp;quot;!&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;req和确认&#34;&gt;&lt;code&gt;req()&lt;/code&gt;和确认&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;req()&lt;/code&gt;可以与&lt;strong&gt;shinyFeedback&lt;/strong&gt;结合一起使用，下面这个app允许用户输入一个数据集，程序将判断该数据集是否是包&lt;strong&gt;datasets&lt;/strong&gt;内置的，不是的话中止运行并打印&lt;code&gt;message&lt;/code&gt;，&lt;code&gt;req()&lt;/code&gt;函数用到了&lt;code&gt;cancelOutput = TRUE&lt;/code&gt;，主要是因为&lt;code&gt;req()&lt;/code&gt;默认是中止下游所有输出，&lt;code&gt;cancelOutput = TRUE&lt;/code&gt;则可以保留最后一个正确的输入值，这一点很重要，输入中途很容易触发&lt;code&gt;update&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  shinyFeedback::useShinyFeedback(),
+  textInput(&amp;quot;dataset&amp;quot;, &amp;quot;Dataset name&amp;quot;), 
+  tableOutput(&amp;quot;data&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  data &amp;lt;- reactive({
+    req(input$dataset)
+    
+    exists &amp;lt;- exists(input$dataset, &amp;quot;package:datasets&amp;quot;)
+    shinyFeedback::feedbackDanger(&amp;quot;dataset&amp;quot;, !exists, &amp;quot;Unknown dataset&amp;quot;)
+    req(exists, cancelOutput = TRUE)
+
+    get(input$dataset, &amp;quot;package:datasets&amp;quot;)
+  })
+  
+  output$data &amp;lt;- renderTable({
+    head(data())
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/feedback3.gif&#34; alt=&#34;feedback3.gif&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;validate-output&#34;&gt;Validate output&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;shinyFeedback&lt;/strong&gt;在处理单个输入的时候很好用，当时一旦遇到需要处理多个输入一起反馈的时候就不好用了，你不好判断该&lt;code&gt;message&lt;/code&gt;放到哪个输入合适，此时更适合的是将&lt;code&gt;message&lt;/code&gt;打印到&lt;code&gt;output&lt;/code&gt;中。&lt;code&gt;validate()&lt;/code&gt;此时就很适合使用。当在&lt;code&gt;reactive&lt;/code&gt;或者&lt;code&gt;output&lt;/code&gt;中使用&lt;code&gt;validate()&lt;/code&gt;的时候，&lt;code&gt;validate(message)&lt;/code&gt;会终止剩余的所有程序，并将&lt;code&gt;message&lt;/code&gt;打印到任何一个&lt;code&gt;output&lt;/code&gt;中。下面的app不允许用户给&lt;code&gt;log&lt;/code&gt;和&lt;code&gt;square-root&lt;/code&gt;输入负值：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  numericInput(&amp;quot;x&amp;quot;, &amp;quot;x&amp;quot;, value = 0),
+  selectInput(&amp;quot;trans&amp;quot;, &amp;quot;transformation&amp;quot;, choices = c(&amp;quot;square&amp;quot;, &amp;quot;log&amp;quot;, &amp;quot;square-root&amp;quot;)),
+  textOutput(&amp;quot;out&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, server) {
+  output$out &amp;lt;- renderText({
+    if (input$x &amp;lt; 0 &amp;amp;&amp;amp; input$trans %in% c(&amp;quot;log&amp;quot;, &amp;quot;square-root&amp;quot;)) {
+      validate(&amp;quot;x can not be negative for this transformation&amp;quot;)
+    }
+    
+    switch(input$trans,
+      square = input$x ^ 2,
+      &amp;quot;square-root&amp;quot; = sqrt(input$x),
+      log = log(input$x)
+    )
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/feedback4.gif&#34; alt=&#34;feedback4.gif&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;notifications&#34;&gt;Notifications&lt;/h2&gt;
+&lt;p&gt;有时&lt;strong&gt;Shinyapp&lt;/strong&gt;没啥问题，只是想提示用户&lt;code&gt;message&lt;/code&gt;，此时可以用&lt;strong&gt;notification&lt;/strong&gt;。&lt;strong&gt;notifications&lt;/strong&gt;由&lt;code&gt;shoeNotification()&lt;/code&gt;创建，展现在app的右下角。&lt;code&gt;shoeNotification()&lt;/code&gt;有三种基本使用方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Transient notification&lt;/strong&gt;：短暂提醒，自动消失&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Removing on completion&lt;/strong&gt;：提示某一程序正在运行，运行结束自动移除&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Progressive updates&lt;/strong&gt;：随着不同程序运行，提示信息不断更新&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;transient-notification&#34;&gt;Transient notification&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;showNotification()&lt;/code&gt;最简单的用法就是直接提供需要展示的&lt;code&gt;message&lt;/code&gt;就行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  actionButton(&amp;quot;goodnight&amp;quot;, &amp;quot;Good night&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  observeEvent(input$goodnight, {
+    showNotification(&amp;quot;So long&amp;quot;)
+    Sys.sleep(1)
+    showNotification(&amp;quot;Farewell&amp;quot;)
+    Sys.sleep(1)
+    showNotification(&amp;quot;Auf Wiedersehen&amp;quot;)
+    Sys.sleep(1)
+    showNotification(&amp;quot;Adieu&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;默认情况下，&lt;code&gt;message&lt;/code&gt;会在5秒后自动消失，可以通过参数&lt;code&gt;duration&lt;/code&gt;修改，也可以点击关闭按钮让&lt;code&gt;message&lt;/code&gt;消失，还有一个参数&lt;code&gt;type&lt;/code&gt;可以展示不同类型的&lt;code&gt;message&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  observeEvent(input$goodnight, {
+    showNotification(&amp;quot;So long&amp;quot;)
+    Sys.sleep(1)
+    showNotification(&amp;quot;Farewell&amp;quot;, type = &amp;quot;message&amp;quot;)
+    Sys.sleep(1)
+    showNotification(&amp;quot;Auf Wiedersehen&amp;quot;, type = &amp;quot;warning&amp;quot;)
+    Sys.sleep(1)
+    showNotification(&amp;quot;Adieu&amp;quot;, type = &amp;quot;error&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;removing-on-completion&#34;&gt;Removing on completion&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Transient actions&lt;/code&gt;会在固定的时间后消失，但是很多时候我们需要运行一些长时间的任务，此时我们希望在任务运行期间&lt;code&gt;message&lt;/code&gt;一直显示，直到运行结束：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设置&lt;code&gt;duration = NULL&lt;/code&gt;以及&lt;code&gt;closeButton = FALSE&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;储存&lt;code&gt;showNotification()&lt;/code&gt;返回的&lt;code&gt;id&lt;/code&gt;,并将之传递给&lt;code&gt;removeNotification()&lt;/code&gt;。最可靠的实现方式是&lt;code&gt;on.exit()&lt;/code&gt;，这样不管任务正常运行结束还是中途出错提前中止，&lt;code&gt;notification&lt;/code&gt;都会被移除&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如我们需要上传一个大的&lt;code&gt;csv&lt;/code&gt;文件，展示提醒信息：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  data &amp;lt;- reactive({
+    id &amp;lt;- showNotification(&amp;quot;Reading data...&amp;quot;, duration = NULL, closeButton = FALSE)
+    on.exit(removeNotification(id), add = TRUE)
+    
+    read.csv(input$file$datapath)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一般这类通知信息都是在&lt;code&gt;reactive&lt;/code&gt;中运行的，可以保证一些大的长时间的任务只有在必需时运行，提高效率&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;progressive-updates&#34;&gt;Progressive updates&lt;/h3&gt;
+&lt;p&gt;可以通过捕获&lt;code&gt;id&lt;/code&gt;来更新&lt;code&gt;notification&lt;/code&gt;，如果一个长时间的任务由很多部分组成，那么这个就很好用了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  tableOutput(&amp;quot;data&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  notify &amp;lt;- function(msg, id = NULL) {
+    showNotification(msg, id = id, duration = NULL, closeButton = FALSE)
+  }
+
+  data &amp;lt;- reactive({ 
+    id &amp;lt;- notify(&amp;quot;Reading data...&amp;quot;)
+    on.exit(removeNotification(id), add = TRUE)
+    Sys.sleep(1)
+      
+    notify(&amp;quot;Reticulating splines...&amp;quot;, id = id)
+    Sys.sleep(1)
+    
+    notify(&amp;quot;Herding llamas...&amp;quot;, id = id)
+    Sys.sleep(1)
+
+    notify(&amp;quot;Orthogonalizing matrices...&amp;quot;, id = id)
+    Sys.sleep(1)
+        
+    mtcars
+  })
+  
+  output$data &amp;lt;- renderTable(head(data()))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/action-feedback.html&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:数据上传下载</title>
+      <link>https://taoyan.netlify.app/post/2020-04-11.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%95%B0%E6%8D%AE%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/</link>
+      <pubDate>Sat, 11 Apr 2020 10:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-11.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%95%B0%E6%8D%AE%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200412230342.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;app&lt;/code&gt;与用户之间的数据交换是非常常见的，我们需要上传数据用以分析，下载结果报告等数据。&lt;/p&gt;
+&lt;h2 id=&#34;数据上传&#34;&gt;数据上传&lt;/h2&gt;
+&lt;h3 id=&#34;ui&#34;&gt;UI&lt;/h3&gt;
+&lt;p&gt;数据上传由&lt;code&gt;fileInput()&lt;/code&gt;实现，&lt;code&gt;fileInput()&lt;/code&gt;只需要两个参数：&lt;code&gt;id&lt;/code&gt;,&lt;code&gt;label&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  fileInput(&amp;quot;file&amp;quot;, &amp;quot;Upload a file&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;server&#34;&gt;Server&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;server&lt;/code&gt;端接收上传的数据更复杂点，&lt;code&gt;input$file&lt;/code&gt;返回的是一个含有四列的数据框：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;name&lt;/code&gt;：用户上传时的文件名&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;size&lt;/code&gt;：文件大小，默认上传数据不超过5MB，可以在&lt;strong&gt;Shiny&lt;/strong&gt;最开始的时候设置文件大小限制，比如允许上传不超过10MB的数据：&lt;code&gt;options(shiny.maxRequestSize = 10 * 1024^2)&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;type&lt;/code&gt;：文件类型，一般后缀已经注明了&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;datapath&lt;/code&gt;：数据上传之后的路径，后续读取的时候要用到&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创建一个简单的&lt;code&gt;app&lt;/code&gt;演示一下：上传数据，并打印出数据信息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+options(shiny.maxRequestSize = 10 * 1024^2)
+ui &amp;lt;- fluidPage(
+  fileInput(&amp;quot;upload&amp;quot;, label = &amp;quot;Please Upload Your File&amp;quot;, buttonLabel = &amp;quot;Upload...&amp;quot;, multiple = TRUE),
+  tableOutput(&amp;quot;files&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  output$files &amp;lt;- renderTable(input$upload)
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200412215606.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;上传数据有几点需要注意：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;input$file&lt;/code&gt;：初始值是&lt;code&gt;NULL&lt;/code&gt;，所以需要&lt;code&gt;req(input$file)&lt;/code&gt;保证数据上传完开始运行计算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;accept&lt;/code&gt;：&lt;code&gt;accept&lt;/code&gt;参数允许限制上传数据的类型，比如可以限制只允许上传&lt;code&gt;.csv&lt;/code&gt;,&lt;code&gt;.tsv&lt;/code&gt;,&lt;code&gt;.txt&lt;/code&gt;文件:&lt;code&gt;accept=c(&amp;quot;.csv&amp;quot;,&amp;quot;.tsv&amp;quot;,&amp;quot;txt&amp;quot;)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;比如下面这个&lt;code&gt;app&lt;/code&gt;只允许上传&lt;code&gt;.csv&lt;/code&gt;,&lt;code&gt;.tsv&lt;/code&gt;,&lt;code&gt;.txt&lt;/code&gt;文件，如果不是就提醒用户，上传完毕之后读取并打印：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+options(shiny.maxRequestSize = 10 * 1024^2)
+ui &amp;lt;- fluidPage(
+  fileInput(&amp;quot;file&amp;quot;, label = &amp;quot;Please upload file: &amp;quot;, accept = c(&amp;quot;.csv&amp;quot;, &amp;quot;.tsv&amp;quot;, &amp;quot;.txt&amp;quot;)),
+  numericInput(&amp;quot;n&amp;quot;, &amp;quot;Rows&amp;quot;, value = 5, min = 1, step = 1),
+  tableOutput(&amp;quot;head&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  data &amp;lt;- reactive({
+    req(input$file)
+    
+    ext &amp;lt;- tools::file_ext(input$file$name)
+    switch(ext,
+           csv = vroom::vroom(input$file$datapath, delim = &amp;quot;,&amp;quot;),
+           tsv = vroom::vroom(input$file$datapath, delim = &amp;quot;\t&amp;quot;),
+           txt = vroom::vroom(input$file$datapath, delim = &amp;quot;\t&amp;quot;),
+           validate(&amp;quot;Invalid file; Please upload a .csv, .tsv or a .txt file&amp;quot;)
+    )
+  })
+  
+  output$head &amp;lt;- renderTable({
+    head(data(), input$n)
+  })
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200412221411.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;数据下载&#34;&gt;数据下载&lt;/h2&gt;
+&lt;p&gt;数据下载由&lt;code&gt;downloadButton(id)&lt;/code&gt;以及&lt;code&gt;downloadLink(id)&lt;/code&gt;提供下载按钮，这两个函数还有很多定制化参数进行美化，&lt;code&gt;downloadHandler()&lt;/code&gt;负责下载&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  downloadButton(&amp;quot;download1&amp;quot;),
+  downloadLink(&amp;quot;download2&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;output$download &amp;lt;- downloadHandler(
+  filename = function() {
+    paste0(input$dataset, &amp;quot;.csv&amp;quot;)
+  },
+  content = function(file) {
+    write.csv(data(), file)
+  }
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;downloadHandler()&lt;/code&gt;有两个参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;filename&lt;/code&gt;：是一个函数，返回文件名。主要作用就是创建展示给用户的文件名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;content&lt;/code&gt;：也是一个函数，返回文件保存路径&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面用一个小&lt;code&gt;app&lt;/code&gt;来展示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  selectInput(&amp;quot;dataset&amp;quot;, &amp;quot;Pick a dataset&amp;quot;, ls(&amp;quot;package:datasets&amp;quot;)),
+  tableOutput(&amp;quot;preview&amp;quot;),
+  downloadButton(&amp;quot;download&amp;quot;, &amp;quot;Download .tsv&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  data &amp;lt;- reactive({
+    out &amp;lt;- get(input$dataset, &amp;quot;package:datasets&amp;quot;)
+    if (!is.data.frame(out)) {
+      validate(paste0(&amp;quot;&#39;&amp;quot;, input$dataset, &amp;quot;&#39; is not a data frame&amp;quot;))
+    }
+    out
+  })
+  
+  output$preview &amp;lt;- renderTable({
+    head(data())
+  })
+  
+  output$download &amp;lt;- downloadHandler(
+    filename = function() {
+      paste0(input$dataset, &amp;quot;.tsv&amp;quot;)
+    },
+    content = function(file) {
+      vroom::vroom_write(data(), file)
+    }
+  )
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200412223358.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;最后用一个&lt;code&gt;app&lt;/code&gt;将数据上传，数据下载整合到一起展示，这里将几部分先写好再整合到一个&lt;code&gt;app&lt;/code&gt;中，实际上算是个模块化编程了，方便理解：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#上传数据ui
+ui_upload &amp;lt;- sidebarLayout(
+  sidebarPanel(
+    fileInput(&amp;quot;file&amp;quot;, &amp;quot;Data&amp;quot;, buttonLabel = &amp;quot;Upload...&amp;quot;),
+    textInput(&amp;quot;delim&amp;quot;, &amp;quot;Delimiter (leave blank to guess)&amp;quot;, &amp;quot;&amp;quot;),
+    numericInput(&amp;quot;skip&amp;quot;, &amp;quot;Rows to skip&amp;quot;, 0, min = 0),
+    numericInput(&amp;quot;rows&amp;quot;, &amp;quot;Rows to preview&amp;quot;, 10, min = 1)
+  ),
+  mainPanel(
+    h3(&amp;quot;Raw data&amp;quot;),
+    tableOutput(&amp;quot;preview1&amp;quot;)
+  )
+)
+
+##处理数据ui
+ui_clean &amp;lt;- sidebarLayout(
+  sidebarPanel(
+    checkboxInput(&amp;quot;snake&amp;quot;, &amp;quot;Rename columns to snake case?&amp;quot;),
+    checkboxInput(&amp;quot;constant&amp;quot;, &amp;quot;Remove constant columns?&amp;quot;),
+    checkboxInput(&amp;quot;empty&amp;quot;, &amp;quot;Remove empty cols?&amp;quot;)
+  ),
+  mainPanel(
+    h3(&amp;quot;Cleaner data&amp;quot;),
+    tableOutput(&amp;quot;preview2&amp;quot;)
+  )
+)
+
+##下载数据ui
+ui_download &amp;lt;- fluidRow(
+  column(width = 12, downloadButton(&amp;quot;download&amp;quot;, class = &amp;quot;btn-block&amp;quot;))
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;再整合成UI：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  ui_upload,
+  ui_clean,
+  ui_download
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后写成一个&lt;code&gt;app&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  # Upload ---------------------------------------------------------------
+  raw &amp;lt;- reactive({
+    req(input$file)
+    delim &amp;lt;- if (input$delim == &amp;quot;&amp;quot;) NULL else input$delim
+    vroom::vroom(input$file$datapath, delim = delim, skip = input$skip)
+  })
+  output$preview1 &amp;lt;- renderTable(head(raw(), input$rows))
+  
+  # Clean ----------------------------------------------------------------
+  tidied &amp;lt;- reactive({
+    out &amp;lt;- raw()
+    if (input$snake) {
+      names(out) &amp;lt;- janitor::make_clean_names(names(out))
+    }
+    if (input$empty) {
+      out &amp;lt;- janitor::remove_empty(out, &amp;quot;cols&amp;quot;)
+    }
+    if (input$constant) {
+      out &amp;lt;- janitor::remove_constant(out)
+    }
+    
+    out
+  })
+  output$preview2 &amp;lt;- renderTable(head(tidied(), input$rows))
+  
+  # Download -------------------------------------------------------------
+  output$download &amp;lt;- downloadHandler(
+    filename = function() {
+      paste0(tools::file_path_sans_ext(input$file$name), &amp;quot;.tsv&amp;quot;)
+    },
+    content = function(file) {
+      vroom::vroom_write(tidied(), file)
+    }
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200412230342.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/action-transfer.html#download&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:案例实战</title>
+      <link>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%A1%88%E4%BE%8B%E5%AE%9E%E6%88%98/</link>
+      <pubDate>Fri, 10 Apr 2020 23:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%A1%88%E4%BE%8B%E5%AE%9E%E6%88%98/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411230407.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;案例实战&#34;&gt;案例实战&lt;/h2&gt;
+&lt;p&gt;前面已经学习&lt;strong&gt;Shiny&lt;/strong&gt;基本知识，为了融会贯通理解学习的各种概念，这样将以一个实际案例进行实战。先准备需要的包：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (!require(shiny)){
+  install.packages(&amp;quot;shiny&amp;quot;)
+  library(shiny)
+}
+if (!require(vroom)){
+  install.packages(&amp;quot;vroom&amp;quot;)
+  library(vroom)
+}
+if (!require(tidyverse)){
+  install.packages(&amp;quot;tidyverse&amp;quot;)
+  library(tidyverse)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;数据&#34;&gt;数据&lt;/h3&gt;
+&lt;p&gt;数据来自2017年国家电子伤害监督系统里的数据集&lt;code&gt;injuries&lt;/code&gt;，包含25万观测值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;injuries &amp;lt;- vroom::vroom(&amp;quot;injuries.tsv.gz&amp;quot;)
+injuries
+# A tibble: 255,064 x 10
+   trmt_date    age sex   race  body_part diag  location prod_code
+   &amp;lt;date&amp;gt;     &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;        &amp;lt;dbl&amp;gt;
+ 1 2017-01-01    71 male  white Upper Tr… Cont… Other P…      1807
+ 2 2017-01-01    16 male  white Lower Arm Burn… Home           676
+ 3 2017-01-01    58 male  white Upper Tr… Cont… Home           649
+ 4 2017-01-01    21 male  white Lower Tr… Stra… Home          4076
+ 5 2017-01-01    54 male  white Head      Inte… Other P…      1807
+ 6 2017-01-01    21 male  white Hand      Frac… Home          1884
+ 7 2017-01-01    35 fema… not … Lower Tr… Stra… Home          1807
+ 8 2017-01-01    62 fema… not … Lower Arm Lace… Home          4074
+ 9 2017-01-01    22 male  not … Knee      Disl… Home          4076
+10 2017-01-01    58 fema… not … Lower Leg Frac… Home          1842
+# … with 255,054 more rows, and 2 more variables: weight &amp;lt;dbl&amp;gt;,
+#   narrative &amp;lt;chr&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;每一行代表一次事故伤害，有10个变量：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;trmt_date&lt;/code&gt;：受伤害的人在医院的日期&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;age&lt;/code&gt;,&lt;code&gt;sex&lt;/code&gt;,&lt;code&gt;race&lt;/code&gt;：个人信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;body_part&lt;/code&gt;:受伤害部位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;location&lt;/code&gt;：受伤害地点&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;diag&lt;/code&gt;：诊断结果&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;prod_code&lt;/code&gt;：伤害结果代码&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;：估算全国可能受此伤害的人数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;narrative&lt;/code&gt;：伤害如何发生的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;还有另外两个数据集：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;products&lt;/code&gt;：伤害与代码的对应关系&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;population&lt;/code&gt;：2017年全美对应年龄性别的人口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;products &amp;lt;- vroom::vroom(&amp;quot;products.tsv&amp;quot;)
+products
+# A tibble: 38 x 2
+   prod_code title                                   
+       &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;                                   
+ 1       464 knives, not elsewhere classified        
+ 2       474 tableware and accessories               
+ 3       604 desks, chests, bureaus or buffets       
+ 4       611 bathtubs or showers                     
+ 5       649 toilets                                 
+ 6       676 rugs or carpets, not specified          
+ 7       679 sofas, couches, davenports, divans or st
+ 8      1141 containers, not specified               
+ 9      1200 sports or recreational activity, n.e.c. 
+10      1205 basketball (activity, apparel or equip.)
+# … with 28 more rows
+
+population &amp;lt;- vroom::vroom(&amp;quot;population.tsv&amp;quot;)
+population
+# A tibble: 170 x 3
+     age sex    population
+   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;
+ 1     0 female    1924145
+ 2     0 male      2015150
+ 3     1 female    1943534
+ 4     1 male      2031718
+ 5     2 female    1965150
+ 6     2 male      2056625
+ 7     3 female    1956281
+ 8     3 male      2050474
+ 9     4 female    1953782
+10     4 male      2042001
+# … with 160 more rows
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;数据探索&#34;&gt;数据探索&lt;/h3&gt;
+&lt;p&gt;创建&lt;strong&gt;Shiny App&lt;/strong&gt;前，首先了解数据，先看看伤害代号为&lt;code&gt;1842&lt;/code&gt;的有多少：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;selected &amp;lt;- injuries %&amp;gt;% filter(prod_code == 1842)
+nrow(selected)
+#&amp;gt; [1] 30647
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;再针对不同变量&lt;code&gt;diagnosis&lt;/code&gt;、&lt;code&gt;body_part&lt;/code&gt;、&lt;code&gt;location&lt;/code&gt;进行统计&lt;code&gt;weight&lt;/code&gt;变量&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;selected %&amp;gt;% count(diag, wt = weight, sort = TRUE)
+# A tibble: 23 x 2
+   diag                        n
+   &amp;lt;chr&amp;gt;                   &amp;lt;dbl&amp;gt;
+ 1 Strain, Sprain        267892.
+ 2 Fracture              243082.
+ 3 Other Or Not Stated   227515.
+ 4 Contusion Or Abrasion 195172.
+ 5 Inter Organ Injury    111340.
+ 6 Laceration             89190.
+ 7 Concussion             18983.
+ 8 Dislocation            16556.
+ 9 Hematoma               13080.
+10 Nerve Damage            7705.
+# … with 13 more rows
+
+selected %&amp;gt;% count(body_part, wt = weight, sort = TRUE)
+# A tibble: 25 x 2
+   body_part         n
+   &amp;lt;chr&amp;gt;         &amp;lt;dbl&amp;gt;
+ 1 Ankle       183470.
+ 2 Head        174725.
+ 3 Lower Trunk 150459.
+ 4 Knee        112162.
+ 5 Upper Trunk  98197.
+ 6 Face         73815.
+ 7 Foot         73388.
+ 8 Shoulder     52637.
+ 9 Lower Leg    52254.
+10 Wrist        39202.
+# … with 15 more rows
+
+selected %&amp;gt;% count(location, wt = weight, sort = TRUE)
+# A tibble: 8 x 2
+  location                         n
+  &amp;lt;chr&amp;gt;                        &amp;lt;dbl&amp;gt;
+1 Home                       647127.
+2 Unknown                    458802.
+3 Other Public Property       57625.
+4 School                      25146.
+5 Sports Or Recreation Place  11833.
+6 Street Or Highway            2148.
+7 Mobile Home                   783.
+8 Farm                          150.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看出与&lt;code&gt;楼梯&lt;/code&gt;有关的伤害主要集中在关节扭伤、拉伤、骨折等，且大多发生在家里。再看看年龄与性别，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-&amp;gt; summary &amp;lt;- selected %&amp;gt;% 
+   count(age, sex, wt = weight)
+-&amp;gt; summary
+# A tibble: 204 x 3
+     age sex         n
+   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt;
+ 1     0 female  3714.
+ 2     0 male    3981.
+ 3     1 female 12155.
+ 4     1 male   12898.
+ 5     2 female  6949.
+ 6     2 male    9730.
+ 7     3 female  4542.
+ 8     3 male    8404.
+ 9     4 female  3618.
+10     4 male    4845.
+# … with 194 more rows
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;summary %&amp;gt;% 
+  ggplot(aes(age, n, colour = sex)) + 
+  geom_line() + 
+  labs(y = &amp;quot;Estimated number of injuries&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411201829.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到随着小孩学会走路，伤害的次数逐渐增多后逐渐平缓，有趣的是女性（高跟鞋的缘故？）受伤次数远远高于男性。由于老年人远远少于青年人，这种比较失衡，所以用受伤率来展示：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;summary &amp;lt;- selected %&amp;gt;% 
+  count(age, sex, wt = weight) %&amp;gt;% 
+  left_join(population, by = c(&amp;quot;age&amp;quot;, &amp;quot;sex&amp;quot;)) %&amp;gt;% 
+  mutate(rate = n / population * 1e4)
+summary
+# A tibble: 204 x 5
+     age sex         n population  rate
+   &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;dbl&amp;gt;      &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+ 1     0 female  3714.    1924145  19.3
+ 2     0 male    3981.    2015150  19.8
+ 3     1 female 12155.    1943534  62.5
+ 4     1 male   12898.    2031718  63.5
+ 5     2 female  6949.    1965150  35.4
+ 6     2 male    9730.    2056625  47.3
+ 7     3 female  4542.    1956281  23.2
+ 8     3 male    8404.    2050474  41.0
+ 9     4 female  3618.    1953782  18.5
+10     4 male    4845.    2042001  23.7
+# … with 194 more rows
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;summary %&amp;gt;% 
+  ggplot(aes(age, rate, colour = sex)) + 
+  geom_line(na.rm = TRUE) + 
+  labs(y = &amp;quot;Injuries per 10,000 people&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411202436.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看出老年人受伤率十分高。&lt;/p&gt;
+&lt;p&gt;再看看具体的受伤诊断，随机抽取10行数据进行展示&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-&amp;gt; selected %&amp;gt;% 
+   sample_n(10) %&amp;gt;% 
+   pull(narrative)
+ [1] &amp;quot;56 YOM DX LT AC JOINT SEPARATION - S/P BIBEMS AFTER PT SLIPPED ONWATER,FELL DOWN 3 STEPS.&amp;quot;                                              
+ [2] &amp;quot;LEFT WRIST FX. 61 YOF WAS WALKING DOWNSTAIRS WHEN SHE MISSED A STEP ANDFELL.&amp;quot;                                                           
+ [3] &amp;quot;39YOM KNEE PAIN- FELL DOWN STEPS&amp;quot;                                                                                                       
+ [4] &amp;quot;27YOF C/O RT ANKLE PAIN AFTER TRIPPING WHILE GOING DOWN STAIRS INVERTING ANKLE AT 2PM TODAY DX ANKLE SPRAIN&amp;quot;                            
+ [5] &amp;quot;15YOF W/MOM PT FELL DN A STEP @HOME HITTING HER ANTERIOR KNEE , HAS HADPN SINCE X 1 HR PTA DX PATELLAR DISLOCATION, L&amp;quot;                  
+ [6] &amp;quot;5 YOM FELL DOWN STEPS. DX FOOT CONTUSION&amp;quot;                                                                                               
+ [7] &amp;quot;R HAND LAC/87YOWM TRIPPED DOWN A STAIR &amp;amp; SCRAPED R HAND ON THE WALL WHERE A NAIL WAS STICKING OUT. SUSTAINED LAC R HAND.&amp;quot;               
+ [8] &amp;quot;61 YO F PT GOING DOWN STAIRS AT CHURCH FELT NAUSEA,DIZZY FELL HITTINGHEAD. DX CHI&amp;quot;                                                      
+ [9] &amp;quot;15YOM WITH 2 SEIZURES AT HOME, ONE HE FELL DOWN STAIRS AND THE OTHERHE FELL OUT OF BED HITTING HIS HEAD ON FLOOR; HEAD INJURY, EPILEPSY&amp;quot;
+[10] &amp;quot;*48YOF,UPPER BACKPAIN STARTED 2DAYS AGO FELL BACKWARDS ON STEPS W/PLAYING WITH DOG,HIT HEAD MAYBE,DX:MUSCULOSKELETAL PAIN&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;app&#34;&gt;App&lt;/h3&gt;
+&lt;p&gt;上面我们只探究了&lt;code&gt;1842&lt;/code&gt;这一种，总共有30几种，我们不可能一一展示，这时创建一个&lt;strong&gt;Shiny App&lt;/strong&gt;就可以方便我们探究任何一种伤害了。&lt;/p&gt;
+&lt;p&gt;根据上面分析的结果，先创建创建一个十分简单的&lt;code&gt;app&lt;/code&gt;：只有一个输入，3个表格输出，1个图形输出&lt;/p&gt;
+&lt;p&gt;UI部分&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  fluidRow(
+    column(6,
+      selectInput(&amp;quot;code&amp;quot;, &amp;quot;Product&amp;quot;, setNames(products$prod_code, products$title))
+    )
+  ),
+  fluidRow(
+    column(4, tableOutput(&amp;quot;diag&amp;quot;)),
+    column(4, tableOutput(&amp;quot;body_part&amp;quot;)),
+    column(4, tableOutput(&amp;quot;location&amp;quot;))
+  ),
+  fluidRow(
+    column(12, plotOutput(&amp;quot;age_sex&amp;quot;))
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;setName()&lt;/code&gt;将&lt;code&gt;products$title&lt;/code&gt;赋值给&lt;code&gt;products$prod_code&lt;/code&gt;，&lt;code&gt;products$prod_code&lt;/code&gt;显示在UI，而&lt;code&gt;products$title&lt;/code&gt;返回给&lt;code&gt;server&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;server&lt;/code&gt;部分首先将&lt;code&gt;selected&lt;/code&gt;以及&lt;code&gt;summary&lt;/code&gt;写成&lt;code&gt;reactive expression&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  selected &amp;lt;- reactive(injuries %&amp;gt;% filter(prod_code == input$code))
+
+  output$diag &amp;lt;- renderTable(
+    selected() %&amp;gt;% count(diag, wt = weight, sort = TRUE)
+  )
+  output$body_part &amp;lt;- renderTable(
+    selected() %&amp;gt;% count(body_part, wt = weight, sort = TRUE)
+  )
+  output$location &amp;lt;- renderTable(
+    selected() %&amp;gt;% count(location, wt = weight, sort = TRUE)
+  )
+
+  summary &amp;lt;- reactive({
+    selected() %&amp;gt;%
+      count(age, sex, wt = weight) %&amp;gt;%
+      left_join(population, by = c(&amp;quot;age&amp;quot;, &amp;quot;sex&amp;quot;)) %&amp;gt;%
+      mutate(rate = n / population * 1e4)
+  })
+
+  output$age_sex &amp;lt;- renderPlot({
+    summary() %&amp;gt;%
+      ggplot(aes(age, n, colour = sex)) +
+      geom_line() +
+      labs(y = &amp;quot;Estimated number of injuries&amp;quot;) +
+      theme_grey(15)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后完整的&lt;code&gt;app.R&lt;/code&gt;代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if (!require(shiny)){
+  install.packages(&amp;quot;shiny&amp;quot;)
+  library(shiny)
+}
+if (!require(vroom)){
+  install.packages(&amp;quot;vroom&amp;quot;)
+  library(vroom)
+}
+if (!require(tidyverse)){
+  install.packages(&amp;quot;tidyverse&amp;quot;)
+  library(tidyverse)
+}
+injuries &amp;lt;- vroom::vroom(&amp;quot;../injuries.tsv.gz&amp;quot;)
+products &amp;lt;- vroom::vroom(&amp;quot;../products.tsv&amp;quot;)
+population &amp;lt;- vroom::vroom(&amp;quot;../population.tsv&amp;quot;)
+
+ui &amp;lt;- fluidPage(
+  fluidRow(
+    column(6,
+           selectInput(&amp;quot;code&amp;quot;, &amp;quot;Product&amp;quot;, setNames(products$prod_code, products$title))
+    )
+  ),
+  fluidRow(
+    column(4, tableOutput(&amp;quot;diag&amp;quot;)),
+    column(4, tableOutput(&amp;quot;body_part&amp;quot;)),
+    column(4, tableOutput(&amp;quot;location&amp;quot;))
+  ),
+  fluidRow(
+    column(12, plotOutput(&amp;quot;age_sex&amp;quot;))
+  )
+)
+
+server &amp;lt;- function(input, output, session) {
+  selected &amp;lt;- reactive(injuries %&amp;gt;% filter(prod_code == input$code))
+  
+  output$diag &amp;lt;- renderTable(
+    selected() %&amp;gt;% count(diag, wt = weight, sort = TRUE)
+  )
+  output$body_part &amp;lt;- renderTable(
+    selected() %&amp;gt;% count(body_part, wt = weight, sort = TRUE)
+  )
+  output$location &amp;lt;- renderTable(
+    selected() %&amp;gt;% count(location, wt = weight, sort = TRUE)
+  )
+  
+  summary &amp;lt;- reactive({
+    selected() %&amp;gt;%
+      count(age, sex, wt = weight) %&amp;gt;%
+      left_join(population, by = c(&amp;quot;age&amp;quot;, &amp;quot;sex&amp;quot;)) %&amp;gt;%
+      mutate(rate = n / population * 1e4)
+  })
+  
+  output$age_sex &amp;lt;- renderPlot({
+    summary() %&amp;gt;%
+      ggplot(aes(age, n, colour = sex)) +
+      geom_line() +
+      labs(y = &amp;quot;Estimated number of injuries&amp;quot;) +
+      theme_grey(15)
+  })
+}
+
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;启动之后界面如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411211942.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;优化&#34;&gt;优化&lt;/h3&gt;
+&lt;p&gt;主要是表格优化，因为显示太多不美观，这里定义一个函数用来显示出现频率最大的5组&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;count_top &amp;lt;- function(df, var, n = 5) {
+  df %&amp;gt;%
+    mutate({{ var }} := fct_lump(fct_infreq({{ var }}), n = n)) %&amp;gt;%
+    group_by({{ var }}) %&amp;gt;%
+    summarise(n = as.integer(sum(weight)))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;并将输出输出的宽度设置为最大，这样对齐美观。同时我们再添加一个选项，根据受伤率&lt;code&gt;rate&lt;/code&gt;来绘制图形并显示具体的受伤过程&lt;code&gt;narrative&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;最终的app.R代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(tidyverse)
+library(vroom)
+library(shiny)
+if (!exists(&amp;quot;injuries&amp;quot;)) {
+  injuries &amp;lt;- vroom::vroom(&amp;quot;data/injuries.tsv.gz&amp;quot;)
+  products &amp;lt;- vroom::vroom(&amp;quot;data/products.tsv&amp;quot;)
+  population &amp;lt;- vroom::vroom(&amp;quot;data/population.tsv&amp;quot;)
+}
+
+ui &amp;lt;- fluidPage(
+  #&amp;lt;&amp;lt; first-row
+  fluidRow(
+    column(8,
+           selectInput(&amp;quot;code&amp;quot;, &amp;quot;Product&amp;quot;,
+                       choices = setNames(products$prod_code, products$title),
+                       width = &amp;quot;100%&amp;quot;
+           )
+    ),
+    column(2, selectInput(&amp;quot;y&amp;quot;, &amp;quot;Y axis&amp;quot;, c(&amp;quot;rate&amp;quot;, &amp;quot;count&amp;quot;)))
+  ),
+  #&amp;gt;&amp;gt;
+  fluidRow(
+    column(4, tableOutput(&amp;quot;diag&amp;quot;)),
+    column(4, tableOutput(&amp;quot;body_part&amp;quot;)),
+    column(4, tableOutput(&amp;quot;location&amp;quot;))
+  ),
+  fluidRow(
+    column(12, plotOutput(&amp;quot;age_sex&amp;quot;))
+  ),
+  #&amp;lt;&amp;lt; narrative-ui
+  fluidRow(
+    column(2, actionButton(&amp;quot;story&amp;quot;, &amp;quot;Tell me a story&amp;quot;)),
+    column(10, textOutput(&amp;quot;narrative&amp;quot;))
+  )
+  #&amp;gt;&amp;gt;
+)
+
+count_top &amp;lt;- function(df, var, n = 5) {
+  df %&amp;gt;%
+    mutate({{ var }} := fct_lump(fct_infreq({{ var }}), n = n)) %&amp;gt;%
+    group_by({{ var }}) %&amp;gt;%
+    summarise(n = as.integer(sum(weight)))
+}
+
+server &amp;lt;- function(input, output, session) {
+  selected &amp;lt;- reactive(injuries %&amp;gt;% filter(prod_code == input$code))
+  
+  #&amp;lt;&amp;lt; tables
+  output$diag &amp;lt;- renderTable(count_top(selected(), diag), width = &amp;quot;100%&amp;quot;)
+  output$body_part &amp;lt;- renderTable(count_top(selected(), body_part), width = &amp;quot;100%&amp;quot;)
+  output$location &amp;lt;- renderTable(count_top(selected(), location), width = &amp;quot;100%&amp;quot;)
+  #&amp;gt;&amp;gt;
+  
+  summary &amp;lt;- reactive({
+    selected() %&amp;gt;%
+      count(age, sex, wt = weight) %&amp;gt;%
+      left_join(population, by = c(&amp;quot;age&amp;quot;, &amp;quot;sex&amp;quot;)) %&amp;gt;%
+      mutate(rate = n / population * 1e4)
+  })
+  
+  #&amp;lt;&amp;lt; plot
+  output$age_sex &amp;lt;- renderPlot({
+    if (input$y == &amp;quot;count&amp;quot;) {
+      summary() %&amp;gt;%
+        ggplot(aes(age, n, colour = sex)) +
+        geom_line() +
+        labs(y = &amp;quot;Estimated number of injuries&amp;quot;) +
+        theme_grey(15)
+    } else {
+      summary() %&amp;gt;%
+        ggplot(aes(age, rate, colour = sex)) +
+        geom_line(na.rm = TRUE) +
+        labs(y = &amp;quot;Injuries per 10,000 people&amp;quot;) +
+        theme_grey(15)
+    }
+  })
+  #&amp;gt;&amp;gt;
+  
+  #&amp;lt;&amp;lt; narrative-server
+  output$narrative &amp;lt;- renderText({
+    input$story
+    selected() %&amp;gt;% pull(narrative) %&amp;gt;% sample(1)
+  })
+  #&amp;gt;&amp;gt;
+}
+
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上面涉及到一些数据处理函数，我有段时间没用都生疏了，后面的再花点时间去学学数据处理函数，尤其是&lt;code&gt;Tidyverse&lt;/code&gt;包里的。&lt;/p&gt;
+&lt;p&gt;我这里也提供一个
+&lt;a href=&#34;http://rapeseed.zju.edu.cn:3838/injuries/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Shiny App&lt;/strong&gt;&lt;/a&gt;用来查看浏览。&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-case-study.html&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:响应式编程-2</title>
+      <link>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B2/</link>
+      <pubDate>Fri, 10 Apr 2020 21:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B2/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411172124.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;reactive-programming&#34;&gt;Reactive Programming&lt;/h2&gt;
+&lt;p&gt;只有输入或者只有输出的&lt;strong&gt;Shiny App&lt;/strong&gt;是十分无聊的，当一个&lt;strong&gt;Shiny App&lt;/strong&gt;既有输入有有输出，就十分有魅力了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  textInput(&amp;quot;name&amp;quot;, &amp;quot;What&#39;s your name?&amp;quot;),
+  textOutput(&amp;quot;greeting&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  output$greeting &amp;lt;- renderText({
+    paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410235847.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这就是&lt;strong&gt;Shiny&lt;/strong&gt;魅力所在，你无需告诉输出何时更新，&lt;strong&gt;Shiny&lt;/strong&gt;会自动帮你完成更新。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;记住一点，&lt;strong&gt;Shiny App&lt;/strong&gt;只是提供&lt;code&gt;recipes&lt;/code&gt;给&lt;strong&gt;Shiny&lt;/strong&gt;，而不是&lt;code&gt;commands&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;imperative-vs-declarative-programming&#34;&gt;Imperative vs declarative programming&lt;/h3&gt;
+&lt;p&gt;命令式编程与声明式编程之间的关键区别就是&lt;code&gt;recipes&lt;/code&gt;与&lt;code&gt;commands&lt;/code&gt;的区别：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;命令式编程：你敲入一行代码，立即运行，就像在&lt;code&gt;R&lt;/code&gt;里面加载数据、转换数据、可视化以及保存结果等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;声明式编程：你只是传递更高一级的指令，依赖于别人决定如何何时行动，这就是&lt;strong&gt;Shiny&lt;/strong&gt;的编程方式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;laziness&#34;&gt;Laziness&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Shiny&lt;/strong&gt;声明式编程的一个优势允许&lt;code&gt;app&lt;/code&gt;极度懒惰。&lt;strong&gt;Shiny&lt;/strong&gt;只会做一小部分结果需要更新的工作，其它不必做的一概不做，比如下面例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  output$greetnig &amp;lt;- renderText({
+    paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;就是&lt;code&gt;greetning&lt;/code&gt;写错了，&lt;strong&gt;Shiny&lt;/strong&gt;是不会报这个错的，但是你无法做任何你想做的事，因为&lt;code&gt;greetning&lt;/code&gt;不存在的，&lt;code&gt;renderText()&lt;/code&gt;里面的代码永远不会运行。所以多检查你的&lt;code&gt;app&lt;/code&gt;是否存在拼写错误。&lt;/p&gt;
+&lt;h3 id=&#34;the-reactive-graph&#34;&gt;The reactive graph&lt;/h3&gt;
+&lt;p&gt;我们平时运行代码的时候是从上到下依次运行，但是&lt;strong&gt;Shiny&lt;/strong&gt;不是这样工作的，代码只是在需要的时候才运行。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411001842.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这是一个很简单的&lt;code&gt;reactive graph&lt;/code&gt;，如果&lt;code&gt;name&lt;/code&gt;发生变化，&lt;code&gt;greeting&lt;/code&gt;需要从新运行。&lt;/p&gt;
+&lt;h3 id=&#34;reactive-expressions&#34;&gt;Reactive expressions&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Shiny&lt;/strong&gt;代码的执行顺序只由&lt;code&gt;reactive graph&lt;/code&gt;决定，更代码在&lt;code&gt;server&lt;/code&gt;函数中的顺序无关：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  output$greeting &amp;lt;- renderText(text())
+  text &amp;lt;- reactive(paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;与&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  text &amp;lt;- reactive(paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;))
+  output$greeting &amp;lt;- renderText(text())
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;是一样的。&lt;/p&gt;
+&lt;p&gt;上面我们讲过，为什么&lt;code&gt;reactive expression&lt;/code&gt;对于&lt;strong&gt;Shiny&lt;/strong&gt;如此重要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;尽可能多地提供&lt;strong&gt;Shiny&lt;/strong&gt;信息，这样当输入变化时，&lt;strong&gt;Shiny&lt;/strong&gt;尽量少运行计算，&lt;strong&gt;Shiny App&lt;/strong&gt;更高效；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过简化&lt;code&gt;reactive graph&lt;/code&gt;，&lt;strong&gt;Shiny App&lt;/strong&gt;更易理解。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面通过一个更复杂的&lt;code&gt;app&lt;/code&gt;来理解&lt;code&gt;reactive expression&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;假设我们需要通过图表以及假设检验来比较两个数据集，先定义两个函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;histogram()&lt;/code&gt;：在一个直方图中可视化两个数据集分布&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;t_test()&lt;/code&gt;：比较均值及其它值&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;library(ggplot2)
+
+histogram &amp;lt;- function(x1, x2, binwidth = 0.1, xlim = c(-3, 3)) {
+  df &amp;lt;- data.frame(
+    x = c(x1, x2),
+    g = c(rep(&amp;quot;x1&amp;quot;, length(x1)), rep(&amp;quot;x2&amp;quot;, length(x2)))
+  )
+
+  ggplot(df, aes(x, fill = g)) +
+    geom_histogram(binwidth = binwidth) +
+    coord_cartesian(xlim = xlim)
+}
+
+t_test &amp;lt;- function(x1, x2) {
+  test &amp;lt;- t.test(x1, x2)
+  
+  sprintf(
+    &amp;quot;p value: %0.3f\n[%0.2f, %0.2f]&amp;quot;,
+    test$p.value, test$conf.int[1], test$conf.int[2]
+  )
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们模拟两个数据集测试一下两个函数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;x1 &amp;lt;- rnorm(100, mean = 0, sd = 0.5)
+x2 &amp;lt;- rnorm(200, mean = 0.15, sd = 0.9)
+
+histogram(x1, x2)
+cat(t_test(x1, x2))
+#&amp;gt; p value: 0.006
+#&amp;gt; [-0.36, -0.06]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411130923.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Shiny app&lt;/strong&gt;开发中尽快能多地从&lt;code&gt;app&lt;/code&gt;中提取出代码，&lt;code&gt;app&lt;/code&gt;中的代码只负责响应用户点击，&lt;code&gt;app&lt;/code&gt;外的函数专门负责运行计算。&lt;/p&gt;
+&lt;p&gt;下面我们将上述函数封装成一个&lt;code&gt;app&lt;/code&gt;，这样我们可以很方便地测试大量的数据集：&lt;/p&gt;
+&lt;p&gt;根据上面的&lt;code&gt;histogram()&lt;/code&gt;函数可以知道，我们需要设计生成两个数据集的输入，每个数据集由&lt;code&gt;n&lt;/code&gt;,&lt;code&gt;mean&lt;/code&gt;,&lt;code&gt;sd&lt;/code&gt;组成，还有一个控制绘图的输入，&lt;code&gt;binwidth&lt;/code&gt;，&lt;code&gt;range&lt;/code&gt;；两个输出：直方图输出，文本输出，根据我们前面学习的UI设计，我们可以很快就写好UI部分：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  fluidRow(
+    column(4, 
+      &amp;quot;Distribution 1&amp;quot;,
+      numericInput(&amp;quot;n1&amp;quot;, label = &amp;quot;n&amp;quot;, value = 1000, min = 1),
+      numericInput(&amp;quot;mean1&amp;quot;, label = &amp;quot;µ&amp;quot;, value = 0, step = 0.1),
+      numericInput(&amp;quot;sd1&amp;quot;, label = &amp;quot;σ&amp;quot;, value = 0.5, min = 0.1, step = 0.1)
+    ),
+    column(4, 
+      &amp;quot;Distribution 2&amp;quot;,
+      numericInput(&amp;quot;n2&amp;quot;, label = &amp;quot;n&amp;quot;, value = 1000, min = 1),
+      numericInput(&amp;quot;mean2&amp;quot;, label = &amp;quot;µ&amp;quot;, value = 0, step = 0.1),
+      numericInput(&amp;quot;sd2&amp;quot;, label = &amp;quot;σ&amp;quot;, value = 0.5, min = 0.1, step = 0.1)
+    ),
+    column(4,
+      &amp;quot;Histogram&amp;quot;,
+      numericInput(&amp;quot;binwidth&amp;quot;, label = &amp;quot;Bin width&amp;quot;, value = 0.1, step = 0.1),
+      sliderInput(&amp;quot;range&amp;quot;, label = &amp;quot;range&amp;quot;, value = c(-3, 3), min = -5, max = 5)
+    )
+  ),
+  fluidRow(
+    column(9, plotOutput(&amp;quot;hist&amp;quot;)),
+    column(3, verbatimTextOutput(&amp;quot;ttest&amp;quot;))
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;server&lt;/code&gt;就是调用上面写好的函数，输出结果：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  output$hist &amp;lt;- renderPlot({
+    x1 &amp;lt;- rnorm(input$n1, input$mean1, input$sd1)
+    x2 &amp;lt;- rnorm(input$n2, input$mean2, input$sd2)
+    
+    histogram(x1, x2, binwidth = input$binwidth, xlim = input$range)
+  })
+
+  output$ttest &amp;lt;- renderText({
+    x1 &amp;lt;- rnorm(input$n1, input$mean1, input$sd1)
+    x2 &amp;lt;- rnorm(input$n2, input$mean2, input$sd2)
+    
+    t_test(x1, x2)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411132155.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们来理解一下这个&lt;code&gt;app&lt;/code&gt;的&lt;code&gt;reactive graph&lt;/code&gt;，&lt;strong&gt;Shiny&lt;/strong&gt;将整个输出视为一个整体，所以只要&lt;code&gt;n1,mean1,sd1,n2,mean2,sd2&lt;/code&gt;中的任何一个发生变化，&lt;code&gt;x1,x2&lt;/code&gt;都会自动变化，其&lt;code&gt;reactive graph&lt;/code&gt;如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411132721.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到&lt;code&gt;reactive graph&lt;/code&gt;之间十分紧密，几乎每一个输入都直接关联输入，这就带来两个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;app&lt;/code&gt;之间联系太过紧密，无法隔离开来进行分析&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;app&lt;/code&gt;十分低效，因为运行了太多不必要的计算。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们可以使用&lt;code&gt;reactive expression&lt;/code&gt;来避免这些问题，&lt;code&gt;reactive()&lt;/code&gt;函数将结果赋值给变量x1,x2。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  x1 &amp;lt;- reactive(rnorm(input$n1, input$mean1, input$sd1))
+  x2 &amp;lt;- reactive(rnorm(input$n2, input$mean2, input$sd2))
+
+  output$hist &amp;lt;- renderPlot({
+    histogram(x1(), x2(), binwidth = input$binwidth, xlim = input$range)
+  })
+
+  output$ttest &amp;lt;- renderText({
+    t_test(x1(), x2())
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这样就使得&lt;code&gt;reactive graph&lt;/code&gt;更简化了：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411133655.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到，当&lt;code&gt;binwidth&lt;/code&gt;以及&lt;code&gt;range&lt;/code&gt;变化时，只有图是会从新绘制的，数据集是不会变化的，&lt;code&gt;x1&lt;/code&gt;，&lt;code&gt;x2&lt;/code&gt;也只被相应的输入影响。&lt;/p&gt;
+&lt;p&gt;复制粘贴一段代码超过三次，那么你应该写个函数，但是在&lt;strong&gt;Shiny&lt;/strong&gt;里只要复制粘贴一段代码超过一次，你应该将之写成&lt;code&gt;reactive expression&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;控制执行次数&#34;&gt;控制执行次数&lt;/h3&gt;
+&lt;p&gt;我们知道输出会自动随着输入的变化而变化，但是有的时候我们希望当输入变化时输出不要立即变化，但我们需要输出变化时再变化。我们举个例子：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  fluidRow(
+    column(3, 
+      numericInput(&amp;quot;lambda1&amp;quot;, label = &amp;quot;lambda1&amp;quot;, value = 3),
+      numericInput(&amp;quot;lambda2&amp;quot;, label = &amp;quot;lambda2&amp;quot;, value = 3),
+      numericInput(&amp;quot;n&amp;quot;, label = &amp;quot;n&amp;quot;, value = 1e4, min = 0)
+    ),
+    column(9, plotOutput(&amp;quot;hist&amp;quot;))
+  )
+)
+server &amp;lt;- function(input, output, session) {
+  x1 &amp;lt;- reactive(rpois(input$n, input$lambda1))
+  x2 &amp;lt;- reactive(rpois(input$n, input$lambda2))
+  output$hist &amp;lt;- renderPlot({
+    histogram(x1(), x2(), binwidth = 1, xlim = c(0, 40))
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411140324.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411140352.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里我们介绍一个函数&lt;code&gt;reactiveTimer()&lt;/code&gt;来控制一定时间内自动更新的次数，下面的代码设置每分钟更新两次，所以我们不点击任何按钮，图形一直在变，是个动态图。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  timer &amp;lt;- reactiveTimer(500)
+  
+  x1 &amp;lt;- reactive({
+    timer()
+    rpois(input$n, input$lambda1)
+  })
+  x2 &amp;lt;- reactive({
+    timer()
+    rpois(input$n, input$lambda2)
+  })
+  
+  output$hist &amp;lt;- renderPlot({
+    histogram(x1(), x2(), binwidth = 1, xlim = c(0, 40))
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411141851.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411140834.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;点击&#34;&gt;点击&lt;/h3&gt;
+&lt;p&gt;想象一下，当用户不断地点击按钮，服务器端会积压大量的工作，进而导致&lt;code&gt;app&lt;/code&gt;响应迟缓，用户体验就十分差了，如果我们设置一个运行按钮，只有输入变化且用户点击了运行按钮，&lt;code&gt;app&lt;/code&gt;才会更新，这样就可以节省资源，提高用户体验。这个功能可以由&lt;code&gt;actionButton()&lt;/code&gt;实现：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  fluidRow(
+    column(3, 
+      numericInput(&amp;quot;lambda1&amp;quot;, label = &amp;quot;lambda1&amp;quot;, value = 3),
+      numericInput(&amp;quot;lambda2&amp;quot;, label = &amp;quot;lambda2&amp;quot;, value = 3),
+      numericInput(&amp;quot;n&amp;quot;, label = &amp;quot;n&amp;quot;, value = 1e4, min = 0),
+      actionButton(&amp;quot;simulate&amp;quot;, &amp;quot;Simulate!&amp;quot;)
+    ),
+    column(9, plotOutput(&amp;quot;hist&amp;quot;))
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;要实现，只有当用户点击&lt;code&gt;Simulate!&lt;/code&gt;按钮时，&lt;code&gt;app&lt;/code&gt;才运行计算，我们还需要一个新的函数&lt;code&gt;eventReactive()&lt;/code&gt;来实现，&lt;code&gt;eventReactive()&lt;/code&gt;有两个参数：第一个参数指定哪个依赖，第二个参数指定运行哪些代码，下面的代码允许&lt;code&gt;app&lt;/code&gt;只在&lt;code&gt;simulate&lt;/code&gt;被点击之后，才运行&lt;code&gt;x1()&lt;/code&gt;，&lt;code&gt;x2()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  x1 &amp;lt;- eventReactive(input$simulate, {
+    rpois(input$n, input$lambda1)
+  })
+  x2 &amp;lt;- eventReactive(input$simulate, {
+    rpois(input$n, input$lambda2)
+  })
+
+  output$hist &amp;lt;- renderPlot({
+    histogram(x1(), x2(), binwidth = 1, xlim = c(0, 40))
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其&lt;code&gt;reactive graph&lt;/code&gt;如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411143932.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;x1&lt;/code&gt;,&lt;code&gt;x2&lt;/code&gt;不在响应依赖&lt;code&gt;lambda1&lt;/code&gt;，&lt;code&gt;lambda2&lt;/code&gt;以及&lt;code&gt;n&lt;/code&gt;，这三个输入的变化不会启动计算运行。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411144439.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;observers&#34;&gt;Observers&lt;/h2&gt;
+&lt;p&gt;目前为止我们只专注于&lt;code&gt;app&lt;/code&gt;内部发生了什么，但有时我们需要关注&lt;code&gt;app&lt;/code&gt;外面的变化：保存文件，发送数据到API，更新数据库，打印调试信息等，这些不会影响&lt;code&gt;app&lt;/code&gt;的外观，你无法使用&lt;code&gt;render&lt;/code&gt;来输出，此时就要用到&lt;code&gt;observer&lt;/code&gt;。这里只简单介绍如何使用&lt;code&gt;observerEvent()&lt;/code&gt;，&lt;code&gt;observerEvent()&lt;/code&gt;是一种非常重要的&lt;code&gt;debug&lt;/code&gt;工具，&lt;code&gt;observerEvent()&lt;/code&gt;与&lt;code&gt;eventReactive()&lt;/code&gt;十分相似，有两个参数：&lt;code&gt;eventExpr&lt;/code&gt;以及&lt;code&gt;handlerExpr&lt;/code&gt;，第一个参数是输入或者表达式的依赖项，第二个参数是需要运行的代码。比如下面的例子表示每次&lt;code&gt;name&lt;/code&gt;更新的时候，都会向后台发送信息&lt;code&gt;Greeting performed&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  text &amp;lt;- reactive(paste0(&amp;quot;Hello &amp;quot;, input$name, &amp;quot;!&amp;quot;))
+  
+  output$greeting &amp;lt;- renderText(text())
+  observeEvent(input$name, {
+    message(&amp;quot;Greeting performed&amp;quot;)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411171531.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;observerEvent()&lt;/code&gt;与&lt;code&gt;eventReactive()&lt;/code&gt;有两个重要区别：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;无需将&lt;code&gt;observerEvent()&lt;/code&gt;赋值给变量&lt;/li&gt;
+&lt;li&gt;因此就无法从其它用户获取&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;observer&lt;/code&gt;与输出紧密相关。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Reactive&lt;/code&gt;是&lt;strong&gt;Shiny&lt;/strong&gt;十分重要的部分，后续还需要不断在实践中加强理解。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200411172124.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-reactivity.html&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:响应式编程-1</title>
+      <link>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B1/</link>
+      <pubDate>Fri, 10 Apr 2020 20:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B1/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410235230.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;前面主要学习的是用户前段UI，现在开始将学习服务端，这是用户不可见的&lt;strong&gt;Shiny&lt;/strong&gt;部分，&lt;strong&gt;Shiny&lt;/strong&gt;服务端利用的是响应式编程(&lt;code&gt;Reactive Programming&lt;/code&gt;)，这是一种优美的、强大的编程范式，但是也是容易让人迷惑的。&lt;code&gt;Reactive Programming&lt;/code&gt;的核心是指定从属关系，当输出变化时，所有与其相关的输出将自动变化。这使得&lt;strong&gt;Shiny App&lt;/strong&gt;变得流畅。&lt;/p&gt;
+&lt;h3 id=&#34;server函数&#34;&gt;server()函数&lt;/h3&gt;
+&lt;p&gt;一个&lt;strong&gt;Shiny App&lt;/strong&gt;的框架如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+
+ui &amp;lt;- fluidPage(
+  # front end interface
+)
+
+server &amp;lt;- function(input, output, session) {
+  # back end logic
+}
+
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;UI相对来说是很简单的，所有用户看到都是同样的前端界面，但是&lt;code&gt;server&lt;/code&gt;端不一样，每个的用户都需要一份&lt;code&gt;app&lt;/code&gt;拷贝，不同用户之间互不干扰。&lt;/p&gt;
+&lt;p&gt;为了实现这种独立性，&lt;strong&gt;Shiny&lt;/strong&gt;在每一个&lt;code&gt;session&lt;/code&gt;启动的时候会调用一次&lt;code&gt;server()&lt;/code&gt;函数。当&lt;code&gt;server()&lt;/code&gt;函数被调用的时候，会创建一个独立的本地环境，这可以保证每一个&lt;code&gt;session&lt;/code&gt;都有其独一无二的状态，可以隔离函数内部创建的变量，所以你会发现几乎所有的&lt;code&gt;reactive programming&lt;/code&gt;都是在&lt;code&gt;server()&lt;/code&gt;函数内部。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;server()&lt;/code&gt;函数有三个参数：&lt;code&gt;input&lt;/code&gt;、&lt;code&gt;output&lt;/code&gt;、&lt;code&gt;session&lt;/code&gt;。&lt;/p&gt;
+&lt;h4 id=&#34;input&#34;&gt;Input&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;input&lt;/code&gt;类似于一个list，包含用户在浏览器传递的数据，举个例子，如果UI含有一个数值输入&lt;code&gt;count&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  numericInput(&amp;quot;count&amp;quot;, label = &amp;quot;Number of values&amp;quot;, value = 100)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;那么你获取的数据就是&lt;code&gt;input$count&lt;/code&gt;，它的初始值为100， 当用户改变值的时候，&lt;code&gt;input$count&lt;/code&gt;值自动同步改变。&lt;code&gt;input&lt;/code&gt;是只读对象，如果在&lt;code&gt;server()&lt;/code&gt;函数内部修改&lt;code&gt;input&lt;/code&gt;会报错：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  input$count &amp;lt;- 10  
+}
+
+shinyApp(ui, server)
+#&amp;gt; Error: Attempted to assign value to a read-only reactivevalues object
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;input&lt;/code&gt;会有选择性地允许谁可以读取它，要读取&lt;code&gt;input&lt;/code&gt;中的值，必须是由&lt;code&gt;renderText()&lt;/code&gt;,&lt;code&gt;reactive()&lt;/code&gt;等类似函数创建的&lt;code&gt;reactive context&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  message(&amp;quot;The value of input$count is &amp;quot;, input$count)
+}
+
+shinyApp(ui, server)
+#&amp;gt; Error: Operation not allowed without an active reactive context. 
+#&amp;gt; (You tried to do something that can only be done from inside 
+#&amp;gt; a reactive expression or observer.)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;output&#34;&gt;Output&lt;/h4&gt;
+&lt;p&gt;与&lt;code&gt;input&lt;/code&gt;类似，区别是&lt;code&gt;output&lt;/code&gt;传递输出，&lt;code&gt;input&lt;/code&gt;接收输入。&lt;code&gt;output&lt;/code&gt;往往是与&lt;code&gt;render&lt;/code&gt;函数一起。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  textOutput(&amp;quot;greeting&amp;quot;)
+)
+
+server &amp;lt;- function(input, output, session) {
+  output$greeting &amp;lt;- renderText(&amp;quot;Hello human!&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;render&lt;/code&gt;函数做两件事：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它指定了&lt;code&gt;output&lt;/code&gt;与对应的&lt;code&gt;input&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;将&lt;code&gt;R&lt;/code&gt;代码转化为HTML&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:UI之布局</title>
+      <link>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%B8%83%E5%B1%80/</link>
+      <pubDate>Fri, 10 Apr 2020 10:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-10.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%B8%83%E5%B1%80/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410222025.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;前面学习了UI中的输入输出，下面学习如何将它们布局在页面上。UI布局由&lt;code&gt;layout&lt;/code&gt;完成，这里主要学习&lt;code&gt;fluidPage()&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;布局&#34;&gt;布局&lt;/h2&gt;
+&lt;p&gt;布局是一层层设计的，每一层布局在输出中都有对应。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fluidPage(
+  titlePanel(),
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput(&amp;quot;obs&amp;quot;)
+    ),
+    mainPanel(
+      plotOutput(&amp;quot;distPlot&amp;quot;)
+    )
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;page函数&#34;&gt;Page()函数&lt;/h3&gt;
+&lt;p&gt;最重要的布局函数&lt;code&gt;fluidPage()&lt;/code&gt;。&lt;code&gt;fluidPage()&lt;/code&gt;设置了&lt;strong&gt;Shiny&lt;/strong&gt;所需要的&lt;code&gt;HTML&lt;/code&gt;、&lt;code&gt;CSS&lt;/code&gt;以及&lt;code&gt;JS&lt;/code&gt;。&lt;code&gt;fluidPage()&lt;/code&gt;使用的布局系统是
+&lt;a href=&#34;https://getbootstrap.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Bootstrap&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;sidebar&#34;&gt;sidebar&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;sidebarLayout()&lt;/code&gt;连同&lt;code&gt;titlePanel&lt;/code&gt;、&lt;code&gt;sidebarPanel&lt;/code&gt;、&lt;code&gt;mainPanel&lt;/code&gt;可以将输入布局到左侧，输出布局到右侧，默认是这样，在&lt;code&gt;sidebarLayout()&lt;/code&gt;s设置&lt;code&gt;position=&amp;quot;right&amp;quot;&lt;/code&gt;，则布局相反。基本语法如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fluidPage(
+  titlePanel(
+    # app title/description
+  ),
+  sidebarLayout(
+    sidebarPanel(
+      # inputs
+    ),
+    mainPanel(
+      # outputs
+    )
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;基本布局如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410220131.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下面是一个例子展示中心极限定理&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  headerPanel(&amp;quot;Central limit theorem&amp;quot;),
+  sidebarLayout(
+    sidebarPanel(
+      numericInput(&amp;quot;m&amp;quot;, &amp;quot;Number of samples:&amp;quot;, 50, min = 1, max = 100)
+    ),
+    mainPanel(
+      plotOutput(&amp;quot;hist&amp;quot;)
+    )
+  )
+)
+
+server &amp;lt;- function(input, output, session) {
+  output$hist &amp;lt;- renderPlot({
+    means &amp;lt;- replicate(1e4, mean(runif(input$m)))
+    hist(means, breaks = 20)
+  })
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410220349.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;多行布局&#34;&gt;多行布局&lt;/h3&gt;
+&lt;p&gt;多行布局可以利用&lt;code&gt;fluidRow()&lt;/code&gt;创建多行，&lt;code&gt;column()&lt;/code&gt;创建多列，模板如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;fluidPage(
+  fluidRow(
+    column(4, 
+      ...
+    ),
+    column(8, 
+      ...
+    )
+  ),
+  fluidRow(
+    column(6, 
+      ...
+    ),
+    column(6, 
+      ...
+    )
+  )
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;布局如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410220805.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;column()&lt;/code&gt;的第一个参数是宽度，每一行的总宽度是12&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;主题&#34;&gt;主题&lt;/h3&gt;
+&lt;p&gt;有一个&lt;strong&gt;Shiny&lt;/strong&gt;主题包&lt;code&gt;shinythemes&lt;/code&gt;，提供了很多种&lt;code&gt;theme&lt;/code&gt;，具体可以查看
+&lt;a href=&#34;http://rstudio.github.io/shinythemes/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我这里也提供一个
+&lt;a href=&#34;http://rapeseed.zju.edu.cn:3838/shinythemes_show/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Shiny App&lt;/strong&gt;&lt;/a&gt;浏览不同主题效果。&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-ui.html&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:UI之输出</title>
+      <link>https://taoyan.netlify.app/post/2020-04-09.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BE%93%E5%87%BA/</link>
+      <pubDate>Thu, 09 Apr 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-09.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BE%93%E5%87%BA/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410203923.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;输出&#34;&gt;输出&lt;/h2&gt;
+&lt;p&gt;有输入就有输出，前端的每一个&lt;code&gt;output&lt;/code&gt;都对应着后端的一个&lt;code&gt;render&lt;/code&gt;函数。&lt;strong&gt;Shiny&lt;/strong&gt;主要有三类输出：文本，表格以及图。&lt;/p&gt;
+&lt;h3 id=&#34;文本输出&#34;&gt;文本输出&lt;/h3&gt;
+&lt;p&gt;文本输出函数有两个：&lt;code&gt;textOutput()&lt;/code&gt;,&lt;code&gt;verbatimTextOutput()&lt;/code&gt;，区别是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;VerbatimTextOutput uses the HTML pre tag. The pre tag uses a fixed-width font (e.g. Courier) and does not modify line breaks and spaces. Therefore this is excellent to present formatted text such as code.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TextOutput uses the div tag. The div tag does not necessarily use a fixed-width font (unless you use specific CSS). It also does not keep line breaks and multiple spaces in the same way that pre does. This is more suited for prose.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  textOutput(&amp;quot;text&amp;quot;),
+  verbatimTextOutput(&amp;quot;code&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  output$text &amp;lt;- renderText(&amp;quot;Hello friend!&amp;quot;)
+  output$code &amp;lt;- renderPrint(summary(1:10))
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410202800.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;文本输出对应两种&lt;code&gt;render&lt;/code&gt;函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;renderText() which displays text returned by the code.&lt;/li&gt;
+&lt;li&gt;renderPrint() which displays text printed by the code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;表格输出&#34;&gt;表格输出&lt;/h3&gt;
+&lt;p&gt;表格输出有两种选择：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;tableOutput()&lt;/code&gt;与&lt;code&gt;renderTable()&lt;/code&gt;：静态输出，一次性输出所有数据，适用于小数据集&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dataTableOutput()&lt;/code&gt;与&lt;code&gt;renderDataTable()&lt;/code&gt;：动态输出，有选择性地控制输出，适用于展示大数据集&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  tableOutput(&amp;quot;static&amp;quot;),
+  dataTableOutput(&amp;quot;dynamic&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  output$static &amp;lt;- renderTable(head(mtcars))
+  output$dynamic &amp;lt;- renderDataTable(mtcars, options = list(pageLength = 5))
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410203458.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;图形输出&#34;&gt;图形输出&lt;/h3&gt;
+&lt;p&gt;所有的图形都可以用&lt;code&gt;plotOutput()&lt;/code&gt;与&lt;code&gt;renderPlot()&lt;/code&gt;输出&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+library(ggplot2)
+ui &amp;lt;- fluidPage(
+  plotOutput(&amp;quot;plot&amp;quot;, width = &amp;quot;400px&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  output$plot &amp;lt;- renderPlot({
+    ggplot(diamonds,aes(carat,price))+
+      geom_point(aes(color=cut))+
+      theme_bw()
+  })
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410203923.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-ui.html&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记:UI之输入</title>
+      <link>https://taoyan.netlify.app/post/2020-04-08.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BE%93%E5%85%A5/</link>
+      <pubDate>Wed, 08 Apr 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-08.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BE%93%E5%85%A5/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410201051.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;前面我们讲到，&lt;strong&gt;Shiny&lt;/strong&gt;提供很多插件会丰富前端界面，前段设计主要包括输入，输出以及界面排版。&lt;/p&gt;
+&lt;h2 id=&#34;输入&#34;&gt;输入&lt;/h2&gt;
+&lt;p&gt;所有的输入函数都有相同的第一个参数：&lt;code&gt;inputId&lt;/code&gt;，用来连接前端和后端。如果你设计了一个&lt;code&gt;ID&lt;/code&gt;为&lt;code&gt;name&lt;/code&gt;的输入，那么服务端可以通过&lt;code&gt;input$name&lt;/code&gt;来获取。
+&lt;code&gt;inputId&lt;/code&gt;有两个限制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;它必须是一个只包含字母、数字以及下划线的简单字符串，空格、破折号、句号以及一些特殊字符不能用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;它必须唯一的，因为需要用来连接前后端&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;大部分的&lt;code&gt;input&lt;/code&gt;函数还有第二个参数:&lt;code&gt;label&lt;/code&gt;，主要是用来显示该输入控件，&lt;code&gt;label&lt;/code&gt;没有限制，可以自己随便命名，最好取一些易读易懂的标志语，必须输入的是名字，那么&lt;code&gt;label&lt;/code&gt;命名为&lt;code&gt;name&lt;/code&gt;就很好了，第三个参数是&lt;code&gt;value&lt;/code&gt;，设置输入默认值。还有一些其它参数，不同的输入控件是不一样的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;建议创建&lt;code&gt;input&lt;/code&gt;的时候，首先按位置输入&lt;code&gt;inputId&lt;/code&gt;以及&lt;code&gt;label&lt;/code&gt;参数，其它参数按名称设置：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;sliderInput(&amp;quot;min&amp;quot;, &amp;quot;Limit (minimum)&amp;quot;, value = 50, min = 0, max = 100)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;文本输入&#34;&gt;文本输入&lt;/h3&gt;
+&lt;p&gt;文本输入有小文本输入&lt;code&gt;textInput()&lt;/code&gt;，密码输入&lt;code&gt;passwordInput()&lt;/code&gt;以及段落输入&lt;code&gt;textAreaInput()&lt;/code&gt;等：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+
+ui &amp;lt;- fluidPage(
+  ui &amp;lt;- fluidPage(
+    textInput(&amp;quot;name&amp;quot;, &amp;quot;What&#39;s your name?&amp;quot;),
+    passwordInput(&amp;quot;password&amp;quot;, &amp;quot;What&#39;s your password?&amp;quot;),
+    textAreaInput(&amp;quot;story&amp;quot;, &amp;quot;Tell me about yourself&amp;quot;, rows = 3)
+  )
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410193203.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;数值输入&#34;&gt;数值输入&lt;/h3&gt;
+&lt;p&gt;数值输入有数值选择输入&lt;code&gt;sliderInput()&lt;/code&gt;，文本框数值输入&lt;code&gt;numericInput()&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+
+ui &amp;lt;- fluidPage(
+  numericInput(&amp;quot;num&amp;quot;, &amp;quot;Number one&amp;quot;, value = 25, min = 0, max = 100),
+  sliderInput(&amp;quot;num2&amp;quot;, &amp;quot;Number two&amp;quot;, value = 50, min = 0, max = 100),
+  sliderInput(&amp;quot;rng&amp;quot;, &amp;quot;Range&amp;quot;, value = c(10, 45), min = 0, max = 100)
+)
+
+server &amp;lt;- function(input, output, session) {
+  
+}
+
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410193643.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Sliders&lt;/code&gt;类输入具有很强的可塑性，&lt;strong&gt;RStudio&lt;/strong&gt;提供了一个
+&lt;a href=&#34;https://shiny.rstudio.com/gallery/sliders.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;shiny app&lt;/code&gt;&lt;/a&gt;来演示不同类型的&lt;code&gt;Slider&lt;/code&gt;类输入。&lt;/p&gt;
+&lt;h3 id=&#34;日期输入&#34;&gt;日期输入&lt;/h3&gt;
+&lt;p&gt;单个日期输入用&lt;code&gt;dateInput()&lt;/code&gt;，日期范围输入用&lt;code&gt;dateRangeInput()&lt;/code&gt;，这些函数提供了十分方便的日历选择器：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  dateInput(&amp;quot;dob&amp;quot;, &amp;quot;When were you born?&amp;quot;),
+  dateRangeInput(&amp;quot;holiday&amp;quot;, &amp;quot;When do you want to go on vacation next?&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410194458.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;限制性选择输入&#34;&gt;限制性选择输入&lt;/h3&gt;
+&lt;p&gt;有两种方法允许用户选择预设的选项：&lt;code&gt;selectInput()&lt;/code&gt;，&lt;code&gt;radioButtons()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+animals &amp;lt;- c(&amp;quot;dog&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;mouse&amp;quot;, &amp;quot;bird&amp;quot;, &amp;quot;other&amp;quot;, &amp;quot;I hate animals&amp;quot;)
+
+ui &amp;lt;- fluidPage(
+  selectInput(&amp;quot;state&amp;quot;, &amp;quot;What&#39;s your favourite state?&amp;quot;, state.name),
+  radioButtons(&amp;quot;animal&amp;quot;, &amp;quot;What&#39;s your favourite animal?&amp;quot;, animals)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410194908.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;radioButtons()&lt;/code&gt;是适用于比较短的list，&lt;code&gt;selectInput()&lt;/code&gt;则适用于长list，通过设置参数&lt;code&gt;multiple=TRUE&lt;/code&gt;可以一次性选择多个选项&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+animals &amp;lt;- c(&amp;quot;dog&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;mouse&amp;quot;, &amp;quot;bird&amp;quot;, &amp;quot;other&amp;quot;, &amp;quot;I hate animals&amp;quot;)
+
+ui &amp;lt;- fluidPage(
+  selectInput(
+    &amp;quot;state&amp;quot;, &amp;quot;What&#39;s your favourite state?&amp;quot;, state.name,
+    multiple = TRUE
+  )
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410195500.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;radioButton()&lt;/code&gt;无法一次性选择多个，但是有一个类似的函数&lt;code&gt;checkboxGroupInput()&lt;/code&gt;可以一次性选择多个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+animals &amp;lt;- c(&amp;quot;dog&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;mouse&amp;quot;, &amp;quot;bird&amp;quot;, &amp;quot;other&amp;quot;, &amp;quot;I hate animals&amp;quot;)
+ui &amp;lt;- fluidPage(
+  checkboxGroupInput(&amp;quot;animal&amp;quot;, &amp;quot;What animals do you like?&amp;quot;, animals)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410195707.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果只需要yes/no这样的单勾选框，可以使用&lt;code&gt;checkboxInput()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  checkboxInput(&amp;quot;cleanup&amp;quot;, &amp;quot;Clean up?&amp;quot;, value = TRUE),
+  checkboxInput(&amp;quot;shutdown&amp;quot;, &amp;quot;Shutdown?&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410195948.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;文件上传&#34;&gt;文件上传&lt;/h3&gt;
+&lt;p&gt;文件上传由&lt;code&gt;fileInput()&lt;/code&gt;实现：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  fileInput(&amp;quot;upload&amp;quot;, NULL)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410200124.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;动作按钮&#34;&gt;动作按钮&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;actionButton()&lt;/code&gt;以及&lt;code&gt;actionLink()&lt;/code&gt;提供动作按钮给用户，它们一般是与服务端&lt;code&gt;observeEvent()&lt;/code&gt;以及&lt;code&gt;enevtReactive()&lt;/code&gt;一起使用。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  actionButton(&amp;quot;click&amp;quot;, &amp;quot;Click me!&amp;quot;),
+  actionButton(&amp;quot;drink&amp;quot;, &amp;quot;Drink me!&amp;quot;, icon = icon(&amp;quot;cocktail&amp;quot;))
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410200642.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;关于输入控件更多可参考RStudio提供的
+&lt;a href=&#34;https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-ui.html&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Shiny学习笔记：简介</title>
+      <link>https://taoyan.netlify.app/post/2020-04-05.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</link>
+      <pubDate>Sun, 05 Apr 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-05.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410173238.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Shiny&lt;/strong&gt; app主要包括两个关键组件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UI(user interface)：定义app外观&lt;/li&gt;
+&lt;li&gt;server：定义app如何运行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;创建&#34;&gt;创建&lt;/h2&gt;
+&lt;p&gt;建议在&lt;strong&gt;Rstudio&lt;/strong&gt;中运行。 先安装&lt;code&gt;shiny&lt;/code&gt;包：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;install.packages(&amp;quot;shiny&amp;quot;)
+library(shiny)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;有好几种创建&lt;code&gt;Shiny app&lt;/code&gt;的方式，最简单的就是新建一个文件夹，在里面创建一个&lt;code&gt;app.R&lt;/code&gt;文件，里面写入代码，定义app外观以及如何运行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny) #加载shiny包
+ui &amp;lt;- fluidPage(
+  &amp;quot;Hello, world!&amp;quot;
+) #定义ui，这里是一个界面显示Hello, World!
+server &amp;lt;- function(input, output, session) {
+} #定义app如何运行，这里是空的，不做任何事情
+shinyApp(ui, server) #创建并启动app
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;点击&lt;strong&gt;Rstudio&lt;/strong&gt;中的&lt;code&gt;Run App&lt;/code&gt;按钮，&lt;code&gt;app&lt;/code&gt;就运行了，显示如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410162949.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这样我们就创建了一个最简单的&lt;code&gt;app&lt;/code&gt;了。&lt;/p&gt;
+&lt;h2 id=&#34;控件&#34;&gt;控件&lt;/h2&gt;
+&lt;p&gt;控件可以让用户界面更丰富，下面我们添加一个&lt;code&gt;选择&lt;/code&gt;控件， 将ui修改如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ui &amp;lt;- fluidPage(
+  selectInput(&amp;quot;dataset&amp;quot;, label = &amp;quot;Dataset&amp;quot;, choices = ls(&amp;quot;package:datasets&amp;quot;)),
+  verbatimTextOutput(&amp;quot;summary&amp;quot;),
+  tableOutput(&amp;quot;table&amp;quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fluidPage()&lt;/code&gt;：布局函数，定义界面显示方式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;selectInput()&lt;/code&gt;：输入控件，用户可以提供输入值，这里是选择输入控件，用户可以选择包&lt;code&gt;datasets&lt;/code&gt;中的数据集&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;verbatinTextOutput()&lt;/code&gt;以及&lt;code&gt;tableOutput()&lt;/code&gt;：输出控件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;app&lt;/code&gt;运行之后显示如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410165834.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;设置服务端&#34;&gt;设置服务端&lt;/h2&gt;
+&lt;p&gt;上面&lt;code&gt;app&lt;/code&gt;服务端一直是空白的，用户无论如何选择数据集，界面都没结果显示，下面我们添加部分服务端代码。&lt;code&gt;shiny&lt;/code&gt;使用的是响应式编程，我们只是告诉&lt;code&gt;shiny&lt;/code&gt;如何运行计算，不是让&lt;code&gt;shiny&lt;/code&gt;直接去做，直白的说就是我们只是提供&lt;code&gt;shiny&lt;/code&gt;食谱，不是让&lt;code&gt;shiny&lt;/code&gt;直接做菜。&lt;/p&gt;
+&lt;p&gt;下面的小例子，我们告诉&lt;code&gt;shiny&lt;/code&gt;如何填充输出部分，将&lt;code&gt;server&lt;/code&gt;部分修改如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  output$summary &amp;lt;- renderPrint({
+    dataset &amp;lt;- get(input$dataset, &amp;quot;package:datasets&amp;quot;)
+    summary(dataset)
+  })
+  
+  output$table &amp;lt;- renderTable({
+    dataset &amp;lt;- get(input$dataset, &amp;quot;package:datasets&amp;quot;)
+    dataset
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;基本上所有的输出都是下面的模式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;output$ID &amp;lt;- renderTYPE({
+  # Expression that generates whatever kind of output
+  # renderTYPE expects
+})
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;output$ID&lt;/code&gt;对应于&lt;code&gt;ui&lt;/code&gt;中设置的输出&lt;code&gt;ID&lt;/code&gt;，必须一一对应，不然出错。&lt;code&gt;render&lt;/code&gt;函数则是&lt;code&gt;渲染&lt;/code&gt;我们提供的代码，这里&lt;code&gt;renderPrint()&lt;/code&gt;打印出&lt;code&gt;summary&lt;/code&gt;的结果，&lt;code&gt;renderTable&lt;/code&gt;输出数据集。每一个&lt;code&gt;render*&lt;/code&gt;函数对应于一种特定的输出，上面的&lt;code&gt;renderPrint()&lt;/code&gt;捕获并显示数据集的信息，&lt;code&gt;renderTable()&lt;/code&gt;则是直接显示该数据集。&lt;/p&gt;
+&lt;p&gt;运行上面的&lt;code&gt;app&lt;/code&gt;，显示界面如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410171452.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;由于是响应式编程，所以一旦我们选择不同的数据集，输出结果自动变换，比如我们选择另外一个数据集，结果就不同：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410171727.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;精简代码&#34;&gt;精简代码&lt;/h2&gt;
+&lt;p&gt;即使是上面这样最简单的&lt;code&gt;app&lt;/code&gt;，我们发现是还是存在重复的脚本:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dataset &amp;lt;- get(input$dataset, &amp;quot;package:datasets&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;重复代码对于&lt;code&gt;app&lt;/code&gt;的运行、维护、资源都是一种负担，在&lt;code&gt;shiny&lt;/code&gt;中我们尽量使用响应表达式(&lt;code&gt;reactive expression&lt;/code&gt;)来精简代码。&lt;code&gt;reactive expression&lt;/code&gt;用&lt;code&gt;reactive({})&lt;/code&gt;封装代码并赋值给一个变量，它只在启动&lt;code&gt;app&lt;/code&gt;的时候运行并将结果缓存，将&lt;code&gt;server&lt;/code&gt;修改如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server &amp;lt;- function(input, output, session) {
+  dataset &amp;lt;- reactive({
+    get(input$dataset, &amp;quot;package:datasets&amp;quot;)
+  })
+
+  output$summary &amp;lt;- renderPrint({
+    summary(dataset())
+  })
+  
+  output$table &amp;lt;- renderTable({
+    dataset()
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看到&lt;code&gt;dataset&lt;/code&gt;我们只获取了一次，但是使用了两次，值得注意的是一旦变量经&lt;code&gt;reactive({})&lt;/code&gt;之后，变量后面作为一个函数一样使用。&lt;/p&gt;
+&lt;p&gt;这里只讲了一些很简单的控件，实际上&lt;code&gt;shiny&lt;/code&gt;存在十分丰富的控件，&lt;strong&gt;RStudio&lt;/strong&gt;提供了一份
+&lt;a href=&#34;https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;shiny小抄&lt;/code&gt;&lt;/a&gt;，大家可以打印出来，没事的时候看看。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410173142.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-app.html&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

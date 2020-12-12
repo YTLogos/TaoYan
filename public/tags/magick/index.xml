@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>magick | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/magick/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/magick/index.xml" rel="self" type="application/rss+xml" />
+    <description>magick</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Sun, 25 Jun 2017 12:34:08 -0500</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>magick</title>
+      <link>https://taoyan.netlify.app/tags/magick/</link>
+    </image>
+    
+    <item>
+      <title>图像处理R包magick学习笔记</title>
+      <link>https://taoyan.netlify.app/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 25 Jun 2017 12:34:08 -0500</pubDate>
+      <guid>https://taoyan.netlify.app/post/2017-09-03.%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86r%E5%8C%85magick%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/a2jGAc87jB.gif?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;本文主要简单介绍一下magick包，主要用于图像处理&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#安装的话就直接从CRAN安装进行
+install.packages(&amp;quot;magick&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Load the package
+library(magick)
+#查看支持哪些格式
+str(magick_config())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## List of 21
+##  $ version           :Class &#39;numeric_version&#39;  hidden list of 1
+##   ..$ : int [1:4] 6 9 9 9
+##  $ modules           : logi FALSE
+##  $ cairo             : logi TRUE
+##  $ fontconfig        : logi FALSE
+##  $ freetype          : logi TRUE
+##  $ fftw              : logi TRUE
+##  $ ghostscript       : logi TRUE
+##  $ jpeg              : logi TRUE
+##  $ lcms              : logi TRUE
+##  $ libopenjp2        : logi FALSE
+##  $ lzma              : logi TRUE
+##  $ pangocairo        : logi TRUE
+##  $ pango             : logi TRUE
+##  $ png               : logi TRUE
+##  $ rsvg              : logi TRUE
+##  $ tiff              : logi TRUE
+##  $ webp              : logi TRUE
+##  $ wmf               : logi FALSE
+##  $ x11               : logi FALSE
+##  $ xml               : logi TRUE
+##  $ zero-configuration: logi FALSE
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看出大部分格式都是支持的&lt;/p&gt;
+&lt;h2 id=&#34;读取图像&#34;&gt;读取图像&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;读取的话可以直接从本地读取，也可以读取URL格式的图片，主要通过image_read()来读取，image_info()则可以显示图像的一些属性数据。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#读取网上随便选的图片
+night_king &amp;lt;- image_read(&amp;quot;https://github.com/YTLogos/Pic_blog/blob/master/ha6Cchfk38.jpg?raw=true&amp;quot;)
+image_info(night_king)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   format width height colorspace filesize
+## 1   JPEG   189    267       sRGB     6449
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#通过image_write()可以讲图片以任何格式输出，比如将刚读取的图片以png格式输出。
+image_write(night_king, path = &amp;quot;night_king.png&amp;quot;, format = &amp;quot;png&amp;quot;)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;转换格式&#34;&gt;转换格式&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;通过image_convert()可以将图片转换为我们需要的格式，比如这里我们可以将night_king的格式转换为png格式&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;night_king.png &amp;lt;- image_convert(night_king, &amp;quot;png&amp;quot;)
+image_info(night_king.png)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   format width height colorspace filesize
+## 1    PNG   189    267       sRGB        0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看到这里的filesize为0，直到被渲染（这里涉及到ImageMagick方面，我不是很懂）。&lt;/p&gt;
+&lt;h2 id=&#34;预览&#34;&gt;预览&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;在RStudio中可以查看我们读取的图片&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/1kEj0h191l.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;转换transformations&#34;&gt;转换(transformations)&lt;/h2&gt;
+&lt;p&gt;magick提供一系列函数对图片进行裁剪以及编辑，主要有以下函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;image_crop(image, &amp;ldquo;100x150+50&amp;rdquo;):裁剪&lt;/li&gt;
+&lt;li&gt;image_scale(image, &amp;ldquo;200&amp;rdquo;):按宽比例进行放大缩小&lt;/li&gt;
+&lt;li&gt;image_scale(image, &amp;ldquo;x200&amp;rdquo;):按高比例进行放大缩小&lt;/li&gt;
+&lt;li&gt;image_fill(image, &amp;ldquo;blue&amp;rdquo;, &amp;ldquo;+100+200&amp;rdquo;):对特定部位着色&lt;/li&gt;
+&lt;li&gt;image_border(image, &amp;ldquo;red&amp;rdquo;, &amp;ldquo;20x10&amp;rdquo;):添加边框&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面我们来试试这些函数&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Example image
+wolf &amp;lt;- image_read(&amp;quot;https://github.com/YTLogos/Pic_blog/blob/master/4h96Df21AI.png?raw=true&amp;quot;)
+print(wolf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/4h96Df21AI.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Add 20px left/right and 10px top/bottom
+image_border(image_background(wolf, &amp;quot;hotpink&amp;quot;), &amp;quot;#000080&amp;quot;, &amp;quot;20x10&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6LE8j4jECf.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#trim margins
+image_trim(wolf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/HB0lELbmhE.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#裁剪
+image_crop(wolf, &amp;quot;500x300+50&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/f05HDcIG4d.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Resize
+image_scale(wolf, &amp;quot;300&amp;quot;)#width:300px
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/KjfE0bhl7H.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Resize
+image_scale(wolf, &amp;quot;x300&amp;quot;)#heigth:300px
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/0me686bm2e.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Rotate or mirror
+image_rotate(wolf, 45)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/1H6D4bjKbm.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Flip
+image_flip(wolf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/4CGL43f8AK.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Flop
+image_flop(wolf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Cg4hL5Hi72.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Paint 
+image_fill(wolf, &amp;quot;red&amp;quot;, point = &amp;quot;+190+100&amp;quot;, fuzz = 4000)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/fd7IfD0m2a.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这个函数最难掌握，我本来是想将wolf的眼睛渲染成红色，但是不断调整point以及fuzz都没弄成，感兴趣的可以自己捣鼓捣鼓。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Add randomness
+image_blur(wolf, 10, 5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/k5EF1DA9Lk.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以通过调整参数来设置模糊度&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;image_noise(wolf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/D92FH0I3G1.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Silly filters
+image_charcoal(wolf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/KAEA3gIIF0.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;image_oilpaint(wolf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ACD0Fg5675.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;image_negate(wolf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/kILkaEe9kl.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;文字注释&#34;&gt;文字注释&lt;/h2&gt;
+&lt;hr&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Add some text on the image
+image_annotate(wolf, &amp;quot;I am the King of wolf&amp;quot;, size=25, gravity = &amp;quot;southeast&amp;quot;, color=&amp;quot;gold&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dfc3iB0E3D.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;自定义text&#34;&gt;自定义text&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#customize the text
+image_annotate(wolf, &amp;quot;I am the King&amp;quot;, size=30, color=&amp;quot;red&amp;quot;, boxcolor = &amp;quot;pink&amp;quot;, degrees = 45, location = &amp;quot;+30+30&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/59CEEa0gm0.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;设置字体&#34;&gt;设置字体&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#Set the font times-new-roman
+image_annotate(wolf, &amp;quot;I am the King&amp;quot;, size=30, color=&amp;quot;red&amp;quot;, boxcolor = &amp;quot;pink&amp;quot;, degrees = 45, location = &amp;quot;+30+30&amp;quot;, font = &#39;times-new-roman&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BIbiF712bE.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;管道操作&#34;&gt;管道操作&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;你没看错，magick支持管道操作，下面试试&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(magrittr)
+wolf%&amp;gt;%
+  image_rotate(270)%&amp;gt;%
+  image_background(&amp;quot;white&amp;quot;, flatten = TRUE)%&amp;gt;%
+  image_border(&amp;quot;red&amp;quot;, &amp;quot;10x10&amp;quot;)%&amp;gt;%
+  image_annotate(&amp;quot;I am the King&amp;quot;, color=&#39;red&#39;, size = 25, location = &amp;quot;+100+300&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mEG1lL005b.png?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;图片向量&#34;&gt;图片向量&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;magick除了支持管道操作外，还支持图层叠加、拼图以及动图处理，来个经典的动态地球&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;earth &amp;lt;- image_read(&amp;quot;https://github.com/YTLogos/Pic_blog/blob/master/a9CjAEGiC5.gif&amp;quot;)
+length(earth)
+print(earth)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/a9CjAEGiC5.gif?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;rev(earth) %&amp;gt;% 
+  image_flip() %&amp;gt;% 
+  image_annotate(&amp;quot;This is the Earth&amp;quot;, size = 20, color = &amp;quot;white&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不知什么鬼，图片竟然显示出来乱的，电脑渣的话还是别搞动画&lt;/p&gt;
+&lt;h2 id=&#34;图层&#34;&gt;图层&lt;/h2&gt;
+&lt;hr&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;bigdata &amp;lt;- image_read(&amp;quot;https://github.com/YTLogos/Pic_blog/blob/master/JclK3efbB3.jpg?raw=true&amp;quot;)
+logo &amp;lt;- image_read(&amp;quot;https://github.com/YTLogos/Pic_blog/blob/master/JdjdB88CLm.png?raw=true&amp;quot;)
+frink &amp;lt;- image_read(&amp;quot;https://github.com/YTLogos/Pic_blog/blob/master/E5fbmb1FIb.png?raw=true&amp;quot;)
+img &amp;lt;- c(bigdata, logo, frink)
+img &amp;lt;- image_scale(img, &amp;quot;300x300&amp;quot;)
+image_mosaic(img)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/EE0CEL1K57.jpeg?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;动画&#34;&gt;动画&lt;/h2&gt;
+&lt;hr&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;image_animate(image_scale(img, &amp;quot;200x200&amp;quot;), fps = 1, dispose = &amp;quot;previous&amp;quot;)#fps控制放映速度
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/0Bi5fCJBE5.gif?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;静图动图&#34;&gt;静图+动图&lt;/h2&gt;
+&lt;hr&gt;
+&lt;p&gt;静图就用我以前绘制过的，具体可看
+&lt;a href=&#34;https://ytlogos.github.io/2017/08/24/ggplot2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9B%BE%E5%BD%A2%E6%8E%92%E5%88%97/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;博客&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;image1 &amp;lt;- image_read(&amp;quot;https://github.com/YTLogos/Pic_blog/blob/master/kLeL888DbI.png?raw=true&amp;quot;)
+dance_man &amp;lt;- image_read(&amp;quot;https://github.com/YTLogos/Pic_blog/blob/master/86iEDe36lf.gif?raw=true&amp;quot;)
+dance_man &amp;lt;- image_scale(dance_man, &amp;quot;200&amp;quot;)
+#Background image
+background &amp;lt;- image_background(image_scale(image1, &amp;quot;800&amp;quot;), &amp;quot;white&amp;quot;, flatten = TRUE)
+#Combine and flatten frames
+frames &amp;lt;- image_apply(dance_man, function(frame){
+  image_composite(background, frame, offset = &amp;quot;+500+270&amp;quot;)
+})
+#Turn frames into animation
+animation &amp;lt;- image_animate(frames, fps = 10)
+print(animation)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/a2jGAc87jB.gif?raw=true&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;还有一些有趣的功能这里我就不讲了，有兴趣的可以试试，还是很好玩的。&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;hr&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+
+## R version 3.4.1 (2017-06-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 15063)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] magrittr_1.5 magick_1.2  
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_3.4.1  backports_1.1.0 rprojroot_1.2   tools_3.4.1    
+##  [5] htmltools_0.3.6 curl_2.8.1      yaml_2.1.14     Rcpp_0.12.12   
+##  [9] stringi_1.1.5   rmarkdown_1.6   knitr_1.17      stringr_1.2.0  
+## [13] digest_0.6.12   evaluate_0.10.1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

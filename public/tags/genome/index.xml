@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>genome | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/genome/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/genome/index.xml" rel="self" type="application/rss+xml" />
+    <description>genome</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Mon, 25 Nov 2019 16:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>genome</title>
+      <link>https://taoyan.netlify.app/tags/genome/</link>
+    </image>
+    
+    <item>
+      <title>Nature Reviews Genetics | 测序时代的基因组转座子</title>
+      <link>https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/</link>
+      <pubDate>Mon, 25 Nov 2019 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191127103914.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;许多物种的基因组大部分是来自于转座子(Transposable elements, TEs)。此外，通过各种自我复制机制，TEs在大多数物种基因组中持续增殖。TEs会影响调控、转录以及新蛋白形成进而与性状比如疾病相关联。尽管TE表现出了显著的影响，但是很多基因组研究还是将它剔除在外，这主要是由于它具有高度的序列重复性，导致研究变得十分复杂。幸运的是随着大量的方法以及计算机软件的开发，TE的研究逐渐深入。本综述总结了TE研究的相关计算工具并着重指出了未来的TE研究存在的挑战与空白。对TE进行基因组上全面的分析不仅仅是“掩盖”这些重复序列(This Review presents a summary of computational resources for TEs and highlights some of the challenges and remaining gaps to perform comprehensive genomic analyses that do not simply &amp;ldquo;mask&amp;rdquo; repeats)。&lt;/p&gt;
+&lt;h2 id=&#34;转座子&#34;&gt;转座子&lt;/h2&gt;
+&lt;p&gt;转座子首先由&lt;strong&gt;Barbara McClintock&lt;/strong&gt;于1948年在玉米中发现，之后在所有动物和植物以及各种真核生物中陆续发现。转座子可以通过不同的机制从基因组的一个位置&amp;quot;跳跃&amp;quot;到另一个位置，这种&amp;quot;跳跃&amp;quot;可以发生在同一条染色体内，也可以发生在不同染色体间。转座是转座子的标志性特征，转座子从供给位点(Donor site)整合到目标位点(Target site)被称为一个完整的转座过程。转座子可以通过两种机制进行转座：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;复制后粘贴(Copy-and-paste)&lt;/li&gt;
+&lt;li&gt;剪切后粘贴(Cut-and-paste)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;复制后粘贴&#34;&gt;复制后粘贴&lt;/h3&gt;
+&lt;p&gt;首先RNA聚合酶Ⅱ(RNA polymerase Ⅱ)将转座子转录成mRNA，再由逆转录酶逆转录形成一个自身DNA(cDNA)拷贝，最后通过整合酶(Integrase)将拷贝整合到目标位点。这一过程RNA起到了一个媒介的作用，所以这一类转座子称为RNA类转座子，也被称为Ⅰ型转座子或逆转录转座子(Retrotransposon)。&lt;/p&gt;
+&lt;h3 id=&#34;剪切后粘贴&#34;&gt;剪切后粘贴&lt;/h3&gt;
+&lt;p&gt;转座子不以RNA为媒介，直接被转座酶(Transposase)从供给位点脱离出来通过整合酶整合到目标位点。有一个特例是“滚环”机制，通过Y2转座酶和整合酶实现链入侵，随后通过链置换(Strand displacement)，DNA复制，异源双链形成将转座子整合到目标位点，这些转座子在转座过程中都不需要RNA为媒介，所以这些转座子被称为DNA转座子(DNA transposon)或Ⅱ型转座子。&lt;/p&gt;
+&lt;h3 id=&#34;helitrons转座子&#34;&gt;Helitrons转座子&lt;/h3&gt;
+&lt;p&gt;Helitrons 转座子是近年来发现的一种新型 DNA 转座子（上面提到的“滚环”机制），最初是利用基于重复序列的计算方法在拟南芥基因组中鉴定出来的。后来发现，大多数植物和许多动物基因组中都携带 Helitrons 转座子。Helitrons 转座子具有典型的 5&amp;rsquo;TC 以及 3&amp;rsquo;CTRR（R为A或G）末端，并在3&amp;rsquo;末端上游约 15~20bp 处有一个茎环结构，是转座子的终止信号。Helitrons 转座子转座后，通常插入 AT-rich 区域的 AT 靶位点。和反转座子和转座子不同，Helitrons 通过滚环（rolling circle）的方式进行转座。并且，在滚环复制的转座过程中经常捕获和携带基因片段，可导致基因拷贝数的变化，也会在一定程度上促进基因组的进化。&lt;/p&gt;
+&lt;h3 id=&#34;maverick转座子&#34;&gt;Maverick转座子&lt;/h3&gt;
+&lt;p&gt;Maverick类型的重复序列一般较大，可达到10-20Kb，两端含有较长的TIR序列，在除植物之外的真和生物中广泛存在。其编码的蛋白可达到11个，但数目和顺序有所不同，有些蛋白与DNA病毒有一定的同源性。这些蛋白中的DNA聚合酶B和整合酶（c-int type）与反转录转座子中的相关蛋白类似，但同样不含有逆转座酶。&lt;/p&gt;
+&lt;p&gt;这几类转座子具体转座机制如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191129114532.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;TEs具体分类如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203113721.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;te分类及数据库&#34;&gt;TE分类及数据库&lt;/h2&gt;
+&lt;p&gt;TE分为两大类，有关TE的信息被整合成三类的数据库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;以TE为中心的数据库(TE-centric):每个TE家族的保守序列(consensus sequence)&lt;/li&gt;
+&lt;li&gt;以基因组为中心的数据库(genome-centric):特定参考基因组的TE序列&lt;/li&gt;
+&lt;li&gt;以多态性为中心的数据库(polymorphism-centric):基于参考基因组TE多态性插入序列&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体情况如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203161725.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;挑战及缺陷&#34;&gt;挑战及缺陷&lt;/h2&gt;
+&lt;p&gt;关于TE数据库主要面临两方面的缺陷：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;物种特异性的TE数据库的建立是很有必要的，数据库之间TE的冗余需要降低以增加内聚性&lt;/li&gt;
+&lt;li&gt;第二个就是人类TE研究中有必要整合TE多态性插入的资源供后续研究&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;te构建与注释的手段&#34;&gt;TE构建与注释的手段&lt;/h2&gt;
+&lt;p&gt;转座子序列库的构建方法主要分为三种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从头预测&lt;/li&gt;
+&lt;li&gt;同源预测&lt;/li&gt;
+&lt;li&gt;结构预测&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体的方法以及软件如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203163312.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;从上表可以看出，实际上就是要么基于数据库要么从头预测。具体注释策略图示如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203163746.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;用来分析TEs的计算机工具非常多，如下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203170109.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;基于数据库注释&#34;&gt;基于数据库注释&lt;/h3&gt;
+&lt;p&gt;这一策略的核心思想是在全基因组范围内对不同TE家族的保守序列以及功能结构域进行检索，RepeatMasker是最常用的工具，是当前TE研究的金标准，基于Repbase以及Dfam数据库。&lt;/p&gt;
+&lt;h3 id=&#34;基于已组装基因组的从头注释&#34;&gt;基于已组装基因组的从头注释&lt;/h3&gt;
+&lt;p&gt;这种方法主要是基于已组装的基因组，可以鉴定一些基于数据库注释缺失的TEs，人类基因组TE通过这种方法从头注释可以鉴定大约多10%的TE。这一方法虽然存在假阳性，但是可以发现新的TE家族以及事件。&lt;/p&gt;
+&lt;h3 id=&#34;基于原始序列的从头注释&#34;&gt;基于原始序列的从头注释&lt;/h3&gt;
+&lt;p&gt;这一策略主要充分利用大量的TE序列以及低深度的测序数据去组装TE以及其它重复序列。&lt;/p&gt;
+&lt;h3 id=&#34;挑战以及缺陷&#34;&gt;挑战以及缺陷&lt;/h3&gt;
+&lt;p&gt;目前TE注释的主流是利用多种策略进行检索并整合到一起，组成比较完整的数据库。比如人类基因组TE数据通过不同策略以及工具注释的结果差异是很大的：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203165812.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;虽然从头注释可以鉴定新的重复序列家族以及新的TE事件，但是引入的假阳性也更高。基于原始序列注释TE的方法只能鉴定少量的TE，但是可以在缺乏组装基因组的情况下注释TE。新的系统性的注释工具对于TE的注释来说极其重要。&lt;/p&gt;
+&lt;h2 id=&#34;te多态性检测&#34;&gt;TE多态性检测&lt;/h2&gt;
+&lt;p&gt;有了参考基因组、完整的转座子注释文件以及群体就可以进行群体转座子多态性插入的检测，跟SNP一样，TE多态性标记可以跟表型进行关联。目前有大量的软件被开发出来进行TE多态性检测：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203173422.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;基于短读长序列检测生殖细胞系te多态性&#34;&gt;基于短读长序列检测生殖细胞系TE多态性&lt;/h3&gt;
+&lt;p&gt;大多数的TE检测流程的输入数据都是NGS测序数据。NGS的读长一般在100-250bp，这对于从属于重复序列的转座子来说，从短读长的reads鉴定TE是一种具有挑战性的工作。目前针对短读长进行TE多态性检测的方法主要有三种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用split-read (SR)信息&lt;/li&gt;
+&lt;li&gt;依赖不一致的读长对(discordant read pai , DRP)比对&lt;/li&gt;
+&lt;li&gt;基于TE特定motif的识别&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203183128.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;te的特征及影响&#34;&gt;TE的特征及影响&lt;/h2&gt;
+&lt;p&gt;TE的插入会引入新的基因或转录本、调控基因表达、导致基因组不稳定以及活跃的置换。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203190952.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;预测te衍生或者破坏的基因与转录本&#34;&gt;预测TE衍生或者破坏的基因与转录本&lt;/h3&gt;
+&lt;p&gt;注释在基因区域的TE在很多数据库中都有检测到。&lt;/p&gt;
+&lt;h3 id=&#34;预测te对基因调控的影响&#34;&gt;预测TE对基因调控的影响&lt;/h3&gt;
+&lt;h3 id=&#34;重复区域结构变异的检测&#34;&gt;重复区域结构变异的检测&lt;/h3&gt;
+&lt;p&gt;后续还有部分内容暂时这里不讲了，有兴趣的话可以下载
+&lt;a href=&#34;https://www.nature.com/articles/s41576-018-0050-x.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;原文&lt;/a&gt;细读。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Nature Reviews Genetics | 测序时代的基因组结构变异</title>
+      <link>https://taoyan.netlify.app/post/2019-11-14.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E7%BB%93%E6%9E%84%E5%8F%98%E5%BC%82/</link>
+      <pubDate>Sun, 03 Nov 2019 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2019-11-14.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E7%BB%93%E6%9E%84%E5%8F%98%E5%BC%82/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191125151327.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;结构变异(SV)的鉴定对于解析基因组是十分重要的。得益于检测算法以及测序技术的发展，全基因组结构变异分析成为可能。本文作者综述了基因组结构变异的检测方法，同时指明了整合基因组结构变异以及生物学信息的研究方向。&lt;/p&gt;
+&lt;h2 id=&#34;结构变异&#34;&gt;结构变异&lt;/h2&gt;
+&lt;p&gt;一般是大于50bp的序列变异。SV的大小以及类型多样， 范围从&amp;gt;50bp到~Mb的序列变异。变异类型主要分为:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;缺失(delections,DELs)&lt;/li&gt;
+&lt;li&gt;插入(insertions,INSs)。根据插入序列可分为移动元件插入(mobile element insertions, MEIs),线粒体基因组插入(nuclear insertions of mitochondrial genome, NUMTs),病毒序列插入(viral element insertions, VEIs)以及其他非特异性插入(insertions of unspecified sequence)&lt;/li&gt;
+&lt;li&gt;重复(duplications, DUPs)。根据重复片段之间的距离可分为串联重复(tandem repeat)以及散在重复(interspersed repeat)&lt;/li&gt;
+&lt;li&gt;倒位(inversions, INVs)&lt;/li&gt;
+&lt;li&gt;易位(translocations,TRAs)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191125153139.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;拷贝数变异(copy number variation, CNV)是DELs以及INSs的合称。INVs与TRAs不会改变基因组大小，其他的会改变基因组大小。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;SV分布在整个基因组中并影响分子及细胞进程，调节功能，3D基因组结构以及转录机制等。&lt;/p&gt;
+&lt;p&gt;随着检测算法的开发以及测序技术的发展，越来越多以前未被检测到的SV被检测到，从微阵列到短读长测序再到现在的三代长读长测序以及未来新的测序技术，SV的研究如下图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191125151327.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在这篇综述中，作者讨论了解决人类基因组中SV的方法，这些方法通过算发集成以及新技术来绕过短读长的局限性。&lt;/p&gt;
+&lt;h2 id=&#34;算法集成&#34;&gt;算法集成&lt;/h2&gt;
+&lt;p&gt;基于序列的SV检测主要是利用样本序列与参考基因组序列之间mapping不一致产生的位置特征。目前基于NGS数据检测SV的方法主要有四类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Read Pair，一般称为Pair-End Mapping，简称RP或者PEM&lt;/li&gt;
+&lt;li&gt;Split Read，简称SR&lt;/li&gt;
+&lt;li&gt;Read Depth，简称RD，也有人将其称为RC——Read Count的意思，它与Read Depth是同一回事，顾名思义都是利用read覆盖情况来检测变异的方法&lt;/li&gt;
+&lt;li&gt;序列从头组装（de novo Assembly， 简称AS）的方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191125153355.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;目前大部分的SV检测算法都是涉及到上述一至两类，这样就会导致检测到的SV数目以及准确度都会大打折扣。一种解决办法就是同时利用多种算法也就是上面我们提到的集成算法检测SV再整合到一起形成一个统一的变异数据集，具体操作如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191125154043.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;大多数的检测算法都是不同的实验室内部针对某个项目进行开发的，因此就缺乏广适性。但是同时也存在几种算法主要针对上述提到的四类中的一类，这就使得我们可以组合起来就行SV的检测。比如CNVnator可以与BreakDancer和Pindel组合分别针对cover read depth, read pair and split reads进行SV的检测。同时为了降低假阳性还需要设置一系列的过滤指标。&lt;/p&gt;
+&lt;h2 id=&#34;大规模群体sv检测&#34;&gt;大规模群体SV检测&lt;/h2&gt;
+&lt;p&gt;大规模群体检测SV的研究目前有很多，比如我们熟知的1000 Genomes Project (1KGP)整合了19中算法进行SV的检测。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191125160500.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;新兴基因组技术&#34;&gt;新兴基因组技术&lt;/h2&gt;
+&lt;p&gt;大量的新兴技术试图超越二代测序短读长的限制。连接分子策略比如链读长、链式测序以及Hi-C等技术通过推断远端定位的序列比对进行SV的检测。单分子测序目前主要是Pacbio以及Nanopore。具体如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191125164532.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;具体的这里不展开，有兴趣的可以下载
+&lt;a href=&#34;https://www.nature.com/articles/s41576-019-0180-9.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;原文&lt;/a&gt;仔细阅读。&lt;/p&gt;
+&lt;p&gt;总结来说，目前检测SV的方法及软件汇总如下，最好的策略肯定是利用单分子三代测序比如Pacbio或者Nanopore，但是价格感人，所以前期积累的大量的二代高深度测序数据就可以利用起来了，针对二代测序推荐使用SppedSeq，整合多种算法，覆盖了多种SV类型的检测。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191125165220.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这篇综述内容非常广，涉及面也多，有兴趣的话可以仔细阅读，我这里只是粗略读了一下，主要是为了找几种比较好使的SV检测软件。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

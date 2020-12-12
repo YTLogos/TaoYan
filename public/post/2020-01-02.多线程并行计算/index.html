@@ -1,0 +1,1196 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="
+多线程并行计算可以提高效率，节省时间。最近工作中有一批数据需要处理，学习了一下批量多线程操作。">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#06805E">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/tomorrow.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/tomorrow.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CKarla:400,400i,700,700i%7CRoboto+Mono%7CKaushan+Script&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99209585-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-99209585-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hubd7880285348c4660acc9402140a2483_242472_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hubd7880285348c4660acc9402140a2483_242472_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@TaoYANLogos">
+  <meta property="twitter:creator" content="@TaoYANLogos">
+  
+  <meta property="og:site_name" content="Tao Yan">
+  <meta property="og:url" content="https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/">
+  <meta property="og:title" content="Shell | 多线程并行计算 | Tao Yan">
+  <meta property="og:description" content="
+多线程并行计算可以提高效率，节省时间。最近工作中有一批数据需要处理，学习了一下批量多线程操作。"><meta property="og:image" content="https://taoyan.netlify.app/img/pom-card.png">
+  <meta property="twitter:image" content="https://taoyan.netlify.app/img/pom-card.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-01-02T16:19:05&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-01-02T16:19:05&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/"
+  },
+  "headline": "Shell | 多线程并行计算",
+  
+  "datePublished": "2020-01-02T16:19:05Z",
+  "dateModified": "2020-01-02T16:19:05Z",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Tao Yan",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://taoyan.netlify.app/images/icon_hubd7880285348c4660acc9402140a2483_242472_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "\u003cp\u003e\u003cimg src=\"https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200104192150.png\" alt=\"\"\u003e\u003c/p\u003e\n\u003cp\u003e多线程并行计算可以提高效率，节省时间。最近工作中有一批数据需要处理，学习了一下批量多线程操作。\u003c/p\u003e"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Shell | 多线程并行计算 | Tao Yan</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Tao Yan</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/post"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publication"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/CV.html"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Shell | 多线程并行计算</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2020-01-02 16:19:05 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-01-02 16:19:05 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jan 2, 2020</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/linux/">Linux</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/&amp;text=Shell%20%7c%20%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%b9%b6%e8%a1%8c%e8%ae%a1%e7%ae%97" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/&amp;t=Shell%20%7c%20%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%b9%b6%e8%a1%8c%e8%ae%a1%e7%ae%97" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Shell%20%7c%20%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%b9%b6%e8%a1%8c%e8%ae%a1%e7%ae%97&amp;body=https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/&amp;title=Shell%20%7c%20%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%b9%b6%e8%a1%8c%e8%ae%a1%e7%ae%97" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200104192150.png" alt=""></p>
+<p>多线程并行计算可以提高效率，节省时间。最近工作中有一批数据需要处理，学习了一下批量多线程操作。</p>
+<h2 id="多线程">多线程</h2>
+<p>线程与进程是不同的，线程相当于火车车厢，进程相当于火车。</p>
+<p>打个比方：</p>
+<ul>
+<li>单进程单线程：一个人在一张桌子上吃饭</li>
+<li>单进程多线程：多个人在一张桌子上吃饭</li>
+<li>多进程多线程：多个人在多张桌子上吃饭</li>
+</ul>
+<h2 id="管道">管道</h2>
+<p>管道文件有两种：有名管道，匿名管道</p>
+<p>批量提交脚本会导致I/O严重负荷，我们希望控制提交脚本的数量，并且每次完成一个脚本之后自动提交一个脚本。<strong>FIFO</strong>有名管道就可以实现这点。它的特性是如果一个进程打开<strong>FIFO</strong>文件进行写操作，而另一个进程对之进行读操作，数据就可以如同在Shell或者其他地方常见的匿名管道一样流线执行。因此利用有名管道<strong>FIFO</strong>的上述特性就可以实现一个队列控制。</p>
+<p><code>mkfifo</code>命令用于创建fifo：</p>
+<pre><code>mkfifo $tmp_fifofile  #新建一个fifo类型文件
+</code></pre>
+<blockquote>
+<p>管道具有存一个读一个，读完一个就少一个，没有则阻塞，放回的可以重复取的特点。这正是队列特性，但问题是如果往管道文件里面放入一段内容，没人取则会阻塞，这样你永远也没办法往管道里面同时放入多段内容，解决这个问题的关键就是文件描述符（File Descriptor，FD)了。</p>
+</blockquote>
+<h2 id="文件描述符file-descriptor-fd">文件描述符File Descriptor (FD)</h2>
+<p>Linux shell中的File Descriptor (FD)，可以理解为一个指向文件的指针。默认有三个FD：0，1，2。Shell中还允许有3..9的FD，默认都没有打开，可以认为指向null。使用如下命令可查看FD：</p>
+<pre><code>ls /proc/self/fd
+</code></pre>
+<p>利用重定向‘&gt;&amp;’可以为一个FD赋值，使其指向一个非null的文件，其实就是打开一个FD：</p>
+<pre><code>6&gt;&amp;1
+# 可以理解为将FD6指针指向FD1指针指向的文件
+# 这样，FD6和FD1就同时指向同一个文件
+</code></pre>
+<p>将FD6指针置为空值null，可关闭FD6：</p>
+<pre><code>6&gt;&amp;-
+</code></pre>
+<p>一个重定向只在当前命令中有效。通过exec可以使IO重定向在当前shell中长期有效：</p>
+<pre><code># 打开FD6
+exec 6&gt;&amp;1
+# 关闭FD6
+exec 6&gt;&amp;-
+</code></pre>
+<h2 id="示例">示例</h2>
+<p>并发处理1000个bam文件转化为bed文件，如何用<strong>Shell</strong>实现。</p>
+<p>我们一般的想法就是for循环进行处理</p>
+<pre><code>#!/bin/bash
+# bam to bed
+
+date # 脚本开始时间
+
+for ((i=1;i&lt;=1000;i++))
+do
+        bam2bed  #这里执行自己的脚本
+        echo &quot; $i finished! &quot;   
+done
+
+date # 脚本结束时间
+</code></pre>
+<p>这种处理方法需要循环1000次，花费的时间肯定很长，可以考虑并发，一次性提交1000个样本同时处理。可以采用<code>&amp;</code>+ <code>wait</code>实现多线程</p>
+<pre><code>#!/bin/bash
+# bam to bed
+
+date # 脚本开始时间
+
+for ((i=1;i&lt;=1000;i++))
+do
+{
+    bam2bed  #这里执行自己的脚本
+        echo &quot; $i finished! &quot;  
+ }&amp;              #用{}把循环体括起来，后加一个&amp;符号，代表每次循环都把命令放入后台运行
+                 #一旦放入后台，就意味着{}里面的命令交给操作系统的一个线程处理了
+                 #循环了1000次，就有1000个&amp;将任务放入后台，操作系统会并发1000个线程来处理     
+done    
+wait             #wait命令表示。等待上面的命令（放入后台的任务）都执行完毕了再往下执行
+     
+date # 脚本结束时间
+</code></pre>
+<p>Shell实现并发就是通过&amp;命令符将循环体的命令放入后台运行，但是这种方法对线程并发数不可控，系统也会随着高并发压力的不断攀升，处理速度会变得越来越慢，所以这种方法针对少量的文件可行，但是一旦文件数量大，处理速度是很慢的。</p>
+<p>为解决这个问题，就可以使用<strong>FIFO</strong>实现“多进程”</p>
+<p>先新建一个<strong>FIFO</strong>，写入一些字符。一个进程开始前会先从这个FIFO中读走一个字符，执行完之后再写回一个字符。如果<strong>FIFO</strong>中没有字符，该线程就会等待，fifo就成了一个锁。</p>
+<p>下面是设置32个线程的例子：</p>
+<pre><code>#!/bin/bash
+# bam to bed
+
+start_time=`date +%s`  #定义脚本运行的开始时间
+
+tmp_fifofile=&quot;/tmp/$$.fifo&quot;
+mkfifo $tmp_fifofile   # 新建一个FIFO类型的文件
+exec 6&lt;&gt;$tmp_fifofile  # 将FD6指向FIFO类型, 这里6也可以是其它数字
+rm $tmp_fifofile  #删也可以，
+
+thread_num=32  # 定义最大线程数
+
+#根据线程总数量设置令牌个数
+#事实上就是在fd6中放置了$thread_num个回车符
+for ((i=0;i&lt;${thread_num};i++));do
+    echo
+done &gt;&amp;6
+
+for i in data/*.bam # 找到data文件夹下所有bam格式的文件
+do
+    # 一个read -u6命令执行一次，就从FD6中减去一个回车符，然后向下执行
+    # 当FD6中没有回车符时，就停止，从而实现线程数量控制
+    read -u6
+    {
+        bam2bed # 可以用实际命令代替
+        echo &gt;&amp;6 # 当进程结束以后，再向FD6中加上一个回车符，即补上了read -u6减去的那个
+    } &amp;
+done
+
+wait # 要有wait，等待所有线程结束
+
+stop_time=`date +%s` # 定义脚本运行的结束时间
+echo &quot;TIME:`expr $stop_time - $start_time`&quot; # 输出脚本运行时间
+
+exec 6&gt;&amp;- # 关闭FD6，最后一定要记得关闭FIFO
+echo &quot;over&quot; # 表示脚本运行结束
+</code></pre>
+<h2 id="参考">参考：</h2>
+<p>
+<a href="https://zhuanlan.zhihu.com/p/68574239" target="_blank" rel="noopener">[Linux 1] Shell“ 多线程”，提高工作效率</a></p>
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/shell/">Shell</a>
+  
+  <a class="badge badge-light" href="/tags/parallel/">Parallel</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/&amp;text=Shell%20%7c%20%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%b9%b6%e8%a1%8c%e8%ae%a1%e7%ae%97" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/&amp;t=Shell%20%7c%20%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%b9%b6%e8%a1%8c%e8%ae%a1%e7%ae%97" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Shell%20%7c%20%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%b9%b6%e8%a1%8c%e8%ae%a1%e7%ae%97&amp;body=https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://taoyan.netlify.app/post/2020-01-02.%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/&amp;title=Shell%20%7c%20%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%b9%b6%e8%a1%8c%e8%ae%a1%e7%ae%97" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/authors/alison/avatar_hufa245e75a5e5fa47274790393ba89624_26717_270x270_fill_q90_lanczos_center.jpg" alt="">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://taoyan.netlify.app/"></a></h5>
+        <h6 class="card-subtitle">PhD Candidate of Crop Genetics and Breeding</h6>
+        <p class="card-text">I am a PhD student of Crop Genetics and Breeding at the <em>Zhejiang University</em> Crop Science Lab. My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of Oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:tyan@zju.edu.cn" >
+        <i class="fas fa-paper-plane"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:tyan@zju.edu.cn" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/TaoYANLogos" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/YTLogos" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?hl=en&amp;user=8p3wQNwAAAAJ" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "logos-1" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/Shell.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/Python.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.37431be2d92d7fb0160054761ab79602.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/license/">LICENSE: CC-BY-SA <br> <i class="fab fa-creative-commons fa-2x"></i><i class="fab fa-creative-commons-by fa-2x"></i><i class="fab fa-creative-commons-sa fa-2x"></i> </a><br>
+  </p>
+  
+
+  <p class="powered-by">
+    © Tao Yan, 2018-2020 &middot; 
+
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+<div style="text-align: center;"><script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5cz8zk3uynm&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=0" async="async"></script></div>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

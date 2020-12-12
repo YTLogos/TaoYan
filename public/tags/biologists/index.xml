@@ -1,0 +1,1155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Biologists | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/biologists/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/biologists/index.xml" rel="self" type="application/rss+xml" />
+    <description>Biologists</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Wed, 31 Jan 2018 12:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Biologists</title>
+      <link>https://taoyan.netlify.app/tags/biologists/</link>
+    </image>
+    
+    <item>
+      <title>Lesson 08 for Plotting in R for Biologists</title>
+      <link>https://taoyan.netlify.app/post/2018-01-31.lesson-08-for-plotting-in-r-for-biologists/</link>
+      <pubDate>Wed, 31 Jan 2018 12:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-01-31.lesson-08-for-plotting-in-r-for-biologists/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Jfea06AiAF.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这节课是最后一节课，主要将如何绘制热图(heatmap)。实际上关于热图的绘制，我以前写了一篇博客：
+&lt;a href=&#34;https://ytlogos.github.io/2017/08/21/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R语言学习笔记之热图绘制&lt;/a&gt;，里面写的十分详细。但是今天热图绘制主要利用一个新的R包&lt;strong&gt;ComplexHeatmap&lt;/strong&gt;进行绘制。&lt;/p&gt;
+&lt;h2 id=&#34;包安装&#34;&gt;包安装&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;source(&amp;quot;https://bioconductor.org/biocLite.R&amp;quot;)
+options(BioC_mirror=&amp;quot;http://mirrors.ustc.edu.cn/bioc/&amp;quot;)
+biocLite(&amp;quot;ComplexHeatmap&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;数据加载&#34;&gt;数据加载&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(ComplexHeatmap)
+my_data &amp;lt;- read.table(&amp;quot;copy_number_data.txt&amp;quot;, sep = &amp;quot;\t&amp;quot;, quote=&amp;quot;&amp;quot;, stringsAsFactors = FALSE, header = TRUE)
+head(my_data[,1:6])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    CHR     START       END X.SRR089523. X.SRR089526. X.SRR089529.
+## 1 chr1  53440429  53494914    1.1002112    1.1000844    1.0487301
+## 2 chr1 105459037 105514187    1.1860780    0.6553897    0.4980016
+## 3 chr1 183998520 184048557    1.3791250    1.2024487    0.5735184
+## 4 chr1 236135655 236186012    0.8987158    1.1182392    0.6396842
+## 5 chr2  38944803  38996507    1.0788216    0.9663390    1.0473623
+## 6 chr2  97248366  97298651    1.0459629    1.0658991    1.0473623
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#绘制热图前先进行矩阵化
+my_matrix &amp;lt;- as.matrix(my_data[, c(4:100)])
+head(my_matrix[,1:4])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##      X.SRR089523. X.SRR089526. X.SRR089529. X.SRR089533.
+## [1,]    1.1002112    1.1000844    1.0487301    0.5656784
+## [2,]    1.1860780    0.6553897    0.4980016    0.5656784
+## [3,]    1.3791250    1.2024487    0.5735184    1.0362551
+## [4,]    0.8987158    1.1182392    0.6396842    0.4659238
+## [5,]    1.0788216    0.9663390    1.0473623    1.1702930
+## [6,]    1.0459629    1.0658991    1.0473623    1.2298119
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#将染色体信息存储好以便后续热图注释
+chromosome_info &amp;lt;- data.frame(chrom=my_data$CHR)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;可视化&#34;&gt;可视化&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(my_matrix)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Aj4Gc126K4.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到使用默认参数热图时十分不美观，可以进行部分调整&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#坐标旋转
+my_matrix &amp;lt;- t(my_matrix)
+Heatmap(my_matrix)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/f2bambd0De.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;坐标标签还是十分乱，还得进行调整&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(my_matrix, cluster_columns = FALSE)#列不聚类
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/j5Aabgh1hH.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将坐标标签位置置于左边&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(my_matrix, 
+        cluster_columns = FALSE, 
+        row_names_side = &amp;quot;left&amp;quot;, 
+        row_hclust_side = &amp;quot;left&amp;quot;, 
+        row_names_gp = gpar(cex=0.6)
+        )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/FAIF0CElla.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(my_matrix,
+        cluster_columns = FALSE,
+        row_names_side = &amp;quot;left&amp;quot;,
+        row_hclust_side = &amp;quot;left&amp;quot;,
+        row_names_gp = gpar(cex=0.6),
+        row_hclust_width = unit(3, &amp;quot;cm&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/c34HgC083C.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;热图绘制的时候可以使用不同的距离计算方式以及聚类方法，具体的用法可以参考我以前的博客：
+&lt;a href=&#34;https://ytlogos.github.io/2017/08/21/R%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E7%83%AD%E5%9B%BE%E7%BB%98%E5%88%B6/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R语言学习笔记之热图绘制&lt;/a&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(my_matrix,
+        cluster_columns = FALSE,
+        row_names_side = &amp;quot;left&amp;quot;,
+        row_hclust_side = &amp;quot;left&amp;quot;,
+        row_names_gp = gpar(cex=0.6),
+        row_hclust_width = unit(3, &amp;quot;cm&amp;quot;),
+        clustering_distance_rows = &amp;quot;maximum&amp;quot;,
+        clustering_method_rows = &amp;quot;ward.D&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/iEiafB44Ad.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;热图注释&#34;&gt;热图注释&lt;/h2&gt;
+&lt;p&gt;主要是对聚成的类进行颜色标记&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(dendextend)
+dend &amp;lt;- hclust(dist(my_matrix, method = &amp;quot;maximum&amp;quot;), method = &amp;quot;ward.D&amp;quot;)
+Heatmap(my_matrix,
+        cluster_columns = FALSE,
+        row_names_side = &amp;quot;left&amp;quot;,
+        row_hclust_side = &amp;quot;left&amp;quot;,
+        row_names_gp = gpar(cex=0.6),
+        row_hclust_width = unit(3, &amp;quot;cm&amp;quot;),
+        cluster_rows = color_branches(dend, k=3))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/k0d1H4Fahj.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;将热图分类&#34;&gt;将热图分类&lt;/h3&gt;
+&lt;p&gt;随便你先分成几类，但是一般来说有一个最佳分类数，可参考我的另一篇博客：
+&lt;a href=&#34;https://ytlogos.github.io/2017/06/25/R%e8%af%ad%e8%a8%80%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0%e4%b9%8b%e8%81%9a%e7%b1%bb%e5%88%86%e6%9e%90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;R语言学习笔记之聚类分析&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Heatmap(my_matrix,
+        cluster_columns = FALSE,
+        row_names_side = &amp;quot;left&amp;quot;,
+        row_hclust_side = &amp;quot;left&amp;quot;,
+        row_names_gp = gpar(cex=0.6),
+        row_hclust_width = unit(3, &amp;quot;cm&amp;quot;),
+        clustering_distance_rows = &amp;quot;maximum&amp;quot;,
+        clustering_method_rows = &amp;quot;ward.D&amp;quot;,
+        km=2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/d4hLf0EfgF.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;根据染色体信息进行注释&#34;&gt;根据染色体信息进行注释&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;chromosome_colors &amp;lt;- c(rep(c(&amp;quot;black&amp;quot;,&amp;quot;white&amp;quot;),11), &amp;quot;red&amp;quot;)
+names(chromosome_colors) &amp;lt;- paste(&amp;quot;chr&amp;quot;,c(seq(1:22), &amp;quot;X&amp;quot;), sep = &amp;quot;&amp;quot;)
+Heatmap(my_matrix,
+        cluster_columns = FALSE,
+        row_names_side = &amp;quot;left&amp;quot;,
+        row_hclust_side = &amp;quot;left&amp;quot;,
+        row_names_gp = gpar(cex=0.6),
+        row_hclust_width = unit(3, &amp;quot;cm&amp;quot;),
+        clustering_distance_rows = &amp;quot;maximum&amp;quot;,
+        clustering_method_rows = &amp;quot;ward.D&amp;quot;,
+        km=2,
+        bottom_annotation = HeatmapAnnotation(chromosome_info, col = list(chrom=chromosome_colors), show_legend = FALSE))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Jfea06AiAF.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+## [1] dendextend_1.6.0      ComplexHeatmap_1.17.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.15         DEoptimR_1.0-8       compiler_3.4.3      
+##  [4] pillar_1.1.0         RColorBrewer_1.1-2   plyr_1.8.4          
+##  [7] viridis_0.4.1        class_7.3-14         prabclus_2.2-6      
+## [10] tools_3.4.3          digest_0.6.15        mclust_5.4          
+## [13] viridisLite_0.3.0    evaluate_0.10.1      tibble_1.4.2        
+## [16] gtable_0.2.0         lattice_0.20-35      rlang_0.1.6         
+## [19] yaml_2.1.16          mvtnorm_1.0-7        gridExtra_2.3       
+## [22] trimcluster_0.1-2    stringr_1.2.0        knitr_1.19          
+## [25] cluster_2.0.6        GlobalOptions_0.0.12 fpc_2.1-11          
+## [28] diptest_0.75-7       nnet_7.3-12          stats4_3.4.3        
+## [31] rprojroot_1.3-2      robustbase_0.92-8    GetoptLong_0.1.6    
+## [34] flexmix_2.3-14       rmarkdown_1.8        kernlab_0.9-25      
+## [37] ggplot2_2.2.1.9000   magrittr_1.5         whisker_0.3-2       
+## [40] modeltools_0.2-21    backports_1.1.2      scales_0.5.0.9000   
+## [43] htmltools_0.3.6      MASS_7.3-48          shape_1.4.3         
+## [46] circlize_0.4.3       colorspace_1.3-2     stringi_1.1.6       
+## [49] lazyeval_0.2.1       munsell_0.4.3        rjson_0.2.15
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Lesson 05 for Plotting in R for Biologists</title>
+      <link>https://taoyan.netlify.app/post/2018-01-28.lesson-05-for-plotting-in-r-for-biologists/</link>
+      <pubDate>Sun, 28 Jan 2018 12:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-01-28.lesson-05-for-plotting-in-r-for-biologists/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/g2ed2h7ckd.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这节课作者命名为&amp;quot;Tweaking everything in a plot&amp;quot;。主要是对图形细节进行优化，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;题目(title)、坐标轴标签、图例标签等&lt;/li&gt;
+&lt;li&gt;字体&lt;/li&gt;
+&lt;li&gt;颜色&lt;/li&gt;
+&lt;li&gt;背景&lt;/li&gt;
+&lt;li&gt;网格线等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据加载及清洗&#34;&gt;数据加载及清洗&lt;/h2&gt;
+&lt;p&gt;这部分在上节课已经讲过了，这里就不再详述了。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(tidyverse)
+library(plyr)
+my_data &amp;lt;- read.csv(&amp;quot;Encode_HMM_data.txt&amp;quot;, sep = &amp;quot;\t&amp;quot;, header = FALSE)
+names(my_data)[1:4] &amp;lt;- c(&amp;quot;chrom&amp;quot;,&amp;quot;start&amp;quot;,&amp;quot;stop&amp;quot;,&amp;quot;type&amp;quot;)
+my_data$chrom &amp;lt;- factor(gsub(&amp;quot;chr&amp;quot;,&amp;quot;&amp;quot;, my_data$chrom, fixed = TRUE), levels = c(seq(1:22),&amp;quot;X&amp;quot;,&amp;quot;Y&amp;quot;))
+my_data &amp;lt;- my_data[my_data$type %in% c(&amp;quot;1_Active_Promoter&amp;quot;,&amp;quot;4_Strong_Enhancer&amp;quot;,&amp;quot;8_Insulator&amp;quot;), ]
+my_data$type &amp;lt;- revalue(my_data$type, c(&amp;quot;1_Active_Promoter&amp;quot;=&amp;quot;Promoter&amp;quot;, &amp;quot;4_Strong_Enhancer&amp;quot;=&amp;quot;Enhancer&amp;quot;,&amp;quot;8_Insulator&amp;quot;=&amp;quot;Insulator&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;可视化&#34;&gt;可视化&lt;/h2&gt;
+&lt;p&gt;接下来就针对图形进行优化调整&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/L5cljj8kja.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;添加标题&#34;&gt;添加标题&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()+labs(title=&amp;quot;Regulatory features by chromosomes&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gdJ67ALBG6.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要注意的一点是，添加的title默认是位于左上角，如果要居中显示的话最简单的办法就是在标题前添加空格。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;修改坐标轴以及图例标签&#34;&gt;修改坐标轴以及图例标签&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=chrom, fill=type))+
+  geom_bar()+
+  labs(x=&amp;quot;Chromosome&amp;quot;, y=&amp;quot;Count&amp;quot;, fill=&amp;quot;Feature&amp;quot;)#这里fill是对应ampping里面的fill映射，显示于图例
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/A7i5la4BCJ.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;主题修改&#34;&gt;主题修改&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic &amp;lt;- ggplot(my_data, aes(x=chrom, fill=type))+
+  geom_bar()+
+  labs(x=&amp;quot;Chromosome&amp;quot;, y=&amp;quot;Count&amp;quot;, fill=&amp;quot;Feature&amp;quot;)
+#设置文本大小
+(basic+theme_gray(base_size = 20))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/9D6dAECeh3.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果想要使得主题适用于所有的图形，可以通过theme_set()进行设置。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;theme_set(theme_gray(base_size = 20))
+basic
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gbGkg7GcmF.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;恢复默认设置主题&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;theme_set(theme_gray())
+basic
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/LaC06a2e4E.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;颜色&#34;&gt;颜色&lt;/h2&gt;
+&lt;p&gt;R有个包&lt;strong&gt;RColorNBrewer&lt;/strong&gt;提供调色板&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(RColorBrewer)
+display.brewer.all()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/lEAGAHh6gI.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下面测试一下这些调色板&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+scale_fill_brewer(palette = &amp;quot;Set1&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/B5cHCji0cJ.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+scale_fill_brewer(palette = &amp;quot;Pastel1&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/l9FJI7DLHi.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+scale_fill_brewer(palette = &amp;quot;YlorRd&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/khfcGCelbA.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;不使用调色板的话也可以自己设置颜色，结合取色器的话很是很赞的&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+scale_fill_manual(values = c(&amp;quot;green&amp;quot;, &amp;quot;blue&amp;quot;, &amp;quot;red&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/e0J65fm8IL.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;head(colors())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;white&amp;quot;         &amp;quot;aliceblue&amp;quot;     &amp;quot;antiquewhite&amp;quot;  &amp;quot;antiquewhite1&amp;quot;
+## [5] &amp;quot;antiquewhite2&amp;quot; &amp;quot;antiquewhite3&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;有的时候我们需要很多种颜色，多到一个调色板都满足不了时怎么办？&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;chrom_plot &amp;lt;- ggplot(my_data, aes(x=type, fill=chrom))+geom_bar()
+chrom_plot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/4bhEI643Lb.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chrom_plot+scale_fill_brewer(type = &amp;quot;qual&amp;quot;, palette = 1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/mFkFIEJKk7.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ggplot&lt;/strong&gt;默认调用的是rainbpw调色板，颜色容易让人误解，不好分辨，但是其他的调色板颜色数量是不足的。这时可以通过将好几个palette合并在一起组成一个新的palette。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;palette1 &amp;lt;- brewer.pal(9, &amp;quot;Set1&amp;quot;)
+palette1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;#E41A1C&amp;quot; &amp;quot;#377EB8&amp;quot; &amp;quot;#4DAF4A&amp;quot; &amp;quot;#984EA3&amp;quot; &amp;quot;#FF7F00&amp;quot; &amp;quot;#FFFF33&amp;quot; &amp;quot;#A65628&amp;quot;
+## [8] &amp;quot;#F781BF&amp;quot; &amp;quot;#999999&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;palette2 &amp;lt;- brewer.pal(8, &amp;quot;Set2&amp;quot;)
+palette2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;#66C2A5&amp;quot; &amp;quot;#FC8D62&amp;quot; &amp;quot;#8DA0CB&amp;quot; &amp;quot;#E78AC3&amp;quot; &amp;quot;#A6D854&amp;quot; &amp;quot;#FFD92F&amp;quot; &amp;quot;#E5C494&amp;quot;
+## [8] &amp;quot;#B3B3B3&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;palette3 &amp;lt;- brewer.pal(9, &amp;quot;Set3&amp;quot;)
+palette3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;#8DD3C7&amp;quot; &amp;quot;#FFFFB3&amp;quot; &amp;quot;#BEBADA&amp;quot; &amp;quot;#FB8072&amp;quot; &amp;quot;#80B1D3&amp;quot; &amp;quot;#FDB462&amp;quot; &amp;quot;#B3DE69&amp;quot;
+## [8] &amp;quot;#FCCDE5&amp;quot; &amp;quot;#D9D9D9&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过饼图来查看一下这几个调色板&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;pie(rep(1, length(palette1)), col = palette1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/12IiLb3k9C.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pie(rep(1, length(palette2)), col = palette2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/lEmK5k4hBc.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pie(rep(1, length(palette3)), col = palette3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/64ckLkAA69.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将这几个色斑合并成一个大的调色板&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;big_palette &amp;lt;- c(palette1, palette2, palette3)
+pie(rep(1, length(big_palette)), col = big_palette)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Deg5894HDl.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;chrom_plot+scale_fill_manual(values = big_palette)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/kAAB7AKgfl.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;也可以打乱颜色顺序&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;chrom_plot+scale_fill_manual(values = sample(big_palette))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/lc0I79KfL3.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;字体&#34;&gt;字体&lt;/h2&gt;
+&lt;p&gt;后续大部分调整都是通过theme来实现的。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#对所有字体进行调整
+basic+theme_gray(base_size = 24, base_family = &amp;quot;Times New Roman&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/e4F5cgcLj7.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但是很多时候我们都是对特定字体、标签、颜色等进行特定的调整，这时就可以通过theme逐一调整。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+theme(axis.text = element_text(size=20))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/3kGEkff3f3.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(axis.title = element_text(size = 20))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ai6HcGJAJc.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(legend.title = element_text(size = 20))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/756Fj36m0m.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(legend.text = element_text(size=20, family = &amp;quot;Times New Roman&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/K43IGFii0k.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(legend.text = element_text(size=20, family = &amp;quot;Times New Roman&amp;quot;),
+            axis.title = element_text(size=30),
+            axis.text = element_text(size=20))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/fej6fe0E22.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+theme(panel.background = element_rect(fill=&amp;quot;pink&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/blhiiLg5lB.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(panel.background = element_rect(fill=&amp;quot;white&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/06BCjfh0dF.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;网格线&#34;&gt;网格线&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+theme(panel.grid.major = element_line(colour = &amp;quot;blue&amp;quot;), panel.grid.minor = element_line(colour = &amp;quot;red&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/GBe6CG68Ib.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;移除所有的网格线&#34;&gt;移除所有的网格线&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+theme(panel.grid.major = element_line(NA),
+            panel.grid.minor = element_line(NA))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/eL008ADBkA.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;只保留y轴线&#34;&gt;只保留y轴线&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+theme(panel.grid.major.y = element_line(colour = &amp;quot;black&amp;quot;, size = 0.20),
+            panel.grid.major.x = element_line(NA),
+            panel.grid.minor = element_line(NA))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/IBAb1m2be4.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;修改刻度&#34;&gt;修改刻度&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+theme(axis.ticks = element_line(size=0.2))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/96ckHBC006.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(axis.ticks = element_line(NA))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/FBJ2k0J7bB.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(axis.ticks = element_line(colour = &amp;quot;blue&amp;quot;, size = 2))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/blhAmIg3gF.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(axis.ticks = element_line(size=2),
+            axis.ticks.x = element_line(colour = &amp;quot;blue&amp;quot;),
+            axis.ticks.y = element_line(colour = &amp;quot;red&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/b20AiC7AAC.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;图例&#34;&gt;图例&lt;/h2&gt;
+&lt;h3 id=&#34;修改图例位置&#34;&gt;修改图例位置&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+theme(legend.position = &amp;quot;top&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6kJ5DLG298.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(legend.position = &amp;quot;bottom&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/I6GeiH36C1.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(legend.position = c(0,0))#左下角
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/65Gh1EfA0J.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(legend.position = c(1,1))#右上角
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ci77mHfc1H.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+theme(legend.position = c(0.8,0.8))#通过坐标设置可以将图例置于任意位置
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/eBe2ee3KLB.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;移除图例&#34;&gt;移除图例&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;basic+labs(fill=&amp;quot;&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/7A21F6hEmD.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+labs(fill=&amp;quot;&amp;quot;)+theme(legend.position = c(0.8,0.8))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/6fg1A8l715.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;看看文章发表样式图形&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;publication_style &amp;lt;- basic+guides(fill=FALSE)+
+  theme(axis.line = element_line(size = 0.5), 
+        panel.background = element_rect(fill=NA, size = rel(20)),
+        panel.grid.minor = element_line(colour = NA),
+        axis.text = element_text(size=16),
+        axis.title = element_text(size = 18))
+publication_style
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/LLJ69769c9.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将柱形图与x轴之间的距离消除&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;publication_style+scale_y_continuous(expand = c(0,0))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/69eLJ7CI2b.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到上述图形基本达到了文章发表的水平，因此我们可以将主题theme保存下来以后使用，通过设置全局主题来使所有图形有相同版式。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;theme_set(theme_gray()+
+            theme(axis.line = element_line(size = 0.5),
+                  panel.background = element_rect(fill=NA, size = rel(20)),
+                  panel.grid.minor = element_line(colour = NA),
+                  axis.text = element_text(size = 16),
+                  axis.title = element_text(size = 18)))
+basic
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/CK9CgB5Cme.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;basic+scale_y_continuous(expand = c(0,0))+guides(fill=FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/g2ed2h7ckd.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果需要还原主题设定的话，只要运行以下命令就行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;theme_set(theme_gray())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfO()&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] RColorBrewer_1.1-2 plyr_1.8.4         forcats_0.2.0     
+##  [4] stringr_1.2.0      dplyr_0.7.4        purrr_0.2.4       
+##  [7] readr_1.1.1        tidyr_0.7.2        tibble_1.4.2      
+## [10] ggplot2_2.2.1.9000 tidyverse_1.2.1   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.15      cellranger_1.1.0  pillar_1.1.0     
+##  [4] compiler_3.4.3    bindr_0.1         tools_3.4.3      
+##  [7] digest_0.6.14     lubridate_1.7.1   jsonlite_1.5     
+## [10] evaluate_0.10.1   nlme_3.1-131      gtable_0.2.0     
+## [13] lattice_0.20-35   pkgconfig_2.0.1   rlang_0.1.6      
+## [16] psych_1.7.8       cli_1.0.0         rstudioapi_0.7   
+## [19] yaml_2.1.16       parallel_3.4.3    haven_1.1.1      
+## [22] bindrcpp_0.2      xml2_1.2.0        httr_1.3.1       
+## [25] knitr_1.18        hms_0.4.1         rprojroot_1.3-2  
+## [28] grid_3.4.3        glue_1.2.0        R6_2.2.2         
+## [31] readxl_1.0.0      foreign_0.8-69    rmarkdown_1.8    
+## [34] modelr_0.1.1      reshape2_1.4.3    magrittr_1.5     
+## [37] backports_1.1.2   scales_0.5.0.9000 htmltools_0.3.6  
+## [40] rvest_0.3.2       assertthat_0.2.0  mnormt_1.5-5     
+## [43] colorspace_1.3-2  labeling_0.3      stringi_1.1.6    
+## [46] lazyeval_0.2.1    munsell_0.4.3     broom_0.4.3      
+## [49] crayon_1.3.4
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Lesson 04 for Plotting in R for Biologists</title>
+      <link>https://taoyan.netlify.app/post/2018-01-25.lesson-04-for-plotting-in-r-for-biologists/</link>
+      <pubDate>Thu, 25 Jan 2018 12:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-01-25.lesson-04-for-plotting-in-r-for-biologists/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gHcHm3FdLC.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;上次将Lesson 02&amp;amp;03一起讲解完了，在Lesson 04中主要解决下面几个问题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;剔除掉染色体前缀chr&lt;/li&gt;
+&lt;li&gt;对染色体进行正确排序&lt;/li&gt;
+&lt;li&gt;对数据进行过滤&lt;/li&gt;
+&lt;li&gt;对部分type重命名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;加载数据&#34;&gt;加载数据&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(tidyverse)
+my_data &amp;lt;- read.csv(&amp;quot;Encode_HMM_data.txt&amp;quot;, sep = &amp;quot;\t&amp;quot;, header = FALSE)
+head(my_data[, c(1:6)])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     V1    V2    V3                V4 V5 V6
+## 1 chr1 10000 10600 15_Repetitive/CNV  0  .
+## 2 chr1 10600 11137 13_Heterochrom/lo  0  .
+## 3 chr1 11137 11737       8_Insulator  0  .
+## 4 chr1 11737 11937       11_Weak_Txn  0  .
+## 5 chr1 11937 12137   7_Weak_Enhancer  0  .
+## 6 chr1 12137 14537       11_Weak_Txn  0  .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;对数据部分列进行重命名&#34;&gt;对数据部分列进行重命名&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;names(my_data)[1:4] &amp;lt;- c(&amp;quot;chrom&amp;quot;, &amp;quot;start&amp;quot;, &amp;quot;stop&amp;quot;,&amp;quot;type&amp;quot;)
+head(my_data[, c(1:4)])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   chrom start  stop              type
+## 1  chr1 10000 10600 15_Repetitive/CNV
+## 2  chr1 10600 11137 13_Heterochrom/lo
+## 3  chr1 11137 11737       8_Insulator
+## 4  chr1 11737 11937       11_Weak_Txn
+## 5  chr1 11937 12137   7_Weak_Enhancer
+## 6  chr1 12137 14537       11_Weak_Txn
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;绘图&#34;&gt;绘图&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/j2IB94I12k.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;数据调整&#34;&gt;数据调整&lt;/h2&gt;
+&lt;p&gt;主要是针对上面提出的几个问题对数据进行调整&lt;/p&gt;
+&lt;h3 id=&#34;剔除染色体前缀chr&#34;&gt;剔除染色体前缀chr&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;my_data$chrom &amp;lt;- factor(gsub(&amp;quot;chr&amp;quot;, &amp;quot;&amp;quot;, my_data$chrom))
+ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/2ibGfgm9Gg.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;对染色体进行排序&#34;&gt;对染色体进行排序&lt;/h3&gt;
+&lt;p&gt;这个关于人类的基因组数据，所以染色体顺序应该是1：22,X,Y。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;my_data$chrom &amp;lt;- factor(my_data$chrom, levels = c(seq(1:22), &amp;quot;X&amp;quot;, &amp;quot;Y&amp;quot;))
+ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/G0i0aBH43a.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这下看起来相对好一点&lt;/p&gt;
+&lt;h3 id=&#34;选取type&#34;&gt;选取type&lt;/h3&gt;
+&lt;p&gt;只选取我们感兴趣的type进行可视化&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;my_data &amp;lt;- my_data[my_data$type %in% c(&amp;quot;1_Active_Promoter&amp;quot;, &amp;quot;4_Strong_Enhancer&amp;quot;, &amp;quot;8_Insulator&amp;quot;), ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;对选取的type进行重命名&#34;&gt;对选取的type进行重命名&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(plyr)
+my_data$type &amp;lt;- revalue(my_data$type,c(&amp;quot;1_Active_Promoter&amp;quot;=&amp;quot;Promoter&amp;quot;,&amp;quot;4_Strong_Enhancer&amp;quot;=&amp;quot;Enhancer&amp;quot;,&amp;quot;8_Insulator&amp;quot;=&amp;quot;Insulator&amp;quot;))
+ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/gHcHm3FdLC.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] plyr_1.8.4         forcats_0.2.0      stringr_1.2.0     
+##  [4] dplyr_0.7.4        purrr_0.2.4        readr_1.1.1       
+##  [7] tidyr_0.7.2        tibble_1.4.2       ggplot2_2.2.1.9000
+## [10] tidyverse_1.2.1   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.15      cellranger_1.1.0  pillar_1.1.0     
+##  [4] compiler_3.4.3    bindr_0.1         tools_3.4.3      
+##  [7] digest_0.6.14     lubridate_1.7.1   jsonlite_1.5     
+## [10] evaluate_0.10.1   nlme_3.1-131      gtable_0.2.0     
+## [13] lattice_0.20-35   pkgconfig_2.0.1   rlang_0.1.6      
+## [16] psych_1.7.8       cli_1.0.0         rstudioapi_0.7   
+## [19] yaml_2.1.16       parallel_3.4.3    haven_1.1.1      
+## [22] bindrcpp_0.2      xml2_1.2.0        httr_1.3.1       
+## [25] knitr_1.18        hms_0.4.1         rprojroot_1.3-2  
+## [28] grid_3.4.3        glue_1.2.0        R6_2.2.2         
+## [31] readxl_1.0.0      foreign_0.8-69    rmarkdown_1.8    
+## [34] modelr_0.1.1      reshape2_1.4.3    magrittr_1.5     
+## [37] backports_1.1.2   scales_0.5.0.9000 htmltools_0.3.6  
+## [40] rvest_0.3.2       assertthat_0.2.0  mnormt_1.5-5     
+## [43] colorspace_1.3-2  labeling_0.3      stringi_1.1.6    
+## [46] lazyeval_0.2.1    munsell_0.4.3     broom_0.4.3      
+## [49] crayon_1.3.4
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>“Lesson 02&amp;03 for Plotting in R for Biologists”</title>
+      <link>https://taoyan.netlify.app/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/</link>
+      <pubDate>Sat, 20 Jan 2018 12:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-01-20.lesson-0203-for-plotting-in-r-for-biologists/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dBhf13K3Ge.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Lesson02主要讲了如何从Excel导入数据以及如何从UCSC、ENSEMBL和RENCODE上下载数据，因此我就将Lesson02并入Lesson03一起讲了。&lt;/p&gt;
+&lt;h2 id=&#34;从ecxel中导入数据&#34;&gt;从ECXEl中导入数据&lt;/h2&gt;
+&lt;p&gt;数据来源于文献
+&lt;a href=&#34;https://www.nature.com/articles/1209254&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;ldquo;Gene expression profiling of breast cell lines identifies potential new basal markers&amp;rdquo;&lt;/a&gt;的补充数据集Supplementary Table 1。将之下载到工作目录区。数据读取的话只需要用&lt;code&gt;read.csv()&lt;/code&gt;即可，指定&lt;code&gt;sep&lt;/code&gt;。&lt;strong&gt;gtf&lt;/strong&gt;、&lt;strong&gt;bed&lt;/strong&gt;文件都可以通过&lt;code&gt;read.csv()&lt;/code&gt;读取。即使是没有后缀的文件，只要知道其分隔符，就可以通过设置&lt;code&gt;sep&lt;/code&gt;来读取数据。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;my_data &amp;lt;- read.csv(&amp;quot;micro_array_results_table1.txt&amp;quot;, sep = &#39;\t&#39;, header = TRUE)
+head(my_data[,c(1:6)])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   Probe.Set.ID Gene.Symbol Type  X184B5 BrCa.MZ.01   BT.20
+## 1    1007_s_at        DDR1 gene 1113.91     815.53 1564.76
+## 2      1053_at        RFC2 gene  159.02     253.24  320.22
+## 3       117_at       HSPA6 gene   60.76      33.91   26.39
+## 4       121_at        PAX8 gene  197.76     121.33  122.81
+## 5    1255_g_at      GUCA1A gene    6.73       7.88    6.28
+## 6      1294_at       UBE1L gene  118.82      57.24  432.24
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;试试读取&lt;strong&gt;gtf&lt;/strong&gt;文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;Brassica_gtf &amp;lt;- read.csv(&amp;quot;E:/Brassica napus database/Brassica_napus.annotation_v5.gtf&amp;quot;, sep = &amp;quot;\t&amp;quot;, header = FALSE)
+head(Brassica_gtf)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##       V1     V2   V3   V4   V5   V6 V7 V8                           V9
+## 1 chrA01 GazeA2 exon  831 1437 7.80  +  . transcript_id BnaA01g00010D;
+## 2 chrA01 GazeA2  CDS 1070 1345    .  +  0 transcript_id BnaA01g00010D;
+## 3 chrA01 GazeA2 exon 1487 2124 2.15  -  . transcript_id BnaA01g00020D;
+## 4 chrA01 GazeA2 exon 2256 2436 3.19  -  . transcript_id BnaA01g00020D;
+## 5 chrA01 GazeA2  CDS 1645 2124    .  -  0 transcript_id BnaA01g00020D;
+## 6 chrA01 GazeA2  CDS 2256 2282    .  -  0 transcript_id BnaA01g00020D;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其他格式文件我这里就不试了，有兴趣的话可以自己去尝试。&lt;/p&gt;
+&lt;h2 id=&#34;数据探索&#34;&gt;数据探索&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(tidyverse)
+#读取数据
+my_data &amp;lt;- read.csv(&amp;quot;Encode_HMM_data.txt&amp;quot;, sep = &amp;quot;\t&amp;quot;, header = FALSE)
+dim(my_data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 571339      9
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;head(my_data[, c(1:6)])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     V1    V2    V3                V4 V5 V6
+## 1 chr1 10000 10600 15_Repetitive/CNV  0  .
+## 2 chr1 10600 11137 13_Heterochrom/lo  0  .
+## 3 chr1 11137 11737       8_Insulator  0  .
+## 4 chr1 11737 11937       11_Weak_Txn  0  .
+## 5 chr1 11937 12137   7_Weak_Enhancer  0  .
+## 6 chr1 12137 14537       11_Weak_Txn  0  .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;对数据部分列进行重命名&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;names(my_data)[1:4] &amp;lt;- c(&amp;quot;chrom&amp;quot;, &amp;quot;start&amp;quot;, &amp;quot;stop&amp;quot;, &amp;quot;type&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;可视化&#34;&gt;可视化&lt;/h2&gt;
+&lt;p&gt;先初步看一下不同染色体上的type类型&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dBhf13K3Ge.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;从这个图中可以看到还有很多缺陷&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;染色体顺序错乱，前缀chr在坐标轴上排列乱&lt;/li&gt;
+&lt;li&gt;类型太多了，我们只需要可视化我们感兴趣的type&lt;/li&gt;
+&lt;li&gt;类型的名字乱&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这几个问题将在Lesson04解决&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo()&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] forcats_0.2.0      stringr_1.2.0      dplyr_0.7.4       
+## [4] purrr_0.2.4        readr_1.1.1        tidyr_0.7.2       
+## [7] tibble_1.4.2       ggplot2_2.2.1.9000 tidyverse_1.2.1   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.15      cellranger_1.1.0  pillar_1.1.0     
+##  [4] compiler_3.4.3    plyr_1.8.4        bindr_0.1        
+##  [7] tools_3.4.3       digest_0.6.14     lubridate_1.7.1  
+## [10] jsonlite_1.5      evaluate_0.10.1   nlme_3.1-131     
+## [13] gtable_0.2.0      lattice_0.20-35   pkgconfig_2.0.1  
+## [16] rlang_0.1.6       psych_1.7.8       cli_1.0.0        
+## [19] rstudioapi_0.7    yaml_2.1.16       parallel_3.4.3   
+## [22] haven_1.1.1       bindrcpp_0.2      xml2_1.2.0       
+## [25] httr_1.3.1        knitr_1.18        hms_0.4.1        
+## [28] rprojroot_1.3-2   grid_3.4.3        glue_1.2.0       
+## [31] R6_2.2.2          readxl_1.0.0      foreign_0.8-69   
+## [34] rmarkdown_1.8     modelr_0.1.1      reshape2_1.4.3   
+## [37] magrittr_1.5      backports_1.1.2   scales_0.5.0.9000
+## [40] htmltools_0.3.6   rvest_0.3.2       assertthat_0.2.0 
+## [43] mnormt_1.5-5      colorspace_1.3-2  labeling_0.3     
+## [46] stringi_1.1.6     lazyeval_0.2.1    munsell_0.4.3    
+## [49] broom_0.4.3       crayon_1.3.4
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Lesson 01 for Plotting in R for Biologists</title>
+      <link>https://taoyan.netlify.app/post/2018-01-15.lesson-01-for-plotting-in-r-for-biologists/</link>
+      <pubDate>Mon, 15 Jan 2018 12:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-01-15.lesson-01-for-plotting-in-r-for-biologists/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/f6L6BHLm15.png?raw=true?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;老早之前就知道了这门课
+&lt;a href=&#34;http://omgenomics.com/plotting-in-r-for-biologists/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;Plotting in R for Biologists&lt;/strong&gt;&lt;/a&gt;,一直没有去学习一下，最近花时间看了一遍videos，发现讲的很不错，虽然有一节有一知识点讲的不是很清楚。学了一遍之后记点笔记，这是lesson1的学习笔记。这一节主要讲了数据读取、快速绘图以及图形保存。&lt;/p&gt;
+&lt;h2 id=&#34;数据&#34;&gt;数据&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(ggplot2)
+filename &amp;lt;- &amp;quot;/home/taoyan/Plotting in R for Biologists/Lesson-01/Encode_HMM_data.txt&amp;quot;
+my_data &amp;lt;- read.csv(filename, sep=&amp;quot;\t&amp;quot;, header=FALSE)
+# 查看一下数据
+head(my_data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##     V1    V2    V3                V4 V5 V6    V7    V8          V9
+## 1 chr1 10000 10600 15_Repetitive/CNV  0  . 10000 10600 245,245,245
+## 2 chr1 10600 11137 13_Heterochrom/lo  0  . 10600 11137 245,245,245
+## 3 chr1 11137 11737       8_Insulator  0  . 11137 11737  10,190,254
+## 4 chr1 11737 11937       11_Weak_Txn  0  . 11737 11937 153,255,102
+## 5 chr1 11937 12137   7_Weak_Enhancer  0  . 11937 12137   255,252,4
+## 6 chr1 12137 14537       11_Weak_Txn  0  . 12137 14537 153,255,102
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;对数据列名重命名&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;names(my_data)[1:4] &amp;lt;- c(&amp;quot;chrom&amp;quot;,&amp;quot;start&amp;quot;,&amp;quot;end&amp;quot;,&amp;quot;type&amp;quot;)
+head(my_data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   chrom start   end              type V5 V6    V7    V8          V9
+## 1  chr1 10000 10600 15_Repetitive/CNV  0  . 10000 10600 245,245,245
+## 2  chr1 10600 11137 13_Heterochrom/lo  0  . 10600 11137 245,245,245
+## 3  chr1 11137 11737       8_Insulator  0  . 11137 11737  10,190,254
+## 4  chr1 11737 11937       11_Weak_Txn  0  . 11737 11937 153,255,102
+## 5  chr1 11937 12137   7_Weak_Enhancer  0  . 11937 12137   255,252,4
+## 6  chr1 12137 14537       11_Weak_Txn  0  . 12137 14537 153,255,102
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;绘图&#34;&gt;绘图&lt;/h2&gt;
+&lt;p&gt;对不同染色体上的不同type绘制柱形图&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(data = my_data, aes(x= chrom, fill= type))+geom_bar()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/A6geh7Hf22.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;保存&#34;&gt;保存&lt;/h2&gt;
+&lt;p&gt;如果想直接保存图片到文件中，可以用&lt;code&gt;dev.off&lt;/code&gt;，R语言支持多种图形类型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;png(&amp;quot;Lesson-01/plot.png&amp;quot;)
+ggplot(my_data,aes(x=chrom,fill=type)) + geom_bar()
+dev.off()
+
+tiff(&amp;quot;Lesson-01/plot.tiff&amp;quot;)
+ggplot(my_data,aes(x=chrom,fill=type)) + geom_bar()
+dev.off()
+
+jpeg(&amp;quot;Lesson-01/plot.jpg&amp;quot;)
+ggplot(my_data,aes(x=chrom,fill=type)) + geom_bar()
+dev.off()
+
+pdf(&amp;quot;Lesson-01/plot.pdf&amp;quot;)
+ggplot(my_data,aes(x=chrom,fill=type)) + geom_bar()
+dev.off()
+
+# 设置清晰度
+png(&amp;quot;Lesson-01/plot_hi_res.png&amp;quot;,1000,1000)
+ggplot(my_data,aes(x=chrom,fill=type)) + geom_bar()
+dev.off()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这节课比较简单，没什么知识点，当然如果R语言没入门的话读个数据都困难重重，所以如果基础不太好的可以直接去youtube看视频，讲的很详细。&lt;/p&gt;
+&lt;p&gt;##SessionInfo&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 17.10
+## 
+## Matrix products: default
+## BLAS: /usr/lib/x86_64-linux-gnu/atlas/libblas.so.3.10.3
+## LAPACK: /usr/lib/x86_64-linux-gnu/atlas/liblapack.so.3.10.3
+## 
+## locale:
+##  [1] LC_CTYPE=zh_CN.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=zh_CN.UTF-8        LC_COLLATE=zh_CN.UTF-8    
+##  [5] LC_MONETARY=zh_CN.UTF-8    LC_MESSAGES=zh_CN.UTF-8   
+##  [7] LC_PAPER=zh_CN.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=zh_CN.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] ggplot2_2.2.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.14     digest_0.6.14    rprojroot_1.3-2  plyr_1.8.4      
+##  [5] grid_3.4.3       gtable_0.2.0     backports_1.1.2  magrittr_1.5    
+##  [9] evaluate_0.10.1  scales_0.5.0     pillar_1.1.0     rlang_0.1.6     
+## [13] stringi_1.1.6    lazyeval_0.2.1   rmarkdown_1.8    labeling_0.3    
+## [17] tools_3.4.3      stringr_1.2.0    munsell_0.4.3    yaml_2.1.16     
+## [21] compiler_3.4.3   colorspace_1.3-2 htmltools_0.3.6  knitr_1.18      
+## [25] tibble_1.4.1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Lesson 06 for Plotting in R for Biologists</title>
+      <link>https://taoyan.netlify.app/post/2018-01-29.lesson-06-for-plotting-in-r-for-biologists/</link>
+      <pubDate>Mon, 15 Jan 2018 12:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-01-29.lesson-06-for-plotting-in-r-for-biologists/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/AFLB2JBHc7.png?raw=true&#34; alt=&#34;veendiagram&#34;&gt;&lt;/p&gt;
+&lt;p&gt;前面几节课绘制的图形只有条形图，但是我们科研过程中需要绘制各种各样的图形来展现我们的数据，这节课就主要讲一下利用&lt;strong&gt;ggplot2&lt;/strong&gt;绘制各种图形，这也是&lt;strong&gt;ggplot2&lt;/strong&gt;的魔力所在。相同的数据可以通过不同类型的图形来可视化。本节课主要将绘制以下几类图形：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;条形图&lt;/li&gt;
+&lt;li&gt;直方图&lt;/li&gt;
+&lt;li&gt;散点图&lt;/li&gt;
+&lt;li&gt;箱线图&lt;/li&gt;
+&lt;li&gt;小提琴图&lt;/li&gt;
+&lt;li&gt;密度图&lt;/li&gt;
+&lt;li&gt;点状图&lt;/li&gt;
+&lt;li&gt;线图&lt;/li&gt;
+&lt;li&gt;饼图&lt;/li&gt;
+&lt;li&gt;韦恩图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据加载清洗&#34;&gt;数据加载清洗&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(tidyverse)
+theme_set(theme_gray(base_size = 18))
+my_data &amp;lt;- read.csv(&amp;quot;variants_from_assembly.bed&amp;quot;, sep = &amp;quot;\t&amp;quot;, quote = &#39;&#39;, stringsAsFactors = FALSE)
+names(my_data) &amp;lt;- c(&amp;quot;chrom&amp;quot;,&amp;quot;start&amp;quot;,&amp;quot;stop&amp;quot;,&amp;quot;name&amp;quot;,&amp;quot;size&amp;quot;,&amp;quot;strand&amp;quot;,&amp;quot;type&amp;quot;,&amp;quot;ref.dist&amp;quot;,&amp;quot;query.dist&amp;quot;)
+head(my_data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   chrom     start      stop name size strand      type ref.dist query.dist
+## 1     6 102958468 102958469  SV2  317      + Insertion      -14        303
+## 2     6 102741692 102741693  SV3  130      +  Deletion      130          0
+## 3     6 102283759 102283760  SV4 1271      + Insertion      -12       1259
+## 4     6 101194032 101194033  SV5 2864      + Insertion      -13       2851
+## 5     6 101056644 101056645  SV6  265      + Insertion        0        265
+## 6     6 100407499 100407500  SV7  334      + Insertion        0        334
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;summary(my_data$chrom)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Length     Class      Mode 
+##      9555 character character
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#数据过滤
+my_data &amp;lt;- my_data[my_data$chrom %in% c(seq(1:22), &amp;quot;X&amp;quot;, &amp;quot;Y&amp;quot;,&amp;quot;MT&amp;quot;), ]
+#染色体排序
+my_data$chrom &amp;lt;- factor(my_data$chrom, levels = c(seq(1:22), &amp;quot;X&amp;quot;, &amp;quot;Y&amp;quot;,&amp;quot;MT&amp;quot;))
+#类型(type)排序
+my_data$type &amp;lt;- factor(my_data$type, levels = c(&amp;quot;Insertion&amp;quot;,&amp;quot;Deletion&amp;quot;,&amp;quot;Expansion&amp;quot;,&amp;quot;Contraction&amp;quot;))
+head(my_data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   chrom     start      stop name size strand      type ref.dist query.dist
+## 1     6 102958468 102958469  SV2  317      + Insertion      -14        303
+## 2     6 102741692 102741693  SV3  130      +  Deletion      130          0
+## 3     6 102283759 102283760  SV4 1271      + Insertion      -12       1259
+## 4     6 101194032 101194033  SV5 2864      + Insertion      -13       2851
+## 5     6 101056644 101056645  SV6  265      + Insertion        0        265
+## 6     6 100407499 100407500  SV7  334      + Insertion        0        334
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;可视化&#34;&gt;可视化&lt;/h2&gt;
+&lt;h3 id=&#34;条形图&#34;&gt;条形图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=chrom, fill=type))+geom_bar()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Ij6mC3GFm8.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;直方图&#34;&gt;直方图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=size, fill=type))+geom_histogram()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/4ILKighKlg.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=size, fill=type))+geom_histogram()+xlim(0,500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/fI2i1chIJ9.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=size, fill=type))+geom_histogram(binwidth = 5)+xlim(0,500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/IKebffc1EI.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;散点图&#34;&gt;散点图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#将type映射给颜色
+ggplot(my_data, aes(x=ref.dist, y=query.dist, color=type))+geom_point()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/f4fEKhAd35.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=ref.dist, y=query.dist, color=type))+geom_point()+xlim(-500,500)+ylim(-500,500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/EGkhk29KlI.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#将数值型变量size映射给颜色
+ggplot(my_data, aes(x=ref.dist, y=query.dist, color=size))+geom_point()+xlim(-500,500)+ylim(-500,500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/je4lgmC970.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=ref.dist, y=query.dist,color=size))+geom_point()+xlim(-500,500)+ylim(-500,500)+scale_color_gradient(limits=c(0, 500))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/fDg6K877F7.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;箱线图&#34;&gt;箱线图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(type, y=size))+geom_boxplot()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/dI07A0I0Ah.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=type, y=size, fill=type))+geom_boxplot()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/76bb7i9f2F.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=type, y=size, fill=type))+geom_boxplot()+coord_flip()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/E8klE3m6EA.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;小提琴图&#34;&gt;小提琴图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=type, y=size, fill=type))+geom_violin()+ylim(0,1000)+guides(fill=FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/AFkf5JgLAL.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=type, y=size, fill=type))+geom_violin(adjust=0.2)+ylim(0,1000)+guides(fill=FALSE)#adjust调整分辨率，默认为1，值越低，分辨率越高
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/51IFgFDCDc.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#坐标变换
+ggplot(my_data, aes(x=type, y=size, fill=type))+geom_violin()+scale_y_log10()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JGjBHIKc80.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;密度图&#34;&gt;密度图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=size, fill=type))+geom_density()+xlim(0,500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/HjB54KeclD.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=size, fill=type))+geom_density(position = &amp;quot;stack&amp;quot;)+xlim(0,500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/GDI76ijEJ8.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=size, fill=type))+geom_density(alpha=0.5)+xlim(0,500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BlLGm4G75l.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#图形分面
+ggplot(my_data, aes(x=size, fill=type))+geom_density()+xlim(0,500)+facet_grid(type~.)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/353a4gh1bK.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;点状图&#34;&gt;点状图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=size, fill=type))+geom_dotplot()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/9AElbGEB3G.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;线图&#34;&gt;线图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;time_cource &amp;lt;- read.csv(&amp;quot;time_course_data.txt&amp;quot;, sep = &amp;quot;,&amp;quot;, quote = &#39;&#39;, stringsAsFactors = TRUE, header = TRUE)
+head(time_cource)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   seconds value sample
+## 1       0  0.00      A
+## 2       1  5.97      A
+## 3       2 13.42      A
+## 4       3 56.08      A
+## 5       4 98.04      A
+## 6       5 27.11      A
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(time_cource, aes(x=seconds, y=value, color=sample))+geom_line()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/kiA5jFAdCK.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(time_cource, aes(x=seconds, y=value, color=sample))+geom_line(size=3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/bcGfGALGHl.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;饼图&#34;&gt;饼图&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;type_counts &amp;lt;- summary(my_data$type)
+type_counts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   Insertion    Deletion   Expansion Contraction 
+##        3141        2256        2476        1674
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;library(RColorBrewer)
+pie(type_counts, col = brewer.pal(length(type_counts), &amp;quot;Set1&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/90jhF097Fl.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;韦恩图&#34;&gt;韦恩图&lt;/h3&gt;
+&lt;p&gt;这里利用四个基因集&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;listA &amp;lt;- read.csv(&amp;quot;genes_list_A.txt&amp;quot;, header = FALSE)
+A &amp;lt;- listA$V1
+listB &amp;lt;- read.csv(&amp;quot;genes_list_B.txt&amp;quot;, header = FALSE)
+B &amp;lt;- listB$V1
+listC &amp;lt;- read.csv(&amp;quot;genes_list_C.txt&amp;quot;, header = FALSE)
+C &amp;lt;- listC$V1
+listD &amp;lt;- read.csv(&amp;quot;genes_list_D.txt&amp;quot;, header = FALSE)
+D &amp;lt;- listD$V1
+library(VennDiagram)
+#注意这个包绘制的图只能直接保存在文件中，无法实时显示
+venn.diagram(list(A=A, B=B, C=C, D=D), fill=c(&amp;quot;yellow&amp;quot;,&amp;quot;red&amp;quot;,&amp;quot;cyan&amp;quot;,&amp;quot;forestgreen&amp;quot;), cex=1.5, filename = &amp;quot;Venn_diagram_genes_4.png&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/AFLB2JBHc7.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+##  [1] VennDiagram_1.6.18  futile.logger_1.4.3 RColorBrewer_1.1-2 
+##  [4] forcats_0.2.0       stringr_1.2.0       dplyr_0.7.4        
+##  [7] purrr_0.2.4         readr_1.1.1         tidyr_0.7.2        
+## [10] tibble_1.4.2        ggplot2_2.2.1.9000  tidyverse_1.2.1    
+## 
+## loaded via a namespace (and not attached):
+##  [1] reshape2_1.4.3       haven_1.1.1          lattice_0.20-35     
+##  [4] colorspace_1.3-2     htmltools_0.3.6      yaml_2.1.16         
+##  [7] rlang_0.1.6          pillar_1.1.0         foreign_0.8-69      
+## [10] glue_1.2.0           lambda.r_1.2         modelr_0.1.1        
+## [13] readxl_1.0.0         bindrcpp_0.2         bindr_0.1           
+## [16] plyr_1.8.4           munsell_0.4.3        gtable_0.2.0        
+## [19] cellranger_1.1.0     rvest_0.3.2          psych_1.7.8         
+## [22] evaluate_0.10.1      labeling_0.3         knitr_1.18          
+## [25] parallel_3.4.3       broom_0.4.3          Rcpp_0.12.15        
+## [28] scales_0.5.0.9000    backports_1.1.2      jsonlite_1.5        
+## [31] mnormt_1.5-5         hms_0.4.1            digest_0.6.14       
+## [34] stringi_1.1.6        rprojroot_1.3-2      cli_1.0.0           
+## [37] tools_3.4.3          magrittr_1.5         lazyeval_0.2.1      
+## [40] futile.options_1.0.0 crayon_1.3.4         pkgconfig_2.0.1     
+## [43] xml2_1.2.0           lubridate_1.7.1      assertthat_0.2.0    
+## [46] rmarkdown_1.8        httr_1.3.1           rstudioapi_0.7      
+## [49] R6_2.2.2             nlme_3.1-131         compiler_3.4.3
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>Lesson 07 for Plotting in R for Biologists</title>
+      <link>https://taoyan.netlify.app/post/2018-01-30.lesson-07-for-plotting-in-r-for-biologists/</link>
+      <pubDate>Mon, 15 Jan 2018 12:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-01-30.lesson-07-for-plotting-in-r-for-biologists/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BcHLAECm5L.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这节课主要两个知识点，一个是图形分面，一个是图形嵌入。&lt;/p&gt;
+&lt;h2 id=&#34;数据加载及清洗&#34;&gt;数据加载及清洗&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(tidyverse)
+theme_set(theme_gray())
+my_data &amp;lt;- read.csv(&amp;quot;variants_from_assembly.bed&amp;quot;, sep = &amp;quot;\t&amp;quot;, quote = &#39;&#39;, stringsAsFactors = TRUE, header = FALSE)
+names(my_data) &amp;lt;- c(&amp;quot;chrom&amp;quot;,&amp;quot;start&amp;quot;,&amp;quot;stop&amp;quot;,&amp;quot;name&amp;quot;,&amp;quot;size&amp;quot;,&amp;quot;strand&amp;quot;,&amp;quot;type&amp;quot;,&amp;quot;ref.dist&amp;quot;,&amp;quot;query.dist&amp;quot;)
+head(my_data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   chrom     start      stop name size strand      type ref.dist query.dist
+## 1     6 103832058 103832059  SV1  185      + Insertion        0        185
+## 2     6 102958468 102958469  SV2  317      + Insertion      -14        303
+## 3     6 102741692 102741693  SV3  130      +  Deletion      130          0
+## 4     6 102283759 102283760  SV4 1271      + Insertion      -12       1259
+## 5     6 101194032 101194033  SV5 2864      + Insertion      -13       2851
+## 6     6 101056644 101056645  SV6  265      + Insertion        0        265
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;my_data &amp;lt;- my_data[my_data$chrom %in% c(seq(1:22), &amp;quot;X&amp;quot;,&amp;quot;Y&amp;quot;), ]
+my_data$chrom &amp;lt;- factor(gsub(&amp;quot;chr&amp;quot;, &amp;quot;&amp;quot;,my_data$chrom), levels = c(seq(1:22),&amp;quot;X&amp;quot;,&amp;quot;Y&amp;quot;))
+my_data$type &amp;lt;- factor(my_data$type, levels = c(&amp;quot;Insertion&amp;quot;,&amp;quot;Deletion&amp;quot;,&amp;quot;Expansion&amp;quot;,&amp;quot;Contraction&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;可视化分面&#34;&gt;可视化&amp;amp;分面&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=size, fill=type))+geom_density(alpha=0.5)+xlim(0,500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Ella96CC28.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=size, fill=type))+geom_density(alpha=0.5)+xlim(0,500)+facet_grid(type~.)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/G1jDEc7HFj.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(my_data, aes(x=size, fill=type))+geom_density(alpha=0.5)+xlim(0,500)+facet_grid(.~type)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/e9jJEl1EHl.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;分面的规则语法是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;plot+facet_grid(rows~columns)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;比如下面的图按染色体为行、type为列进行分面&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(my_data, aes(x=size, fill=type))+geom_density()+xlim(0,500)+facet_grid(chrom~type)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BG7kecbglg.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#也可以反过来
+ggplot(my_data, aes(x=size, fill=type))+geom_density()+xlim(0,500)+facet_grid(type~chrom)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/lIL4kkDecH.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以根据自己的喜好以及数据的分布进行分面，有的时候数据不是很适合分面操作，需要慎重，不然越分越乱，无法直观地展示数据。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;图形嵌入&#34;&gt;图形嵌入&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;#先设置主题
+theme_set(theme_gray()+
+            theme(
+              axis.line = element_line(size=0.5),
+              panel.background = element_rect(fill=NA, size = rel(20)),
+              panel.grid.minor = element_line(colour = NA),
+              axis.text = element_text(size = 16),
+              axis.title = element_text(size = 16)
+            )
+          )
+big_plot &amp;lt;- ggplot(my_data, aes(x=size, fill=type))+
+  geom_bar(binwidth = 100)+
+  guides(fill=FALSE)+
+  scale_y_continuous(expand = c(0,0))
+big_plot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Jj3lGDhBE1.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;small_plot &amp;lt;- ggplot(my_data, aes(x=size, fill=type))+
+  geom_bar(binwidth = 5)+
+  xlim(0, 500)+
+  theme(axis.title = element_blank())+
+  scale_y_continuous(expand = c(0,0))
+small_plot
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Af79gm2c4B.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;图形嵌入需要使用包&lt;strong&gt;grid&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(grid)
+#构造画布，这一步需要不断调整位置
+vp &amp;lt;- viewport(width = 0.8, height = 0.7, x=0.65, y=0.65)#分别设置需要嵌入的图形的宽度、高度以及坐标位置
+png(&amp;quot;insert_plot.png&amp;quot;)
+print(big_plot)
+print(small_plot, vp = vp)
+dev.off()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/BcHLAECm5L.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+## [1] forcats_0.2.0      stringr_1.2.0      dplyr_0.7.4       
+## [4] purrr_0.2.4        readr_1.1.1        tidyr_0.7.2       
+## [7] tibble_1.4.2       ggplot2_2.2.1.9000 tidyverse_1.2.1   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.15      cellranger_1.1.0  pillar_1.1.0     
+##  [4] compiler_3.4.3    plyr_1.8.4        bindr_0.1        
+##  [7] tools_3.4.3       digest_0.6.15     lubridate_1.7.1  
+## [10] jsonlite_1.5      evaluate_0.10.1   nlme_3.1-131     
+## [13] gtable_0.2.0      lattice_0.20-35   pkgconfig_2.0.1  
+## [16] rlang_0.1.6       psych_1.7.8       cli_1.0.0        
+## [19] rstudioapi_0.7    yaml_2.1.16       parallel_3.4.3   
+## [22] haven_1.1.1       bindrcpp_0.2      xml2_1.2.0       
+## [25] httr_1.3.1        knitr_1.19        hms_0.4.1        
+## [28] rprojroot_1.3-2   glue_1.2.0        R6_2.2.2         
+## [31] readxl_1.0.0      foreign_0.8-69    rmarkdown_1.8    
+## [34] modelr_0.1.1      reshape2_1.4.3    magrittr_1.5     
+## [37] backports_1.1.2   scales_0.5.0.9000 htmltools_0.3.6  
+## [40] rvest_0.3.2       assertthat_0.2.0  mnormt_1.5-5     
+## [43] colorspace_1.3-2  labeling_0.3      stringi_1.1.6    
+## [46] lazyeval_0.2.1    munsell_0.4.3     broom_0.4.3      
+## [49] crayon_1.3.4
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

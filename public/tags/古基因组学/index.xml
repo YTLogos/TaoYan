@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>古基因组学 | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/%E5%8F%A4%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%AD%A6/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/%E5%8F%A4%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <description>古基因组学</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Thu, 05 Apr 2018 21:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>古基因组学</title>
+      <link>https://taoyan.netlify.app/tags/%E5%8F%A4%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%AD%A6/</link>
+    </image>
+    
+    <item>
+      <title>全基因组加倍及串联重复基因</title>
+      <link>https://taoyan.netlify.app/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</link>
+      <pubDate>Thu, 05 Apr 2018 21:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-04-05.%E5%85%A8%E5%9F%BA%E5%9B%A0%E7%BB%84%E5%8A%A0%E5%80%8D%E5%8F%8A%E4%B8%B2%E8%81%94%E9%87%8D%E5%A4%8D%E5%9F%BA%E5%9B%A0/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ADC8bKhGm4.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;串联重复基因是植物基因组中一类具有功能的串联重复序列，在植物基因组进化和环境适应的过程中起着十分重要的作用。串联重复基因主要是由串联重复事件产生的。在植物基因组中，串联重复事件的发生频率比较高，为植物基因组带来了基因拷贝数的增加以及等位基因变异。串联重复事件伴随着拟南芥和芸薹属物种的整个进化过程，而且芸薹属物种的多倍化事件并没有影响串联重复事件的发生。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/2h8a9544k1.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基因共线性分析&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;拟南芥在进化过程中先后经历了三次基因组加倍事件(α、β和γ多倍化事件)。通过对拟南芥基因组的三次基因组加倍事件产生的共线性基因对分析，获得了α、β和γ多倍化事件后分别产生的3530，1421和505共线性基因对。在拟南芥细胞色素P450基因家族的进化分析发现，仅有CYP94基因家族中一对基因在γ基因组加倍化事件后产生的共线性基因对中被保留下来。这可能意味着CYP94基因家族的这两个成员在双子叶植物的祖先在经历γ基因组多倍化事件之前就存在。对于β基因组多倍化事件，CYP86、CYP72和CYP81基因家族中各有一对基因对被检测到保留下来，这意味着这些P450基因在β基因组多倍化事件之前就存在并在β基因组多倍化事件之后被保留下来。对于α基因组加倍事件产生的共线性基因对，共获得了11个P450基因对在α基因组加倍化事件后被保留下来，意味着这22个P450基因在α基因组多倍化事件之前就已存在并在α基因组加倍事件后保留下来。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在拟南芥和芸薹属的祖先物种分化之后，芸薹属祖先物种经历了自身的三倍化事件，然后进一步产生了现在的白菜和甘蓝，通过与拟南芥基因组中24个十字花科保守区段的共线性关系构建了白菜和甘蓝基因组中的三倍化区段。根据三倍化区段上基因密度的差异，两个芸薹属物种中的三倍化区段划分为三个亚基因组：MF1(中度丢失)、NF2(高度丢失)和LF(低度丢失)。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;通过古基因组学研究可追溯源到由7931条原基因模型和7条染色体构成的双子叶植物祖先基因组，以及由9138条原基因模型和5条染色体构成的单子叶植物祖先基因组。显花植物研究表明，被子植物基因组经历二倍化(α)、四倍化(β)和六倍化(γ)3次古全基因组复制(WGD)事件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;同源多倍体来源于种内WGD事件，异源多倍体来源于种间杂交。芸薹属(&lt;em&gt;Brassica&lt;/em&gt;)植物经历了3次基因组WGD事件(α、β和γ)和种系全基因组三倍化事件，是基因组多倍化研究的重要模式物种。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

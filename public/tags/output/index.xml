@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Output | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/output/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/output/index.xml" rel="self" type="application/rss+xml" />
+    <description>Output</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Thu, 09 Apr 2020 16:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Output</title>
+      <link>https://taoyan.netlify.app/tags/output/</link>
+    </image>
+    
+    <item>
+      <title>Shiny学习笔记:UI之输出</title>
+      <link>https://taoyan.netlify.app/post/2020-04-09.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BE%93%E5%87%BA/</link>
+      <pubDate>Thu, 09 Apr 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-09.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BE%93%E5%87%BA/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410203923.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;输出&#34;&gt;输出&lt;/h2&gt;
+&lt;p&gt;有输入就有输出，前端的每一个&lt;code&gt;output&lt;/code&gt;都对应着后端的一个&lt;code&gt;render&lt;/code&gt;函数。&lt;strong&gt;Shiny&lt;/strong&gt;主要有三类输出：文本，表格以及图。&lt;/p&gt;
+&lt;h3 id=&#34;文本输出&#34;&gt;文本输出&lt;/h3&gt;
+&lt;p&gt;文本输出函数有两个：&lt;code&gt;textOutput()&lt;/code&gt;,&lt;code&gt;verbatimTextOutput()&lt;/code&gt;，区别是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;VerbatimTextOutput uses the HTML pre tag. The pre tag uses a fixed-width font (e.g. Courier) and does not modify line breaks and spaces. Therefore this is excellent to present formatted text such as code.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;TextOutput uses the div tag. The div tag does not necessarily use a fixed-width font (unless you use specific CSS). It also does not keep line breaks and multiple spaces in the same way that pre does. This is more suited for prose.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  textOutput(&amp;quot;text&amp;quot;),
+  verbatimTextOutput(&amp;quot;code&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  output$text &amp;lt;- renderText(&amp;quot;Hello friend!&amp;quot;)
+  output$code &amp;lt;- renderPrint(summary(1:10))
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410202800.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;文本输出对应两种&lt;code&gt;render&lt;/code&gt;函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;renderText() which displays text returned by the code.&lt;/li&gt;
+&lt;li&gt;renderPrint() which displays text printed by the code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;表格输出&#34;&gt;表格输出&lt;/h3&gt;
+&lt;p&gt;表格输出有两种选择：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;tableOutput()&lt;/code&gt;与&lt;code&gt;renderTable()&lt;/code&gt;：静态输出，一次性输出所有数据，适用于小数据集&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dataTableOutput()&lt;/code&gt;与&lt;code&gt;renderDataTable()&lt;/code&gt;：动态输出，有选择性地控制输出，适用于展示大数据集&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  tableOutput(&amp;quot;static&amp;quot;),
+  dataTableOutput(&amp;quot;dynamic&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  output$static &amp;lt;- renderTable(head(mtcars))
+  output$dynamic &amp;lt;- renderDataTable(mtcars, options = list(pageLength = 5))
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410203458.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;图形输出&#34;&gt;图形输出&lt;/h3&gt;
+&lt;p&gt;所有的图形都可以用&lt;code&gt;plotOutput()&lt;/code&gt;与&lt;code&gt;renderPlot()&lt;/code&gt;输出&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+library(ggplot2)
+ui &amp;lt;- fluidPage(
+  plotOutput(&amp;quot;plot&amp;quot;, width = &amp;quot;400px&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  output$plot &amp;lt;- renderPlot({
+    ggplot(diamonds,aes(carat,price))+
+      geom_point(aes(color=cut))+
+      theme_bw()
+  })
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410203923.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-ui.html&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

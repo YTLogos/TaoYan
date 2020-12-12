@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Input | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/input/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/input/index.xml" rel="self" type="application/rss+xml" />
+    <description>Input</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Wed, 08 Apr 2020 16:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Input</title>
+      <link>https://taoyan.netlify.app/tags/input/</link>
+    </image>
+    
+    <item>
+      <title>Shiny学习笔记:UI之输入</title>
+      <link>https://taoyan.netlify.app/post/2020-04-08.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BE%93%E5%85%A5/</link>
+      <pubDate>Wed, 08 Apr 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-04-08.shiny%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E8%BE%93%E5%85%A5/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410201051.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;前面我们讲到，&lt;strong&gt;Shiny&lt;/strong&gt;提供很多插件会丰富前端界面，前段设计主要包括输入，输出以及界面排版。&lt;/p&gt;
+&lt;h2 id=&#34;输入&#34;&gt;输入&lt;/h2&gt;
+&lt;p&gt;所有的输入函数都有相同的第一个参数：&lt;code&gt;inputId&lt;/code&gt;，用来连接前端和后端。如果你设计了一个&lt;code&gt;ID&lt;/code&gt;为&lt;code&gt;name&lt;/code&gt;的输入，那么服务端可以通过&lt;code&gt;input$name&lt;/code&gt;来获取。
+&lt;code&gt;inputId&lt;/code&gt;有两个限制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;它必须是一个只包含字母、数字以及下划线的简单字符串，空格、破折号、句号以及一些特殊字符不能用&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;它必须唯一的，因为需要用来连接前后端&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;大部分的&lt;code&gt;input&lt;/code&gt;函数还有第二个参数:&lt;code&gt;label&lt;/code&gt;，主要是用来显示该输入控件，&lt;code&gt;label&lt;/code&gt;没有限制，可以自己随便命名，最好取一些易读易懂的标志语，必须输入的是名字，那么&lt;code&gt;label&lt;/code&gt;命名为&lt;code&gt;name&lt;/code&gt;就很好了，第三个参数是&lt;code&gt;value&lt;/code&gt;，设置输入默认值。还有一些其它参数，不同的输入控件是不一样的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;建议创建&lt;code&gt;input&lt;/code&gt;的时候，首先按位置输入&lt;code&gt;inputId&lt;/code&gt;以及&lt;code&gt;label&lt;/code&gt;参数，其它参数按名称设置：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;sliderInput(&amp;quot;min&amp;quot;, &amp;quot;Limit (minimum)&amp;quot;, value = 50, min = 0, max = 100)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;文本输入&#34;&gt;文本输入&lt;/h3&gt;
+&lt;p&gt;文本输入有小文本输入&lt;code&gt;textInput()&lt;/code&gt;，密码输入&lt;code&gt;passwordInput()&lt;/code&gt;以及段落输入&lt;code&gt;textAreaInput()&lt;/code&gt;等：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+
+ui &amp;lt;- fluidPage(
+  ui &amp;lt;- fluidPage(
+    textInput(&amp;quot;name&amp;quot;, &amp;quot;What&#39;s your name?&amp;quot;),
+    passwordInput(&amp;quot;password&amp;quot;, &amp;quot;What&#39;s your password?&amp;quot;),
+    textAreaInput(&amp;quot;story&amp;quot;, &amp;quot;Tell me about yourself&amp;quot;, rows = 3)
+  )
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410193203.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;数值输入&#34;&gt;数值输入&lt;/h3&gt;
+&lt;p&gt;数值输入有数值选择输入&lt;code&gt;sliderInput()&lt;/code&gt;，文本框数值输入&lt;code&gt;numericInput()&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+
+ui &amp;lt;- fluidPage(
+  numericInput(&amp;quot;num&amp;quot;, &amp;quot;Number one&amp;quot;, value = 25, min = 0, max = 100),
+  sliderInput(&amp;quot;num2&amp;quot;, &amp;quot;Number two&amp;quot;, value = 50, min = 0, max = 100),
+  sliderInput(&amp;quot;rng&amp;quot;, &amp;quot;Range&amp;quot;, value = c(10, 45), min = 0, max = 100)
+)
+
+server &amp;lt;- function(input, output, session) {
+  
+}
+
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410193643.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Sliders&lt;/code&gt;类输入具有很强的可塑性，&lt;strong&gt;RStudio&lt;/strong&gt;提供了一个
+&lt;a href=&#34;https://shiny.rstudio.com/gallery/sliders.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;shiny app&lt;/code&gt;&lt;/a&gt;来演示不同类型的&lt;code&gt;Slider&lt;/code&gt;类输入。&lt;/p&gt;
+&lt;h3 id=&#34;日期输入&#34;&gt;日期输入&lt;/h3&gt;
+&lt;p&gt;单个日期输入用&lt;code&gt;dateInput()&lt;/code&gt;，日期范围输入用&lt;code&gt;dateRangeInput()&lt;/code&gt;，这些函数提供了十分方便的日历选择器：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  dateInput(&amp;quot;dob&amp;quot;, &amp;quot;When were you born?&amp;quot;),
+  dateRangeInput(&amp;quot;holiday&amp;quot;, &amp;quot;When do you want to go on vacation next?&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410194458.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;限制性选择输入&#34;&gt;限制性选择输入&lt;/h3&gt;
+&lt;p&gt;有两种方法允许用户选择预设的选项：&lt;code&gt;selectInput()&lt;/code&gt;，&lt;code&gt;radioButtons()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+animals &amp;lt;- c(&amp;quot;dog&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;mouse&amp;quot;, &amp;quot;bird&amp;quot;, &amp;quot;other&amp;quot;, &amp;quot;I hate animals&amp;quot;)
+
+ui &amp;lt;- fluidPage(
+  selectInput(&amp;quot;state&amp;quot;, &amp;quot;What&#39;s your favourite state?&amp;quot;, state.name),
+  radioButtons(&amp;quot;animal&amp;quot;, &amp;quot;What&#39;s your favourite animal?&amp;quot;, animals)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410194908.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;radioButtons()&lt;/code&gt;是适用于比较短的list，&lt;code&gt;selectInput()&lt;/code&gt;则适用于长list，通过设置参数&lt;code&gt;multiple=TRUE&lt;/code&gt;可以一次性选择多个选项&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+animals &amp;lt;- c(&amp;quot;dog&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;mouse&amp;quot;, &amp;quot;bird&amp;quot;, &amp;quot;other&amp;quot;, &amp;quot;I hate animals&amp;quot;)
+
+ui &amp;lt;- fluidPage(
+  selectInput(
+    &amp;quot;state&amp;quot;, &amp;quot;What&#39;s your favourite state?&amp;quot;, state.name,
+    multiple = TRUE
+  )
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410195500.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;radioButton()&lt;/code&gt;无法一次性选择多个，但是有一个类似的函数&lt;code&gt;checkboxGroupInput()&lt;/code&gt;可以一次性选择多个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+animals &amp;lt;- c(&amp;quot;dog&amp;quot;, &amp;quot;cat&amp;quot;, &amp;quot;mouse&amp;quot;, &amp;quot;bird&amp;quot;, &amp;quot;other&amp;quot;, &amp;quot;I hate animals&amp;quot;)
+ui &amp;lt;- fluidPage(
+  checkboxGroupInput(&amp;quot;animal&amp;quot;, &amp;quot;What animals do you like?&amp;quot;, animals)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410195707.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果只需要yes/no这样的单勾选框，可以使用&lt;code&gt;checkboxInput()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  checkboxInput(&amp;quot;cleanup&amp;quot;, &amp;quot;Clean up?&amp;quot;, value = TRUE),
+  checkboxInput(&amp;quot;shutdown&amp;quot;, &amp;quot;Shutdown?&amp;quot;)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410195948.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;文件上传&#34;&gt;文件上传&lt;/h3&gt;
+&lt;p&gt;文件上传由&lt;code&gt;fileInput()&lt;/code&gt;实现：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  fileInput(&amp;quot;upload&amp;quot;, NULL)
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410200124.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;动作按钮&#34;&gt;动作按钮&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;actionButton()&lt;/code&gt;以及&lt;code&gt;actionLink()&lt;/code&gt;提供动作按钮给用户，它们一般是与服务端&lt;code&gt;observeEvent()&lt;/code&gt;以及&lt;code&gt;enevtReactive()&lt;/code&gt;一起使用。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;library(shiny)
+ui &amp;lt;- fluidPage(
+  actionButton(&amp;quot;click&amp;quot;, &amp;quot;Click me!&amp;quot;),
+  actionButton(&amp;quot;drink&amp;quot;, &amp;quot;Drink me!&amp;quot;, icon = icon(&amp;quot;cocktail&amp;quot;))
+)
+server &amp;lt;- function(input, output, session) {
+  
+}
+shinyApp(ui, server)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200410200642.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;关于输入控件更多可参考RStudio提供的
+&lt;a href=&#34;https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;文档&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;参考：https://mastering-shiny.org/basic-ui.html&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

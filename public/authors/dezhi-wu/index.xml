@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dezhi Wu | Tao Yan</title>
+    <link>https://taoyan.netlify.app/authors/dezhi-wu/</link>
+      <atom:link href="https://taoyan.netlify.app/authors/dezhi-wu/index.xml" rel="self" type="application/rss+xml" />
+    <description>Dezhi Wu</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Tue, 29 Sep 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Dezhi Wu</title>
+      <link>https://taoyan.netlify.app/authors/dezhi-wu/</link>
+    </image>
+    
+    <item>
+      <title>BnaSNPDB: An interactive web portal for the efficient retrieval and analysis of SNPs among 1,007 rapeseed accessions</title>
+      <link>https://taoyan.netlify.app/publication/2020-bnasnpdb/</link>
+      <pubDate>Tue, 29 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2020-bnasnpdb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Genome-wide association study reveals new genes involvedin leaf trichome formation in polyploid oilseed rape(Brassica napus L.)</title>
+      <link>https://taoyan.netlify.app/publication/2019-xuan-hair/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2019-xuan-hair/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Whole-Genome Resequencing of a Worldwide Collection of Rapeseed Accessions Reveals the Genetic Basis of Ecotype Divergence</title>
+      <link>https://taoyan.netlify.app/publication/2019-wu-rapeseed-pop/</link>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2019-wu-rapeseed-pop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TRANSPARENT TESTA 4‐mediated flavonoids negatively affect embryonic fatty acid biosynthesis in Arabidopsis</title>
+      <link>https://taoyan.netlify.app/publication/2018-xuan-fatty-acid/</link>
+      <pubDate>Sat, 07 Jul 2018 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2018-xuan-fatty-acid/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Effect of high night temperature on storage lipids and transcriptome changes in developing seeds of oilseed rape</title>
+      <link>https://taoyan.netlify.app/publication/2018-zhou-rapeseed-night-temp-fatty-acid/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2018-zhou-rapeseed-night-temp-fatty-acid/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

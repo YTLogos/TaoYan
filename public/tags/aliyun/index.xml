@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aliyun | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/aliyun/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/aliyun/index.xml" rel="self" type="application/rss+xml" />
+    <description>Aliyun</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Wed, 10 Jun 2020 16:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Aliyun</title>
+      <link>https://taoyan.netlify.app/tags/aliyun/</link>
+    </image>
+    
+    <item>
+      <title>阿里云服务器部署Shiny App</title>
+      <link>https://taoyan.netlify.app/post/2020-06-10.%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2shiny-app/</link>
+      <pubDate>Wed, 10 Jun 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-06-10.%E9%98%BF%E9%87%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2shiny-app/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200720161917.png&#34; alt=&#34;20200720161917.png&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;缘由&#34;&gt;缘由&lt;/h2&gt;
+&lt;p&gt;我们课题组有一份油菜的核心种质资源，前几年经重测序之后已经发表了。但是课题组后面很多的项目都基于这份核心种质资源，实验室成员常常需要检索分析某些基因的特定SNP，所以我在自学了一段时间的&lt;strong&gt;Shiny&lt;/strong&gt;之后就尝试着搭建了一个&lt;strong&gt;Shiny app&lt;/strong&gt;并利用&lt;strong&gt;Shiny-server&lt;/strong&gt;部署在课题组的服务器上，但是由于我开发的这个&lt;strong&gt;Shiny app&lt;/strong&gt;本来就打开比较慢，加上很多时候服务器负荷运行，导致&lt;strong&gt;Shiny app&lt;/strong&gt;打开速度就更慢了，有的时候甚至加载时间过长直接打不开。恰巧我紧跟&lt;strong&gt;生信技能树&lt;/strong&gt;推文更新，了解到可以搞个云服务器来部署&lt;strong&gt;Shiny&lt;/strong&gt;应用。&lt;/p&gt;
+&lt;h2 id=&#34;购买服务器&#34;&gt;购买服务器&lt;/h2&gt;
+&lt;p&gt;一开始@思考问题的熊建议我利用&lt;strong&gt;RStudio&lt;/strong&gt;的&lt;code&gt;Shinyapp.io&lt;/code&gt;部署&lt;strong&gt;Shiny&lt;/strong&gt;应用，看名字就知道这是&lt;strong&gt;RStudio&lt;/strong&gt;专门开发的用于部署&lt;strong&gt;Shiny&lt;/strong&gt;应用的一个服务器，有免费版也有企业版的，对于我来说免费版的就足够了，具体使用可以参考
+&lt;a href=&#34;https://docs.rstudio.com/shinyapps.io/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;官方手册&lt;/a&gt;，我这里不讲，因为我的应用无法部署上去，我使用到的一个包&lt;strong&gt;genetics&lt;/strong&gt;显示来源有问题，不兼容。具体就是这个包我是从&lt;strong&gt;CRAN&lt;/strong&gt;安装的，但是利用&lt;strong&gt;rsconnect&lt;/strong&gt;检测的时候显示&lt;strong&gt;genetics&lt;/strong&gt;的来源是&lt;strong&gt;BioConductor&lt;/strong&gt;，这就很尴尬了，&lt;strong&gt;Google&lt;/strong&gt;发现很多用户都遇到个类似的问题，有的解决办法是从&lt;strong&gt;GitHub&lt;/strong&gt;上安装绕过了这个问题，&lt;strong&gt;genetics&lt;/strong&gt;好像不能通过&lt;strong&gt;GitHub&lt;/strong&gt;安装，所以没办法只能弃之，自己购买一个云服务器进行部署。&lt;/p&gt;
+&lt;p&gt;服务器产商很多，国外的&lt;strong&gt;AWS&lt;/strong&gt;我也尝试注册过，它提供为期一年的免费试用，但是注册激活的时候需要填信用卡信息，我没有，只能放弃，转向国内的云服务器。国内的服务器主要有阿里云aliyun、腾讯云Tencent Cloud以及华为云HUAWEI CLOUD等，生信技能树也专门写了推文介绍，有需要的朋友关注生信技能树看推文哈！&lt;/p&gt;
+&lt;p&gt;我最后选了阿里云，先进入
+&lt;a href=&#34;https://promotion.aliyun.com/ntms/act/campus2018.html?utm_content=se_1004747834&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;阿里云&lt;/a&gt;,z注册登录，然后学生认证。&lt;/p&gt;
+&lt;p&gt;我直接购买了一年的学生套餐：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200716105844.png&#34; alt=&#34;20200716105844.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;瞄了一眼，发现还能领个20元的优惠券：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200716110012.png&#34; alt=&#34;20200716110012.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;最后94元就买一年的最低配（1核2G，1M带框，40G云盘）的服务器，我主要是用来部署服务器，所以容易足够了。地域选择的话我选了华东（杭州），我不记得在哪看了篇博客，里面测试发现不同区域之间差别不大，所以我也没纠结，就选了所在城市地域。系统我就选了Ubuntu16.04 64位（好像只有这一个Ubuntu版本可选）&lt;/p&gt;
+&lt;p&gt;购买之后进入控制台，里面有云服务器的详细信息，对我最有用的话就是有个公网IP了，这样我的&lt;strong&gt;Shiny app&lt;/strong&gt;全世界都能访问了！&lt;/p&gt;
+&lt;h2 id=&#34;配置服务器&#34;&gt;配置服务器&lt;/h2&gt;
+&lt;p&gt;有了云服务器就能各种折腾了，我已经折腾过好几台服务器了，所以比较顺利就安装配置好了部署环境，新手的话参考生信技能树的帖子：
+&lt;a href=&#34;https://mp.weixin.qq.com/s/TlkqCNOkrRWyQDPsA4LpUw&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;如果有一个新的服务器你会做什么？&lt;/a&gt;，基本能顺利地走通。&lt;/p&gt;
+&lt;p&gt;我这里就只讲一下安装&lt;strong&gt;Shiny-server&lt;/strong&gt;，默认你已经安装了R语言以及Shiny包：&lt;/p&gt;
+&lt;p&gt;首先进入
+&lt;a href=&#34;https://rstudio.com/products/shiny/download-server/ubuntu/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;官网&lt;/a&gt;下载，里面有详细的安装方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install gdebi-core
+wget https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.14.948-amd64.deb
+sudo gdebi shiny-server-1.5.14.948-amd64.deb
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;安装好之后，会自动创建&lt;strong&gt;shiny&lt;/strong&gt;用户。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要注意的是，你购买的云服务器你进去之后实际上是root用户登录的，我一开始部署的时候由于安装的包都是root用户安装的，所以就修改了配置问题，用root用户运行&lt;strong&gt;Shiny-server&lt;/strong&gt;，开始的时候运行正常，后面突然莫名其妙就运行不了，所以我最后不得不将所有R包都删了，然后以&lt;strong&gt;shiny&lt;/strong&gt;用户登录。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;shiny&lt;/strong&gt;用户登录好之后，我先进行了一下设置，主要是R语言以及&lt;strong&gt;shiny-server&lt;/strong&gt;设置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# vi .Rprofile
+Sys.setenv(LANG=&amp;quot;en_US.UTF-8&amp;quot;)
+options=(repo = c(CRAN = &amp;quot;https://mirrors.tuna.tsinghua.edu.cn/CRAN/&amp;quot;))
+options(BioC_mirror=&amp;quot;https://mirrors.tuna.tsinghua.edu.cn/bioconductor&amp;quot;)
+
+# vi .Renviron
+R_LIBS=/home/shiny/R_Library
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后&lt;strong&gt;shiny-server&lt;/strong&gt;配置文件如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Instruct Shiny Server to run applications as the user &amp;quot;shiny&amp;quot;
+preserve_logs true;
+sanitize_errors false;
+run_as shiny;
+
+# Define a server that listens on port 3838
+server {
+  listen 3838;
+
+  # Define a location at the base URL
+  location / {
+
+    # Host the directory of Shiny Apps stored in this directory
+    site_dir /srv/shiny-server;
+
+    # Log all Shiny output to files in this directory
+    log_dir /var/log/shiny-server;
+
+    # When a user visits the base URL rather than a particular application,
+    # an index of the applications available in this directory will be shown.
+    directory_index on;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后就是安装各种需要用到的R包了，这里不讲，网上教程太多了，可以肯定的是会遇到各种依赖缺失的问题，这个时候就Google或者百度了，缺啥补啥！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;需要注意的是，由于我购买的是最低配的服务器，所以有些需要编译的R包有时候会由于内存不足，编译安装失败，这个时候我的建议是多安装几次，总会成功的！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;所有准备环境准备好了之后，就可以将&lt;strong&gt;Shiny app&lt;/strong&gt;文件上传到/srv/shiny-server目录里面，可能需要修改目录所属权限：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo chown -R shiny:shiny shiny-server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;剩下就差最后最后一步了，云服务器多了个安全组，需要进入控制台进行设置：（左边侧栏）网络与安全-安全组，进入之后手动添加开通3838端口就行了。此时浏览器打开 http://公网ip:3838/app名  就可以看到自己部署的应用了！我这次部署了两个应用 http://121.41.229.126:3838/bnasnpdb 和 http://121.41.229.126:3838/gwas, 目前运行良好，打开速度也还行！&lt;/p&gt;
+&lt;p&gt;以上是我这次云服务器部署&lt;strong&gt;shiny app&lt;/strong&gt;的经验，由于一开始没打算记录下来，现在信息大爆炸时代，技术分享实在太多了，但是@jimmy说每个人的故事都不一样，所以我就事后回忆记录一下，如果能帮助到其他人就最好了！限于本人能力，里面肯定有很多不足的地方。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

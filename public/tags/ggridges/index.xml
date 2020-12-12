@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ggridges | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/ggridges/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/ggridges/index.xml" rel="self" type="application/rss+xml" />
+    <description>ggridges</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Mon, 05 Feb 2018 14:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>ggridges</title>
+      <link>https://taoyan.netlify.app/tags/ggridges/</link>
+    </image>
+    
+    <item>
+      <title>R语言可视化学习笔记之ggridges包</title>
+      <link>https://taoyan.netlify.app/post/2018-02-05.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggridges%E5%8C%85/</link>
+      <pubDate>Mon, 05 Feb 2018 14:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-02-05.r%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8Bggridges%E5%8C%85/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/bhlKJ09j0e.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;ggridges&lt;/strong&gt;包主要用来绘制山峦图。尤其是针对时间或者空间分布份可视化具有十分好的效果。&lt;strong&gt;ggridges&lt;/strong&gt;主要提供两个几何图像函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;geom_ridgeline():主要绘制山脊线图&lt;/li&gt;
+&lt;li&gt;geom_density_ridges()：主要根据密度绘制山脊线图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;具体用法可以参考
+&lt;a href=&#34;https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;官方文档&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;geom_ridgeline&#34;&gt;geom_ridgeline()&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(ggridges)
+library(tidyverse)
+library(gridExtra)
+my_data &amp;lt;- data.frame(x=1:5, y=rep(1,5), height=c(0,1,-1,3,2))
+plot_base &amp;lt;- ggplot(my_data, aes(x, y, height=height))
+grid.arrange(plot_base+geom_ridgeline(), 
+             plot_base+geom_ridgeline(min_height=-2), ncol=2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/JjFA48a46m.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;geom_density_ridges&#34;&gt;geom_density_ridges()&lt;/h2&gt;
+&lt;p&gt;geom_density_ridges()函数首先会根据数据计算密度然后绘图，此时美学映射&lt;code&gt;height&lt;/code&gt;没有必要写入函数中。下面使用&lt;strong&gt;lincoln_weather&lt;/strong&gt;数据集。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(viridis)
+head(lincoln_weather[ ,1:4])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 6 x 4
+##   CST      `Max Temperature [F]` `Mean Temperature [F]` `Min Temperature ~
+##   &amp;lt;chr&amp;gt;                    &amp;lt;int&amp;gt;                  &amp;lt;int&amp;gt;              &amp;lt;int&amp;gt;
+## 1 2016-1-1                    37                     24                 11
+## 2 2016-1-2                    41                     23                  5
+## 3 2016-1-3                    37                     23                  8
+## 4 2016-1-4                    30                     17                  4
+## 5 2016-1-5                    38                     29                 19
+## 6 2016-1-6                    34                     33                 32
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;ggplot(lincoln_weather, aes(x=`Mean Temperature [F]`, y=`Month`, fill=..x..))+
+  geom_density_ridges_gradient(scale=3, rel_min_height=0.01, gradient_lwd = 1.)+
+  scale_x_continuous(expand = c(0.01, 0))+
+  scale_y_discrete(expand = c(0.01,0))+
+  scale_fill_viridis(name=&amp;quot;Temp. [F]&amp;quot;, option = &amp;quot;C&amp;quot;)+
+  labs(title=&amp;quot;Temperature in Lincoln NE&amp;quot;,
+       subtitle=&amp;quot;Mean temperature (Fahrenheit) by month for 2016\nData:Orogin CSV from the Weather Underground &amp;quot;)+
+  theme_ridges(font_size = 13, grid = FALSE)+
+  theme(axis.title.y = element_blank())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/bhlKJ09j0e.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cyclinal-scales&#34;&gt;cyclinal scales&lt;/h2&gt;
+&lt;p&gt;为了使得&lt;strong&gt;ggridges&lt;/strong&gt;绘制的图形可视化效果最好，同时为了减少用户对颜色设置的困难，作者提供了&lt;strong&gt;cyclinal scales&lt;/strong&gt;用于颜色轮转映射。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(diamonds, aes(x=price, y=cut, fill=cut))+
+  geom_density_ridges(scale=4)+
+  scale_fill_cyclical(values = c(&amp;quot;blue&amp;quot;, &amp;quot;green&amp;quot;))+
+  theme_ridges(grid = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/ljf8Gcjh08.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;默认的，&lt;strong&gt;cyclinal scales&lt;/strong&gt;为了防止误解是不绘制图例的，但是可以通过选项&lt;code&gt;guide=&amp;quot;legend&amp;quot;&lt;/code&gt;添加图例。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(diamonds, aes(x=price, y=cut, fill=cut))+
+  geom_density_ridges(scale=4)+
+  scale_fill_cyclical(values = c(&amp;quot;blue&amp;quot;, &amp;quot;green&amp;quot;), guide=&amp;quot;legend&amp;quot;)+
+  theme_ridges(grid = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/iGh734gaCG.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;跟&lt;strong&gt;ggplot2&lt;/strong&gt;一样，图例是可以修改的,其他参数比如大小、透明度、形状等都是可以通过&lt;strong&gt;cyclinal scales&lt;/strong&gt;修改。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;ggplot(diamonds, aes(x=price, y=cut, fill=cut))+
+  geom_density_ridges(scale=4)+
+  scale_fill_cyclical(values = c(&amp;quot;blue&amp;quot;, &amp;quot;green&amp;quot;), guide=&amp;quot;legend&amp;quot;,
+                      labels=c(&amp;quot;Fair&amp;quot;=&amp;quot;blue&amp;quot;, &amp;quot;Good&amp;quot;=&amp;quot;green&amp;quot;),
+                      name=&amp;quot;Fill colors&amp;quot;)+
+  theme_ridges(grid = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/5kmJIcg7EB.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;还有很多用法有兴趣的可以查看
+&lt;a href=&#34;https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;官方文档&lt;/a&gt;继续学习。&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] viridis_0.5.0       viridisLite_0.3.0   gridExtra_2.3      
+##  [4] forcats_0.2.0       stringr_1.2.0       dplyr_0.7.4        
+##  [7] purrr_0.2.4         readr_1.1.1         tidyr_0.8.0        
+## [10] tibble_1.4.2        tidyverse_1.2.1     ggridges_0.4.1.9990
+## [13] ggplot2_2.2.1.9000 
+## 
+## loaded via a namespace (and not attached):
+##  [1] reshape2_1.4.3    haven_1.1.1       lattice_0.20-35  
+##  [4] colorspace_1.3-2  htmltools_0.3.6   yaml_2.1.16      
+##  [7] utf8_1.1.3        rlang_0.1.6       pillar_1.1.0     
+## [10] foreign_0.8-69    glue_1.2.0        modelr_0.1.1     
+## [13] readxl_1.0.0      bindrcpp_0.2      bindr_0.1        
+## [16] plyr_1.8.4        munsell_0.4.3     gtable_0.2.0     
+## [19] cellranger_1.1.0  rvest_0.3.2       psych_1.7.8      
+## [22] evaluate_0.10.1   labeling_0.3      knitr_1.19       
+## [25] parallel_3.4.3    broom_0.4.3       Rcpp_0.12.15     
+## [28] scales_0.5.0.9000 backports_1.1.2   jsonlite_1.5     
+## [31] mnormt_1.5-5      hms_0.4.1         digest_0.6.15    
+## [34] stringi_1.1.6     grid_3.4.3        rprojroot_1.3-2  
+## [37] cli_1.0.0         tools_3.4.3       magrittr_1.5     
+## [40] lazyeval_0.2.1    crayon_1.3.4      pkgconfig_2.0.1  
+## [43] xml2_1.2.0        lubridate_1.7.1   assertthat_0.2.0 
+## [46] rmarkdown_1.8     httr_1.3.1        rstudioapi_0.7   
+## [49] R6_2.2.2          nlme_3.1-131      compiler_3.4.3
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1161 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  
+
+  
+  
+  
+    
+  
+  <meta name="description" content="
+简介
+许多物种的基因组大部分是来自于转座子(Transposable elements, TEs)。此外，通过各种自我复制机制，TEs在大多数物种基因组中持续增殖。TEs会影响调控、转录以及新蛋白形成进而与性状比如疾病相关联。尽管TE表现出了显著的影响，但是很多基因组研究还是将它剔除在外，这主要是由于它具有高度的序列重复性，导致研究变得十分复杂。幸运的是随着大量的方法以及计算机软件的开发，TE的研究逐渐深入。本综述总结了TE研究的相关计算工具并着重指出了未来的TE研究存在的挑战与空白。对TE进行基因组上全面的分析不仅仅是“掩盖”这些重复序列(This Review presents a summary of computational resources for TEs and highlights some of the challenges and remaining gaps to perform comprehensive genomic analyses that do not simply &ldquo;mask&rdquo; repeats)。">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#06805E">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/tomorrow.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/tomorrow.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,400i%7CKarla:400,400i,700,700i%7CRoboto+Mono%7CKaushan+Script&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-99209585-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-99209585-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hubd7880285348c4660acc9402140a2483_242472_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hubd7880285348c4660acc9402140a2483_242472_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@TaoYANLogos">
+  <meta property="twitter:creator" content="@TaoYANLogos">
+  
+  <meta property="og:site_name" content="Tao Yan">
+  <meta property="og:url" content="https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/">
+  <meta property="og:title" content="Nature Reviews Genetics | 测序时代的基因组转座子 | Tao Yan">
+  <meta property="og:description" content="
+简介
+许多物种的基因组大部分是来自于转座子(Transposable elements, TEs)。此外，通过各种自我复制机制，TEs在大多数物种基因组中持续增殖。TEs会影响调控、转录以及新蛋白形成进而与性状比如疾病相关联。尽管TE表现出了显著的影响，但是很多基因组研究还是将它剔除在外，这主要是由于它具有高度的序列重复性，导致研究变得十分复杂。幸运的是随着大量的方法以及计算机软件的开发，TE的研究逐渐深入。本综述总结了TE研究的相关计算工具并着重指出了未来的TE研究存在的挑战与空白。对TE进行基因组上全面的分析不仅仅是“掩盖”这些重复序列(This Review presents a summary of computational resources for TEs and highlights some of the challenges and remaining gaps to perform comprehensive genomic analyses that do not simply &ldquo;mask&rdquo; repeats)。"><meta property="og:image" content="https://taoyan.netlify.app/img/pom-card.png">
+  <meta property="twitter:image" content="https://taoyan.netlify.app/img/pom-card.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2019-11-25T16:19:05&#43;00:00">
+    
+    <meta property="article:modified_time" content="2019-11-25T16:19:05&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/"
+  },
+  "headline": "Nature Reviews Genetics | 测序时代的基因组转座子",
+  
+  "datePublished": "2019-11-25T16:19:05Z",
+  "dateModified": "2019-11-25T16:19:05Z",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Tao Yan",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://taoyan.netlify.app/images/icon_hubd7880285348c4660acc9402140a2483_242472_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "\u003cp\u003e\u003cimg src=\"https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191127103914.png\" alt=\"\"\u003e\u003c/p\u003e\n\u003ch2 id=\"简介\"\u003e简介\u003c/h2\u003e\n\u003cp\u003e许多物种的基因组大部分是来自于转座子(Transposable elements, TEs)。此外，通过各种自我复制机制，TEs在大多数物种基因组中持续增殖。TEs会影响调控、转录以及新蛋白形成进而与性状比如疾病相关联。尽管TE表现出了显著的影响，但是很多基因组研究还是将它剔除在外，这主要是由于它具有高度的序列重复性，导致研究变得十分复杂。幸运的是随着大量的方法以及计算机软件的开发，TE的研究逐渐深入。本综述总结了TE研究的相关计算工具并着重指出了未来的TE研究存在的挑战与空白。对TE进行基因组上全面的分析不仅仅是“掩盖”这些重复序列(This Review presents a summary of computational resources for TEs and highlights some of the challenges and remaining gaps to perform comprehensive genomic analyses that do not simply \u0026ldquo;mask\u0026rdquo; repeats)。\u003c/p\u003e"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Nature Reviews Genetics | 测序时代的基因组转座子 | Tao Yan</title>
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Tao Yan</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/post"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/publication"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/CV.html"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Nature Reviews Genetics | 测序时代的基因组转座子</h1>
+
+  
+
+  
+    
+
+
+
+<meta content="2019-11-25 16:19:05 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-11-25 16:19:05 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Nov 25, 2019</time>
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    1 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/transposable-elements/">Transposable Elements</a></span>
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/&amp;text=Nature%20Reviews%20Genetics%20%7c%20%e6%b5%8b%e5%ba%8f%e6%97%b6%e4%bb%a3%e7%9a%84%e5%9f%ba%e5%9b%a0%e7%bb%84%e8%bd%ac%e5%ba%a7%e5%ad%90" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/&amp;t=Nature%20Reviews%20Genetics%20%7c%20%e6%b5%8b%e5%ba%8f%e6%97%b6%e4%bb%a3%e7%9a%84%e5%9f%ba%e5%9b%a0%e7%bb%84%e8%bd%ac%e5%ba%a7%e5%ad%90" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Nature%20Reviews%20Genetics%20%7c%20%e6%b5%8b%e5%ba%8f%e6%97%b6%e4%bb%a3%e7%9a%84%e5%9f%ba%e5%9b%a0%e7%bb%84%e8%bd%ac%e5%ba%a7%e5%ad%90&amp;body=https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/&amp;title=Nature%20Reviews%20Genetics%20%7c%20%e6%b5%8b%e5%ba%8f%e6%97%b6%e4%bb%a3%e7%9a%84%e5%9f%ba%e5%9b%a0%e7%bb%84%e8%bd%ac%e5%ba%a7%e5%ad%90" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191127103914.png" alt=""></p>
+<h2 id="简介">简介</h2>
+<p>许多物种的基因组大部分是来自于转座子(Transposable elements, TEs)。此外，通过各种自我复制机制，TEs在大多数物种基因组中持续增殖。TEs会影响调控、转录以及新蛋白形成进而与性状比如疾病相关联。尽管TE表现出了显著的影响，但是很多基因组研究还是将它剔除在外，这主要是由于它具有高度的序列重复性，导致研究变得十分复杂。幸运的是随着大量的方法以及计算机软件的开发，TE的研究逐渐深入。本综述总结了TE研究的相关计算工具并着重指出了未来的TE研究存在的挑战与空白。对TE进行基因组上全面的分析不仅仅是“掩盖”这些重复序列(This Review presents a summary of computational resources for TEs and highlights some of the challenges and remaining gaps to perform comprehensive genomic analyses that do not simply &ldquo;mask&rdquo; repeats)。</p>
+<h2 id="转座子">转座子</h2>
+<p>转座子首先由<strong>Barbara McClintock</strong>于1948年在玉米中发现，之后在所有动物和植物以及各种真核生物中陆续发现。转座子可以通过不同的机制从基因组的一个位置&quot;跳跃&quot;到另一个位置，这种&quot;跳跃&quot;可以发生在同一条染色体内，也可以发生在不同染色体间。转座是转座子的标志性特征，转座子从供给位点(Donor site)整合到目标位点(Target site)被称为一个完整的转座过程。转座子可以通过两种机制进行转座：</p>
+<ul>
+<li>复制后粘贴(Copy-and-paste)</li>
+<li>剪切后粘贴(Cut-and-paste)</li>
+</ul>
+<h3 id="复制后粘贴">复制后粘贴</h3>
+<p>首先RNA聚合酶Ⅱ(RNA polymerase Ⅱ)将转座子转录成mRNA，再由逆转录酶逆转录形成一个自身DNA(cDNA)拷贝，最后通过整合酶(Integrase)将拷贝整合到目标位点。这一过程RNA起到了一个媒介的作用，所以这一类转座子称为RNA类转座子，也被称为Ⅰ型转座子或逆转录转座子(Retrotransposon)。</p>
+<h3 id="剪切后粘贴">剪切后粘贴</h3>
+<p>转座子不以RNA为媒介，直接被转座酶(Transposase)从供给位点脱离出来通过整合酶整合到目标位点。有一个特例是“滚环”机制，通过Y2转座酶和整合酶实现链入侵，随后通过链置换(Strand displacement)，DNA复制，异源双链形成将转座子整合到目标位点，这些转座子在转座过程中都不需要RNA为媒介，所以这些转座子被称为DNA转座子(DNA transposon)或Ⅱ型转座子。</p>
+<h3 id="helitrons转座子">Helitrons转座子</h3>
+<p>Helitrons 转座子是近年来发现的一种新型 DNA 转座子（上面提到的“滚环”机制），最初是利用基于重复序列的计算方法在拟南芥基因组中鉴定出来的。后来发现，大多数植物和许多动物基因组中都携带 Helitrons 转座子。Helitrons 转座子具有典型的 5&rsquo;TC 以及 3&rsquo;CTRR（R为A或G）末端，并在3&rsquo;末端上游约 15~20bp 处有一个茎环结构，是转座子的终止信号。Helitrons 转座子转座后，通常插入 AT-rich 区域的 AT 靶位点。和反转座子和转座子不同，Helitrons 通过滚环（rolling circle）的方式进行转座。并且，在滚环复制的转座过程中经常捕获和携带基因片段，可导致基因拷贝数的变化，也会在一定程度上促进基因组的进化。</p>
+<h3 id="maverick转座子">Maverick转座子</h3>
+<p>Maverick类型的重复序列一般较大，可达到10-20Kb，两端含有较长的TIR序列，在除植物之外的真和生物中广泛存在。其编码的蛋白可达到11个，但数目和顺序有所不同，有些蛋白与DNA病毒有一定的同源性。这些蛋白中的DNA聚合酶B和整合酶（c-int type）与反转录转座子中的相关蛋白类似，但同样不含有逆转座酶。</p>
+<p>这几类转座子具体转座机制如下：</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191129114532.png" alt=""></p>
+<p>TEs具体分类如下：</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203113721.png" alt=""></p>
+<h2 id="te分类及数据库">TE分类及数据库</h2>
+<p>TE分为两大类，有关TE的信息被整合成三类的数据库：</p>
+<ul>
+<li>以TE为中心的数据库(TE-centric):每个TE家族的保守序列(consensus sequence)</li>
+<li>以基因组为中心的数据库(genome-centric):特定参考基因组的TE序列</li>
+<li>以多态性为中心的数据库(polymorphism-centric):基于参考基因组TE多态性插入序列</li>
+</ul>
+<p>具体情况如下：</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203161725.png" alt=""></p>
+<h2 id="挑战及缺陷">挑战及缺陷</h2>
+<p>关于TE数据库主要面临两方面的缺陷：</p>
+<ul>
+<li>物种特异性的TE数据库的建立是很有必要的，数据库之间TE的冗余需要降低以增加内聚性</li>
+<li>第二个就是人类TE研究中有必要整合TE多态性插入的资源供后续研究</li>
+</ul>
+<h2 id="te构建与注释的手段">TE构建与注释的手段</h2>
+<p>转座子序列库的构建方法主要分为三种：</p>
+<ul>
+<li>从头预测</li>
+<li>同源预测</li>
+<li>结构预测</li>
+</ul>
+<p>具体的方法以及软件如下：</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203163312.png" alt=""></p>
+<p>从上表可以看出，实际上就是要么基于数据库要么从头预测。具体注释策略图示如下：</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203163746.png" alt=""></p>
+<p>用来分析TEs的计算机工具非常多，如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203170109.png" alt=""></p>
+<h3 id="基于数据库注释">基于数据库注释</h3>
+<p>这一策略的核心思想是在全基因组范围内对不同TE家族的保守序列以及功能结构域进行检索，RepeatMasker是最常用的工具，是当前TE研究的金标准，基于Repbase以及Dfam数据库。</p>
+<h3 id="基于已组装基因组的从头注释">基于已组装基因组的从头注释</h3>
+<p>这种方法主要是基于已组装的基因组，可以鉴定一些基于数据库注释缺失的TEs，人类基因组TE通过这种方法从头注释可以鉴定大约多10%的TE。这一方法虽然存在假阳性，但是可以发现新的TE家族以及事件。</p>
+<h3 id="基于原始序列的从头注释">基于原始序列的从头注释</h3>
+<p>这一策略主要充分利用大量的TE序列以及低深度的测序数据去组装TE以及其它重复序列。</p>
+<h3 id="挑战以及缺陷">挑战以及缺陷</h3>
+<p>目前TE注释的主流是利用多种策略进行检索并整合到一起，组成比较完整的数据库。比如人类基因组TE数据通过不同策略以及工具注释的结果差异是很大的：</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203165812.png" alt=""></p>
+<p>虽然从头注释可以鉴定新的重复序列家族以及新的TE事件，但是引入的假阳性也更高。基于原始序列注释TE的方法只能鉴定少量的TE，但是可以在缺乏组装基因组的情况下注释TE。新的系统性的注释工具对于TE的注释来说极其重要。</p>
+<h2 id="te多态性检测">TE多态性检测</h2>
+<p>有了参考基因组、完整的转座子注释文件以及群体就可以进行群体转座子多态性插入的检测，跟SNP一样，TE多态性标记可以跟表型进行关联。目前有大量的软件被开发出来进行TE多态性检测：</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203173422.png" alt=""></p>
+<h3 id="基于短读长序列检测生殖细胞系te多态性">基于短读长序列检测生殖细胞系TE多态性</h3>
+<p>大多数的TE检测流程的输入数据都是NGS测序数据。NGS的读长一般在100-250bp，这对于从属于重复序列的转座子来说，从短读长的reads鉴定TE是一种具有挑战性的工作。目前针对短读长进行TE多态性检测的方法主要有三种：</p>
+<ul>
+<li>使用split-read (SR)信息</li>
+<li>依赖不一致的读长对(discordant read pai , DRP)比对</li>
+<li>基于TE特定motif的识别</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203183128.png" alt=""></p>
+<h2 id="te的特征及影响">TE的特征及影响</h2>
+<p>TE的插入会引入新的基因或转录本、调控基因表达、导致基因组不稳定以及活跃的置换。</p>
+<p><img src="https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20191203190952.png" alt=""></p>
+<h3 id="预测te衍生或者破坏的基因与转录本">预测TE衍生或者破坏的基因与转录本</h3>
+<p>注释在基因区域的TE在很多数据库中都有检测到。</p>
+<h3 id="预测te对基因调控的影响">预测TE对基因调控的影响</h3>
+<h3 id="重复区域结构变异的检测">重复区域结构变异的检测</h3>
+<p>后续还有部分内容暂时这里不讲了，有兴趣的话可以下载
+<a href="https://www.nature.com/articles/s41576-018-0050-x.pdf" target="_blank" rel="noopener">原文</a>细读。</p>
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/te/">TE</a>
+  
+  <a class="badge badge-light" href="/tags/genome/">genome</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/&amp;text=Nature%20Reviews%20Genetics%20%7c%20%e6%b5%8b%e5%ba%8f%e6%97%b6%e4%bb%a3%e7%9a%84%e5%9f%ba%e5%9b%a0%e7%bb%84%e8%bd%ac%e5%ba%a7%e5%ad%90" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/&amp;t=Nature%20Reviews%20Genetics%20%7c%20%e6%b5%8b%e5%ba%8f%e6%97%b6%e4%bb%a3%e7%9a%84%e5%9f%ba%e5%9b%a0%e7%bb%84%e8%bd%ac%e5%ba%a7%e5%ad%90" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Nature%20Reviews%20Genetics%20%7c%20%e6%b5%8b%e5%ba%8f%e6%97%b6%e4%bb%a3%e7%9a%84%e5%9f%ba%e5%9b%a0%e7%bb%84%e8%bd%ac%e5%ba%a7%e5%ad%90&amp;body=https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://taoyan.netlify.app/post/2019-11-25.%E6%B5%8B%E5%BA%8F%E6%97%B6%E4%BB%A3%E7%9A%84%E5%9F%BA%E5%9B%A0%E7%BB%84%E8%BD%AC%E5%BA%A7%E5%AD%90/&amp;title=Nature%20Reviews%20Genetics%20%7c%20%e6%b5%8b%e5%ba%8f%e6%97%b6%e4%bb%a3%e7%9a%84%e5%9f%ba%e5%9b%a0%e7%bb%84%e8%bd%ac%e5%ba%a7%e5%ad%90" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/authors/alison/avatar_hufa245e75a5e5fa47274790393ba89624_26717_270x270_fill_q90_lanczos_center.jpg" alt="">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://taoyan.netlify.app/"></a></h5>
+        <h6 class="card-subtitle">PhD Candidate of Crop Genetics and Breeding</h6>
+        <p class="card-text">I am a PhD student of Crop Genetics and Breeding at the <em>Zhejiang University</em> Crop Science Lab. My research interests covers a range of issues:Population Genetics Evolution and Ecotype Divergence Analysis of Oilseed Rape, Genome-wide Association Study (GWAS) of Agronomic Traits.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:tyan@zju.edu.cn" >
+        <i class="fas fa-paper-plane"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <li>
+      <a href="mailto:tyan@zju.edu.cn" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://twitter.com/TaoYANLogos" target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/YTLogos" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://scholar.google.com/citations?hl=en&amp;user=8p3wQNwAAAAJ" target="_blank" rel="noopener">
+        <i class="ai ai-google-scholar"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+<section id="comments">
+  
+    
+<div id="disqus_thread"></div>
+<script>
+  let disqus_config = function () {
+    
+    
+    
+  };
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+      return;
+    }
+    var d = document, s = d.createElement('script'); s.async = true;
+    s.src = 'https://' + "logos-1" + '.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+  
+</section>
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/Shell.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/Python.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.37431be2d92d7fb0160054761ab79602.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/license/">LICENSE: CC-BY-SA <br> <i class="fab fa-creative-commons fa-2x"></i><i class="fab fa-creative-commons-by fa-2x"></i><i class="fab fa-creative-commons-sa fa-2x"></i> </a><br>
+  </p>
+  
+
+  <p class="powered-by">
+    © Tao Yan, 2018-2020 &middot; 
+
+    Made with <i class="far fa-heart" style="color:#E13D3D"></i>, <a href="https://github.com/YTLogos/TaoYan" target="_blank" rel="noopener"><i class="fas fa-code-branch" style="color:#E13D3D"></i></a>, the <a href="https://cran.r-project.org/" target="_blank" rel="noopener"><i class="fab fa-r-project"></i> </a><a href="https://github.com/rstudio/blogdown" target="_blank" rel="noopener">blogdown</a> package, and the 
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+<div style="text-align: center;"><script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=5cz8zk3uynm&amp;m=0&amp;c=ff0000&amp;cr1=ffffff&amp;f=arial&amp;l=0" async="async"></script></div>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database | Tao Yan</title>
+    <link>https://taoyan.netlify.app/categories/database/</link>
+      <atom:link href="https://taoyan.netlify.app/categories/database/index.xml" rel="self" type="application/rss+xml" />
+    <description>Database</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Mon, 16 Mar 2020 16:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Database</title>
+      <link>https://taoyan.netlify.app/categories/database/</link>
+    </image>
+    
+    <item>
+      <title>数据库安全漏洞修复</title>
+      <link>https://taoyan.netlify.app/post/2020-03-16.%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/</link>
+      <pubDate>Mon, 16 Mar 2020 16:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2020-03-16.%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E4%BF%AE%E5%A4%8D/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/YTLogos/pic_link/master/img/20200325153604.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;由于
+&lt;a href=&#34;http://rapeseed.zju.edu.cn/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;实验室网站&lt;/a&gt;需要开通外网服务，学校安排了安全漏洞检测，共发现安全漏洞3个，其中高危0个、中危1个、低危2个。存在的安全隐患主要包括目录浏览、&lt;code&gt;X-Frame-Options Header&lt;/code&gt;未配置等安全漏洞，可能将造成用户信息泄露等危害。&lt;/p&gt;
+&lt;h3 id=&#34;中危目录浏览漏洞&#34;&gt;中危：目录浏览漏洞&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Web&lt;/code&gt;中间件如果开启了目录浏览功能，当用户访问Web应用时，Web服务器会将Web应用的目录结构、文件信息返回给客户端，攻击者可能利用这些敏感信息对&lt;code&gt;Web&lt;/code&gt;应用进行攻击，如数据库脚本SQL文件路径泄露、程序备份压缩文件路径泄露等。攻击者可针对性进行攻击，获取敏感目录信息。&lt;/p&gt;
+&lt;h4 id=&#34;修复&#34;&gt;修复&lt;/h4&gt;
+&lt;p&gt;我主要修改了配置文件，关闭目录浏览功能，具体就是在&lt;code&gt;Apache&lt;/code&gt;配置文件&lt;code&gt;httpd.conf&lt;/code&gt;中将&lt;code&gt;Options Indexes FollowSymLinks&lt;/code&gt;注释掉了，从而禁用了目录浏览功能。&lt;/p&gt;
+&lt;h3 id=&#34;低危x-frame-options-header未配置&#34;&gt;低危：&lt;code&gt;X-Frame-Options Header&lt;/code&gt;未配置&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;X-Frame-Options HTTP&lt;/code&gt;响应头可以指示浏览器是否允许当前网页在&lt;code&gt;&amp;quot;frame&amp;quot;&lt;/code&gt;或&lt;code&gt;&amp;quot;iframe&amp;quot;&lt;/code&gt;标签中显示，以此使网站内容不被其他站点引用和免于点击劫持攻击。攻击者可利用此漏洞可进行点击劫持攻击，可能用于钓鱼攻击等。&lt;/p&gt;
+&lt;h4 id=&#34;修复-1&#34;&gt;修复&lt;/h4&gt;
+&lt;p&gt;在&lt;code&gt;Apache&lt;/code&gt;配置文件&lt;code&gt;httpd.conf&lt;/code&gt;添加&lt;code&gt;&amp;quot;Header always append X-Frame-Options SAMEORIGIN&amp;quot;&lt;/code&gt;即可。&lt;/p&gt;
+&lt;h3 id=&#34;低危允许trace方法&#34;&gt;低危：允许trace方法&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;TRACE&lt;/code&gt;是一种&lt;code&gt;HTTP&lt;/code&gt;方法，允许&lt;code&gt;TRACE&lt;/code&gt;方法的&lt;code&gt;Web&lt;/code&gt;服务器存在跨站脚本漏洞。
+实施攻击要素：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;需要目标Web服务器允许&lt;code&gt;TRACE&lt;/code&gt;参数；&lt;/li&gt;
+&lt;li&gt;需要一个用来插入&lt;code&gt;XST&lt;/code&gt;代码的地方；&lt;/li&gt;
+&lt;li&gt;目标站点存在跨域漏洞。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;trace&lt;/code&gt;为不安全的&lt;code&gt;http&lt;/code&gt;方法，开启该方法网站可能存在跨站，造成跨站脚本攻击。&lt;/p&gt;
+&lt;h4 id=&#34;修复-2&#34;&gt;修复&lt;/h4&gt;
+&lt;p&gt;在&lt;code&gt;Apache&lt;/code&gt;配置文件&lt;code&gt;httpd.conf&lt;/code&gt;中启用&lt;code&gt;rewrite&lt;/code&gt;模块，从而禁用了&lt;code&gt;trace&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

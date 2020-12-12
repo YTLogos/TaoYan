@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QQ Plot | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/qq-plot/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/qq-plot/index.xml" rel="self" type="application/rss+xml" />
+    <description>QQ Plot</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Thu, 11 Jan 2018 12:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>QQ Plot</title>
+      <link>https://taoyan.netlify.app/tags/qq-plot/</link>
+    </image>
+    
+    <item>
+      <title>一步步教你如何绘制GWAS中的曼哈顿图以及QQ图</title>
+      <link>https://taoyan.netlify.app/post/2018-01-11.%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6gwas%E4%B8%AD%E7%9A%84%E6%9B%BC%E5%93%88%E9%A1%BF%E5%9B%BE%E4%BB%A5%E5%8F%8Aqq%E5%9B%BE/</link>
+      <pubDate>Thu, 11 Jan 2018 12:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2018-01-11.%E4%B8%80%E6%AD%A5%E6%AD%A5%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E7%BB%98%E5%88%B6gwas%E4%B8%AD%E7%9A%84%E6%9B%BC%E5%93%88%E9%A1%BF%E5%9B%BE%E4%BB%A5%E5%8F%8Aqq%E5%9B%BE/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/EE3ce1m2L2.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;GWAS研究中的曼哈顿图以及QQ图可以说是标配了，至于具体如何理解这两个图，可以参考我以前的博客。上周我利用自己的数据跑了个GWAS，我是利用&lt;strong&gt;GAPIT&lt;/strong&gt;跑的，出的图感觉真心丑，大家可以看看：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/iAm97eG6FD.png?raw=true&#34; alt=&#34;Manhattan plot&#34;&gt;
+&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/im6b1iJ7FE.png?raw=true&#34; alt=&#34;QQ plot&#34;&gt;&lt;/p&gt;
+&lt;p&gt;所以我利用&lt;strong&gt;GAPIT&lt;/strong&gt;出来的数据重新画了图，用的就是包&lt;strong&gt;qqman&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;p&gt;Github主页上提供了三种安装方式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Install the stable release from CRAn
+install.packages(&amp;quot;qqman&amp;quot;)
+# 直接从Github上安装
+devtools::install_github(&amp;quot;stephenturner/qqman&amp;quot;)
+# 从Github上安装最新的开发版
+devtools::install_github(&amp;quot;stephenturner/qqman&amp;quot;,ref=&amp;quot;dev&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;数据格式&#34;&gt;数据格式&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;qqman&lt;/strong&gt;里内置了一套数据集&lt;code&gt;gwasResults&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;library(qqman)
+dim(gwasResults)
+## [1] 16470     4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;head(gwasResults)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   SNP CHR BP         P
+## 1 rs1   1  1 0.9148060
+## 2 rs2   1  2 0.9370754
+## 3 rs3   1  3 0.2861395
+## 4 rs4   1  4 0.8304476
+## 5 rs5   1  5 0.6417455
+## 6 rs6   1  6 0.5190959
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;str(gwasResults)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &#39;data.frame&#39;:    16470 obs. of  4 variables:
+##  $ SNP: chr  &amp;quot;rs1&amp;quot; &amp;quot;rs2&amp;quot; &amp;quot;rs3&amp;quot; &amp;quot;rs4&amp;quot; ...
+##  $ CHR: int  1 1 1 1 1 1 1 1 1 1 ...
+##  $ BP : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ P  : num  0.915 0.937 0.286 0.83 0.642 ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看到该数据集共有16470行，4列，分别为SNP名、染色体、SNP位置以及P值。
+该数据集不大，SNP标记十分少，通过每条染色体上的SNP标记可以看出&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;as.data.frame(table(gwasResults$CHR))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Var1 Freq
+## 1     1 1500
+## 2     2 1191
+## 3     3 1040
+## 4     4  945
+## 5     5  877
+## 6     6  825
+## 7     7  784
+## 8     8  750
+## 9     9  721
+## 10   10  696
+## 11   11  674
+## 12   12  655
+## 13   13  638
+## 14   14  622
+## 15   15  608
+## 16   16  595
+## 17   17  583
+## 18   18  572
+## 19   19  562
+## 20   20  553
+## 21   21  544
+## 22   22  535
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;manhattan-plot&#34;&gt;Manhattan plot&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;qqman&lt;/strong&gt;提供了一个绘制Manhattan plot的函数&lt;code&gt;manhattan()&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;manhattan(gwasResults)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/h6dGbBmlkI.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;manhattan()&lt;/code&gt;提供了大量的参数设置：标题(main=)、y轴范围(ylim=)、控制点的大小(cex=)、x轴坐标轴标签的字体大小(cex.axis=)、颜色(col=)、阈值参考线控制(suggestiveline=, genomewideline=)、以及添加注释信息等。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;manhattan(gwasResults, main=&amp;quot;Manhattan plot&amp;quot;, ylim=c(0, 10), cex=0.6, cex.axis=0.9, col = c(&amp;quot;blue&amp;quot;,&amp;quot;orange&amp;quot;), suggestiveline = F, genomewideline = F, chrlabs = c(1:20, &amp;quot;P&amp;quot;,&amp;quot;Q&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/LHmie5lJJI.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;还提供针对一条染色体数据进行绘图&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;manhattan(subset(gwasResults, CHR==3))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/a7062c4K9L.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;对有显著性影响的SNP进行高亮(没有的话会忽略掉)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;manhattan(gwasResults, highlight = snpsOfInterest)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/e3lD9c1706.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;针对特定染色体以及特定区间进行高亮&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;manhattan(subset(gwasResults, CHR==3), highlight=snpsOfInterest, xlim=c(200, 500), main=&amp;quot;Chr 3&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/el9mh4j8mJ.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;manhattan&lt;/code&gt;注释的时候默认注释每条染色体中P值最小且超过我们设定的p值阈值的SNP点，默认的P值阈值为0.01&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;manhattan(gwasResults, annotatePval = 0.01)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/36G2LmhlCm.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;我们可以通过自行设定参数注释所有超过P值阈值的SNP点&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;manhattan(gwasResults, annotatePval = 0.001, annotateTop = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/0f84LHbID9.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;manhattan&lt;/code&gt;可以绘制任意的value值，不限于p-value，只需要在设置中指定value值就行了。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;gwasResults &amp;lt;- transform(gwasResults, zscore=qnorm(P/2, lower.tail = FALSE))
+head(gwasResults)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   SNP CHR BP         P    zscore
+## 1 rs1   1  1 0.9148060 0.1069785
+## 2 rs2   1  2 0.9370754 0.0789462
+## 3 rs3   1  3 0.2861395 1.0666287
+## 4 rs4   1  4 0.8304476 0.2141275
+## 5 rs5   1  5 0.6417455 0.4652597
+## 6 rs6   1  6 0.5190959 0.6447396
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来利用value值zscore来绘制图形&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;manhattan(gwasResults, p = &amp;quot;zscore&amp;quot;, logp = FALSE, ylab=&amp;quot;Z-score&amp;quot;, genomewideline = FALSE, suggestiveline = FALSE, main=&amp;quot;Manhattan plot of Z-scores&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/d5K199L3lh.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;需要注意的几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据集列名默认是SNP、CHR、BP和P，因此如何自己的数据集列名与此不一致的话，要么转为一致，要么绘图时指定chr=、bp=、p=和snp=。具体情况可见help(manhattan)。&lt;/li&gt;
+&lt;li&gt;染色体编号那一列必须是数值型，如果数据集中有&amp;quot;X&amp;quot;、&amp;ldquo;Y&amp;quot;以及&amp;quot;MT&amp;quot;等染色体，想要转为数值型编号再在绘图时指定坐标名&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;manhattan&lt;/code&gt;只提供了修改snp点的颜色参数，如果要修改阈值线、高亮、注释等的颜色，需要修改源码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;qq图&#34;&gt;QQ图&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;qqman&lt;/strong&gt;提供了绘制QQ图的函数&lt;code&gt;qq()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;qq(gwasResults)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/25aI37Ld3g.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;通过参数设置可以指定点的类型、大小、颜色等&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;qq(gwasResults$P, main=&amp;quot;Q-Q plot of GWAS p-value&amp;quot;, xlim=c(0,7), ylim=c(0,12), pch=18, col = &amp;quot;blue4&amp;quot;, cex=1.5, las=1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/9hlig1ajam.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sessioninfo&#34;&gt;SessionInfo&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-{r}&#34;&gt;sessionInfo()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## R version 3.4.3 (2017-11-30)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 16299)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936   
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C                              
+## [5] LC_TIME=Chinese (Simplified)_China.936    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] qqman_0.1.3
+## 
+## loaded via a namespace (and not attached):
+##  [1] compiler_3.4.3  backports_1.1.2 magrittr_1.5    rprojroot_1.3-2
+##  [5] tools_3.4.3     htmltools_0.3.6 yaml_2.1.16     Rcpp_0.12.14   
+##  [9] calibrate_1.7.2 stringi_1.1.6   rmarkdown_1.8   knitr_1.18     
+## [13] stringr_1.2.0   digest_0.6.13   evaluate_0.10.1
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

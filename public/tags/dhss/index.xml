@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DHSs | Tao Yan</title>
+    <link>https://taoyan.netlify.app/tags/dhss/</link>
+      <atom:link href="https://taoyan.netlify.app/tags/dhss/index.xml" rel="self" type="application/rss+xml" />
+    <description>DHSs</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Wed, 06 Dec 2017 21:19:05 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>DHSs</title>
+      <link>https://taoyan.netlify.app/tags/dhss/</link>
+    </image>
+    
+    <item>
+      <title>生物信息学学习笔记（四）</title>
+      <link>https://taoyan.netlify.app/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
+      <pubDate>Wed, 06 Dec 2017 21:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2017-12-06.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/lGak1jll4j.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;最近看了华中农业大学张献龙老师发在&lt;strong&gt;Nature Genetics&lt;/strong&gt;上的文章
+&lt;a href=&#34;https://www.nature.com/articles/ng.3807&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Asymmetric subgenome selection and cis-regulatory divergence during cotton domestication&lt;/a&gt;以及第一作者王茂军博士的博士毕业论文，十分精彩，故学习之并做适当笔记。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;通过分析四倍体棉花At和Dt亚组同源基因甲基化和表达量之间的关系，推测不同亚组基因的表观修饰差异可能是基因偏向性表达的原因之一&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;部分名词解释：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;H3K27me3：组蛋白H3上第27位赖氨酸三甲基化&lt;/li&gt;
+&lt;li&gt;H3K4me1：组蛋白H3上第4位赖氨酸一甲基化&lt;/li&gt;
+&lt;li&gt;H3K4me3：组蛋白H3上第4位赖氨酸三甲基化&lt;/li&gt;
+&lt;li&gt;H3K9me2：组蛋白H3上第9位赖氨酸二甲基化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不同作物基因组大小差异非常大，这主要是由于重复序列和转座子的插入与丢失造成的。对于二倍体来说，不同作物基因数量与基因组大小并不显著相关，基因数量一般在3万到4万之间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;不同作物生物学特性与其对应的基因的扩增与丢失，基因表达的差异有关&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;同一作物的不同材料之间基因组序列变异非常大，因此需要测序群体基因组去研究&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DNA甲基化是一种重要的表观调控机制。在植物中发生在胞嘧啶上的DNA甲基化主要存在三种形式：对称形式的CG，CHG和非对称形式的CHH(H=A,T或者C)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;植物种DNA甲基化主要发生在转座子区域和其他高度重复序列区域&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;组蛋白修饰是另外一种非常重要的表观遗传修饰，参与异染色质区域转座子的失活调控，同时调控植物发育和环境响应相关途径。组蛋白甲基化存在于赖氨酸和精氨酸上，通过依赖组蛋白赖氨酸甲基转移酶和精氨酸甲基转移酶建立，这些酶都被称为写入器，组蛋白甲基化之后能够被特定蛋白识别，然后参与不同生物学过程的调控，这些识别蛋白被称为阅读器。组蛋白甲基化的存在是动态的，可以被一些蛋白清除，这些蛋白被称为清除器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DNA甲基化和组蛋白修饰在基因上的分布和对基因表达的影响
+&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/Cbb3BIfc95.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;利用DNase Ⅰ酶切染色质并收集酶切片段进行测序(DNase-Seq),可以高通量鉴定顺式调控元件。DNase-Seq可以用于鉴定DNase Ⅰ酶切超敏感位点，这些位点通常对应顺式调控元件。DNase Ⅰ酶切位点不是均匀的，被转录因子结合的位点会阻止酶切，这些位点的酶切效率很低。通过分析DNase Ⅰ酶切足迹，可以在单核苷酸水平鉴定转录因子结合位点&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;顺式作用元件调控基因转录的模式图&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/643Bk42CEm.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;p&gt;除了启动子区域外，增强子是另外一种重要的顺势调控元件。DNase-Seq鉴定的DHS包含大量增强子区域，增强子能够招募装录因子，从而促进靶标基因的表达，这种作用常常以细胞特异或组织特异的形式存在。增强子的作用与靶标基因的物理位置和方向关系较小，因此增强子元件可以位于基因组的不同位置。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基因表达的可变剪接是在pri-mRNA水平进行的能增强蛋白多样性的一种机制。可变剪接事件可以分为五种基本类型，包含内含子保留(IR)，外显子跳跃(ES),可变供体(AD)，可变受体(AA)和可变位置(AP)，其中IR在植物中占据绝大部分&lt;/li&gt;
+&lt;li&gt;祖先染色体构建&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了分析驯化选择在不同亚基因祖上的差异性，构建棉花的At和Dt亚组的祖先染色体。因为两个亚组的基因组大小差异巨大，在构建祖先染色体的时候，只使用了共线性区段的基因对。共线性区段是通过MCScanX软件鉴定出来的，规定最小共线性区段必须包括5个基因。同时将两个亚组的基因做相互blastp分析，保留最好的匹配结果。结合共线性区段和blastp的结果，得到最终的亚组之间的同源基因。这些同源基因必须同时被这两种方法检测。提取这些同源基因上下游2kb的区段与基因区域一起构建祖先染色体。祖先染色体上的基因顺序依据于Dt亚基因祖上的基因排列顺序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以通过DNase-Seq测序鉴定棉花基因组上的顺式调控元件主要是根据顺式调控元件通常位于开放的染色质区域，很容易被核酸酶切&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>生物信息学学习笔记（三）</title>
+      <link>https://taoyan.netlify.app/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</link>
+      <pubDate>Mon, 04 Dec 2017 21:19:05 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/post/2017-12-04.%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%89/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/eeCi4f49Ag.png?raw=true&#34; alt=&#34;mark&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CpG位点(CpG sites，CG位点)：指DNA的某个区域，其上的碱基序列以胞嘧啶接着鸟嘌呤出现。CpG是“—C—磷酸—G—”的缩写，指磷酸二脂键连接了胞嘧啶和鸟嘌呤，其中C位于5&amp;rsquo;端而G位于3&amp;rsquo;端。在CpG位点中的胞嘧啶可以被甲基化为5-甲基胞嘧啶，基因内CpG位点的甲基化会改变基因的表达&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;顺式调控元件&#34;&gt;顺式调控元件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;启动子(promoter)：指导RNA聚合酶并起始DNA转录的一段DNA序列，该序列往往位于编码基因的上游，可以调控目标基因表达的程度、时间和组织等。通常核心启动子都具有一些特征序列，这些特征序列称为基序(motif),常见的基序有TATA盒(TATA box)等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;增强子和沉默子：指DNA分子上可以与特定蛋白相结合从而正向或负向调控基因表达的顺式作用元件。其中增强子与蛋白结合之后，基因的转录水平会增强，其位置可以位于启动子上游、基因内、基因下游或基因区间，甚至于被调控基因不在同一条染色体上，这是由于增强子主要依靠空间作用来调控基因表达。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;绝缘子：绝缘子是一种长程调控元件，主要有两类。第一类主要功能是阻遏邻近的调控元件如增强子。绝缘子发挥功能时具有方向性，其可以阻断增强子与启动子的作用，从而导致增强子的目标基因表达下调。第二类是异染色质的边界原件。由于异染色质包装折叠较常染色体显得更加紧密，异染色质中的基因很少表达，而第二类绝缘子可以在异染色质的边界阻断异染色质结构的延伸，保证边界另一侧的基因表达不受影响。
+&lt;img src=&#34;https://github.com/YTLogos/Pic_blog/blob/master/j7HbHF03CH.png?raw=true&#34; alt=&#34;顺式作用元件&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;转录水平的调控是真核基因表达调控的关键环节，染色质对DNase Ⅰ的敏感性与基因转录有关。基因活化使其染色质一呈开放的疏松型构象，更易被DNase Ⅰ降解，形成DNase Ⅰ超敏感位点(DNase Ⅰ hypersensitive site，DHSs).DHSs不仅与染色质的开放度相关，还与启动子、增强子、绝缘子以及沉默子等元件相偶联，并且染色质上具有调控功能的DNA序列、调控蛋白结合位点也与DHSs重叠&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DHSs是一段跨度为数百碱基对，甲基化程度较低，对DNase Ⅰ具有高度敏感性的染色质区域，可富集转录因子和重要酶类，具有转录调控功能&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;染色质由一系列盘绕着DNA的核小体组成，转录因子在与基因结合时，取代了核小体的位置，baoluchuDNA，使其对DNase Ⅰ的切割更为敏感，在此基础上，利用染色质对DNase Ⅰ的敏感性鉴定活化的调控序列&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DNase-seq方案包括用DNase Ⅰ优先切割核小体被取代的DNA序列，对生成的短片段进行测序并将其定位到基因组上以鉴定对敏感酶的“染色质开放”区域。一些转录因子的结合位点显示出高度特异性的DNase Ⅰ剪切模式。这种“Dnase 足迹”常被用来检测特定转录因子的结合&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ATAC-seq(assay for transposase-accesiible chromatin using sequencing)：通过Tn5转座酶优先标记和测序核小体之间的DNA。类似于DNase-seq，但是步骤更为简单，所需细胞也更少&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对DNase-seq片段进行双端测序，发现短片段主要源自于核小体之间的区域，而长片段跨越了核小体。研究指出短片段对鉴定转录因子的结合更有用，长片段可以提供核小体的间隔信息&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;研究人员发现由于DNase Ⅰ和Tn5的切割偏好性，之前许多Dnase印记分析反映的更多是切割偏好而不是转录因子的真实结合情况。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3d基因组&#34;&gt;3D基因组&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;不同染色质在细胞核内的分布不是杂乱无章的，而是被限定在特定的“疆域”内，基因相对密集的染色质通常分布在远离核膜的位置，而基因稀疏的染色质则分布在靠近核膜的位置。在基因组上分离的染色质区段在空间上可能被拉到一起共同被转录，形成“转录工厂”&lt;/li&gt;
+&lt;li&gt;基因组区室是指存在于染色质上的相互间隔的连续区域，通常这些区域大小为1~10Mb，每个区域内的点具有相似的全基因组交互模式，根据交互模式的差异，这些区域可以分为两类：A类区室和B类区室。相同类型的区室具有相似的全基因组交互模式，其交互频率要显著高于不同类型区室之间的交互。A类区室往往代表基因富集的常染色质区域，B类区室则对应着基因稀疏的异染色质区域&lt;/li&gt;
+&lt;li&gt;拓扑相关结构域(TAD)则是位于高等动物染色质的更精细的结构单元，TAD被定义为这样一块块连续的染色质区域，区域内部互作强度要显著强于区域之间的互作。每个TAD通常只有200Kb~1Mb。&lt;/li&gt;
+&lt;li&gt;染色质位点的相互作用存在某种固有的模式，而这些模式与特定生物学过程/功能是无关的&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xin Chen | Tao Yan</title>
+    <link>https://taoyan.netlify.app/authors/xin-chen/</link>
+      <atom:link href="https://taoyan.netlify.app/authors/xin-chen/index.xml" rel="self" type="application/rss+xml" />
+    <description>Xin Chen</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© Tao Yan, 2018-2020</copyright><lastBuildDate>Wed, 03 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://taoyan.netlify.app/img/pom-card.png</url>
+      <title>Xin Chen</title>
+      <link>https://taoyan.netlify.app/authors/xin-chen/</link>
+    </image>
+    
+    <item>
+      <title>Effect of high night temperature on storage lipids and transcriptome changes in developing seeds of oilseed rape</title>
+      <link>https://taoyan.netlify.app/publication/2018-zhou-rapeseed-night-temp-fatty-acid/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>https://taoyan.netlify.app/publication/2018-zhou-rapeseed-night-temp-fatty-acid/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

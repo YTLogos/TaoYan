@@ -1,5 +1,5 @@
 ---
-title: ttplot:Tao Yan's Plot Toolkit
+title: ttplot
 date: 2020-09-14T00:00:00
 authors: [Tao Yan]
 summary: Tao Yan's Plot Toolkit

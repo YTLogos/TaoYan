@@ -1,5 +1,5 @@
 ---
-title: BnaSNPDB:SNP Database of Brassica napus L.
+title: BnaSNPDB
 date: 2020-09-14T00:00:00
 authors: [Tao Yan]
 summary: An interactive web portal for exploring SNPs among 1007 rapeseed germplasm accessions

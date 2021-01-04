@@ -1,5 +1,5 @@
 ---
-title: BnaGWAS:GWAS platform of rapeseed
+title: BnaGWAS
 date: 2020-09-14T00:00:00
 authors: [Tao Yan]
 summary: A shinyapp for performing GWAS in rapeseed based on a core collection

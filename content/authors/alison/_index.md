@@ -20,9 +20,9 @@ interests:
 - Open Source
 name: Tao Yan
 organizations:
-- name: Zhejiang University
-  url: "http://www.zju.edu.cn/english/"
-role: PhD Candidate of Crop Genetics and Breeding
+- name: Hunan Agricultural University
+  url: "https://www.hunau.edu.cn/"
+role: Researcher
 social:
 - icon: "paper-plane"
   icon_pack: "fas"
@@ -45,4 +45,6 @@ user_groups:
 - Visitors
 ---
 
-I am a PhD student of Crop Genetics and Breeding at the *Zhejiang University* Crop Science Lab. My Ph.D research work covers a range of issues : **Population Genetics Evolution and Ecotype Divergence Analysis of Oilseed Rape**, **Genome-wide Association Study (GWAS) of Agronomic Traits**. Currently, I am interested in Transposable Elements Insertion Polymorphisms (TIPs) in Crop Population and genetic basis such as SV, CNV and TIPs etc shapes the diversity of different morphotypes of *B. napus*.
+I am a lecturer at College of Agronomy, Hunan Agricultural University (HUAU), Changsha, China. My Ph.D research work covers a range of issues: Population Genetics Evolution and Ecotype Divergence Analysis of Brassica napus, Genome-wide Association Study (GWAS) of Agronomic Traits. Currently, I am interested in Transposable Elements Insertion Polymorphisms (TIPs) in Crop Population and genetic basis such as SV, CNV and TIPs etc. Now my research focus on Crop Stress and Improvement.
+
+I am broadly interested in bioinformatics, data integration and visualization.

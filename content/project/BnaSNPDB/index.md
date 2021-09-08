@@ -3,7 +3,7 @@ title: BnaSNPDB
 date: 2020-09-14T00:00:00
 authors: [Tao Yan]
 summary: An interactive web portal for exploring SNPs among 1007 rapeseed germplasm accessions
-abstract: The SNP database of Brassica napus (BnaSNPDB) is an interactive web portal that provides multiple analysis modules to visualize and explore SNPs among 1007 rapeseed germplasm accessions based on the data reported by previous research (Wu et al., 2019). The app is deployed at https://bnapus-zju.com/bnasnpdb and http://rapeseed.zju.edu.cn:3838/bnasnpdb for online use. BnaSNPDB is idle until you activate it by accessing the URL. So it may take some time to load for the first time. Once it was activated, BnaSNPDB could be used smoothly and easily. The portal is built entirely in R and Shiny using the RStudio development environment.
+abstract: The SNP database of Brassica napus (BnaSNPDB) is an interactive web portal that provides multiple analysis modules to visualize and explore SNPs among 1007 rapeseed germplasm accessions based on the data reported by previous research (Wu et al., 2019). The app is deployed at https://bnapus-zju.com/bnasnpdb for online use. BnaSNPDB is idle until you activate it by accessing the URL. So it may take some time to load for the first time. Once it was activated, BnaSNPDB could be used smoothly and easily. The portal is built entirely in R and Shiny using the RStudio development environment.
 external_link: ""
 image:
   caption: 'The home page'
@@ -26,7 +26,7 @@ url_video: "https://www.youtube.com/watch?v=8mBHzsKVotc"
 
 ## Overview
 
-The SNP database of *Brassica napus* (**BnaSNPDB**) is an interactive web portal that provides multiple analysis modules to visualize and explore SNPs among 1007 rapeseed germplasm accessions based on the data reported by previous research ([Wu et al., 2019](http://rapeseed.zju.edu.cn/pdf/mp.pdf)). The app is deployed at https://bnapus-zju.com/bnasnpdb and http://rapeseed.zju.edu.cn:3838/bnasnpdb for online use. 
+The SNP database of *Brassica napus* (**BnaSNPDB**) is an interactive web portal that provides multiple analysis modules to visualize and explore SNPs among 1007 rapeseed germplasm accessions based on the data reported by previous research ([Wu et al., 2019](http://rapeseed.zju.edu.cn/pdf/mp.pdf)). The app is deployed at https://bnapus-zju.com/bnasnpdb for online use. 
 
 
 **BnaSNPDB** is idle until you activate it by accessing the [URL](https://bnapus-zju.com/bnasnpdb). So it may take some time to load for the first time. Once it was activated, **BnaSNPDB** could be used smoothly and easily.
@@ -62,35 +62,35 @@ git clone https://github.com/YTLogos/BnaSNPDB.git
 # First install Bioconductor
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install(version = "3.11")
+BiocManager::install(version = "3.13")
 
-BiocManager::install("shiny")
-BiocManager::install("ggplot2")
-BiocManager::install("stringr")
-BiocManager::install("dplyr")
-BiocManager::install("tidyr")
-BiocManager::install("forcats")
-BiocManager::install("patchwork")
-BiocManager::install("glue")
-BiocManager::install("ggpubr")
-BiocManager::install("writexl")
-BiocManager::install("snpStats")
-BiocManager::install("IRanges")
-BiocManager::install("LDheatmap")
-BiocManager::install("ape")
-BiocManager::install("pegas")
-BiocManager::install("gridExtra")
-BiocManager::install("grid")
-BiocManager::install("ggtree")
-BiocManager::install("shinycssloaders")
-BiocManager::install("shinydashboard")
-BiocManager::install("shinydisconnect")
-BiocManager::install("shinyWidgets")
-BiocManager::install("gggenes")
-BiocManager::install("DT")
-BiocManager::install("shinythemes")
-BiocManager::install("NAM")
-BiocManager::install("adegenet")
+BiocManager::install("shiny",update = F)
+BiocManager::install("ggplot2",update = F)
+BiocManager::install("stringr",update = F)
+BiocManager::install("dplyr",update = F)
+BiocManager::install("tidyr",update = F)
+BiocManager::install("forcats",update = F)
+BiocManager::install("patchwork",update = F)
+BiocManager::install("glue",update = F)
+BiocManager::install("ggpubr",update = F)
+BiocManager::install("writexl",update = F)
+BiocManager::install("snpStats"),update = F
+BiocManager::install("IRanges",update = F)
+BiocManager::install("LDheatmap",update = F)
+BiocManager::install("ape",update = F)
+BiocManager::install("pegas",update = F)
+BiocManager::install("gridExtra",update = F)
+BiocManager::install("grid",update = F)
+BiocManager::install("ggtree",update = F)
+BiocManager::install("shinycssloaders",update = F)
+BiocManager::install("shinydashboard",update = F)
+BiocManager::install("shinydisconnect",update = F)
+BiocManager::install("shinyWidgets",update = F)
+BiocManager::install("gggenes",update = F)
+BiocManager::install("DT",update = F)
+BiocManager::install("shinythemes",update = F)
+BiocManager::install("NAM",update = F)
+BiocManager::install("adegenet",update = F)
 
 if (require(devtools)) install.packages("devtools")#if not already installed
 devtools::install_github("AnalytixWare/ShinySky")

@@ -45,6 +45,6 @@ user_groups:
 - Visitors
 ---
 
-I am a lecturer at College of Agronomy, Hunan Agricultural University (HUAU), Changsha, China. My Ph.D research work covers a range of issues: Population Genetics Evolution and Ecotype Divergence Analysis of Brassica napus, Genome-wide Association Study (GWAS) of Agronomic Traits. Currently, I am interested in Transposable Elements Insertion Polymorphisms (TIPs) in Crop Population and genetic basis such as SV, CNV and TIPs etc. Now my research focus on Crop Stress and Improvement.
+I am a lecturer at College of Agronomy, Hunan Agricultural University (HUNAU), Changsha, China. My Ph.D research work covers a range of issues: Population Genetics Evolution and Ecotype Divergence Analysis of Brassica napus, Genome-wide Association Study (GWAS) of Agronomic Traits. Currently, I am interested in Transposable Elements Insertion Polymorphisms (TIPs) in Crop Population and genetic basis such as SV, CNV and TIPs etc. Now my research focus on Crop Stress and Improvement.
 
 I am broadly interested in bioinformatics, data integration and visualization.
